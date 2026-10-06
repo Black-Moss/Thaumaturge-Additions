@@ -1,0 +1,39 @@
+{
+  "type": "thaumaturge:infusion",
+  "aspects": [
+    {
+      "amount": 25,
+      "aspect": "thaumaturge:fabrico"
+    },
+    {
+      "amount": 25,
+      "aspect": "thaumaturge:ordo"
+    }
+  ],
+  "catalyst": "thaumaturge:scribing_tools",
+  "components": [
+    "#c:dyes/black",
+    "#c:dyes/blue",
+    "#c:dyes/brown",
+    "#c:dyes/cyan",
+    "#c:dyes/gray",
+    "#c:dyes/green",
+    "#c:dyes/light_blue",
+    "#c:dyes/light_gray",
+    "#c:dyes/lime",
+    "#c:dyes/magenta",
+    "#c:dyes/orange",
+    "#c:dyes/pink",
+    "#c:dyes/purple",
+    "#c:dyes/red",
+    "#c:dyes/white",
+    "#c:dyes/yellow"
+  ],
+  "instability": 2,
+  "research": {
+    "entry": "thaumaturgeadditions:rainbow_scribing_tools"
+  },
+  "result": {
+    "id": "thaumaturgeadditions:rainbow_scribing_tools"
+  }
+}

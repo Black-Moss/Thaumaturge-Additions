@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "thaumaturgeadditions:item/void_traveller_boots_overlay",
+    "layer1": "thaumaturgeadditions:item/void_traveller_boots"
+  }
+}

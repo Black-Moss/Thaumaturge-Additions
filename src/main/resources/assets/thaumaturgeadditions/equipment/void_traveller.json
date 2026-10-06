@@ -1,0 +1,26 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "thaumicaddon:void_traveller_overlay",
+        "dyeable": {
+          "color_when_undyed": 6961280
+        }
+      },
+      {
+        "texture": "thaumicaddon:void_traveller"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "thaumicaddon:void_traveller_overlay",
+        "dyeable": {
+          "color_when_undyed": 6961280
+        }
+      },
+      {
+        "texture": "thaumicaddon:void_traveller"
+      }
+    ]
+  }
+}

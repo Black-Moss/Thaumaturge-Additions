@@ -1,0 +1,49 @@
+{
+  "type": "thaumaturge:infusion",
+  "aspects": [
+    {
+      "amount": 25,
+      "aspect": "thaumaturge:metallum"
+    },
+    {
+      "amount": 25,
+      "aspect": "thaumaturge:aqua"
+    },
+    {
+      "amount": 30,
+      "aspect": "thaumaturge:vacuos"
+    },
+    {
+      "amount": 25,
+      "aspect": "thaumaturge:fabrico"
+    },
+    {
+      "amount": 25,
+      "aspect": "thaumaturge:alienis"
+    },
+    {
+      "amount": 50,
+      "aspect": "thaumaturge:volatus"
+    },
+    {
+      "amount": 50,
+      "aspect": "thaumaturge:motus"
+    }
+  ],
+  "catalyst": "thaumaturge:void_boots",
+  "components": [
+    "thaumaturge:traveller_boots",
+    "thaumaturge:plate_void",
+    "thaumaturge:plate_void",
+    "thaumaturge:salis_mundus",
+    "thaumaturge:fabric",
+    "minecraft:leather"
+  ],
+  "instability": 6,
+  "research": {
+    "entry": "thaumaturgeadditions:void_traveller_boots"
+  },
+  "result": {
+    "id": "thaumaturgeadditions:void_traveller_boots"
+  }
+}

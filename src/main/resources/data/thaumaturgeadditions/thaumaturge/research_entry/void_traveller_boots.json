@@ -1,0 +1,61 @@
+{
+  "category": "thaumaturge:eldritch",
+  "name": "research.thaumaturgeadditions.void_traveller_boots.title",
+  "parents": [
+    "thaumaturge:void_robe_armor",
+    "thaumaturge:boots_traveller"
+  ],
+  "column": 0,
+  "row": 5,
+  "icons": [
+    "thaumaturgeadditions:void_traveller_boots"
+  ],
+  "stages": [
+    {
+      "text": "research.thaumaturgeadditions.void_traveller_boots.stage_0",
+      "required_knowledge": [
+        {
+          "type": "theory",
+          "category": "thaumaturge:infusion",
+          "amount": 1
+        },
+        {
+          "type": "observation",
+          "category": "thaumaturge:eldritch",
+          "amount": 1
+        }
+      ],
+      "warp": 1
+    },
+    {
+      "text": "research.thaumaturgeadditions.void_traveller_boots.stage_1",
+      "recipes": [
+        "thaumaturgeadditions:infusion/void_traveller_boots",
+        "thaumaturgeadditions:void_traveller_boots_dyed"
+      ]
+    }
+  ],
+  "note_aspects": [
+    {
+      "aspect": "thaumaturge:motus",
+      "amount": 3
+    },
+    {
+      "aspect": "thaumaturge:volatus",
+      "amount": 3
+    },
+    {
+      "aspect": "thaumaturge:aqua",
+      "amount": 3
+    },
+    {
+      "aspect": "thaumaturge:vacuos",
+      "amount": 6
+    },
+    {
+      "aspect": "thaumaturge:fabrico",
+      "amount": 4
+    }
+  ],
+  "complexity": 3
+}

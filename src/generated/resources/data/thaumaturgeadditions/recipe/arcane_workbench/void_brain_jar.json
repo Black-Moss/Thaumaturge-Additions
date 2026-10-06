@@ -1,0 +1,18 @@
+{
+  "type": "thaumaturge:arcane_workbench_shapeless",
+  "crystals": [
+    {
+      "aspect": "thaumaturge:perditio"
+    }
+  ],
+  "ingredients": [
+    "thaumaturge:jar_brain"
+  ],
+  "research": {
+    "entry": "thaumaturge:warded_jars"
+  },
+  "result": {
+    "id": "thaumaturgeadditions:void_brain_jar"
+  },
+  "vis": 50
+}

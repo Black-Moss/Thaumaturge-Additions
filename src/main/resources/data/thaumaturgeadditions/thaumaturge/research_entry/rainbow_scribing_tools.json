@@ -1,0 +1,118 @@
+{
+  "category": "thaumaturge:basics",
+  "name": "research.thaumaturgeadditions.rainbow_scribing_tools.title",
+  "parents": [
+    "thaumaturge:research",
+    "thaumaturge:base_infusion"
+  ],
+  "column": 3,
+  "row": 0,
+  "icons": [
+    "thaumaturgeadditions:rainbow_scribing_tools"
+  ],
+  "meta": [
+    "round"
+  ],
+  "stages": [
+    {
+      "text": "research.thaumaturgeadditions.rainbow_scribing_tools.stage_0",
+      "required_knowledge": [
+        {
+          "type": "theory",
+          "category": "thaumaturge:infusion",
+          "amount": 1
+        }
+      ],
+      "obtain": [
+        {
+          "items": [
+            "thaumaturge:scribing_tools"
+          ],
+          "amount": 1
+        },
+        {
+          "items": "#c:dyes/black",
+          "amount": 1
+        },
+        {
+          "items": "#c:dyes/red",
+          "amount": 1
+        },
+        {
+          "items": "#c:dyes/green",
+          "amount": 1
+        },
+        {
+          "items": "#c:dyes/brown",
+          "amount": 1
+        },
+        {
+          "items": "#c:dyes/blue",
+          "amount": 1
+        },
+        {
+          "items": "#c:dyes/purple",
+          "amount": 1
+        },
+        {
+          "items": "#c:dyes/cyan",
+          "amount": 1
+        },
+        {
+          "items": "#c:dyes/light_gray",
+          "amount": 1
+        },
+        {
+          "items": "#c:dyes/gray",
+          "amount": 1
+        },
+        {
+          "items": "#c:dyes/pink",
+          "amount": 1
+        },
+        {
+          "items": "#c:dyes/lime",
+          "amount": 1
+        },
+        {
+          "items": "#c:dyes/yellow",
+          "amount": 1
+        },
+        {
+          "items": "#c:dyes/light_blue",
+          "amount": 1
+        },
+        {
+          "items": "#c:dyes/magenta",
+          "amount": 1
+        },
+        {
+          "items": "#c:dyes/orange",
+          "amount": 1
+        },
+        {
+          "items": "#c:dyes/white",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "text": "research.thaumaturgeadditions.rainbow_scribing_tools.stage_1",
+      "recipes": [
+        "thaumaturgeadditions:infusion/rainbow_scribing_tools",
+        "thaumaturgeadditions:rainbow_scribing_tools_alt"
+      ]
+    }
+  ],
+  "note_aspects": [
+    {
+      "aspect": "thaumaturge:ordo",
+      "amount": 3
+    },
+    {
+      "aspect": "thaumaturge:fabrico",
+      "amount": 4
+    }
+  ],
+  "complexity": 3
+}

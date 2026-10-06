@@ -1,0 +1,20 @@
+{
+  "type": "thaumaturge:crucible",
+  "aspects": [
+    {
+      "amount": 5,
+      "aspect": "thaumaturge:metallum"
+    },
+    {
+      "amount": 5,
+      "aspect": "thaumaturge:ordo"
+    }
+  ],
+  "catalyst": "minecraft:raw_copper",
+  "research": {
+    "entry": "thaumaturge:metal_purification"
+  },
+  "result": {
+    "id": "thaumaturge:cluster_copper"
+  }
+}

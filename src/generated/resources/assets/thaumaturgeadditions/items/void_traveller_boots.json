@@ -1,0 +1,12 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "thaumaturgeadditions:item/void_traveller_boots",
+    "tints": [
+      {
+        "type": "minecraft:dye",
+        "default": -9815936
+      }
+    ]
+  }
+}

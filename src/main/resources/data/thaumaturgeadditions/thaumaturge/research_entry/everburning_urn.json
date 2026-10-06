@@ -1,0 +1,53 @@
+{
+  "category": "thaumaturge:alchemy",
+  "name": "research.thaumaturgeadditions.everburning_urn.title",
+  "parents": [
+    "thaumaturge:everfull_urn"
+  ],
+  "column": -2,
+  "row": 4,
+  "icons": [
+    "thaumaturgeadditions:everburning_urn"
+  ],
+  "stages": [
+    {
+      "text": "research.thaumaturgeadditions.everburning_urn.stage_0",
+      "required_knowledge": [
+        {
+          "type": "theory",
+          "category": "thaumaturge:alchemy",
+          "amount": 1
+        }
+      ],
+      "obtain": [
+        {
+          "items": [
+            "thaumaturge:everfull_urn"
+          ],
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "text": "research.thaumaturgeadditions.everburning_urn.stage_1",
+      "recipes": [
+        "thaumaturgeadditions:infusion/everburning_urn"
+      ]
+    }
+  ],
+  "note_aspects": [
+    {
+      "aspect": "thaumaturge:ignis",
+      "amount": 5
+    },
+    {
+      "aspect": "thaumaturge:terra",
+      "amount": 3
+    },
+    {
+      "aspect": "thaumaturge:vacuos",
+      "amount": 2
+    }
+  ],
+  "complexity": 2
+}
