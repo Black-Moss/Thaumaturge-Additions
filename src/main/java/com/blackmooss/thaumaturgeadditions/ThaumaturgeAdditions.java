@@ -1,6 +1,7 @@
 package com.blackmooss.thaumaturgeadditions;
 
 import com.blackmooss.thaumaturgeadditions.client.TAColorHandlers;
+import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.SophisticatedBackpacksCompat;
 import com.blackmooss.thaumaturgeadditions.data.ModBlockLootSubProvider;
 import com.blackmooss.thaumaturgeadditions.data.ModModelProvider;
 import com.blackmooss.thaumaturgeadditions.data.ModRecipeProvider;
@@ -44,6 +45,7 @@ public class ThaumaturgeAdditions {
         TADataComponents.DATA_COMPONENT_TYPES.register(modEventBus);
         TAItems.ITEMS.register(modEventBus);
         TAColorHandlers.register(modEventBus);
+        modEventBus.addListener(SophisticatedBackpacksCompat::onRegisterUpgradeContainers);
     }
 
     @SubscribeEvent

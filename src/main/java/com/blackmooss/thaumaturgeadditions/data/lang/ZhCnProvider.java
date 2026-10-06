@@ -19,6 +19,7 @@ public class ZhCnProvider extends LanguageProvider {
         addItem(TAItems.VOID_TRAVELLER_BOOTS, "虚空旅行者之靴");
         addItem(TAItems.RAINBOW_SCRIBING_TOOLS, "彩虹笔与墨");
         addItem(TAItems.TRAVELERS_BACKPACK_ARCANE_WORKBENCH_UPGRADE, "旅行者背包奥术工作台升级");
+        addItem(TAItems.SOPHISTICATED_BACKPACKS_ARCANE_WORKBENCH_UPGRADE, "精妙背包奥术工作台升级");
         addBlock(TABlocks.VOID_BRAIN_JAR, "虚空缸中之脑");
         addBlock(TABlocks.EVERBURNING_URN, "永燃之瓮");
 
@@ -49,8 +50,9 @@ public class ZhCnProvider extends LanguageProvider {
         add("focus.thaumaturgeadditions.salis_mundus.name", "世界盐");
         add("focus.thaumaturgeadditions.salis_mundus.text", "魔法尘埃的核心版，施加于特定方块时可触发转化，且不消耗世界盐。");
 
+        add("screen.thaumaturgeadditions.arcane_workbench_upgrade", "奥术工作台");
         add("item.thaumaturgeadditions.travelersbackpack_arcane_workbench_upgrade.tooltip", "消耗所在区块的灵气随时随地合成奥术配方。");
-        add("screen.thaumaturgeadditions.travelersbackpack_arcane_workbench_upgrade", "奥术工作台");
+        add("item.thaumaturgeadditions.sophisticatedbackpacks_arcane_workbench_upgrade.tooltip", "消耗所在区块的灵气随时随地合成奥术配方。");
 
         add("trim_material.thaumaturge.brass", "黄铜");
         add("trim_material.thaumaturge.thaumium", "神秘");

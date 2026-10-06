@@ -40,3 +40,15 @@ modId = "travelersbackpack"
 type = "optional"
 ordering = "AFTER"
 side = "BOTH"
+
+[[dependencies.${ mod_id }]]
+modId = "sophisticatedbackpacks"
+type = "optional"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.${ mod_id }]]
+modId = "sophisticatedcore"
+type = "optional"
+ordering = "AFTER"
+side = "BOTH"

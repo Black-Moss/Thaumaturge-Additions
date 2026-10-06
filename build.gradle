@@ -41,6 +41,11 @@ repositories {
         name = "Illusive Soulworks"
         url = "https://maven.theillusivec4.top/"
     }
+
+    maven {
+        name = "blakesmodsReleases"
+        url = "https://maven.blakesmods.com/releases"
+    }
 }
 
 base {
@@ -118,12 +123,19 @@ dependencies {
     compileOnly "maven.modrinth:rlloIFEV:${travelersbackpack_version}"
     runtimeOnly "maven.modrinth:rlloIFEV:${travelersbackpack_version}"
 
+    // Sophisticated Core
+    compileOnly "maven.modrinth:sophisticated-core:${sophisticatedcore_version}"
+    runtimeOnly "maven.modrinth:sophisticated-core:${sophisticatedcore_version}"
+
     // Sophisticated Backpacks
     compileOnly "maven.modrinth:sophisticated-backpacks:${sophisticatedbackpacks_version}"
     runtimeOnly "maven.modrinth:sophisticated-backpacks:${sophisticatedbackpacks_version}"
 
-    // Sophisticated Core
-    runtimeOnly "maven.modrinth:sophisticated-core:${sophisticatedcore_version}"
+    // Cucumber Library
+    implementation "com.blakebr0.cucumber:Cucumber:26.1.2-9.0.6"
+
+    // Mystical Agriculture
+    implementation 'com.blakebr0.mysticalagriculture:MysticalAgriculture:26.1.2-9.0.10'
 }
 
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
@@ -158,7 +170,7 @@ publishing {
 }
 
 tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8' 
+    options.encoding = 'UTF-8'
 }
 
 idea {

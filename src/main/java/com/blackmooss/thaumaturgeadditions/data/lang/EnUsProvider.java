@@ -19,6 +19,7 @@ public class EnUsProvider extends LanguageProvider {
         addItem(TAItems.VOID_TRAVELLER_BOOTS, "Void Traveller's Boots");
         addItem(TAItems.RAINBOW_SCRIBING_TOOLS, "Rainbow Scribing Tools");
         addItem(TAItems.TRAVELERS_BACKPACK_ARCANE_WORKBENCH_UPGRADE, "Traveler's Backpack Arcane Workbench Upgrade");
+        addItem(TAItems.SOPHISTICATED_BACKPACKS_ARCANE_WORKBENCH_UPGRADE, "Sophisticated Backpack Arcane Workbench Upgrade");
         addBlock(TABlocks.VOID_BRAIN_JAR, "Void Brain in a Jar");
         addBlock(TABlocks.EVERBURNING_URN, "Everburning Urn");
 
@@ -49,8 +50,8 @@ public class EnUsProvider extends LanguageProvider {
         add("focus.thaumaturgeadditions.salis_mundus.name", "Salis Mundus");
         add("focus.thaumaturgeadditions.salis_mundus.text", "A focus-form of magical dust: triggers transmutations on certain blocks without consuming Salis Mundus.");
 
-        add("item.thaumaturgeadditions.travelersbackpack_arcane_workbench_upgrade.tooltip", "Consume the aura of the chunk and craft the arcane recipes anytime, anywhere.");
-        add("screen.thaumaturgeadditions.travelersbackpack_arcane_workbench_upgrade", "Arcane Workbench");
+        add("screen.thaumaturgeadditions.arcane_workbench_upgrade", "Arcane Workbench");
+        add("item.thaumaturgeadditions.arcane_workbench_upgrade.tooltip", "Consume the aura of the chunk and craft the arcane recipes anytime, anywhere.");
 
         add("trim_material.thaumaturge.brass", "Brass");
         add("trim_material.thaumaturge.thaumium", "Thaumium");

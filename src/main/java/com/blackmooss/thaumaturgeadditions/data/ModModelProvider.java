@@ -41,9 +41,9 @@ public class ModModelProvider extends ModelProvider {
         arcaneWorkbenchUpgrade(itemModels);
     }
 
-    // 奥术工作台升级物品，纹理尚未制作
     private static void arcaneWorkbenchUpgrade(@NonNull ItemModelGenerators itemModels) {
         itemModels.generateFlatItem(TAItems.TRAVELERS_BACKPACK_ARCANE_WORKBENCH_UPGRADE.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(TAItems.SOPHISTICATED_BACKPACKS_ARCANE_WORKBENCH_UPGRADE.get(), ModelTemplates.FLAT_ITEM);
     }
 
     private static void voidJar(@NonNull BlockModelGenerators blockModels, @NonNull ItemModelGenerators itemModels) {

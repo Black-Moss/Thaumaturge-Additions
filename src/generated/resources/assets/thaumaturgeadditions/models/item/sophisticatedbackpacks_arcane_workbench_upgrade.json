@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "thaumaturgeadditions:item/sophisticatedbackpacks_arcane_workbench_upgrade"
+  }
+}

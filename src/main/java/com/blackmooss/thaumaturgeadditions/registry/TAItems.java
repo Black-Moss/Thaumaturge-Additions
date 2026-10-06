@@ -1,6 +1,7 @@
 package com.blackmooss.thaumaturgeadditions.registry;
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
+import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.SophisticatedBackpacksCompat;
 import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.TravelersBackpackCompat;
 import com.blackmooss.thaumaturgeadditions.item.VoidTravellerBootsItem;
 import net.minecraft.world.entity.EquipmentSlotGroup;
@@ -33,6 +34,10 @@ public final class TAItems {
 
     public static final DeferredItem<Item> TRAVELERS_BACKPACK_ARCANE_WORKBENCH_UPGRADE = ITEMS.registerItem(
             "travelersbackpack_arcane_workbench_upgrade", TravelersBackpackCompat::createArcaneWorkbenchUpgradeItem, props -> props
+                    .stacksTo(16));
+
+    public static final DeferredItem<Item> SOPHISTICATED_BACKPACKS_ARCANE_WORKBENCH_UPGRADE = ITEMS.registerItem(
+            "sophisticatedbackpacks_arcane_workbench_upgrade", SophisticatedBackpacksCompat::createArcaneWorkbenchUpgradeItem, props -> props
                     .stacksTo(16));
 
 
