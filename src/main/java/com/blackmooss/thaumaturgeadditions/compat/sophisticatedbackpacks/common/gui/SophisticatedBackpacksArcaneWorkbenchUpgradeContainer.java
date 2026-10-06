@@ -1,6 +1,7 @@
 package com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.common.gui;
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
+import com.blackmooss.thaumaturgeadditions.compat.CraftingTableRecipes;
 import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.SophisticatedBackpacksCompat;
 import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.common.gui.slot.SophisticatedBackpacksArcaneResultSlot;
 import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.upgrades.SophisticatedBackpacksArcaneWorkbenchCraftingStore;
@@ -80,7 +81,6 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeContainer
         return this.upgradeWrapper.getStoredAura();
     }
 
-    // 客户端只显示服务端同步过来的成品，绝不本地写空
     public void refreshResult() {
         if (!this.isServerSide()) {
             return;
@@ -92,10 +92,27 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeContainer
             return;
         }
         ArcaneCraftingTransaction.Result result = ArcaneCraftingTransaction.preview(this.context(), (ServerPlayer) this.player, input);
-        if (!result.successful() && input.ingredientCount() > 0) {
+        if (result.successful()) {
+            this.craftResult.setItem(0, result.output());
+            return;
+        }
+        if (result.failure() == ArcaneCraftingTransaction.Failure.NO_RECIPE) {
+            CraftingTableRecipes.VanillaCraft vanilla = CraftingTableRecipes.plan(this.player.level(), this.gridStacks());
+            this.craftResult.setItem(0, vanilla == null ? ItemStack.EMPTY : vanilla.output());
+            return;
+        }
+        if (input.ingredientCount() > 0) {
             ThaumaturgeAdditions.LOGGER.debug("Sophisticated Backpacks arcane workbench upgrade: craft preview failed - {}", result.failure());
         }
-        this.craftResult.setItem(0, result.successful() ? result.output() : ItemStack.EMPTY);
+        this.craftResult.setItem(0, ItemStack.EMPTY);
+    }
+
+    private List<ItemStack> gridStacks() {
+        List<ItemStack> slots = new ArrayList<>(SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.GRID_SLOTS);
+        for (int index = 0; index < SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.GRID_SLOTS; index++) {
+            slots.add(this.upgradeWrapper.getInventory().getStackInSlot(index));
+        }
+        return slots;
     }
 
     public void onResultTaken(Player player, ItemStack takenStack) {
@@ -124,7 +141,6 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeContainer
         return snapshot;
     }
 
-    // 自动填充方格：合成后空掉的合成格，从背包或玩家物品栏补回同样的材料
     private void refillCraftingGrid(Player player, List<ItemStack> gridBefore) {
         if (!this.upgradeWrapper.shouldRefillCraftingGrid()) {
             return;
@@ -141,7 +157,6 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeContainer
         }
     }
 
-    // 服务端执行整笔合成：消耗材料 + 消耗灵气，失败自动回滚
     private boolean performCraft(ServerPlayer serverPlayer, ItemStack takenStack) {
         ArcaneCraftingInput.Positioned positioned = this.buildPositionedInput();
         ArcaneCraftingInput input = positioned.input();
@@ -156,9 +171,23 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeContainer
             if (result.successful() && ItemStack.isSameItemSameComponents(result.output(), takenStack)) {
                 crafted = true;
                 transaction.commit();
+            } else if (result.failure() == ArcaneCraftingTransaction.Failure.NO_RECIPE) {
+                crafted = this.performVanillaCraft(serverPlayer, takenStack, transaction);
             }
         }
         return crafted;
+    }
+
+    private boolean performVanillaCraft(ServerPlayer serverPlayer, ItemStack takenStack, Transaction transaction) {
+        List<ItemStack> slots = this.gridStacks();
+        CraftingTableRecipes.VanillaCraft vanilla = CraftingTableRecipes.plan(serverPlayer.level(), slots);
+        if (vanilla == null || !ItemStack.isSameItemSameComponents(vanilla.output(), takenStack)) {
+            return false;
+        }
+        SophisticatedBackpacksArcaneWorkbenchCraftingStore store = new SophisticatedBackpacksArcaneWorkbenchCraftingStore(
+                this.upgradeWrapper.getInventory(), serverPlayer, 0, 0, CraftingTableRecipes.GRID_WIDTH, CraftingTableRecipes.GRID_HEIGHT);
+        ItemStack wand = this.upgradeWrapper.getInventory().getStackInSlot(SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.WAND_SLOT);
+        return CraftingTableRecipes.consume(store, vanilla, slots, wand, transaction);
     }
 
     public ArcaneCraftingInput asArcaneCraftInput() {

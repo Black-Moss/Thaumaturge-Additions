@@ -1,6 +1,7 @@
 package com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.upgrades;
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
+import com.blackmooss.thaumaturgeadditions.compat.CraftingTableRecipes;
 import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.TravelersBackpackCompat;
 import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.menu.slot.ArcaneCrystalSlot;
 import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.menu.slot.TravelersBackpackArcaneResultSlot;
@@ -32,6 +33,7 @@ import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
+import net.neoforged.neoforge.transfer.transaction.TransactionContext;
 import org.jetbrains.annotations.Nullable;
 import org.jspecify.annotations.NonNull;
 
@@ -169,10 +171,19 @@ public class TravelersBackpackArcaneWorkbenchUpgrade extends UpgradeBase<Travele
             return;
         }
         ArcaneCraftingTransaction.Result result = ArcaneCraftingTransaction.preview(context(player), player, input);
-        if (!result.successful() && input.ingredientCount() > 0) {
+        if (result.successful()) {
+            this.resultContainer.setItem(0, result.output());
+            return;
+        }
+        if (result.failure() == ArcaneCraftingTransaction.Failure.NO_RECIPE) {
+            CraftingTableRecipes.VanillaCraft vanilla = CraftingTableRecipes.plan(player.level(), gridStacks());
+            this.resultContainer.setItem(0, vanilla == null ? ItemStack.EMPTY : vanilla.output());
+            return;
+        }
+        if (input.ingredientCount() > 0) {
             ThaumaturgeAdditions.LOGGER.debug("Traveler's Backpack Arcane workbench upgrade: craft preview failed - {}", result.failure());
         }
-        this.resultContainer.setItem(0, result.successful() ? result.output() : ItemStack.EMPTY);
+        this.resultContainer.setItem(0, ItemStack.EMPTY);
     }
 
     public ItemStack takeCraft() {
@@ -191,10 +202,34 @@ public class TravelersBackpackArcaneWorkbenchUpgrade extends UpgradeBase<Travele
             if (result.successful() && ItemStack.matches(result.output(), displayed)) {
                 crafted = result.output();
                 transaction.commit();
+            } else if (result.failure() == ArcaneCraftingTransaction.Failure.NO_RECIPE) {
+                crafted = takeVanillaCraft(player, displayed, transaction);
             }
         }
         refreshResult();
         return crafted;
+    }
+
+    private ItemStack takeVanillaCraft(ServerPlayer player, ItemStack displayed, TransactionContext transaction) {
+        List<ItemStack> slots = gridStacks();
+        CraftingTableRecipes.VanillaCraft vanilla = CraftingTableRecipes.plan(player.level(), slots);
+        if (vanilla == null || !ItemStack.matches(vanilla.output(), displayed)) {
+            return ItemStack.EMPTY;
+        }
+        TravelersBackpackArcaneWorkbenchCraftingStore store = new TravelersBackpackArcaneWorkbenchCraftingStore(
+                this.items, player, 0, 0, CraftingTableRecipes.GRID_WIDTH, CraftingTableRecipes.GRID_HEIGHT);
+        if (!CraftingTableRecipes.consume(store, vanilla, slots, StacksHandlerUtils.getStackInSlot(this.items, WAND_SLOT), transaction)) {
+            return ItemStack.EMPTY;
+        }
+        return vanilla.output();
+    }
+
+    private List<ItemStack> gridStacks() {
+        List<ItemStack> slots = new ArrayList<>(GRID_SLOTS);
+        for (int index = 0; index < GRID_SLOTS; index++) {
+            slots.add(StacksHandlerUtils.getStackInSlot(this.items, index));
+        }
+        return slots;
     }
 
     public ArcaneCraftingInput asArcaneCraftInput() {
