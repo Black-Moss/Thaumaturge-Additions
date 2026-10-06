@@ -51,9 +51,8 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeTab
     private static final Position RESULT_SLOT_POSITION = new Position(42, 109);
     private static final Position WAND_SLOT_POSITION = new Position(9, 109);
 
-    // 两个开关按钮左右对称：输出去向靠左 (7,79)，自动填充靠右（面板宽 100，镜像是 100-7-16=77）
-    private static final Position SHIFT_CLICK_BUTTON_POSITION = new Position(7, 79);
-    private static final Position REFILL_BUTTON_POSITION = new Position(77, 79);
+    private static final Position SHIFT_CLICK_BUTTON_POSITION = new Position(3, 79);
+    private static final Position REFILL_BUTTON_POSITION = new Position(79, 79);
 
     private static final String VIS_AVAILABLE_KEY = "gui.thaumaturge.arcane_workbench.vis_available";
     private static final int VIS_LINE_CENTER_X = 83;
