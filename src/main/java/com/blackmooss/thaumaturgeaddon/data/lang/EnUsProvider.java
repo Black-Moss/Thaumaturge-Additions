@@ -54,7 +54,7 @@ public class EnUsProvider extends LanguageProvider {
     }
 
     private void addResearch(String researchId, String title, String... stage) {
-        add("research.%s.%s".formatted(ThaumaturgeAdditions.MODID, researchId), title);
+        add("research.%s.%s.title".formatted(ThaumaturgeAdditions.MODID, researchId), title);
         for (int i = 0; i < stage.length; i++) {
             add("research.%s.%s.stage_%d".formatted(ThaumaturgeAdditions.MODID, researchId, i), stage[i]);
         }

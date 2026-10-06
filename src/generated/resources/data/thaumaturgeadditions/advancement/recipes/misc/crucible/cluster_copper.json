@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "thaumaturge:cluster_lead"
+            "items": "thaumaturge:cluster_copper"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "thaumaturge:crucible/cluster_lead"
+        "recipe": "thaumaturgeadditions:crucible/cluster_copper"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "thaumaturge:crucible/cluster_lead"
+      "thaumaturgeadditions:crucible/cluster_copper"
     ]
   }
 }

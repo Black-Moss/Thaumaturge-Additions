@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "thaumaturge:crucible/cluster_tin"
+        "recipe": "thaumaturgeadditions:crucible/cluster_tin"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "thaumaturge:crucible/cluster_tin"
+      "thaumaturgeadditions:crucible/cluster_tin"
     ]
   }
 }

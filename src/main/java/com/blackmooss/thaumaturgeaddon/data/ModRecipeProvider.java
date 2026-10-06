@@ -50,8 +50,8 @@ public final class ModRecipeProvider extends RecipeProvider {
     protected void buildRecipes() {
         HolderGetter<IAspect> aspects = registries.lookupOrThrow(IAspect.REGISTRY_KEY);
 
-        voidTravellerBoots(aspects);
-        clusters(aspects);
+        voidTravellerBoots();
+        clusters();
 
         // 虚空缸中之脑
         new ArcaneWorkbenchShapelessRecipeBuilder(RecipeCategory.MISC,
@@ -119,7 +119,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .save(output, ThaumaturgeAdditions.MODID + ":rainbow_scribing_tools_alt");
     }
 
-    private void voidTravellerBoots(HolderGetter<IAspect> aspects) {
+    private void voidTravellerBoots() {
         infusion(TAItems.VOID_TRAVELLER_BOOTS.get(),
                 RecipeCategory.COMBAT,
                 TCItems.VOID_BOOTS.get())
@@ -155,7 +155,8 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .save(output, ThaumaturgeAdditions.MODID + ":void_traveller_boots_dyed");
     }
 
-    private void clusters(HolderGetter<IAspect> aspects) {
+    private void clusters() {
+        // 粗金变金原矿簇
         crucible(TCItems.CLUSTER_IRON.get(),
                 RecipeCategory.MISC,
                 Items.RAW_IRON)
@@ -163,7 +164,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .aspect(TCAspects.ORDO, 5)
                 .gate(tcGate("metal_purification"))
                 .unlockedBy("has", this.has(TCItems.CLUSTER_IRON))
-                .save(output);
+                .save(output, ThaumaturgeAdditions.MODID + ":crucible/cluster_iron");
 
         // 粗金变金原矿簇
         crucible(TCItems.CLUSTER_GOLD.get(),
@@ -173,7 +174,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .aspect(TCAspects.ORDO, 5)
                 .gate(tcGate("metal_purification"))
                 .unlockedBy("has", this.has(TCItems.CLUSTER_GOLD))
-                .save(output);
+                .save(output, ThaumaturgeAdditions.MODID + ":crucible/cluster_gold");
 
         // 粗铜变铜原矿簇
         crucible(TCItems.CLUSTER_COPPER.get(),
@@ -183,7 +184,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .aspect(TCAspects.ORDO, 5)
                 .gate(tcGate("metal_purification"))
                 .unlockedBy("has", this.has(TCItems.CLUSTER_COPPER))
-                .save(output);
+                .save(output, ThaumaturgeAdditions.MODID + ":crucible/cluster_copper");
 
         // 粗锡变锡原矿簇
         crucible(TCItems.CLUSTER_TIN.get(),
@@ -193,7 +194,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .aspect(TCAspects.ORDO, 5)
                 .gate(tcGate("metal_purification"))
                 .unlockedBy("has", this.has(TCItems.CLUSTER_TIN))
-                .save(output);
+                .save(output, ThaumaturgeAdditions.MODID + ":crucible/cluster_tin");
 
         // 粗银变银原矿簇
         crucible(TCItems.CLUSTER_SILVER.get(),
@@ -203,7 +204,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .aspect(TCAspects.ORDO, 5)
                 .gate(tcGate("metal_purification"))
                 .unlockedBy("has", this.has(TCItems.CLUSTER_SILVER))
-                .save(output);
+                .save(output, ThaumaturgeAdditions.MODID + ":crucible/cluster_silver");
 
         // 粗铅变铅原矿簇
         crucible(TCItems.CLUSTER_LEAD.get(),
@@ -213,7 +214,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .aspect(TCAspects.ORDO, 5)
                 .gate(tcGate("metal_purification"))
                 .unlockedBy("has", this.has(TCItems.CLUSTER_LEAD))
-                .save(output);
+                .save(output, ThaumaturgeAdditions.MODID + ":crucible/cluster_lead");
     }
 
     private HolderSet<Item> tag(String space, String path) {

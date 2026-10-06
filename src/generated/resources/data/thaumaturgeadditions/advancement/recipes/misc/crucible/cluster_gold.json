@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "thaumaturge:crucible/cluster_gold"
+        "recipe": "thaumaturgeadditions:crucible/cluster_gold"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "thaumaturge:crucible/cluster_gold"
+      "thaumaturgeadditions:crucible/cluster_gold"
     ]
   }
 }
