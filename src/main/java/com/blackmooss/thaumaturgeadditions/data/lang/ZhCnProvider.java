@@ -49,8 +49,8 @@ public class ZhCnProvider extends LanguageProvider {
         add("focus.thaumaturgeadditions.salis_mundus.name", "世界盐");
         add("focus.thaumaturgeadditions.salis_mundus.text", "魔法尘埃的核心版，施加于特定方块时可触发转化，且不消耗世界盐。");
 
-        add("item.thaumaturgeadditions.travelers_backpack_arcane_workbench_upgrade.tooltip", "为旅行者背包加装奥术工作台：随时随地合成奥术配方，并消耗所在区块的灵气。");
-        add("screen.thaumaturgeadditions.travelers_backpack_arcane_workbench_upgrade", "旅行者背包奥术工作台");
+        add("item.thaumaturgeadditions.travelersbackpack_arcane_workbench_upgrade.tooltip", "消耗所在区块的灵气随时随地合成奥术配方。");
+        add("screen.thaumaturgeadditions.travelersbackpack_arcane_workbench_upgrade", "奥术工作台");
 
         add("trim_material.thaumaturge.brass", "黄铜");
         add("trim_material.thaumaturge.thaumium", "神秘");

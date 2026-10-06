@@ -50,6 +50,6 @@ public class TravelersBackpackArcaneWorkbenchUpgradeItem extends UpgradeItem {
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay tooltipDisplay, Consumer<Component> tooltip, TooltipFlag flag) {
         super.appendHoverText(stack, context, tooltipDisplay, tooltip, flag);
-        tooltip.accept(Component.translatable("item.thaumaturgeadditions.travelers_backpack_arcane_workbench_upgrade.tooltip").withStyle(ChatFormatting.BLUE));
+        tooltip.accept(Component.translatable("item.thaumaturgeadditions.travelersbackpack_arcane_workbench_upgrade.tooltip").withStyle(ChatFormatting.BLUE));
     }
 }

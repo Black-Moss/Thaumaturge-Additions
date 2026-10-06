@@ -22,7 +22,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 
 public class TravelersBackpackArcaneWorkbenchWidget extends UpgradeWidgetBase<TravelersBackpackArcaneWorkbenchUpgrade> {
-    private static final Identifier PANEL_TEXTURE = ThaumaturgeAdditions.identifier("textures/gui/travels_backpack_arcane_workbench_upgrade.png");
+    private static final Identifier PANEL_TEXTURE = ThaumaturgeAdditions.identifier("textures/gui/travelersbackpack_arcane_workbench_upgrade.png");
     private static final Identifier WAND_SLOT_TEXTURE = TCIds.rl("textures/gui/workbench_wand_slot.png");
     private static final int PANEL_TEXTURE_SIZE = 256;
     private static final int WAND_FRAME_WIDTH = 38;
@@ -41,7 +41,7 @@ public class TravelersBackpackArcaneWorkbenchWidget extends UpgradeWidgetBase<Tr
     private final ResultArrowElement resultArrowElement;
 
     public TravelersBackpackArcaneWorkbenchWidget(BackpackScreen screen, TravelersBackpackArcaneWorkbenchUpgrade upgrade, Point pos) {
-        super(screen, upgrade, pos, new Point(0, 0), "screen.thaumaturgeadditions.travels_backpack_arcane_workbench_upgrade");
+        super(screen, upgrade, pos, new Point(0, 0), "screen.thaumaturgeadditions.travelersbackpack_arcane_workbench_upgrade");
         WidgetElement arrowElement = new WidgetElement(ARROW_POSITION, ARROW_SIZE);
         this.resultArrowElement = new ResultArrowElement(screen, this, arrowElement);
     }

@@ -32,7 +32,7 @@ public final class TAItems {
                     .durability(100));
 
     public static final DeferredItem<Item> TRAVELERS_BACKPACK_ARCANE_WORKBENCH_UPGRADE = ITEMS.registerItem(
-            "travelers_bakapack_arcane_workbench_upgrade", TravelersBackpackCompat::createArcaneWorkbenchUpgradeItem, props -> props
+            "travelersbackpack_arcane_workbench_upgrade", TravelersBackpackCompat::createArcaneWorkbenchUpgradeItem, props -> props
                     .stacksTo(16));
 
 

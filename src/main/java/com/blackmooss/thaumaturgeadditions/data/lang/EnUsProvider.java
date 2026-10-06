@@ -49,8 +49,8 @@ public class EnUsProvider extends LanguageProvider {
         add("focus.thaumaturgeadditions.salis_mundus.name", "Salis Mundus");
         add("focus.thaumaturgeadditions.salis_mundus.text", "A focus-form of magical dust: triggers transmutations on certain blocks without consuming Salis Mundus.");
 
-        add("item.thaumaturgeadditions.travelers_backpack_arcane_workbench_upgrade.tooltip", "Fits a Traveller's Backpack with an arcane workbench: craft arcane recipes anywhere, paying with the aura of the chunk you stand in.");
-        add("screen.thaumaturgeadditions.travelers_backpack_arcane_workbench_upgrade", "Traveller's Backpack Arcane Workbench");
+        add("item.thaumaturgeadditions.travelersbackpack_arcane_workbench_upgrade.tooltip", "Consume the aura of the chunk and craft the arcane recipes anytime, anywhere.");
+        add("screen.thaumaturgeadditions.travelersbackpack_arcane_workbench_upgrade", "Arcane Workbench");
 
         add("trim_material.thaumaturge.brass", "Brass");
         add("trim_material.thaumaturge.thaumium", "Thaumium");

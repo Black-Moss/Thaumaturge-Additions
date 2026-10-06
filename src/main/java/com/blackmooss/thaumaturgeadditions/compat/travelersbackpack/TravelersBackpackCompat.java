@@ -17,7 +17,7 @@ public final class TravelersBackpackCompat {
     public static final String TRAVELERS_BACKPACK_MOD_ID = "travelersbackpack";
 
     public static final UUID WORKBENCH_IDENTITY =
-            UUID.nameUUIDFromBytes("thaumaturgeadditions:travelers_backpack_arcane_workbench".getBytes(StandardCharsets.UTF_8));
+            UUID.nameUUIDFromBytes("thaumaturgeadditions:travelersbackpack_arcane_workbench".getBytes(StandardCharsets.UTF_8));
 
     private TravelersBackpackCompat() {
     }
