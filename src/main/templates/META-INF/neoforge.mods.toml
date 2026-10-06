@@ -34,3 +34,9 @@ modId = "thaumaturge"
 type = "required"
 ordering = "AFTER"
 side = "BOTH"
+
+[[dependencies.${ mod_id }]]
+modId = "travelersbackpack"
+type = "optional"
+ordering = "AFTER"
+side = "BOTH"

@@ -35,3 +35,6 @@ repo/
 
 ## Thaumaturge
 /thaumaturge-26.1.2-NeoForge-BETA-0.2.1.jar
+
+## Traveler's Backpack（Modrinth maven 的同名版本是 Fabric 构建，编译使用本地 NeoForge jar）
+/travelersbackpack-*.jar

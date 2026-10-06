@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "thaumaturgeadditions:item/travelers_bakapack_arcane_workbench_upgrade"
+  }
+}

@@ -113,6 +113,17 @@ dependencies {
     // Jade
     compileOnly "maven.modrinth:jade:${jade_version}"
     runtimeOnly "maven.modrinth:jade:${jade_version}"
+
+    // Traveler's Backpack
+    compileOnly "maven.modrinth:rlloIFEV:${travelersbackpack_version}"
+    runtimeOnly "maven.modrinth:rlloIFEV:${travelersbackpack_version}"
+
+    // Sophisticated Backpacks
+    compileOnly "maven.modrinth:sophisticated-backpacks:${sophisticatedbackpacks_version}"
+    runtimeOnly "maven.modrinth:sophisticated-backpacks:${sophisticatedbackpacks_version}"
+
+    // Sophisticated Core
+    runtimeOnly "maven.modrinth:sophisticated-core:${sophisticatedcore_version}"
 }
 
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
