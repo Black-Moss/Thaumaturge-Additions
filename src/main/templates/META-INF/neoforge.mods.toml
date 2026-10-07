@@ -36,6 +36,12 @@ ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.${ mod_id }]]
+modId = "jei"
+type = "optional"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.${ mod_id }]]
 modId = "travelersbackpack"
 type = "optional"
 ordering = "AFTER"
@@ -43,12 +49,6 @@ side = "BOTH"
 
 [[dependencies.${ mod_id }]]
 modId = "sophisticatedbackpacks"
-type = "optional"
-ordering = "AFTER"
-side = "BOTH"
-
-[[dependencies.${ mod_id }]]
-modId = "sophisticatedcore"
 type = "optional"
 ordering = "AFTER"
 side = "BOTH"
