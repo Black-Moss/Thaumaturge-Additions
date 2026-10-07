@@ -86,6 +86,10 @@ public class TravelersBackpackArcaneWorkbenchUpgrade extends UpgradeBase<Travele
 
     @Override
     public void initializeContainers(BackpackBaseMenu menu, BackpackWrapper wrapper) {
+        Level level = menu.player.level();
+        if (!level.isClientSide()) {
+            refreshAura(level, menu.player.blockPosition());
+        }
         refreshResult();
     }
 
@@ -162,6 +166,7 @@ public class TravelersBackpackArcaneWorkbenchUpgrade extends UpgradeBase<Travele
         if (player == null) {
             return;
         }
+        refreshAura(player.level(), player.blockPosition());
         if (!canCraft()) {
             this.resultContainer.setItem(0, ItemStack.EMPTY);
             return;

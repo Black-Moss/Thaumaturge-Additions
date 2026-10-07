@@ -77,7 +77,6 @@ public class ZhCnProvider extends LanguageProvider {
                 "这个背包升级可以消耗所在区块的灵气随时随地合成奥术配方，就像奥术工作台一样！");
 
         addResearchAddenda("travelersbackpack_arcane_workbench_upgrade", "可不能忘记在背包里面装一个充能器！");
-
     }
 
     private void addResearch(String researchId, String title, String... stage) {

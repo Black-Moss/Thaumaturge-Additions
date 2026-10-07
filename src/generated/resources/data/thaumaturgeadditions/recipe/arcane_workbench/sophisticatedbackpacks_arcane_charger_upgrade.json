@@ -1,6 +1,31 @@
 {
   "type": "thaumaturge:arcane_workbench_shaped",
-  "crystals": [],
+  "crystals": [
+    {
+      "amount": 5,
+      "aspect": "thaumaturge:aer"
+    },
+    {
+      "amount": 5,
+      "aspect": "thaumaturge:terra"
+    },
+    {
+      "amount": 5,
+      "aspect": "thaumaturge:ignis"
+    },
+    {
+      "amount": 5,
+      "aspect": "thaumaturge:aqua"
+    },
+    {
+      "amount": 5,
+      "aspect": "thaumaturge:ordo"
+    },
+    {
+      "amount": 5,
+      "aspect": "thaumaturge:perditio"
+    }
+  ],
   "key": {
     "B": "sophisticatedbackpacks:upgrade_base",
     "C": "thaumaturge:arcane_workbench_charger",

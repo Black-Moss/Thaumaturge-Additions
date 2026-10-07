@@ -1,6 +1,25 @@
 {
   "type": "thaumaturge:arcane_workbench_shaped",
-  "crystals": [],
+  "crystals": [
+    {
+      "aspect": "thaumaturge:aer"
+    },
+    {
+      "aspect": "thaumaturge:terra"
+    },
+    {
+      "aspect": "thaumaturge:ignis"
+    },
+    {
+      "aspect": "thaumaturge:aqua"
+    },
+    {
+      "aspect": "thaumaturge:ordo"
+    },
+    {
+      "aspect": "thaumaturge:perditio"
+    }
+  ],
   "key": {
     "C": "travelersbackpack:crafting_upgrade",
     "S": "thaumaturge:salis_mundus"

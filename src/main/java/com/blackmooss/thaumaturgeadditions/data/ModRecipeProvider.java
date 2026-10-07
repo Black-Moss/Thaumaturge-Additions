@@ -122,6 +122,12 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .pattern(" S ")
                 .define('S', TCItems.SALIS_MUNDUS)
                 .define('C', net.p3pp3rf1y.sophisticatedbackpacks.init.ModItems.CRAFTING_UPGRADE.get())
+                .aspect(TCAspects.AER)
+                .aspect(TCAspects.TERRA)
+                .aspect(TCAspects.IGNIS)
+                .aspect(TCAspects.AQUA)
+                .aspect(TCAspects.ORDO)
+                .aspect(TCAspects.PERDITIO)
                 .gate(taGate("sophisticatedbackpacks_arcane_workbench_upgrade"))
                 .save(output);
 
@@ -132,6 +138,12 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .pattern(" S ")
                 .define('S', TCItems.SALIS_MUNDUS)
                 .define('C', com.tiviacz.travelersbackpack.init.ModItems.CRAFTING_UPGRADE.get())
+                .aspect(TCAspects.AER)
+                .aspect(TCAspects.TERRA)
+                .aspect(TCAspects.IGNIS)
+                .aspect(TCAspects.AQUA)
+                .aspect(TCAspects.ORDO)
+                .aspect(TCAspects.PERDITIO)
                 .gate(taGate("travelersbackpack_arcane_workbench_upgrade"))
                 .save(output);
 
@@ -144,6 +156,12 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .define('R', TCItems.VIS_RESONATOR.get())
                 .define('B', net.p3pp3rf1y.sophisticatedbackpacks.init.ModItems.UPGRADE_BASE.get())
                 .define('T', TCItems.INGOT_THAUMIUM.get())
+                .aspect(TCAspects.AER, 5)
+                .aspect(TCAspects.TERRA, 5)
+                .aspect(TCAspects.IGNIS, 5)
+                .aspect(TCAspects.AQUA, 5)
+                .aspect(TCAspects.ORDO, 5)
+                .aspect(TCAspects.PERDITIO, 5)
                 .gate(taGate("sophisticatedbackpacks_arcane_workbench_upgrade"))
                 .save(output);
 
@@ -156,6 +174,12 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .define('R', TCItems.VIS_RESONATOR.get())
                 .define('B', com.tiviacz.travelersbackpack.init.ModItems.BLANK_UPGRADE.get())
                 .define('T', TCItems.INGOT_THAUMIUM.get())
+                .aspect(TCAspects.AER, 5)
+                .aspect(TCAspects.TERRA, 5)
+                .aspect(TCAspects.IGNIS, 5)
+                .aspect(TCAspects.AQUA, 5)
+                .aspect(TCAspects.ORDO, 5)
+                .aspect(TCAspects.PERDITIO, 5)
                 .gate(taGate("travelersbackpack_arcane_workbench_upgrade"))
                 .save(output);
     }
