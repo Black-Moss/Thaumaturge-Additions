@@ -1,5 +1,7 @@
 package com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks;
 
+import com.blackmooss.thaumaturgeadditions.compat.WorkbenchChargerAura;
+import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.item.SophisticatedBackpacksArcaneChargerUpgradeItem;
 import com.leclowndu93150.thaumaturge.api.aura.AuraHelper;
 import com.leclowndu93150.thaumaturge.api.recipe.ArcaneWorkbenchContext;
 import com.leclowndu93150.thaumaturge.api.recipe.IArcaneWorkbench;
@@ -20,6 +22,9 @@ public final class SophisticatedBackpacksArcaneWorkbenchAuraSource implements IW
         }
         ServerLevel serverLevel = player.level();
         BlockPos anchor = context.blockPosition().orElseGet(player::blockPosition);
+        if (SophisticatedBackpacksArcaneChargerUpgradeItem.hasCharger(player)) {
+            return WorkbenchChargerAura.drain(serverLevel, WorkbenchChargerAura.anchors(anchor), need, transaction);
+        }
         return (int) AuraHelper.drainVis(serverLevel, anchor, need, transaction);
     }
 }

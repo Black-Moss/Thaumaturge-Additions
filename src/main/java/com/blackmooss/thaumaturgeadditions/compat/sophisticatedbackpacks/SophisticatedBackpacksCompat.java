@@ -1,6 +1,7 @@
 package com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks;
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
+import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.item.SophisticatedBackpacksArcaneChargerItemFactory;
 import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.item.SophisticatedBackpacksArcaneWorkbenchItemFactory;
 import com.leclowndu93150.thaumaturge.api.recipe.RegisterWorkbenchAuraSourcesEvent;
 import net.minecraft.core.registries.Registries;
@@ -36,6 +37,11 @@ public final class SophisticatedBackpacksCompat {
     public static Item createArcaneWorkbenchUpgradeItem(Item.Properties properties) {
         Objects.requireNonNull(properties, "properties");
         return isLoaded() ? SophisticatedBackpacksArcaneWorkbenchItemFactory.create(properties) : new Item(properties);
+    }
+
+    public static Item createArcaneChargerUpgradeItem(Item.Properties properties) {
+        Objects.requireNonNull(properties, "properties");
+        return isLoaded() ? SophisticatedBackpacksArcaneChargerItemFactory.create(properties) : new Item(properties);
     }
 
     public static void onRegisterUpgradeContainers(RegisterEvent event) {

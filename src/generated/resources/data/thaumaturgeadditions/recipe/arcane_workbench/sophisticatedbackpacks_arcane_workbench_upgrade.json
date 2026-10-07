@@ -1,0 +1,20 @@
+{
+  "type": "thaumaturge:arcane_workbench_shaped",
+  "crystals": [],
+  "key": {
+    "C": "sophisticatedbackpacks:crafting_upgrade",
+    "S": "thaumaturge:salis_mundus"
+  },
+  "pattern": [
+    " S ",
+    "SCS",
+    " S "
+  ],
+  "research": {
+    "entry": "thaumaturgeadditions:sophisticatedbackpacks_arcane_workbench_upgrade"
+  },
+  "result": {
+    "id": "thaumaturgeadditions:sophisticatedbackpacks_arcane_workbench_upgrade"
+  },
+  "vis": 100
+}

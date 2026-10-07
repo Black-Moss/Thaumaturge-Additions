@@ -10,11 +10,11 @@
       "aspect": "thaumaturge:ordo"
     }
   ],
-  "catalyst": "minecraft:raw_iron",
+  "catalyst": "#c:raw_materials/silver",
   "research": {
     "entry": "thaumaturge:metal_purification"
   },
   "result": {
-    "id": "thaumaturge:cluster_iron"
+    "id": "thaumaturge:cluster_lead"
   }
 }

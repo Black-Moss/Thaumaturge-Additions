@@ -9,6 +9,7 @@ import com.leclowndu93150.thaumaturge.api.aspect.TCAspects;
 import com.leclowndu93150.thaumaturge.api.recipe.ResearchGate;
 import com.leclowndu93150.thaumaturge.data.recipe.builders.CrucibleRecipeBuilder;
 import com.leclowndu93150.thaumaturge.data.recipe.builders.InfusionRecipeBuilder;
+import com.leclowndu93150.thaumaturge.data.recipe.builders.workbench.ArcaneWorkbenchShapedRecipeBuilder;
 import com.leclowndu93150.thaumaturge.data.recipe.builders.workbench.ArcaneWorkbenchShapelessRecipeBuilder;
 import com.leclowndu93150.thaumaturge.registry.TCDataComponents;
 import com.leclowndu93150.thaumaturge.registry.TCItems;
@@ -40,31 +41,28 @@ import java.util.concurrent.CompletableFuture;
 
 public final class ModRecipeProvider extends RecipeProvider {
     private final HolderLookup.Provider lookupProvider;
+    private HolderGetter<IAspect> aspects;
 
     private ModRecipeProvider(HolderLookup.Provider provider, RecipeOutput output) {
         super(provider, output);
         this.lookupProvider = provider;
+        this.aspects = registries.lookupOrThrow(IAspect.REGISTRY_KEY);
     }
 
     @Override
     protected void buildRecipes() {
-        HolderGetter<IAspect> aspects = registries.lookupOrThrow(IAspect.REGISTRY_KEY);
-
         voidTravellerBoots();
         clusters();
 
         // 虚空缸中之脑
-        new ArcaneWorkbenchShapelessRecipeBuilder(RecipeCategory.MISC,
-                new ItemStackTemplate(TAItems.VOID_BRAIN_JAR.get()),
-                aspects,
-                50,
-                registries.lookupOrThrow(Registries.ITEM))
+        arcaneShapeless(RecipeCategory.MISC,
+                TAItems.VOID_BRAIN_JAR.get(),
+                50)
                 .aspect(TCAspects.PERDITIO)
                 .requires(TCItems.JAR_BRAIN)
                 .gate(tcGate("warded_jars"))
                 .unlockedBy("has", this.has(TCItems.JAR_BRAIN))
                 .save(output);
-
 
         // 永燃之瓮
         infusion(TAItems.EVERBURNING_URN.get(),
@@ -73,7 +71,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .component(Ingredient.of(Items.NETHER_BRICK))
                 .component(Ingredient.of(Items.NETHER_BRICK))
                 .component(Ingredient.of(Items.LAVA_BUCKET))
-                .component(crystal(aspects, TCAspects.IGNIS))
+                .component(crystal(TCAspects.IGNIS))
                 .component(Ingredient.of(Items.OBSIDIAN))
                 .component(Ingredient.of(Items.LAVA_BUCKET))
                 .aspect(TCAspects.IGNIS, 40)
@@ -108,7 +106,6 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .aspect(TCAspects.ORDO, 25)
                 .instability(2)
                 .gate(taGate("rainbow_scribing_tools"))
-                .unlockedBy("has", this.has(TAItems.RAINBOW_SCRIBING_TOOLS.get()))
                 .save(output);
 
         // 填充彩虹笔与墨
@@ -117,6 +114,50 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .requires(Tags.Items.DYES)
                 .unlockedBy("has", this.has(TAItems.RAINBOW_SCRIBING_TOOLS.get()))
                 .save(output, ThaumaturgeAdditions.MODID + ":rainbow_scribing_tools_alt");
+
+        // 精妙背包奥术工作台升级
+        arcaneShaped(RecipeCategory.MISC, TAItems.SOPHISTICATED_BACKPACKS_ARCANE_WORKBENCH_UPGRADE.get(), 100)
+                .pattern(" S ")
+                .pattern("SCS")
+                .pattern(" S ")
+                .define('S', TCItems.SALIS_MUNDUS)
+                .define('C', net.p3pp3rf1y.sophisticatedbackpacks.init.ModItems.CRAFTING_UPGRADE.get())
+                .gate(taGate("sophisticatedbackpacks_arcane_workbench_upgrade"))
+                .save(output);
+
+        // 旅行者背包奥术工作台升级
+        arcaneShaped(RecipeCategory.MISC, TAItems.TRAVELERS_BACKPACK_ARCANE_WORKBENCH_UPGRADE.get(), 100)
+                .pattern(" S ")
+                .pattern("SCS")
+                .pattern(" S ")
+                .define('S', TCItems.SALIS_MUNDUS)
+                .define('C', com.tiviacz.travelersbackpack.init.ModItems.CRAFTING_UPGRADE.get())
+                .gate(taGate("travelersbackpack_arcane_workbench_upgrade"))
+                .save(output);
+
+        // 精妙背包奥术充能板升级
+        arcaneShaped(RecipeCategory.MISC, TAItems.SOPHISTICATED_BACKPACKS_ARCANE_CHARGER_UPGRADE.get(), 200)
+                .pattern(" C ")
+                .pattern("RBR")
+                .pattern(" T ")
+                .define('C', TCItems.ARCANE_WORKBENCH_CHARGER.get())
+                .define('R', TCItems.VIS_RESONATOR.get())
+                .define('B', net.p3pp3rf1y.sophisticatedbackpacks.init.ModItems.UPGRADE_BASE.get())
+                .define('T', TCItems.INGOT_THAUMIUM.get())
+                .gate(taGate("sophisticatedbackpacks_arcane_workbench_upgrade"))
+                .save(output);
+
+        // 旅行者背包奥术充能板升级
+        arcaneShaped(RecipeCategory.MISC, TAItems.TRAVELERS_BACKPACK_ARCANE_CHARGER_UPGRADE.get(), 200)
+                .pattern(" C ")
+                .pattern("RBR")
+                .pattern(" T ")
+                .define('C', TCItems.ARCANE_WORKBENCH_CHARGER.get())
+                .define('R', TCItems.VIS_RESONATOR.get())
+                .define('B', com.tiviacz.travelersbackpack.init.ModItems.BLANK_UPGRADE.get())
+                .define('T', TCItems.INGOT_THAUMIUM.get())
+                .gate(taGate("travelersbackpack_arcane_workbench_upgrade"))
+                .save(output);
     }
 
     private void voidTravellerBoots() {
@@ -156,65 +197,12 @@ public final class ModRecipeProvider extends RecipeProvider {
     }
 
     private void clusters() {
-        // 粗金变金原矿簇
-        crucible(TCItems.CLUSTER_IRON.get(),
-                RecipeCategory.MISC,
-                Items.RAW_IRON)
-                .aspect(TCAspects.METALLUM, 5)
-                .aspect(TCAspects.ORDO, 5)
-                .gate(tcGate("metal_purification"))
-                .unlockedBy("has", this.has(TCItems.CLUSTER_IRON))
-                .save(output, ThaumaturgeAdditions.MODID + ":crucible/cluster_iron");
-
-        // 粗金变金原矿簇
-        crucible(TCItems.CLUSTER_GOLD.get(),
-                RecipeCategory.MISC,
-                Items.RAW_GOLD)
-                .aspect(TCAspects.METALLUM, 5)
-                .aspect(TCAspects.ORDO, 5)
-                .gate(tcGate("metal_purification"))
-                .unlockedBy("has", this.has(TCItems.CLUSTER_GOLD))
-                .save(output, ThaumaturgeAdditions.MODID + ":crucible/cluster_gold");
-
-        // 粗铜变铜原矿簇
-        crucible(TCItems.CLUSTER_COPPER.get(),
-                RecipeCategory.MISC,
-                Items.RAW_COPPER)
-                .aspect(TCAspects.METALLUM, 5)
-                .aspect(TCAspects.ORDO, 5)
-                .gate(tcGate("metal_purification"))
-                .unlockedBy("has", this.has(TCItems.CLUSTER_COPPER))
-                .save(output, ThaumaturgeAdditions.MODID + ":crucible/cluster_copper");
-
-        // 粗锡变锡原矿簇
-        crucible(TCItems.CLUSTER_TIN.get(),
-                RecipeCategory.MISC,
-                commonTag("raw_materials/tin"))
-                .aspect(TCAspects.METALLUM, 5)
-                .aspect(TCAspects.ORDO, 5)
-                .gate(tcGate("metal_purification"))
-                .unlockedBy("has", this.has(TCItems.CLUSTER_TIN))
-                .save(output, ThaumaturgeAdditions.MODID + ":crucible/cluster_tin");
-
-        // 粗银变银原矿簇
-        crucible(TCItems.CLUSTER_SILVER.get(),
-                RecipeCategory.MISC,
-                commonTag("raw_materials/silver"))
-                .aspect(TCAspects.METALLUM, 5)
-                .aspect(TCAspects.ORDO, 5)
-                .gate(tcGate("metal_purification"))
-                .unlockedBy("has", this.has(TCItems.CLUSTER_SILVER))
-                .save(output, ThaumaturgeAdditions.MODID + ":crucible/cluster_silver");
-
-        // 粗铅变铅原矿簇
-        crucible(TCItems.CLUSTER_LEAD.get(),
-                RecipeCategory.MISC,
-                commonTag("raw_materials/lead"))
-                .aspect(TCAspects.METALLUM, 5)
-                .aspect(TCAspects.ORDO, 5)
-                .gate(tcGate("metal_purification"))
-                .unlockedBy("has", this.has(TCItems.CLUSTER_LEAD))
-                .save(output, ThaumaturgeAdditions.MODID + ":crucible/cluster_lead");
+        cluster(TCItems.CLUSTER_IRON.get(), "iron");
+        cluster(TCItems.CLUSTER_GOLD.get(), "gold");
+        cluster(TCItems.CLUSTER_COPPER.get(), "copper");
+        cluster(TCItems.CLUSTER_TIN.get(), "tin");
+        cluster(TCItems.CLUSTER_LEAD.get(), "silver");
+        cluster(TCItems.CLUSTER_LEAD.get(), "lead");
     }
 
     private HolderSet<Item> tag(String space, String path) {
@@ -223,7 +211,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                         space, path)));
     }
 
-    private Ingredient crystal(HolderGetter<IAspect> aspects, ResourceKey<IAspect> aspect) {
+    private Ingredient crystal(ResourceKey<IAspect> aspect) {
         return DataComponentIngredient.of(
                 TCDataComponents.CRYSTAL_ASPECT.get(),
                 new AspectInstance(aspects.getOrThrow(aspect), 1),
@@ -243,15 +231,59 @@ public final class ModRecipeProvider extends RecipeProvider {
     }
 
     private InfusionRecipeBuilder infusion(ItemLike result, RecipeCategory category, ItemLike catalyst) {
-        return new InfusionRecipeBuilder(this.registries.lookupOrThrow(IAspect.REGISTRY_KEY), category, new ItemStackTemplate(result.asItem()), Ingredient.of(catalyst));
-    }
-
-    private CrucibleRecipeBuilder crucible(ItemLike result, RecipeCategory category, Ingredient catalyst) {
-        return new CrucibleRecipeBuilder(this.registries.lookupOrThrow(IAspect.REGISTRY_KEY), category, new ItemStackTemplate(result.asItem()), catalyst);
+        return (InfusionRecipeBuilder) new InfusionRecipeBuilder(
+                this.registries.lookupOrThrow(IAspect.REGISTRY_KEY),
+                category,
+                new ItemStackTemplate(result.asItem()),
+                Ingredient.of(catalyst))
+                .unlockedBy("has", this.has(result));
     }
 
     private CrucibleRecipeBuilder crucible(ItemLike result, RecipeCategory category, ItemLike catalyst) {
-        return crucible(result, category, Ingredient.of(catalyst));
+        return (CrucibleRecipeBuilder) new CrucibleRecipeBuilder(
+                aspects,
+                category,
+                new ItemStackTemplate(result.asItem()),
+                Ingredient.of(catalyst))
+                .unlockedBy("has", this.has(result));
+    }
+
+    private void cluster(ItemLike result, String tag) {
+        new CrucibleRecipeBuilder(
+                aspects,
+                RecipeCategory.MISC,
+                new ItemStackTemplate(result.asItem()),
+                commonTag("raw_materials/" + tag))
+                .aspect(TCAspects.METALLUM, 5)
+                .aspect(TCAspects.ORDO, 5)
+                .gate(tcGate("metal_purification"))
+                .unlockedBy("has", this.has(result.asItem()))
+                .save(output, "%s:crucible/%s".formatted(ThaumaturgeAdditions.MODID, tag));
+    }
+
+    private ArcaneWorkbenchShapelessRecipeBuilder arcaneShapeless(RecipeCategory recipeCategory, ItemStackTemplate result, int vis) {
+        return new ArcaneWorkbenchShapelessRecipeBuilder(recipeCategory,
+                result,
+                aspects,
+                vis,
+                registries.lookupOrThrow(Registries.ITEM));
+    }
+
+    private ArcaneWorkbenchShapelessRecipeBuilder arcaneShapeless(RecipeCategory recipeCategory, ItemLike result, int vis) {
+        return arcaneShapeless(recipeCategory, new ItemStackTemplate(result.asItem()), vis);
+    }
+
+    private ArcaneWorkbenchShapedRecipeBuilder arcaneShaped(RecipeCategory recipeCategory, ItemStackTemplate result, int vis) {
+        return new ArcaneWorkbenchShapedRecipeBuilder(recipeCategory,
+                result,
+                this.items,
+                aspects,
+                vis);
+    }
+
+    private ArcaneWorkbenchShapedRecipeBuilder arcaneShaped(RecipeCategory recipeCategory, ItemLike result, int vis) {
+        return (ArcaneWorkbenchShapedRecipeBuilder) arcaneShaped(recipeCategory, new ItemStackTemplate(result.asItem()), vis)
+                .unlockedBy("has", this.has(result.asItem()));
     }
 
     public static final class Runner extends RecipeProvider.Runner {

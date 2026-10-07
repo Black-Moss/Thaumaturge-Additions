@@ -32,14 +32,20 @@ public final class TAItems {
                     .stacksTo(1)
                     .durability(100));
 
-    public static final DeferredItem<Item> TRAVELERS_BACKPACK_ARCANE_WORKBENCH_UPGRADE = ITEMS.registerItem(
-            "travelersbackpack_arcane_workbench_upgrade", TravelersBackpackCompat::createArcaneWorkbenchUpgradeItem, props -> props
-                    .stacksTo(16));
-
     public static final DeferredItem<Item> SOPHISTICATED_BACKPACKS_ARCANE_WORKBENCH_UPGRADE = ITEMS.registerItem(
             "sophisticatedbackpacks_arcane_workbench_upgrade", SophisticatedBackpacksCompat::createArcaneWorkbenchUpgradeItem, props -> props
                     .stacksTo(16));
 
+    public static final DeferredItem<Item> TRAVELERS_BACKPACK_ARCANE_WORKBENCH_UPGRADE = ITEMS.registerItem(
+            "travelersbackpack_arcane_workbench_upgrade", TravelersBackpackCompat::createArcaneWorkbenchUpgradeItem, props -> props
+                    .stacksTo(16));
+
+    public static final DeferredItem<Item> SOPHISTICATED_BACKPACKS_ARCANE_CHARGER_UPGRADE = ITEMS.registerItem(
+            "sophisticatedbackpacks_arcane_charger_upgrade", SophisticatedBackpacksCompat::createArcaneChargerUpgradeItem, props -> props
+                    .stacksTo(16));
+    public static final DeferredItem<Item> TRAVELERS_BACKPACK_ARCANE_CHARGER_UPGRADE = ITEMS.registerItem(
+            "travelersbackpack_arcane_charger_upgrade", TravelersBackpackCompat::createArcaneChargerUpgradeItem, props -> props
+                    .stacksTo(16));
 
     private TAItems() {
     }

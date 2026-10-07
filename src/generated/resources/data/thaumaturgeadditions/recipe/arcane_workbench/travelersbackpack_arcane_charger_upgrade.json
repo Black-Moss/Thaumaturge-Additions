@@ -1,0 +1,22 @@
+{
+  "type": "thaumaturge:arcane_workbench_shaped",
+  "crystals": [],
+  "key": {
+    "B": "travelersbackpack:blank_upgrade",
+    "C": "thaumaturge:arcane_workbench_charger",
+    "R": "thaumaturge:vis_resonator",
+    "T": "thaumaturge:ingot_thaumium"
+  },
+  "pattern": [
+    " C ",
+    "RBR",
+    " T "
+  ],
+  "research": {
+    "entry": "thaumaturgeadditions:travelersbackpack_arcane_workbench_upgrade"
+  },
+  "result": {
+    "id": "thaumaturgeadditions:travelersbackpack_arcane_charger_upgrade"
+  },
+  "vis": 200
+}

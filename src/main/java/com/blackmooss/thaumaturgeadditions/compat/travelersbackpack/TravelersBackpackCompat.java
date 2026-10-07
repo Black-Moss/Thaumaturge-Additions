@@ -1,6 +1,7 @@
 package com.blackmooss.thaumaturgeadditions.compat.travelersbackpack;
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
+import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.item.TravelersBackpackArcaneChargerItemFactory;
 import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.item.TravelersBackpackArcaneWorkbenchItemFactory;
 import com.leclowndu93150.thaumaturge.api.recipe.RegisterWorkbenchAuraSourcesEvent;
 import net.minecraft.world.item.Item;
@@ -34,5 +35,10 @@ public final class TravelersBackpackCompat {
     public static Item createArcaneWorkbenchUpgradeItem(Item.Properties properties) {
         Objects.requireNonNull(properties, "properties");
         return isLoaded() ? TravelersBackpackArcaneWorkbenchItemFactory.create(properties) : new Item(properties);
+    }
+
+    public static Item createArcaneChargerUpgradeItem(Item.Properties properties) {
+        Objects.requireNonNull(properties, "properties");
+        return isLoaded() ? TravelersBackpackArcaneChargerItemFactory.create(properties) : new Item(properties);
     }
 }

@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "thaumaturge:cluster_tin"
+            "items": "thaumaturgeadditions:travelersbackpack_arcane_workbench_upgrade"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "thaumaturgeadditions:crucible/cluster_tin"
+        "recipe": "thaumaturgeadditions:arcane_workbench/travelersbackpack_arcane_workbench_upgrade"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "thaumaturgeadditions:crucible/cluster_tin"
+      "thaumaturgeadditions:arcane_workbench/travelersbackpack_arcane_workbench_upgrade"
     ]
   }
 }

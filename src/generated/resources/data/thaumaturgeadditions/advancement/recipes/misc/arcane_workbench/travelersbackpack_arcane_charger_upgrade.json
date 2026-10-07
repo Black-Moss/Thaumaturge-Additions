@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "thaumaturge:cluster_iron"
+            "items": "thaumaturgeadditions:travelersbackpack_arcane_charger_upgrade"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "thaumaturgeadditions:crucible/cluster_iron"
+        "recipe": "thaumaturgeadditions:arcane_workbench/travelersbackpack_arcane_charger_upgrade"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "thaumaturgeadditions:crucible/cluster_iron"
+      "thaumaturgeadditions:arcane_workbench/travelersbackpack_arcane_charger_upgrade"
     ]
   }
 }

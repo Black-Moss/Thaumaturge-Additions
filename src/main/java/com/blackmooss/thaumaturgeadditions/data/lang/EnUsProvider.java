@@ -15,14 +15,33 @@ public class EnUsProvider extends LanguageProvider {
     @Override
     protected void addTranslations() {
         add("itemGroup.thaumaturgeadditions", "Thaumaturge Additions");
+        research();
 
         addItem(TAItems.VOID_TRAVELLER_BOOTS, "Void Traveller's Boots");
         addItem(TAItems.RAINBOW_SCRIBING_TOOLS, "Rainbow Scribing Tools");
-        addItem(TAItems.TRAVELERS_BACKPACK_ARCANE_WORKBENCH_UPGRADE, "Traveler's Backpack Arcane Workbench Upgrade");
         addItem(TAItems.SOPHISTICATED_BACKPACKS_ARCANE_WORKBENCH_UPGRADE, "Sophisticated Backpack Arcane Workbench Upgrade");
+        addItem(TAItems.TRAVELERS_BACKPACK_ARCANE_WORKBENCH_UPGRADE, "Traveler's Backpack Arcane Workbench Upgrade");
+        addItem(TAItems.TRAVELERS_BACKPACK_ARCANE_CHARGER_UPGRADE, "Traveler's Backpack Arcane Charger Upgrade");
+        addItem(TAItems.SOPHISTICATED_BACKPACKS_ARCANE_CHARGER_UPGRADE, "Sophisticated Backpack Arcane Charger Upgrade");
+
         addBlock(TABlocks.VOID_BRAIN_JAR, "Void Brain in a Jar");
         addBlock(TABlocks.EVERBURNING_URN, "Everburning Urn");
 
+        add("focus.thaumaturgeadditions.salis_mundus.name", "Salis Mundus");
+        add("focus.thaumaturgeadditions.salis_mundus.text", "A focus-form of magical dust: triggers transmutations on certain blocks without consuming Salis Mundus.");
+
+        add("screen.thaumaturgeadditions.arcane_workbench_upgrade", "Arcane Workbench");
+        add("item.thaumaturgeadditions.travelersbackpack_arcane_workbench_upgrade.tooltip", "Consume the aura of the chunk to craft the arcane recipes anytime, anywhere, just like an Arcane Workbench!");
+        add("item.thaumaturgeadditions.sophisticatedbackpacks_arcane_workbench_upgrade.tooltip", "Consume the aura of the chunk to craft the arcane recipes anytime, anywhere, just like an Arcane Workbench!");
+        add("item.thaumaturgeadditions.travelersbackpack_arcane_charger_upgrade.tooltip", "In the backpack: lets the Arcane Workbench upgrade draw vis from the surrounding 3x3 chunks.");
+        add("item.thaumaturgeadditions.sophisticatedbackpacks_arcane_charger_upgrade.tooltip", "In the backpack: lets the Arcane Workbench upgrade draw vis from the surrounding 3x3 chunks.");
+
+        add("trim_material.thaumaturge.brass", "Brass");
+        add("trim_material.thaumaturge.thaumium", "Thaumium");
+        add("trim_material.thaumaturge.void", "Void");
+    }
+
+    private void research() {
         addResearch("void_traveller_boots", "Void Traveller's Boots",
                 "I've worn these boots for a while now, and I'm really tired of having to re-craft them every time they break. Since the Void Metal can repair itself, why not combine the two?",
                 "These boots are powered by the Void, and will make your travels even more efficient." +
@@ -47,15 +66,17 @@ public class EnUsProvider extends LanguageProvider {
                 "No matter what dye you put in this little bottle, it always writes in black — truly a \"Gorgeous Black\"." +
                         "<BR>And animal rights activists won't sue you!");
 
-        add("focus.thaumaturgeadditions.salis_mundus.name", "Salis Mundus");
-        add("focus.thaumaturgeadditions.salis_mundus.text", "A focus-form of magical dust: triggers transmutations on certain blocks without consuming Salis Mundus.");
+        addResearch("sophisticatedbackpacks_arcane_workbench_upgrade", "Sophisticated Backpack Arcane Workbench Upgrade",
+                "Since you can already craft inside a backpack, who wouldn't want to craft with vis inside a backpack too?",
+                "This backpack upgrade consumes the aura of the chunk to craft arcane recipes anytime, anywhere, just like an Arcane Workbench!");
 
-        add("screen.thaumaturgeadditions.arcane_workbench_upgrade", "Arcane Workbench");
-        add("item.thaumaturgeadditions.arcane_workbench_upgrade.tooltip", "Consume the aura of the chunk and craft the arcane recipes anytime, anywhere.");
+        addResearchAddenda("sophisticatedbackpacks_arcane_workbench_upgrade", "Don't forget to install a charger in the backpack!");
 
-        add("trim_material.thaumaturge.brass", "Brass");
-        add("trim_material.thaumaturge.thaumium", "Thaumium");
-        add("trim_material.thaumaturge.void", "Void");
+        addResearch("travelersbackpack_arcane_workbench_upgrade", "Traveler's Backpack Arcane Workbench Upgrade",
+                "Since you can already craft inside a backpack, who wouldn't want to craft with vis inside a backpack too?",
+                "This backpack upgrade consumes the aura of the chunk to craft arcane recipes anytime, anywhere, just like an Arcane Workbench!");
+
+        addResearchAddenda("travelersbackpack_arcane_workbench_upgrade", "Don't forget to install a charger in the backpack!");
     }
 
     private void addResearch(String researchId, String title, String... stage) {

@@ -2,6 +2,7 @@ package com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.upgrades;
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
 import com.blackmooss.thaumaturgeadditions.compat.CraftingTableRecipes;
+import com.blackmooss.thaumaturgeadditions.compat.WorkbenchChargerAura;
 import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.TravelersBackpackCompat;
 import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.menu.slot.ArcaneCrystalSlot;
 import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.menu.slot.TravelersBackpackArcaneResultSlot;
@@ -24,6 +25,7 @@ import com.tiviacz.travelersbackpack.util.StacksHandlerUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ResultContainer;
@@ -258,10 +260,23 @@ public class TravelersBackpackArcaneWorkbenchUpgrade extends UpgradeBase<Travele
     }
 
     private void refreshAura(Level level, BlockPos pos) {
-        int aura = (int) AuraHelper.getVis(level, pos);
+        int aura;
+        if (level instanceof ServerLevel serverLevel && hasChargerInstalled()) {
+            aura = WorkbenchChargerAura.total(serverLevel, WorkbenchChargerAura.anchors(pos));
+        } else {
+            aura = (int) AuraHelper.getVis(level, pos);
+        }
         if (aura != getStoredAura()) {
+            ThaumaturgeAdditions.LOGGER.debug("Traveler's Backpack arcane workbench upgrade: aura at {} -> {}", pos, aura);
             setStoredAura(aura);
         }
+    }
+
+    private boolean hasChargerInstalled() {
+        return getUpgradeManager()
+                .getUpgrade(TravelersBackpackArcaneChargerUpgrade.class)
+                .filter(charger -> charger.isEnabled(charger))
+                .isPresent();
     }
 
     private void setStoredAura(int aura) {

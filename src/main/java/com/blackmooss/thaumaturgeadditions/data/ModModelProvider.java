@@ -44,6 +44,8 @@ public class ModModelProvider extends ModelProvider {
     private static void arcaneWorkbenchUpgrade(@NonNull ItemModelGenerators itemModels) {
         itemModels.generateFlatItem(TAItems.TRAVELERS_BACKPACK_ARCANE_WORKBENCH_UPGRADE.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(TAItems.SOPHISTICATED_BACKPACKS_ARCANE_WORKBENCH_UPGRADE.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(TAItems.TRAVELERS_BACKPACK_ARCANE_CHARGER_UPGRADE.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(TAItems.SOPHISTICATED_BACKPACKS_ARCANE_CHARGER_UPGRADE.get(), ModelTemplates.FLAT_ITEM);
     }
 
     private static void voidJar(@NonNull BlockModelGenerators blockModels, @NonNull ItemModelGenerators itemModels) {

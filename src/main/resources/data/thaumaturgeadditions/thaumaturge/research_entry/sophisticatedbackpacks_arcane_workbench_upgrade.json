@@ -1,0 +1,68 @@
+{
+  "category": "thaumaturge:basics",
+  "name": "research.thaumaturgeadditions.sophisticatedbackpacks_arcane_workbench_upgrade.title",
+  "parents": [
+    "thaumaturge:first_steps"
+  ],
+  "column": -1,
+  "row": 1,
+  "icons": [
+    "thaumaturgeadditions:sophisticatedbackpacks_arcane_workbench_upgrade"
+  ],
+  "stages": [
+    {
+      "text": "research.thaumaturgeadditions.sophisticatedbackpacks_arcane_workbench_upgrade.stage_0",
+      "required_knowledge": [
+        {
+          "type": "theory",
+          "category": "thaumaturge:basics",
+          "amount": 1
+        }
+      ],
+      "obtain": [
+        {
+          "items": [
+            "sophisticatedbackpacks:crafting_upgrade"
+          ],
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "text": "research.thaumaturgeadditions.sophisticatedbackpacks_arcane_workbench_upgrade.stage_1",
+      "recipes": [
+        "thaumaturgeadditions:arcane_workbench/sophisticatedbackpacks_arcane_workbench_upgrade"
+      ]
+    }
+  ],
+  "addenda": [
+    {
+      "text": "research.thaumaturgeadditions.sophisticatedbackpacks_arcane_workbench_upgrade.addendum_0",
+      "required_research": [
+        "thaumaturge:workbench_charger"
+      ],
+      "recipes": [
+        "thaumaturgeadditions:arcane_workbench/sophisticatedbackpacks_arcane_charger_upgrade"
+      ]
+    }
+  ],
+  "note_aspects": [
+    {
+      "aspect": "thaumaturge:instrumentum",
+      "amount": 5
+    },
+    {
+      "aspect": "thaumaturge:humanus",
+      "amount": 5
+    },
+    {
+      "aspect": "thaumaturge:fabrico",
+      "amount": 5
+    },
+    {
+      "aspect": "thaumaturge:motus",
+      "amount": 5
+    }
+  ],
+  "complexity": 2
+}

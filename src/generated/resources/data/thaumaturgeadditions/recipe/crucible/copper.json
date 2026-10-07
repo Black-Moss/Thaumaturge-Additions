@@ -10,11 +10,11 @@
       "aspect": "thaumaturge:ordo"
     }
   ],
-  "catalyst": "#c:raw_materials/silver",
+  "catalyst": "#c:raw_materials/copper",
   "research": {
     "entry": "thaumaturge:metal_purification"
   },
   "result": {
-    "id": "thaumaturge:cluster_silver"
+    "id": "thaumaturge:cluster_copper"
   }
 }

@@ -1,5 +1,8 @@
 package com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.upgrades;
 
+import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
+import com.blackmooss.thaumaturgeadditions.compat.WorkbenchChargerAura;
+import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.item.SophisticatedBackpacksArcaneChargerUpgradeItem;
 import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.item.SophisticatedBackpacksArcaneWorkbenchUpgradeItem;
 import com.blackmooss.thaumaturgeadditions.registry.TADataComponents;
 import com.leclowndu93150.thaumaturge.api.aspect.IAspect;
@@ -10,6 +13,7 @@ import com.leclowndu93150.thaumaturge.content.workbench.SlotWorkbenchWand;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -119,7 +123,21 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper
         if (pos == null) {
             return;
         }
-        this.setStoredAura((int) AuraHelper.getVis(level, pos));
+        int aura;
+        if (level instanceof ServerLevel serverLevel && this.hasChargerInstalled()) {
+            aura = WorkbenchChargerAura.total(serverLevel, WorkbenchChargerAura.anchors(pos));
+        } else {
+            aura = (int) AuraHelper.getVis(level, pos);
+        }
+        if (aura != this.getStoredAura()) {
+            ThaumaturgeAdditions.LOGGER.debug("Sophisticated Backpacks arcane workbench: aura at {} -> {}", pos, aura);
+        }
+        this.setStoredAura(aura);
+    }
+
+    private boolean hasChargerInstalled() {
+        return this.storageWrapper.getUpgradeHandler()
+                .hasUpgrade(SophisticatedBackpacksArcaneChargerUpgradeItem.TYPE);
     }
 
     @Override
@@ -128,7 +146,7 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper
             return;
         }
         this.setCooldown(level, AURA_REFRESH_INTERVAL);
-        this.updateStoredAura(level, pos);
+        this.updateStoredAura(level, entity == null ? pos : entity.blockPosition());
         this.resultRefreshHandler.run();
     }
 

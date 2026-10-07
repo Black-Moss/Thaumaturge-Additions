@@ -18,5 +18,6 @@ public final class TravelersBackpackClientCompat {
             return;
         }
         event.enqueueWork(TravelersBackpackArcaneWorkbenchWidgetRegistry::register);
+        event.enqueueWork(TravelersBackpackArcaneChargerWidgetRegistry::register);
     }
 }

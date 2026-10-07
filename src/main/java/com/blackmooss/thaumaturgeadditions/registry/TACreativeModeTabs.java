@@ -19,5 +19,7 @@ public class TACreativeModeTabs {
                         output.accept(TAItems.RAINBOW_SCRIBING_TOOLS.get());
                         output.accept(TAItems.TRAVELERS_BACKPACK_ARCANE_WORKBENCH_UPGRADE.get());
                         output.accept(TAItems.SOPHISTICATED_BACKPACKS_ARCANE_WORKBENCH_UPGRADE.get());
+                        output.accept(TAItems.TRAVELERS_BACKPACK_ARCANE_CHARGER_UPGRADE.get());
+                        output.accept(TAItems.SOPHISTICATED_BACKPACKS_ARCANE_CHARGER_UPGRADE.get());
                     }).build());
 }
