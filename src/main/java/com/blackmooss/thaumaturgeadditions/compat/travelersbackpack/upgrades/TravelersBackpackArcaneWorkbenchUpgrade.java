@@ -161,6 +161,19 @@ public class TravelersBackpackArcaneWorkbenchUpgrade extends UpgradeBase<Travele
         return getDataHolderStack().getOrDefault(TADataComponents.BACKPACK_WORKBENCH_AURA, 0);
     }
 
+    private void setStoredAura(int aura) {
+        ItemStack dataHolderStack = getDataHolderStack().copy();
+        if (dataHolderStack.isEmpty()) {
+            return;
+        }
+        if (aura <= 0) {
+            dataHolderStack.remove(TADataComponents.BACKPACK_WORKBENCH_AURA.get());
+        } else {
+            dataHolderStack.set(TADataComponents.BACKPACK_WORKBENCH_AURA.get(), aura);
+        }
+        StacksHandlerUtils.setStackInSlot(getUpgradeManager().getUpgradesHandler(), getDataHolderSlot(), dataHolderStack);
+    }
+
     public void refreshResult() {
         ServerPlayer player = craftingPlayer();
         if (player == null) {
@@ -282,19 +295,6 @@ public class TravelersBackpackArcaneWorkbenchUpgrade extends UpgradeBase<Travele
                 .getUpgrade(TravelersBackpackArcaneChargerUpgrade.class)
                 .filter(charger -> charger.isEnabled(charger))
                 .isPresent();
-    }
-
-    private void setStoredAura(int aura) {
-        ItemStack dataHolderStack = getDataHolderStack().copy();
-        if (dataHolderStack.isEmpty()) {
-            return;
-        }
-        if (aura <= 0) {
-            dataHolderStack.remove(TADataComponents.BACKPACK_WORKBENCH_AURA.get());
-        } else {
-            dataHolderStack.set(TADataComponents.BACKPACK_WORKBENCH_AURA.get(), aura);
-        }
-        StacksHandlerUtils.setStackInSlot(getUpgradeManager().getUpgradesHandler(), getDataHolderSlot(), dataHolderStack);
     }
 
     private void setSlotChanged(ItemStack dataHolderStack, int index, ItemStack stack) {

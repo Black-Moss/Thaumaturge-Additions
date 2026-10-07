@@ -1,99 +1,396 @@
 {
-	"format_version": "1.21.11",
-	"credit": "Made with Blockbench",
-	"textures": {
-		"0": "thaumaturgeadditions:block/everburning_urn_side",
-		"1": "thaumaturgeadditions:block/everburning_urn_top",
-		"2": "thaumaturgeadditions:block/everburning_urn_bottom",
-		"particle": "thaumaturgeadditions:block/everburning_urn_side"
-	},
-	"elements": [
-		{
-			"name": "bottom_bezel",
-			"from": [3, 0, 3],
-			"to": [13, 1, 13],
-			"faces": {
-				"north": {"uv": [3, 15, 13, 16], "texture": "#0"},
-				"east": {"uv": [3, 15, 13, 16], "texture": "#0"},
-				"south": {"uv": [3, 15, 13, 16], "texture": "#0"},
-				"west": {"uv": [3, 15, 13, 16], "texture": "#0"},
-				"down": {"uv": [3, 3, 13, 13], "texture": "#2", "cullface": "down"}
-			}
-		},
-		{
-			"name": "body",
-			"from": [2, 1, 2],
-			"to": [14, 9, 14],
-			"faces": {
-				"north": {"uv": [2, 7, 14, 15], "texture": "#0"},
-				"east": {"uv": [2, 7, 14, 15], "texture": "#0"},
-				"south": {"uv": [2, 7, 14, 15], "texture": "#0"},
-				"west": {"uv": [2, 7, 14, 15], "texture": "#0"},
-				"up": {"uv": [2, 2, 14, 14], "texture": "#2"},
-				"down": {"uv": [2, 2, 14, 14], "texture": "#2"}
-			}
-		},
-		{
-			"name": "top_bezel",
-			"from": [3, 9, 3],
-			"to": [13, 10, 13],
-			"faces": {
-				"north": {"uv": [3, 6, 13, 7], "texture": "#0"},
-				"east": {"uv": [3, 6, 13, 7], "texture": "#0"},
-				"south": {"uv": [3, 6, 13, 7], "texture": "#0"},
-				"west": {"uv": [3, 6, 13, 7], "texture": "#0"},
-				"up": {"uv": [3, 3, 13, 13], "texture": "#2"}
-			}
-		},
-		{
-			"name": "neck",
-			"from": [5, 10, 5],
-			"to": [11, 14, 11],
-			"faces": {
-				"north": {"uv": [5, 2, 11, 6], "texture": "#0"},
-				"east": {"uv": [5, 2, 11, 6], "texture": "#0"},
-				"south": {"uv": [5, 2, 11, 6], "texture": "#0"},
-				"west": {"uv": [5, 2, 11, 6], "texture": "#0"}
-			}
-		},
-		{
-			"name": "lip",
-			"from": [4, 14, 4],
-			"to": [12, 16, 12],
-			"faces": {
-				"north": {"uv": [4, 0, 12, 2], "texture": "#0"},
-				"east": {"uv": [4, 0, 12, 2], "texture": "#0"},
-				"south": {"uv": [4, 0, 12, 2], "texture": "#0"},
-				"west": {"uv": [4, 0, 12, 2], "texture": "#0"},
-				"up": {"uv": [4, 4, 12, 12], "texture": "#1"},
-				"down": {"uv": [4, 4, 12, 12], "texture": "#1"}
-			}
-		}
-	],
-	"display": {
-		"thirdperson_righthand": {
-			"rotation": [75, -45, 0],
-			"translation": [0, 2.5, 0],
-			"scale": [0.375, 0.375, 0.375]
-		},
-		"firstperson_righthand": {
-			"rotation": [0, -45, 0],
-			"translation": [0, 2.5, 0],
-			"scale": [0.4, 0.4, 0.4]
-		},
-		"ground": {
-			"translation": [0, 3, 0],
-			"scale": [0.25, 0.25, 0.25]
-		},
-		"gui": {
-			"rotation": [30, 45, 0],
-			"scale": [0.625, 0.625, 0.625]
-		},
-		"head": {
-			"rotation": [0, -180, 0]
-		},
-		"fixed": {
-			"rotation": [0, -180, 0]
-		}
-	}
+  "format_version": "1.21.11",
+  "credit": "Made with Blockbench",
+  "textures": {
+    "0": "thaumaturgeadditions:block/everburning_urn_side",
+    "1": "thaumaturgeadditions:block/everburning_urn_top",
+    "2": "thaumaturgeadditions:block/everburning_urn_bottom",
+    "particle": "thaumaturgeadditions:block/everburning_urn_side"
+  },
+  "elements": [
+    {
+      "name": "bottom_bezel",
+      "from": [
+        3,
+        0,
+        3
+      ],
+      "to": [
+        13,
+        1,
+        13
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            3,
+            15,
+            13,
+            16
+          ],
+          "texture": "#0"
+        },
+        "east": {
+          "uv": [
+            3,
+            15,
+            13,
+            16
+          ],
+          "texture": "#0"
+        },
+        "south": {
+          "uv": [
+            3,
+            15,
+            13,
+            16
+          ],
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            3,
+            15,
+            13,
+            16
+          ],
+          "texture": "#0"
+        },
+        "down": {
+          "uv": [
+            3,
+            3,
+            13,
+            13
+          ],
+          "texture": "#2",
+          "cullface": "down"
+        }
+      }
+    },
+    {
+      "name": "body",
+      "from": [
+        2,
+        1,
+        2
+      ],
+      "to": [
+        14,
+        9,
+        14
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            2,
+            7,
+            14,
+            15
+          ],
+          "texture": "#0"
+        },
+        "east": {
+          "uv": [
+            2,
+            7,
+            14,
+            15
+          ],
+          "texture": "#0"
+        },
+        "south": {
+          "uv": [
+            2,
+            7,
+            14,
+            15
+          ],
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            2,
+            7,
+            14,
+            15
+          ],
+          "texture": "#0"
+        },
+        "up": {
+          "uv": [
+            2,
+            2,
+            14,
+            14
+          ],
+          "texture": "#2"
+        },
+        "down": {
+          "uv": [
+            2,
+            2,
+            14,
+            14
+          ],
+          "texture": "#2"
+        }
+      }
+    },
+    {
+      "name": "top_bezel",
+      "from": [
+        3,
+        9,
+        3
+      ],
+      "to": [
+        13,
+        10,
+        13
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            3,
+            6,
+            13,
+            7
+          ],
+          "texture": "#0"
+        },
+        "east": {
+          "uv": [
+            3,
+            6,
+            13,
+            7
+          ],
+          "texture": "#0"
+        },
+        "south": {
+          "uv": [
+            3,
+            6,
+            13,
+            7
+          ],
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            3,
+            6,
+            13,
+            7
+          ],
+          "texture": "#0"
+        },
+        "up": {
+          "uv": [
+            3,
+            3,
+            13,
+            13
+          ],
+          "texture": "#2"
+        }
+      }
+    },
+    {
+      "name": "neck",
+      "from": [
+        5,
+        10,
+        5
+      ],
+      "to": [
+        11,
+        14,
+        11
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            5,
+            2,
+            11,
+            6
+          ],
+          "texture": "#0"
+        },
+        "east": {
+          "uv": [
+            5,
+            2,
+            11,
+            6
+          ],
+          "texture": "#0"
+        },
+        "south": {
+          "uv": [
+            5,
+            2,
+            11,
+            6
+          ],
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            5,
+            2,
+            11,
+            6
+          ],
+          "texture": "#0"
+        }
+      }
+    },
+    {
+      "name": "lip",
+      "from": [
+        4,
+        14,
+        4
+      ],
+      "to": [
+        12,
+        16,
+        12
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            4,
+            0,
+            12,
+            2
+          ],
+          "texture": "#0"
+        },
+        "east": {
+          "uv": [
+            4,
+            0,
+            12,
+            2
+          ],
+          "texture": "#0"
+        },
+        "south": {
+          "uv": [
+            4,
+            0,
+            12,
+            2
+          ],
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            4,
+            0,
+            12,
+            2
+          ],
+          "texture": "#0"
+        },
+        "up": {
+          "uv": [
+            4,
+            4,
+            12,
+            12
+          ],
+          "texture": "#1"
+        },
+        "down": {
+          "uv": [
+            4,
+            4,
+            12,
+            12
+          ],
+          "texture": "#1"
+        }
+      }
+    }
+  ],
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [
+        75,
+        -45,
+        0
+      ],
+      "translation": [
+        0,
+        2.5,
+        0
+      ],
+      "scale": [
+        0.375,
+        0.375,
+        0.375
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        0,
+        -45,
+        0
+      ],
+      "translation": [
+        0,
+        2.5,
+        0
+      ],
+      "scale": [
+        0.4,
+        0.4,
+        0.4
+      ]
+    },
+    "ground": {
+      "translation": [
+        0,
+        3,
+        0
+      ],
+      "scale": [
+        0.25,
+        0.25,
+        0.25
+      ]
+    },
+    "gui": {
+      "rotation": [
+        30,
+        45,
+        0
+      ],
+      "scale": [
+        0.625,
+        0.625,
+        0.625
+      ]
+    },
+    "head": {
+      "rotation": [
+        0,
+        -180,
+        0
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        0,
+        -180,
+        0
+      ]
+    }
+  }
 }

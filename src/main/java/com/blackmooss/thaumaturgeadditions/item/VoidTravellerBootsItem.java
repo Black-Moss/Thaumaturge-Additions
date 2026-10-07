@@ -22,17 +22,31 @@ import org.jspecify.annotations.Nullable;
 
 public class VoidTravellerBootsItem extends VoidGearItem implements IVisDiscountGear {
     public static final float SAFE_FALL_DISTANCE_BONUS = 6.0F;
-
+    public static final AttributeModifier SAFE_FALL_MODIFIER = new AttributeModifier(
+            ThaumaturgeAdditions.identifier("void_traveller_safe_fall"), SAFE_FALL_DISTANCE_BONUS, AttributeModifier.Operation.ADD_VALUE);
     private static final AttributeModifier STEP_MODIFIER = new AttributeModifier(
             ThaumaturgeAdditions.identifier("void_traveller_step"), 0.8F, AttributeModifier.Operation.ADD_VALUE);
     private static final AttributeModifier JUMP_MODIFIER = new AttributeModifier(
             ThaumaturgeAdditions.identifier("void_traveller_jump"), 0.55F, AttributeModifier.Operation.ADD_VALUE);
-    public static final AttributeModifier SAFE_FALL_MODIFIER = new AttributeModifier(
-            ThaumaturgeAdditions.identifier("void_traveller_safe_fall"), SAFE_FALL_DISTANCE_BONUS, AttributeModifier.Operation.ADD_VALUE);
     private static final Vec3 FORWARD = new Vec3(0.0, 0.0, 1.0);
 
     public VoidTravellerBootsItem(Item.Properties properties) {
         super(properties.component(TCDataComponents.RECHARGEABLE.get(), new ChargeProfile(350, ChargeDisplay.ON_CHANGE)));
+    }
+
+    public static void clientMovementTick(Player player, ItemStack stack) {
+        if (RechargeAccess.getCharge(stack) <= 0 || player.getAbilities().flying || player.zza <= 0.0F) {
+            return;
+        }
+        if (player.onGround()) {
+            float bonus = 0.10F;
+            if (player.isInWater()) {
+                bonus /= 4.0F;
+            }
+            player.moveRelative(bonus, FORWARD);
+        } else if (player.isInWater()) {
+            player.moveRelative(0.05F, FORWARD);
+        }
     }
 
     @Override
@@ -72,21 +86,6 @@ public class VoidTravellerBootsItem extends VoidGearItem implements IVisDiscount
             } else if (!active && jumpHeight.hasModifier(JUMP_MODIFIER.id())) {
                 jumpHeight.removeModifier(JUMP_MODIFIER.id());
             }
-        }
-    }
-
-    public static void clientMovementTick(Player player, ItemStack stack) {
-        if (RechargeAccess.getCharge(stack) <= 0 || player.getAbilities().flying || player.zza <= 0.0F) {
-            return;
-        }
-        if (player.onGround()) {
-            float bonus = 0.10F;
-            if (player.isInWater()) {
-                bonus /= 4.0F;
-            }
-            player.moveRelative(bonus, FORWARD);
-        } else if (player.isInWater()) {
-            player.moveRelative(0.05F, FORWARD);
         }
     }
 

@@ -41,12 +41,20 @@ import java.util.concurrent.CompletableFuture;
 
 public final class ModRecipeProvider extends RecipeProvider {
     private final HolderLookup.Provider lookupProvider;
-    private HolderGetter<IAspect> aspects;
+    private final HolderGetter<IAspect> aspects;
 
     private ModRecipeProvider(HolderLookup.Provider provider, RecipeOutput output) {
         super(provider, output);
         this.lookupProvider = provider;
         this.aspects = registries.lookupOrThrow(IAspect.REGISTRY_KEY);
+    }
+
+    private static ResearchGate tcGate(String path) {
+        return new ResearchGate(TCIds.rl(path), Optional.empty(), false);
+    }
+
+    private static ResearchGate taGate(String path) {
+        return new ResearchGate(ThaumaturgeAdditions.identifier(path), Optional.empty(), false);
     }
 
     @Override
@@ -244,14 +252,6 @@ public final class ModRecipeProvider extends RecipeProvider {
 
     private Ingredient commonTag(String path) {
         return Ingredient.of(tag("c", path));
-    }
-
-    private static ResearchGate tcGate(String path) {
-        return new ResearchGate(TCIds.rl(path), Optional.empty(), false);
-    }
-
-    private static ResearchGate taGate(String path) {
-        return new ResearchGate(ThaumaturgeAdditions.identifier(path), Optional.empty(), false);
     }
 
     private InfusionRecipeBuilder infusion(ItemLike result, RecipeCategory category, ItemLike catalyst) {

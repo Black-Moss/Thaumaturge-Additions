@@ -36,6 +36,11 @@ public class EverburningUrnBlock extends BaseEntityBlock {
         super(properties);
     }
 
+    private static void playLavaSound(Level level, BlockPos pos) {
+        level.playSound(null, pos, SoundEvents.BUCKET_FILL_LAVA, SoundSource.BLOCKS, 0.33F,
+                1.0F + (level.getRandom().nextFloat() - level.getRandom().nextFloat()) * 0.3F);
+    }
+
     @Override
     protected @NonNull MapCodec<EverburningUrnBlock> codec() {
         return CODEC;
@@ -76,11 +81,6 @@ public class EverburningUrnBlock extends BaseEntityBlock {
             return InteractionResult.SUCCESS;
         }
         return InteractionResult.PASS;
-    }
-
-    private static void playLavaSound(Level level, BlockPos pos) {
-        level.playSound(null, pos, SoundEvents.BUCKET_FILL_LAVA, SoundSource.BLOCKS, 0.33F,
-                1.0F + (level.getRandom().nextFloat() - level.getRandom().nextFloat()) * 0.3F);
     }
 
     @Override

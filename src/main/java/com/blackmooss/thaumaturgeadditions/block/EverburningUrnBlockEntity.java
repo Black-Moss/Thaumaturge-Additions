@@ -1,8 +1,5 @@
 package com.blackmooss.thaumaturgeadditions.block;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
 import com.blackmooss.thaumaturgeadditions.registry.TABlockEntities;
 import com.leclowndu93150.thaumaturge.api.aura.AuraHelper;
@@ -32,6 +29,9 @@ import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 import org.jspecify.annotations.NonNull;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public final class EverburningUrnBlockEntity extends BlockEntity {
     public static final int CAPACITY = 1000;
@@ -66,28 +66,6 @@ public final class EverburningUrnBlockEntity extends BlockEntity {
 
     public EverburningUrnBlockEntity(BlockPos pos, BlockState state) {
         super(TABlockEntities.EVERBURNING_URN.get(), pos, state);
-    }
-
-    public FluidStacksResourceHandler getTank() {
-        return tank;
-    }
-
-    public int lavaAmount() {
-        return tank.getAmountAsInt(0);
-    }
-
-    public void drainLava(int amount) {
-        try (Transaction ctx = Transaction.openRoot()) {
-            tank.extract(FluidResource.of(Fluids.LAVA), amount, ctx);
-            ctx.commit();
-        }
-    }
-
-    private void fillLava(int amount) {
-        try (Transaction ctx = Transaction.openRoot()) {
-            tank.insert(FluidResource.of(Fluids.LAVA), amount, ctx);
-            ctx.commit();
-        }
     }
 
     public static void serverTick(
@@ -149,6 +127,28 @@ public final class EverburningUrnBlockEntity extends BlockEntity {
                     entity.fillLava(lava);
                 }
             }
+        }
+    }
+
+    public FluidStacksResourceHandler getTank() {
+        return tank;
+    }
+
+    public int lavaAmount() {
+        return tank.getAmountAsInt(0);
+    }
+
+    public void drainLava(int amount) {
+        try (Transaction ctx = Transaction.openRoot()) {
+            tank.extract(FluidResource.of(Fluids.LAVA), amount, ctx);
+            ctx.commit();
+        }
+    }
+
+    private void fillLava(int amount) {
+        try (Transaction ctx = Transaction.openRoot()) {
+            tank.insert(FluidResource.of(Fluids.LAVA), amount, ctx);
+            ctx.commit();
         }
     }
 

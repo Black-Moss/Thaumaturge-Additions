@@ -18,9 +18,9 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 import net.p3pp3rf1y.sophisticatedcore.common.gui.SlotSuppliedHandler;
-import net.p3pp3rf1y.sophisticatedcore.inventory.ComponentItemStacksHandler;
 import net.p3pp3rf1y.sophisticatedcore.common.gui.UpgradeContainerBase;
 import net.p3pp3rf1y.sophisticatedcore.common.gui.UpgradeContainerType;
+import net.p3pp3rf1y.sophisticatedcore.inventory.ComponentItemStacksHandler;
 import net.p3pp3rf1y.sophisticatedcore.util.NBTHelper;
 import org.jspecify.annotations.NonNull;
 

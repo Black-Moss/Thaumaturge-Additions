@@ -10,7 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
-import java.awt.Color;
+import java.awt.*;
 
 public record RainbowTintSource() implements ItemTintSource {
     public static final Identifier ID = ThaumaturgeAdditions.identifier("rainbow");

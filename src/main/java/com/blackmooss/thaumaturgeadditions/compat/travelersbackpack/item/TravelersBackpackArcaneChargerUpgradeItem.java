@@ -24,27 +24,6 @@ public class TravelersBackpackArcaneChargerUpgradeItem extends UpgradeItem {
         super(properties, null);
     }
 
-    @Override
-    public Class<? extends UpgradeBase<?>> getUpgradeClass() {
-        return TravelersBackpackArcaneChargerUpgrade.class;
-    }
-
-    @Override
-    public boolean requiresEquippedBackpack() {
-        return false;
-    }
-
-    @Override
-    public TriFunction<UpgradeManager, Integer, ItemStack, Optional<? extends UpgradeBase<?>>> getUpgrade() {
-        return (upgradeManager, dataHolderSlot, provider) -> Optional.of(new TravelersBackpackArcaneChargerUpgrade(upgradeManager, dataHolderSlot));
-    }
-
-    @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay tooltipDisplay, Consumer<Component> tooltip, TooltipFlag flag) {
-        super.appendHoverText(stack, context, tooltipDisplay, tooltip, flag);
-        tooltip.accept(Component.translatable("item.thaumaturgeadditions.travelersbackpack_arcane_charger_upgrade.tooltip").withStyle(ChatFormatting.BLUE));
-    }
-
     public static boolean hasCharger(Player player) {
         ItemStack worn = AttachmentUtils.isWearingBackpack(player) ? AttachmentUtils.getWearingBackpack(player) : null;
         if (hasChargerIn(worn)) {
@@ -66,5 +45,26 @@ public class TravelersBackpackArcaneChargerUpgradeItem extends UpgradeItem {
                 .getUpgrade(TravelersBackpackArcaneChargerUpgrade.class)
                 .filter(charger -> charger.isEnabled(charger))
                 .isPresent();
+    }
+
+    @Override
+    public Class<? extends UpgradeBase<?>> getUpgradeClass() {
+        return TravelersBackpackArcaneChargerUpgrade.class;
+    }
+
+    @Override
+    public boolean requiresEquippedBackpack() {
+        return false;
+    }
+
+    @Override
+    public TriFunction<UpgradeManager, Integer, ItemStack, Optional<? extends UpgradeBase<?>>> getUpgrade() {
+        return (upgradeManager, dataHolderSlot, provider) -> Optional.of(new TravelersBackpackArcaneChargerUpgrade(upgradeManager, dataHolderSlot));
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay tooltipDisplay, Consumer<Component> tooltip, TooltipFlag flag) {
+        super.appendHoverText(stack, context, tooltipDisplay, tooltip, flag);
+        tooltip.accept(Component.translatable("item.thaumaturgeadditions.travelersbackpack_arcane_charger_upgrade.tooltip").withStyle(ChatFormatting.BLUE));
     }
 }

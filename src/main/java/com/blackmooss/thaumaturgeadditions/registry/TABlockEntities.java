@@ -1,8 +1,6 @@
 package com.blackmooss.thaumaturgeadditions.registry;
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
-import java.util.Set;
-
 import com.blackmooss.thaumaturgeadditions.block.EverburningUrnBlockEntity;
 import com.blackmooss.thaumaturgeadditions.block.VoidBrainJarBlockEntity;
 import net.minecraft.core.registries.Registries;
@@ -13,6 +11,8 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.Set;
 
 @EventBusSubscriber(modid = ThaumaturgeAdditions.MODID)
 public final class TABlockEntities {

@@ -33,10 +33,6 @@ public class ThaumaturgeAdditions {
     public static final String MODID = "thaumaturgeadditions";
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    public static Identifier identifier(String path) {
-        return Identifier.fromNamespaceAndPath(MODID, path);
-    }
-
     public ThaumaturgeAdditions(IEventBus modEventBus, ModContainer modContainer) {
         TACreativeModeTabs.CREATIVE_MODE_TABS.register(modEventBus);
         TAFocusElements.ELEMENTS.register(modEventBus);
@@ -46,6 +42,10 @@ public class ThaumaturgeAdditions {
         TAItems.ITEMS.register(modEventBus);
         TAColorHandlers.register(modEventBus);
         modEventBus.addListener(SophisticatedBackpacksCompat::onRegisterUpgradeContainers);
+    }
+
+    public static Identifier identifier(String path) {
+        return Identifier.fromNamespaceAndPath(MODID, path);
     }
 
     @SubscribeEvent

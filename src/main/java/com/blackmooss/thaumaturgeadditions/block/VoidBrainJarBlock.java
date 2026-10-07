@@ -69,9 +69,9 @@ public final class VoidBrainJarBlock extends BaseEntityBlock {
                 if (release > 0) {
                     jar.setXp(jar.xp() - release);
                     ExperienceOrb.award(server, new Vec3(
-                            (double)pos.getX() + (double)0.5F,
-                            (double)pos.getY() + (double)0.5F,
-                            (double)pos.getZ() + (double)0.5F),
+                                    (double) pos.getX() + (double) 0.5F,
+                                    (double) pos.getY() + (double) 0.5F,
+                                    (double) pos.getZ() + (double) 0.5F),
                             release);
                     jar.setChanged();
                     jar.syncToClient();
@@ -79,9 +79,9 @@ public final class VoidBrainJarBlock extends BaseEntityBlock {
             } else {
                 level.playSound(
                         player,
-                        (double)pos.getX() + (double)0.5F,
-                        (double)pos.getY() + (double)0.5F,
-                        (double)pos.getZ() + (double)0.5F,
+                        (double) pos.getX() + (double) 0.5F,
+                        (double) pos.getY() + (double) 0.5F,
+                        (double) pos.getZ() + (double) 0.5F,
                         TCSounds.JAR.get(),
                         SoundSource.BLOCKS,
                         0.2F,

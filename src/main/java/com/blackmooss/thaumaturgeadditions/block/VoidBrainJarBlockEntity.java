@@ -39,12 +39,10 @@ public final class VoidBrainJarBlockEntity extends BlockEntity {
     private static final long SIGH_INITIAL_DELAY = 30L;
     private static final long SIGH_DELAY_BASE = 100L;
     private static final int SIGH_DELAY_SPREAD = 500;
-
-    private int xp;
-    private int eatDelay;
-
     public float rota;
     public float rotb;
+    private int xp;
+    private int eatDelay;
     private float targetRot;
     private float wander;
     private float wanderStep;
@@ -52,26 +50,6 @@ public final class VoidBrainJarBlockEntity extends BlockEntity {
 
     public VoidBrainJarBlockEntity(BlockPos pos, BlockState state) {
         super(TABlockEntities.VOID_BRAIN_JAR.get(), pos, state);
-    }
-
-    public int xp() {
-        return xp;
-    }
-
-    public void setXp(int xp) {
-        this.xp = Mth.clamp(xp, 0, XP_MAX);
-    }
-
-    public void setEatDelay(int eatDelay) {
-        this.eatDelay = eatDelay;
-    }
-
-    public void syncToClient() {
-        if (level == null || level.isClientSide()) {
-            return;
-        }
-        BlockState current = getBlockState();
-        level.sendBlockUpdated(getBlockPos(), current, current, 3);
     }
 
     public static void serverTick(
@@ -170,6 +148,26 @@ public final class VoidBrainJarBlockEntity extends BlockEntity {
             angle += (float) (Math.PI * 2);
         }
         return angle;
+    }
+
+    public int xp() {
+        return xp;
+    }
+
+    public void setXp(int xp) {
+        this.xp = Mth.clamp(xp, 0, XP_MAX);
+    }
+
+    public void setEatDelay(int eatDelay) {
+        this.eatDelay = eatDelay;
+    }
+
+    public void syncToClient() {
+        if (level == null || level.isClientSide()) {
+            return;
+        }
+        BlockState current = getBlockState();
+        level.sendBlockUpdated(getBlockPos(), current, current, 3);
     }
 
     private @Nullable Entity pullClosestOrb(Level level, BlockPos pos) {

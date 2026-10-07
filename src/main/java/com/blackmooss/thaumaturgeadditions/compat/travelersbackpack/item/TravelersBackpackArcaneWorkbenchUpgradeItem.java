@@ -6,17 +6,12 @@ import com.tiviacz.travelersbackpack.inventory.UpgradeManager;
 import com.tiviacz.travelersbackpack.inventory.upgrades.UpgradeBase;
 import com.tiviacz.travelersbackpack.item.upgrade.UpgradeItem;
 import com.tiviacz.travelersbackpack.util.ContainerContentsHelper;
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.NonNullList;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.ItemContainerContents;
-import net.minecraft.world.item.component.TooltipDisplay;
 import org.apache.commons.lang3.function.TriFunction;
 
 import java.util.Optional;
-import java.util.function.Consumer;
 
 public class TravelersBackpackArcaneWorkbenchUpgradeItem extends UpgradeItem {
     public TravelersBackpackArcaneWorkbenchUpgradeItem(Properties properties) {

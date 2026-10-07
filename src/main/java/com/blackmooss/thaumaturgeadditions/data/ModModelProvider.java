@@ -6,10 +6,6 @@ import com.blackmooss.thaumaturgeadditions.registry.TABlocks;
 import com.blackmooss.thaumaturgeadditions.registry.TAItems;
 import com.leclowndu93150.thaumaturge.TCIds;
 import com.leclowndu93150.thaumaturge.client.model.JarBrainItemSpecialRenderer;
-
-import java.util.List;
-import java.util.Optional;
-
 import net.minecraft.client.color.item.Constant;
 import net.minecraft.client.color.item.Dye;
 import net.minecraft.client.data.models.BlockModelGenerators;
@@ -27,18 +23,12 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.Identifier;
 import org.jspecify.annotations.NonNull;
 
+import java.util.List;
+import java.util.Optional;
+
 public class ModModelProvider extends ModelProvider {
     public ModModelProvider(PackOutput output) {
         super(output, ThaumaturgeAdditions.MODID);
-    }
-
-    @Override
-    protected void registerModels(@NonNull BlockModelGenerators blockModels, @NonNull ItemModelGenerators itemModels) {
-        voidJar(blockModels, itemModels);
-        voidTravellerBoots(itemModels);
-        everburningUrn(blockModels, itemModels);
-        rainbowScribingTools(itemModels);
-        arcaneWorkbenchUpgrade(itemModels);
     }
 
     private static void arcaneWorkbenchUpgrade(@NonNull ItemModelGenerators itemModels) {
@@ -79,5 +69,14 @@ public class ModModelProvider extends ModelProvider {
         ModelTemplates.TWO_LAYERED_ITEM.create(modelId, TextureMapping.layered(base, overlay), itemModels.modelOutput);
         itemModels.itemModelOutput.accept(TAItems.RAINBOW_SCRIBING_TOOLS.get(),
                 ItemModelUtils.tintedModel(modelId, new Constant(0xFFFFFF), new RainbowTintSource()));
+    }
+
+    @Override
+    protected void registerModels(@NonNull BlockModelGenerators blockModels, @NonNull ItemModelGenerators itemModels) {
+        voidJar(blockModels, itemModels);
+        voidTravellerBoots(itemModels);
+        everburningUrn(blockModels, itemModels);
+        rainbowScribingTools(itemModels);
+        arcaneWorkbenchUpgrade(itemModels);
     }
 }

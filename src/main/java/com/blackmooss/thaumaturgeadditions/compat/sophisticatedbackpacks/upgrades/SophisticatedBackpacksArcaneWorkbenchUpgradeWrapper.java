@@ -73,6 +73,15 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper
         };
     }
 
+    private static boolean extractFromPlayer(Player player, ItemStack stack) {
+        int slot = player.getInventory().findSlotMatchingItem(stack);
+        if (slot < 0) {
+            return false;
+        }
+        player.getInventory().removeItem(slot, 1);
+        return true;
+    }
+
     public ComponentItemStacksHandler getInventory() {
         return this.inventory;
     }
@@ -174,14 +183,5 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper
 
     private boolean extractFromStorage(ItemStack stack) {
         return InventoryHelper.extractMatching(this.storageWrapper.getInventoryHandler(), s -> ItemStack.isSameItemSameComponents(s, stack), 1) > 0;
-    }
-
-    private static boolean extractFromPlayer(Player player, ItemStack stack) {
-        int slot = player.getInventory().findSlotMatchingItem(stack);
-        if (slot < 0) {
-            return false;
-        }
-        player.getInventory().removeItem(slot, 1);
-        return true;
     }
 }

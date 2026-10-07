@@ -31,6 +31,11 @@ public class SophisticatedBackpacksArcaneChargerUpgradeItem
         super(LIMIT_CONFIG, properties);
     }
 
+    public static boolean hasCharger(Player player) {
+        return PlayerInventoryProvider.get().runOnBackpacks(player, (backpack, handlerName, identifier, slot) ->
+                BackpackWrapper.fromStack(backpack).getUpgradeHandler().hasUpgrade(TYPE));
+    }
+
     @Override
     public @NonNull UpgradeType<SophisticatedBackpacksArcaneChargerUpgradeWrapper> getType() {
         return TYPE;
@@ -39,10 +44,5 @@ public class SophisticatedBackpacksArcaneChargerUpgradeItem
     @Override
     public @NonNull List<IUpgradeItem.UpgradeConflictDefinition> getUpgradeConflicts() {
         return List.of();
-    }
-
-    public static boolean hasCharger(Player player) {
-        return PlayerInventoryProvider.get().runOnBackpacks(player, (backpack, handlerName, identifier, slot) ->
-                BackpackWrapper.fromStack(backpack).getUpgradeHandler().hasUpgrade(TYPE));
     }
 }

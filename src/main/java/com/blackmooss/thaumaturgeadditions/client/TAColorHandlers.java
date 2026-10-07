@@ -5,7 +5,8 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 
 public final class TAColorHandlers {
-    private TAColorHandlers() {}
+    private TAColorHandlers() {
+    }
 
     public static void register(IEventBus modBus) {
         modBus.addListener(TAColorHandlers::onRegisterItemTintSources);

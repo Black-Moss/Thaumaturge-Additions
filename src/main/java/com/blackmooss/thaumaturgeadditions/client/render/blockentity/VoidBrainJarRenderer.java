@@ -2,10 +2,10 @@ package com.blackmooss.thaumaturgeadditions.client.render.blockentity;
 
 import com.blackmooss.thaumaturgeadditions.block.VoidBrainJarBlockEntity;
 import com.leclowndu93150.thaumaturge.TCIds;
+import com.leclowndu93150.thaumaturge.client.entity.TCModelLayers;
 import com.leclowndu93150.thaumaturge.client.model.entity.BrainModel;
 import com.leclowndu93150.thaumaturge.client.model.entity.JarBrineModel;
 import com.leclowndu93150.thaumaturge.client.render.blockentity.JarBrainRenderState;
-import com.leclowndu93150.thaumaturge.client.entity.TCModelLayers;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
