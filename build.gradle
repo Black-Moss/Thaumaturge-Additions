@@ -132,10 +132,10 @@ dependencies {
     runtimeOnly "maven.modrinth:sophisticated-backpacks:${sophisticatedbackpacks_version}"
 
     // Cucumber Library
-    implementation "com.blakebr0.cucumber:Cucumber:26.1.2-9.0.6"
+//    implementation "com.blakebr0.cucumber:Cucumber:26.1.2-9.0.6"
 
     // Mystical Agriculture
-    implementation 'com.blakebr0.mysticalagriculture:MysticalAgriculture:26.1.2-9.0.10'
+//    implementation 'com.blakebr0.mysticalagriculture:MysticalAgriculture:26.1.2-9.0.10'
 }
 
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
