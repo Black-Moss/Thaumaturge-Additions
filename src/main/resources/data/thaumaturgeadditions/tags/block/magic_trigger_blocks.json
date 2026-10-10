@@ -1,0 +1,16 @@
+{
+  "replace": false,
+  "values": [
+    "#minecraft:stone",
+    "#minecraft:dirt",
+    "#minecraft:sand",
+    "#minecraft:gravel",
+    "#minecraft:deepslate",
+    "#minecraft:andesite",
+    "#minecraft:diorite",
+    "#minecraft:granite",
+    "#minecraft:calcite",
+    "#minecraft:tuff",
+    "#c:ores"
+  ]
+}

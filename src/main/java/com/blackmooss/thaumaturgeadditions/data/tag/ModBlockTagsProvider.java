@@ -1,10 +1,9 @@
-﻿package com.blackmooss.thaumaturgeadditions.data.tag;
+package com.blackmooss.thaumaturgeadditions.data.tag;
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
-import net.neoforged.neoforge.common.data.ItemTagsProvider;
 import org.jspecify.annotations.NonNull;
 
 import java.util.concurrent.CompletableFuture;

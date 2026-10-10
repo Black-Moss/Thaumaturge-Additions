@@ -1,4 +1,4 @@
-﻿package com.blackmooss.thaumaturgeadditions.data.tag;
+package com.blackmooss.thaumaturgeadditions.data.tag;
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
 import net.minecraft.core.HolderLookup;

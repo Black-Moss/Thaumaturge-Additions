@@ -36,7 +36,6 @@ public class ThaumaturgeAdditions {
 
     public ThaumaturgeAdditions(IEventBus modEventBus, ModContainer modContainer) {
         TACreativeModeTabs.CREATIVE_MODE_TABS.register(modEventBus);
-        // TAFocusElements.ELEMENTS.register(modEventBus);
         TABlocks.BLOCKS.register(modEventBus);
         TABlockEntities.BLOCK_ENTITIES.register(modEventBus);
         TADataComponents.DATA_COMPONENT_TYPES.register(modEventBus);

@@ -121,7 +121,7 @@ dependencies {
     implementation "maven.modrinth:rlloIFEV:${travelersbackpack_version}"
 
     // Sophisticated Core
-    runtimeOnly "maven.modrinth:sophisticated-core:${sophisticatedcore_version}"
+    implementation "maven.modrinth:sophisticated-core:${sophisticatedcore_version}"
 
     // Sophisticated Backpacks
     implementation "maven.modrinth:sophisticated-backpacks:${sophisticatedbackpacks_version}"
