@@ -6,7 +6,7 @@ import com.leclowndu93150.thaumaturge.api.items.ChargeProfile;
 import com.leclowndu93150.thaumaturge.api.items.IVisDiscountGear;
 import com.leclowndu93150.thaumaturge.api.items.RechargeAccess;
 import com.leclowndu93150.thaumaturge.content.equipment.VoidGearItem;
-import com.leclowndu93150.thaumaturge.registry.TCDataComponents;
+import com.leclowndu93150.thaumaturge.registry.TTDataComponents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
@@ -31,7 +31,7 @@ public class VoidTravellerBootsItem extends VoidGearItem implements IVisDiscount
     private static final Vec3 FORWARD = new Vec3(0.0, 0.0, 1.0);
 
     public VoidTravellerBootsItem(Item.Properties properties) {
-        super(properties.component(TCDataComponents.RECHARGEABLE.get(), new ChargeProfile(350, ChargeDisplay.ON_CHANGE)));
+        super(properties.component(TTDataComponents.RECHARGEABLE.get(), new ChargeProfile(350, ChargeDisplay.ON_CHANGE)));
     }
 
     public static void clientMovementTick(Player player, ItemStack stack) {
@@ -56,13 +56,13 @@ public class VoidTravellerBootsItem extends VoidGearItem implements IVisDiscount
             return;
         }
         if (player.tickCount % 20 == 0) {
-            int energy = stack.getOrDefault(TCDataComponents.ENERGY.get(), 0);
+            int energy = stack.getOrDefault(TTDataComponents.ENERGY.get(), 0);
             if (energy > 0) {
                 energy--;
             } else if (RechargeAccess.consumeCharge(stack, player, 1)) {
                 energy = 120;
             }
-            stack.set(TCDataComponents.ENERGY.get(), energy);
+            stack.set(TTDataComponents.ENERGY.get(), energy);
         }
         boolean active = RechargeAccess.getCharge(stack) > 0
                 && !player.getAbilities().flying

@@ -2,7 +2,7 @@ package com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.client;
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
 import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.upgrades.TravelersBackpackArcaneWorkbenchUpgrade;
-import com.leclowndu93150.thaumaturge.TCIds;
+import com.leclowndu93150.thaumaturge.TTIds;
 import com.leclowndu93150.thaumaturge.content.recipe.ThaumaturgeCraftingManager;
 import com.leclowndu93150.thaumaturge.content.recipe.workbench.ArcaneCraftingInput;
 import com.leclowndu93150.thaumaturge.content.recipe.workbench.ArcaneCraftingRecipe;
@@ -23,7 +23,7 @@ import net.minecraft.resources.Identifier;
 
 public class TravelersBackpackArcaneWorkbenchWidget extends UpgradeWidgetBase<TravelersBackpackArcaneWorkbenchUpgrade> {
     private static final Identifier PANEL_TEXTURE = ThaumaturgeAdditions.identifier("textures/gui/arcane_workbench_upgrade.png");
-    private static final Identifier WAND_SLOT_TEXTURE = TCIds.rl("textures/gui/workbench_wand_slot.png");
+    private static final Identifier WAND_SLOT_TEXTURE = TTIds.rl("textures/gui/workbench_wand_slot.png");
     private static final int PANEL_TEXTURE_SIZE = 256;
     private static final int WAND_FRAME_WIDTH = 38;
     private static final int WAND_FRAME_HEIGHT = 34;

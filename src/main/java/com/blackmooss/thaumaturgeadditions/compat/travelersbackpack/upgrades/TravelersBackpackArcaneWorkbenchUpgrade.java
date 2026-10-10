@@ -9,7 +9,7 @@ import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.menu.slot.Tr
 import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.menu.slot.TravelersBackpackArcaneWorkbenchSlot;
 import com.blackmooss.thaumaturgeadditions.registry.TADataComponents;
 import com.leclowndu93150.thaumaturge.api.aspect.IAspect;
-import com.leclowndu93150.thaumaturge.api.aspect.TCAspects;
+import com.leclowndu93150.thaumaturge.api.aspect.TTAspects;
 import com.leclowndu93150.thaumaturge.api.aura.AuraHelper;
 import com.leclowndu93150.thaumaturge.api.recipe.ArcaneCraftingTransaction;
 import com.leclowndu93150.thaumaturge.api.recipe.ArcaneWorkbenchContext;
@@ -54,7 +54,7 @@ public class TravelersBackpackArcaneWorkbenchUpgrade extends UpgradeBase<Travele
     public static final int SIZE = WAND_SLOT + 1;
 
     public static final List<ResourceKey<IAspect>> PRIMAL_ORDER = List.of(
-            TCAspects.AER, TCAspects.IGNIS, TCAspects.AQUA, TCAspects.TERRA, TCAspects.ORDO, TCAspects.PERDITIO);
+            TTAspects.AER, TTAspects.IGNIS, TTAspects.AQUA, TTAspects.TERRA, TTAspects.ORDO, TTAspects.PERDITIO);
 
     public static final int TAB_WIDTH = 100;
     public static final int TAB_HEIGHT = 131;

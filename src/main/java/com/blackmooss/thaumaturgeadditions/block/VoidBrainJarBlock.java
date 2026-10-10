@@ -1,7 +1,7 @@
 package com.blackmooss.thaumaturgeadditions.block;
 
 import com.blackmooss.thaumaturgeadditions.registry.TABlockEntities;
-import com.leclowndu93150.thaumaturge.registry.TCSounds;
+import com.leclowndu93150.thaumaturge.registry.TTSounds;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -82,7 +82,7 @@ public final class VoidBrainJarBlock extends BaseEntityBlock {
                         (double) pos.getX() + (double) 0.5F,
                         (double) pos.getY() + (double) 0.5F,
                         (double) pos.getZ() + (double) 0.5F,
-                        TCSounds.JAR.get(),
+                        TTSounds.JAR.get(),
                         SoundSource.BLOCKS,
                         0.2F,
                         1.0F);

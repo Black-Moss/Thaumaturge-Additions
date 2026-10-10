@@ -5,9 +5,10 @@ import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.Sophist
 import com.blackmooss.thaumaturgeadditions.data.ModBlockLootSubProvider;
 import com.blackmooss.thaumaturgeadditions.data.ModModelProvider;
 import com.blackmooss.thaumaturgeadditions.data.ModRecipeProvider;
-import com.blackmooss.thaumaturgeadditions.data.ModTagsProvider;
 import com.blackmooss.thaumaturgeadditions.data.lang.EnUsProvider;
 import com.blackmooss.thaumaturgeadditions.data.lang.ZhCnProvider;
+import com.blackmooss.thaumaturgeadditions.data.tag.ModBlockTagsProvider;
+import com.blackmooss.thaumaturgeadditions.data.tag.ModItemTagsProvider;
 import com.blackmooss.thaumaturgeadditions.registry.*;
 import com.leclowndu93150.thaumaturge.api.aspect.IAspect;
 import com.leclowndu93150.thaumaturge.data.worldgen.aspect.AspectBootstrap;
@@ -35,7 +36,7 @@ public class ThaumaturgeAdditions {
 
     public ThaumaturgeAdditions(IEventBus modEventBus, ModContainer modContainer) {
         TACreativeModeTabs.CREATIVE_MODE_TABS.register(modEventBus);
-        TAFocusElements.ELEMENTS.register(modEventBus);
+        // TAFocusElements.ELEMENTS.register(modEventBus);
         TABlocks.BLOCKS.register(modEventBus);
         TABlockEntities.BLOCK_ENTITIES.register(modEventBus);
         TADataComponents.DATA_COMPONENT_TYPES.register(modEventBus);
@@ -58,7 +59,8 @@ public class ThaumaturgeAdditions {
         event.createProvider(ZhCnProvider::new);
         event.createProvider(ModRecipeProvider.Runner::new);
         event.createProvider(ModModelProvider::new);
-        event.createProvider(ModTagsProvider::new);
+        event.createProvider(ModItemTagsProvider::new);
+        event.createProvider(ModBlockTagsProvider::new);
 
         event.createProvider((output, lookupProvider) -> new LootTableProvider(
                 output,

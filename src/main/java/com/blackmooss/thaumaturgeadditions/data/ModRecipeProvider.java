@@ -2,17 +2,17 @@ package com.blackmooss.thaumaturgeadditions.data;
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
 import com.blackmooss.thaumaturgeadditions.registry.TAItems;
-import com.leclowndu93150.thaumaturge.TCIds;
+import com.leclowndu93150.thaumaturge.TTIds;
 import com.leclowndu93150.thaumaturge.api.aspect.AspectInstance;
 import com.leclowndu93150.thaumaturge.api.aspect.IAspect;
-import com.leclowndu93150.thaumaturge.api.aspect.TCAspects;
+import com.leclowndu93150.thaumaturge.api.aspect.TTAspects;
 import com.leclowndu93150.thaumaturge.api.recipe.ResearchGate;
 import com.leclowndu93150.thaumaturge.data.recipe.builders.CrucibleRecipeBuilder;
 import com.leclowndu93150.thaumaturge.data.recipe.builders.InfusionRecipeBuilder;
 import com.leclowndu93150.thaumaturge.data.recipe.builders.workbench.ArcaneWorkbenchShapedRecipeBuilder;
 import com.leclowndu93150.thaumaturge.data.recipe.builders.workbench.ArcaneWorkbenchShapelessRecipeBuilder;
-import com.leclowndu93150.thaumaturge.registry.TCDataComponents;
-import com.leclowndu93150.thaumaturge.registry.TCItems;
+import com.leclowndu93150.thaumaturge.registry.TTDataComponents;
+import com.leclowndu93150.thaumaturge.registry.TTItems;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderSet;
@@ -50,7 +50,7 @@ public final class ModRecipeProvider extends RecipeProvider {
     }
 
     private static ResearchGate tcGate(String path) {
-        return new ResearchGate(TCIds.rl(path), Optional.empty(), false);
+        return new ResearchGate(TTIds.rl(path), Optional.empty(), false);
     }
 
     private static ResearchGate taGate(String path) {
@@ -60,32 +60,32 @@ public final class ModRecipeProvider extends RecipeProvider {
     @Override
     protected void buildRecipes() {
         voidTravellerBoots();
-        clusters();
+//        clusters();
 
         // 虚空缸中之脑
         arcaneShapeless(RecipeCategory.MISC,
                 TAItems.VOID_BRAIN_JAR.get(),
                 50)
-                .aspect(TCAspects.PERDITIO)
-                .requires(TCItems.JAR_BRAIN)
+                .aspect(TTAspects.PERDITIO)
+                .requires(TTItems.JAR_BRAIN)
                 .gate(tcGate("warded_jars"))
-                .unlockedBy("has", this.has(TCItems.JAR_BRAIN))
+                .unlockedBy("has", this.has(TTItems.JAR_BRAIN))
                 .save(output);
 
         // 永燃之瓮
         infusion(TAItems.EVERBURNING_URN.get(),
                 RecipeCategory.BUILDING_BLOCKS,
-                TCItems.EVERFULL_URN.get())
+                TTItems.EVERFULL_URN.get())
                 .component(Ingredient.of(Items.NETHER_BRICK))
                 .component(Ingredient.of(Items.NETHER_BRICK))
                 .component(Ingredient.of(Items.LAVA_BUCKET))
-                .component(crystal(TCAspects.IGNIS))
+                .component(crystal(TTAspects.IGNIS))
                 .component(Ingredient.of(Items.OBSIDIAN))
                 .component(Ingredient.of(Items.LAVA_BUCKET))
-                .aspect(TCAspects.IGNIS, 40)
-                .aspect(TCAspects.TERRA, 20)
-                .aspect(TCAspects.POTENTIA, 10)
-                .aspect(TCAspects.FABRICO, 10)
+                .aspect(TTAspects.IGNIS, 40)
+                .aspect(TTAspects.TERRA, 20)
+                .aspect(TTAspects.POTENTIA, 10)
+                .aspect(TTAspects.FABRICO, 10)
                 .instability(6)
                 .gate(taGate("everburning_urn"))
                 .unlockedBy("has", this.has(TAItems.EVERBURNING_URN.get()))
@@ -93,7 +93,7 @@ public final class ModRecipeProvider extends RecipeProvider {
 
         // 彩虹笔与墨
         infusion(TAItems.RAINBOW_SCRIBING_TOOLS.get(), RecipeCategory.TOOLS,
-                TCItems.SCRIBING_TOOLS.get())
+                TTItems.SCRIBING_TOOLS.get())
                 .component(Ingredient.of(lookupProvider.getOrThrow(Tags.Items.DYES_BLACK)))
                 .component(Ingredient.of(lookupProvider.getOrThrow(Tags.Items.DYES_BLUE)))
                 .component(Ingredient.of(lookupProvider.getOrThrow(Tags.Items.DYES_BROWN)))
@@ -110,8 +110,8 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .component(Ingredient.of(lookupProvider.getOrThrow(Tags.Items.DYES_RED)))
                 .component(Ingredient.of(lookupProvider.getOrThrow(Tags.Items.DYES_WHITE)))
                 .component(Ingredient.of(lookupProvider.getOrThrow(Tags.Items.DYES_YELLOW)))
-                .aspect(TCAspects.FABRICO, 25)
-                .aspect(TCAspects.ORDO, 25)
+                .aspect(TTAspects.FABRICO, 25)
+                .aspect(TTAspects.ORDO, 25)
                 .instability(2)
                 .gate(taGate("rainbow_scribing_tools"))
                 .save(output);
@@ -128,14 +128,14 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .pattern(" S ")
                 .pattern("SCS")
                 .pattern(" S ")
-                .define('S', TCItems.SALIS_MUNDUS)
+                .define('S', TTItems.SALIS_MUNDUS)
                 .define('C', net.p3pp3rf1y.sophisticatedbackpacks.init.ModItems.CRAFTING_UPGRADE.get())
-                .aspect(TCAspects.AER)
-                .aspect(TCAspects.TERRA)
-                .aspect(TCAspects.IGNIS)
-                .aspect(TCAspects.AQUA)
-                .aspect(TCAspects.ORDO)
-                .aspect(TCAspects.PERDITIO)
+                .aspect(TTAspects.AER)
+                .aspect(TTAspects.TERRA)
+                .aspect(TTAspects.IGNIS)
+                .aspect(TTAspects.AQUA)
+                .aspect(TTAspects.ORDO)
+                .aspect(TTAspects.PERDITIO)
                 .gate(taGate("sophisticatedbackpacks_arcane_workbench_upgrade"))
                 .save(output);
 
@@ -144,14 +144,14 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .pattern(" S ")
                 .pattern("SCS")
                 .pattern(" S ")
-                .define('S', TCItems.SALIS_MUNDUS)
+                .define('S', TTItems.SALIS_MUNDUS)
                 .define('C', com.tiviacz.travelersbackpack.init.ModItems.CRAFTING_UPGRADE.get())
-                .aspect(TCAspects.AER)
-                .aspect(TCAspects.TERRA)
-                .aspect(TCAspects.IGNIS)
-                .aspect(TCAspects.AQUA)
-                .aspect(TCAspects.ORDO)
-                .aspect(TCAspects.PERDITIO)
+                .aspect(TTAspects.AER)
+                .aspect(TTAspects.TERRA)
+                .aspect(TTAspects.IGNIS)
+                .aspect(TTAspects.AQUA)
+                .aspect(TTAspects.ORDO)
+                .aspect(TTAspects.PERDITIO)
                 .gate(taGate("travelersbackpack_arcane_workbench_upgrade"))
                 .save(output);
 
@@ -160,16 +160,16 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .pattern(" C ")
                 .pattern("RBR")
                 .pattern(" T ")
-                .define('C', TCItems.ARCANE_WORKBENCH_CHARGER.get())
-                .define('R', TCItems.VIS_RESONATOR.get())
+                .define('C', TTItems.ARCANE_WORKBENCH_CHARGER.get())
+                .define('R', TTItems.VIS_RESONATOR.get())
                 .define('B', net.p3pp3rf1y.sophisticatedbackpacks.init.ModItems.UPGRADE_BASE.get())
-                .define('T', TCItems.INGOT_THAUMIUM.get())
-                .aspect(TCAspects.AER, 5)
-                .aspect(TCAspects.TERRA, 5)
-                .aspect(TCAspects.IGNIS, 5)
-                .aspect(TCAspects.AQUA, 5)
-                .aspect(TCAspects.ORDO, 5)
-                .aspect(TCAspects.PERDITIO, 5)
+                .define('T', TTItems.INGOT_THAUMIUM.get())
+                .aspect(TTAspects.AER, 5)
+                .aspect(TTAspects.TERRA, 5)
+                .aspect(TTAspects.IGNIS, 5)
+                .aspect(TTAspects.AQUA, 5)
+                .aspect(TTAspects.ORDO, 5)
+                .aspect(TTAspects.PERDITIO, 5)
                 .gate(taGate("sophisticatedbackpacks_arcane_workbench_upgrade"))
                 .save(output);
 
@@ -178,16 +178,16 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .pattern(" C ")
                 .pattern("RBR")
                 .pattern(" T ")
-                .define('C', TCItems.ARCANE_WORKBENCH_CHARGER.get())
-                .define('R', TCItems.VIS_RESONATOR.get())
+                .define('C', TTItems.ARCANE_WORKBENCH_CHARGER.get())
+                .define('R', TTItems.VIS_RESONATOR.get())
                 .define('B', com.tiviacz.travelersbackpack.init.ModItems.BLANK_UPGRADE.get())
-                .define('T', TCItems.INGOT_THAUMIUM.get())
-                .aspect(TCAspects.AER, 5)
-                .aspect(TCAspects.TERRA, 5)
-                .aspect(TCAspects.IGNIS, 5)
-                .aspect(TCAspects.AQUA, 5)
-                .aspect(TCAspects.ORDO, 5)
-                .aspect(TCAspects.PERDITIO, 5)
+                .define('T', TTItems.INGOT_THAUMIUM.get())
+                .aspect(TTAspects.AER, 5)
+                .aspect(TTAspects.TERRA, 5)
+                .aspect(TTAspects.IGNIS, 5)
+                .aspect(TTAspects.AQUA, 5)
+                .aspect(TTAspects.ORDO, 5)
+                .aspect(TTAspects.PERDITIO, 5)
                 .gate(taGate("travelersbackpack_arcane_workbench_upgrade"))
                 .save(output);
     }
@@ -195,20 +195,20 @@ public final class ModRecipeProvider extends RecipeProvider {
     private void voidTravellerBoots() {
         infusion(TAItems.VOID_TRAVELLER_BOOTS.get(),
                 RecipeCategory.COMBAT,
-                TCItems.VOID_BOOTS.get())
-                .component(Ingredient.of(TCItems.TRAVELLER_BOOTS.get()))
-                .component(Ingredient.of(TCItems.PLATE_VOID.get()))
-                .component(Ingredient.of(TCItems.PLATE_VOID.get()))
-                .component(Ingredient.of(TCItems.SALIS_MUNDUS.get()))
-                .component(Ingredient.of(TCItems.FABRIC.get()))
+                TTItems.VOID_BOOTS.get())
+                .component(Ingredient.of(TTItems.TRAVELLER_BOOTS.get()))
+                .component(Ingredient.of(TTItems.PLATE_VOID.get()))
+                .component(Ingredient.of(TTItems.PLATE_VOID.get()))
+                .component(Ingredient.of(TTItems.SALIS_MUNDUS.get()))
+                .component(Ingredient.of(TTItems.FABRIC.get()))
                 .component(Ingredient.of(Items.LEATHER))
-                .aspect(TCAspects.METALLUM, 25)
-                .aspect(TCAspects.AQUA, 25)
-                .aspect(TCAspects.VACUOS, 30)
-                .aspect(TCAspects.FABRICO, 25)
-                .aspect(TCAspects.ALIENIS, 25)
-                .aspect(TCAspects.VOLATUS, 50)
-                .aspect(TCAspects.MOTUS, 50)
+                .aspect(TTAspects.METALLUM, 25)
+                .aspect(TTAspects.AQUA, 25)
+                .aspect(TTAspects.VACUOS, 30)
+                .aspect(TTAspects.FABRICO, 25)
+                .aspect(TTAspects.ALIENIS, 25)
+                .aspect(TTAspects.VOLATUS, 50)
+                .aspect(TTAspects.MOTUS, 50)
                 .instability(6)
                 .gate(taGate("void_traveller_boots"))
                 .unlockedBy("has", this.has(TAItems.VOID_TRAVELLER_BOOTS.get()))
@@ -228,14 +228,14 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .save(output, ThaumaturgeAdditions.MODID + ":void_traveller_boots_dyed");
     }
 
-    private void clusters() {
-        cluster(TCItems.CLUSTER_IRON.get(), "iron");
-        cluster(TCItems.CLUSTER_GOLD.get(), "gold");
-        cluster(TCItems.CLUSTER_COPPER.get(), "copper");
-        cluster(TCItems.CLUSTER_TIN.get(), "tin");
-        cluster(TCItems.CLUSTER_LEAD.get(), "silver");
-        cluster(TCItems.CLUSTER_LEAD.get(), "lead");
-    }
+//    private void clusters() {
+//        cluster(TTItems.CLUSTER_IRON.get(), "iron");
+//        cluster(TTItems.CLUSTER_GOLD.get(), "gold");
+//        cluster(TTItems.CLUSTER_COPPER.get(), "copper");
+//        cluster(TTItems.CLUSTER_TIN.get(), "tin");
+//        cluster(TTItems.CLUSTER_LEAD.get(), "silver");
+//        cluster(TTItems.CLUSTER_LEAD.get(), "lead");
+//    }
 
     private HolderSet<Item> tag(String space, String path) {
         return this.lookupProvider.getOrThrow(TagKey.create(
@@ -245,9 +245,9 @@ public final class ModRecipeProvider extends RecipeProvider {
 
     private Ingredient crystal(ResourceKey<IAspect> aspect) {
         return DataComponentIngredient.of(
-                TCDataComponents.CRYSTAL_ASPECT.get(),
+                TTDataComponents.CRYSTAL_ASPECT.get(),
                 new AspectInstance(aspects.getOrThrow(aspect), 1),
-                TCItems.ESSENTIA_CRYSTAL.get());
+                TTItems.ESSENTIA_CRYSTAL.get());
     }
 
     private Ingredient commonTag(String path) {
@@ -272,18 +272,18 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has", this.has(result));
     }
 
-    private void cluster(ItemLike result, String tag) {
-        new CrucibleRecipeBuilder(
-                aspects,
-                RecipeCategory.MISC,
-                new ItemStackTemplate(result.asItem()),
-                commonTag("raw_materials/" + tag))
-                .aspect(TCAspects.METALLUM, 5)
-                .aspect(TCAspects.ORDO, 5)
-                .gate(tcGate("metal_purification"))
-                .unlockedBy("has", this.has(result.asItem()))
-                .save(output, "%s:crucible/%s".formatted(ThaumaturgeAdditions.MODID, tag));
-    }
+//    private void cluster(ItemLike result, String tag) {
+//        new CrucibleRecipeBuilder(
+//                aspects,
+//                RecipeCategory.MISC,
+//                new ItemStackTemplate(result.asItem()),
+//                commonTag("raw_materials/" + tag))
+//                .aspect(TTAspects.METALLUM, 5)
+//                .aspect(TTAspects.ORDO, 5)
+//                .gate(tcGate("metal_purification"))
+//                .unlockedBy("has", this.has(result.asItem()))
+//                .save(output, "%s:crucible/%s".formatted(ThaumaturgeAdditions.MODID, tag));
+//    }
 
     private ArcaneWorkbenchShapelessRecipeBuilder arcaneShapeless(RecipeCategory recipeCategory, ItemStackTemplate result, int vis) {
         return new ArcaneWorkbenchShapelessRecipeBuilder(recipeCategory,

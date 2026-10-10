@@ -21,8 +21,8 @@ public class ZhCnProvider extends LanguageProvider {
         addItem(TAItems.RAINBOW_SCRIBING_TOOLS, "彩虹笔与墨");
         addItem(TAItems.SOPHISTICATED_BACKPACKS_ARCANE_WORKBENCH_UPGRADE, "精妙背包奥术工作台升级");
         addItem(TAItems.TRAVELERS_BACKPACK_ARCANE_WORKBENCH_UPGRADE, "旅行者背包奥术工作台升级");
-        addItem(TAItems.TRAVELERS_BACKPACK_ARCANE_CHARGER_UPGRADE, "旅行者背包奥术充能板升级");
         addItem(TAItems.SOPHISTICATED_BACKPACKS_ARCANE_CHARGER_UPGRADE, "精妙背包奥术充能板升级");
+        addItem(TAItems.TRAVELERS_BACKPACK_ARCANE_CHARGER_UPGRADE, "旅行者背包奥术充能板升级");
 
         addBlock(TABlocks.VOID_BRAIN_JAR, "虚空缸中之脑");
         addBlock(TABlocks.EVERBURNING_URN, "永燃之瓮");

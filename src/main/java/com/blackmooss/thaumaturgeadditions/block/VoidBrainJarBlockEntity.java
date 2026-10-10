@@ -2,8 +2,8 @@ package com.blackmooss.thaumaturgeadditions.block;
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
 import com.blackmooss.thaumaturgeadditions.registry.TABlockEntities;
-import com.leclowndu93150.thaumaturge.registry.TCDataComponents;
-import com.leclowndu93150.thaumaturge.registry.TCSounds;
+import com.leclowndu93150.thaumaturge.registry.TTDataComponents;
+import com.leclowndu93150.thaumaturge.registry.TTSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponentGetter;
@@ -108,7 +108,7 @@ public final class VoidBrainJarBlockEntity extends BlockEntity {
                             pos.getX() + 0.5,
                             pos.getY() + 0.5,
                             pos.getZ() + 0.5,
-                            TCSounds.BRAIN.get(),
+                            TTSounds.BRAIN.get(),
                             SoundSource.AMBIENT,
                             0.15F,
                             0.8F + level.getRandom().nextFloat() * 0.4F,
@@ -229,14 +229,14 @@ public final class VoidBrainJarBlockEntity extends BlockEntity {
     public void collectImplicitComponents(DataComponentMap.@NonNull Builder builder) {
         super.collectImplicitComponents(builder);
         if (xp > 0) {
-            builder.set(TCDataComponents.STORED_XP.get(), xp);
+            builder.set(TTDataComponents.STORED_XP.get(), xp);
         }
     }
 
     @Override
     protected void applyImplicitComponents(@NonNull DataComponentGetter input) {
         super.applyImplicitComponents(input);
-        Integer stored = input.get(TCDataComponents.STORED_XP.get());
+        Integer stored = input.get(TTDataComponents.STORED_XP.get());
         if (stored != null) {
             setXp(stored);
         }

@@ -4,7 +4,7 @@ import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
 import com.blackmooss.thaumaturgeadditions.client.tint.RainbowTintSource;
 import com.blackmooss.thaumaturgeadditions.registry.TABlocks;
 import com.blackmooss.thaumaturgeadditions.registry.TAItems;
-import com.leclowndu93150.thaumaturge.TCIds;
+import com.leclowndu93150.thaumaturge.TTIds;
 import com.leclowndu93150.thaumaturge.client.model.JarBrainItemSpecialRenderer;
 import net.minecraft.client.color.item.Constant;
 import net.minecraft.client.color.item.Dye;
@@ -39,7 +39,7 @@ public class ModModelProvider extends ModelProvider {
     }
 
     private static void voidJar(@NonNull BlockModelGenerators blockModels, @NonNull ItemModelGenerators itemModels) {
-        Identifier jarVoid = TCIds.rl("block/jar_void");
+        Identifier jarVoid = TTIds.rl("block/jar_void");
         blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(TABlocks.VOID_BRAIN_JAR.get(), BlockModelGenerators.plainVariant(jarVoid)));
         itemModels.itemModelOutput.accept(TAItems.VOID_BRAIN_JAR.get(),
                 new CompositeModel.Unbaked(

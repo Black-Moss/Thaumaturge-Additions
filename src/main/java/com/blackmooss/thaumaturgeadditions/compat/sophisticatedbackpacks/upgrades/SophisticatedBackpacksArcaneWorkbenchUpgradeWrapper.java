@@ -6,7 +6,7 @@ import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.item.So
 import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.item.SophisticatedBackpacksArcaneWorkbenchUpgradeItem;
 import com.blackmooss.thaumaturgeadditions.registry.TADataComponents;
 import com.leclowndu93150.thaumaturge.api.aspect.IAspect;
-import com.leclowndu93150.thaumaturge.api.aspect.TCAspects;
+import com.leclowndu93150.thaumaturge.api.aspect.TTAspects;
 import com.leclowndu93150.thaumaturge.api.aura.AuraHelper;
 import com.leclowndu93150.thaumaturge.content.workbench.SlotCrystalEssentia;
 import com.leclowndu93150.thaumaturge.content.workbench.SlotWorkbenchWand;
@@ -43,7 +43,7 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper
     public static final int SIZE = WAND_SLOT + 1;
 
     public static final List<ResourceKey<IAspect>> PRIMAL_ORDER = List.of(
-            TCAspects.AER, TCAspects.IGNIS, TCAspects.AQUA, TCAspects.TERRA, TCAspects.ORDO, TCAspects.PERDITIO);
+            TTAspects.AER, TTAspects.IGNIS, TTAspects.AQUA, TTAspects.TERRA, TTAspects.ORDO, TTAspects.PERDITIO);
 
     private static final int AURA_REFRESH_INTERVAL = 10;
 

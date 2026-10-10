@@ -3,7 +3,7 @@ package com.blackmooss.thaumaturgeadditions.registry;
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
 import com.blackmooss.thaumaturgeadditions.block.EverburningUrnBlock;
 import com.blackmooss.thaumaturgeadditions.block.VoidBrainJarBlock;
-import com.leclowndu93150.thaumaturge.registry.TCSoundTypes;
+import com.leclowndu93150.thaumaturge.registry.TTSoundTypes;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -16,7 +16,7 @@ public final class TABlocks {
             "void_brain_jar", VoidBrainJarBlock::new, props -> props
                     .mapColor(MapColor.NONE)
                     .strength(0.3F)
-                    .sound(TCSoundTypes.JAR.get())
+                    .sound(TTSoundTypes.JAR.get())
                     .noOcclusion());
 
     public static final DeferredBlock<EverburningUrnBlock> EVERBURNING_URN = BLOCKS.registerBlock(

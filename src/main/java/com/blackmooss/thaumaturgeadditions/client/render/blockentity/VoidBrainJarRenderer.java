@@ -1,8 +1,8 @@
 package com.blackmooss.thaumaturgeadditions.client.render.blockentity;
 
 import com.blackmooss.thaumaturgeadditions.block.VoidBrainJarBlockEntity;
-import com.leclowndu93150.thaumaturge.TCIds;
-import com.leclowndu93150.thaumaturge.client.entity.TCModelLayers;
+import com.leclowndu93150.thaumaturge.TTIds;
+import com.leclowndu93150.thaumaturge.client.entity.TTModelLayers;
 import com.leclowndu93150.thaumaturge.client.model.entity.BrainModel;
 import com.leclowndu93150.thaumaturge.client.model.entity.JarBrineModel;
 import com.leclowndu93150.thaumaturge.client.render.blockentity.JarBrainRenderState;
@@ -23,8 +23,8 @@ import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
 public final class VoidBrainJarRenderer implements BlockEntityRenderer<VoidBrainJarBlockEntity, JarBrainRenderState> {
-    private static final Identifier TEX_BRAIN = TCIds.rl("textures/entity/brain2.png");
-    private static final Identifier TEX_BRINE = TCIds.rl("textures/entity/jarbrine.png");
+    private static final Identifier TEX_BRAIN = TTIds.rl("textures/entity/brain2.png");
+    private static final Identifier TEX_BRINE = TTIds.rl("textures/entity/jarbrine.png");
     private static final float BRAIN_SCALE = 0.4F;
     private static final float BRAIN_LIFT = -0.8F;
     private static final float BOB_PERIOD = 14.0F;
@@ -34,8 +34,8 @@ public final class VoidBrainJarRenderer implements BlockEntityRenderer<VoidBrain
     private final JarBrineModel brine;
 
     public VoidBrainJarRenderer(BlockEntityRendererProvider.Context context) {
-        this.brain = new BrainModel(context.bakeLayer(TCModelLayers.BRAIN));
-        this.brine = new JarBrineModel(context.bakeLayer(TCModelLayers.JAR_BRINE));
+        this.brain = new BrainModel(context.bakeLayer(TTModelLayers.BRAIN));
+        this.brine = new JarBrineModel(context.bakeLayer(TTModelLayers.JAR_BRINE));
     }
 
     @Override
@@ -61,6 +61,7 @@ public final class VoidBrainJarRenderer implements BlockEntityRenderer<VoidBrain
         state.yawRadians = jar.rotb + delta * partialTicks;
         float time = (Minecraft.getInstance().player == null ? 0 : Minecraft.getInstance().player.tickCount) + partialTicks;
         state.bobOffset = Mth.sin(time / BOB_PERIOD) * BOB_AMPLITUDE + BOB_AMPLITUDE;
+        state.ageInTicks = time;
     }
 
     @Override
@@ -78,12 +79,12 @@ public final class VoidBrainJarRenderer implements BlockEntityRenderer<VoidBrain
         poseStack.mulPose(Axis.YP.rotationDegrees(state.yawRadians * Mth.RAD_TO_DEG));
         poseStack.mulPose(Axis.YN.rotationDegrees(90.0F));
         poseStack.scale(BRAIN_SCALE, BRAIN_SCALE, BRAIN_SCALE);
-        collector.submitModelPart(brain.root, poseStack, RenderTypes.entityCutout(TEX_BRAIN),
-                state.lightCoords, OverlayTexture.NO_OVERLAY, null, -1, null);
+        collector.submitModel(brain, state, poseStack, TEX_BRAIN,
+                state.lightCoords, OverlayTexture.NO_OVERLAY, 0, state.breakProgress);
         poseStack.popPose();
 
         collector.submitModelPart(brine.root, poseStack, RenderTypes.entityTranslucent(TEX_BRINE),
-                state.lightCoords, OverlayTexture.NO_OVERLAY, null, -1, null);
+                state.lightCoords, OverlayTexture.NO_OVERLAY, null);
         poseStack.popPose();
     }
 }

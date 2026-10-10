@@ -1,7 +1,7 @@
 package com.blackmooss.thaumaturgeadditions.registry;
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
-import com.leclowndu93150.thaumaturge.registry.TCItemTags;
+import com.leclowndu93150.thaumaturge.registry.TTItemTags;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.equipment.ArmorMaterial;
@@ -26,7 +26,7 @@ public final class TAMaterials {
             SoundEvents.ARMOR_EQUIP_LEATHER,
             2.0F,
             0.0F,
-            TCItemTags.INGOTS_VOID_METAL,
+            TTItemTags.INGOTS_VOID_METAL,
             ASSET_VOID_TRAVELLER
     );
 

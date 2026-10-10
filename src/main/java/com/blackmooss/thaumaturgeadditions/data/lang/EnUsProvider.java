@@ -21,8 +21,8 @@ public class EnUsProvider extends LanguageProvider {
         addItem(TAItems.RAINBOW_SCRIBING_TOOLS, "Rainbow Scribing Tools");
         addItem(TAItems.SOPHISTICATED_BACKPACKS_ARCANE_WORKBENCH_UPGRADE, "Sophisticated Backpack Arcane Workbench Upgrade");
         addItem(TAItems.TRAVELERS_BACKPACK_ARCANE_WORKBENCH_UPGRADE, "Traveler's Backpack Arcane Workbench Upgrade");
-        addItem(TAItems.TRAVELERS_BACKPACK_ARCANE_CHARGER_UPGRADE, "Traveler's Backpack Arcane Charger Upgrade");
         addItem(TAItems.SOPHISTICATED_BACKPACKS_ARCANE_CHARGER_UPGRADE, "Sophisticated Backpack Arcane Charger Upgrade");
+        addItem(TAItems.TRAVELERS_BACKPACK_ARCANE_CHARGER_UPGRADE, "Traveler's Backpack Arcane Charger Upgrade");
 
         addBlock(TABlocks.VOID_BRAIN_JAR, "Void Brain in a Jar");
         addBlock(TABlocks.EVERBURNING_URN, "Everburning Urn");
