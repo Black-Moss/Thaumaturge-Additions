@@ -65,8 +65,7 @@ public class EnUsProvider extends LanguageProvider {
 
         addResearch("rainbow_scribing_tools", "Rainbow Scribing Tools",
                 "Honestly, I'm sick of diving for squid. That ink is practically staining my research table black... Why does writing have to use black dye? Can't it be a \"Gorgeous Black\"?",
-                "No matter what dye you put in this little bottle, it always writes in black — truly a \"Gorgeous Black\"." +
-                        "<BR>And animal rights activists won't sue you!");
+                "No matter what dye you put in this little bottle, it always writes in black — truly a \"Gorgeous Black\".");
 
         addResearch("sophisticatedbackpacks_arcane_workbench_upgrade", "Sophisticated Backpack Arcane Workbench Upgrade",
                 "Since you can already craft inside a backpack, who wouldn't want to craft with vis inside a backpack too?",

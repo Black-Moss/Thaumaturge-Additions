@@ -65,8 +65,7 @@ public class ZhCnProvider extends LanguageProvider {
 
         addResearch("rainbow_scribing_tools", "彩虹笔与墨",
                 "老实说，我真的受够下水打鱿鱼了，那些乌漆麻黑的染料都快把我的研究台染黑了……凭什么写东西必须要黑色染料？不能是五彩斑斓的黑吗？",
-                "这个小瓶子里面无论装什么染料，写出来都是黑色的，名副其实“五彩斑斓的黑”。" +
-                        "<BR>而且动保不会起诉你！");
+                "这个小瓶子里面无论装什么染料，写出来都是黑色的，名副其实“五彩斑斓的黑”。");
 
         addResearch("sophisticatedbackpacks_arcane_workbench_upgrade", "精妙背包奥术工作台升级",
                 "既然可以在背包里面合成，谁会不想在背包里面用灵气合成呢？",
