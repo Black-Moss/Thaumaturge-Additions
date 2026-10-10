@@ -115,20 +115,16 @@ dependencies {
     runtimeOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}"
 
     // Jade
-    compileOnly "maven.modrinth:jade:${jade_version}"
-    runtimeOnly "maven.modrinth:jade:${jade_version}"
+    implementation "maven.modrinth:jade:${jade_version}"
 
     // Traveler's Backpack
-    compileOnly "maven.modrinth:rlloIFEV:${travelersbackpack_version}"
-    runtimeOnly "maven.modrinth:rlloIFEV:${travelersbackpack_version}"
+    implementation "maven.modrinth:rlloIFEV:${travelersbackpack_version}"
 
     // Sophisticated Core
-    compileOnly "maven.modrinth:sophisticated-core:${sophisticatedcore_version}"
     runtimeOnly "maven.modrinth:sophisticated-core:${sophisticatedcore_version}"
 
     // Sophisticated Backpacks
-    compileOnly "maven.modrinth:sophisticated-backpacks:${sophisticatedbackpacks_version}"
-    runtimeOnly "maven.modrinth:sophisticated-backpacks:${sophisticatedbackpacks_version}"
+    implementation "maven.modrinth:sophisticated-backpacks:${sophisticatedbackpacks_version}"
 
     // Cucumber Library
 //    implementation "com.blakebr0.cucumber:Cucumber:26.1.2-9.0.6"
@@ -146,6 +142,8 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
             mod_name               : mod_name,
             mod_license            : mod_license,
             mod_version            : mod_version,
+            mod_authors            : mod_authors,
+            mod_description        : mod_description
     ]
     inputs.properties replaceProperties
     expand replaceProperties

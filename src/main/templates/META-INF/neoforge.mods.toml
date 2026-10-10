@@ -5,11 +5,8 @@ modId = "${mod_id}"
 version = "${mod_version}"
 displayName = "${mod_name}"
 logoFile = "logo.png"
-authors = "Black_Moss"
-
-description = '''
-MORE!!!
-'''
+authors = "${mod_authors}"
+description = "${mod_description}"
 
 [[mixins]]
 config = "${mod_id}.mixins.json"
@@ -32,7 +29,7 @@ side = "BOTH"
 [[dependencies.${ mod_id }]]
 modId = "thaumaturge"
 type = "required"
-versionRange = "[0.2.1,)"
+versionRange = "[1.0.2,)"
 ordering = "AFTER"
 side = "BOTH"
 
@@ -45,11 +42,13 @@ side = "BOTH"
 [[dependencies.${ mod_id }]]
 modId = "travelersbackpack"
 type = "optional"
+versionRange = "[11.2.8,)"
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.${ mod_id }]]
 modId = "sophisticatedbackpacks"
 type = "optional"
+versionRange = "[3.26.9,)"
 ordering = "AFTER"
 side = "BOTH"
