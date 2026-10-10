@@ -35,6 +35,8 @@
   "research.thaumaturgeadditions.void_traveller_boots.stage_1": "这双富含虚空力量的靴子能让旅途变得更上一层楼，物理上的。<BR>属性较普通的旅行者之靴直接翻了一倍！而且还会自我修复，可储存的灵气也更多了，不过扭曲还是不可避免的…<BR>顺带一提，这款靴子支持染色！",
   "research.thaumaturgeadditions.void_traveller_boots.title": "虚空旅行者之靴",
   "screen.thaumaturgeadditions.arcane_workbench_upgrade": "奥术工作台",
+  "spell.thaumaturgeadditions.salis_mundus.desc": "对着方块施放，按该方块的转化配方替换它，且不额外消耗世界盐。",
+  "spell.thaumaturgeadditions.salis_mundus.name": "世界盐",
   "trim_material.thaumaturge.brass": "黄铜",
   "trim_material.thaumaturge.thaumium": "神秘",
   "trim_material.thaumaturge.void": "虚空金属"

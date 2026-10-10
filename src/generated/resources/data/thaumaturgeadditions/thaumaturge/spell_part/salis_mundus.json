@@ -1,0 +1,14 @@
+{
+  "aspect": "thaumaturge:praecantatio",
+  "behavior": {
+    "type": "thaumaturgeadditions:salis_mundus"
+  },
+  "color": 4877962,
+  "complexity": 3,
+  "icon": "thaumaturgeadditions:textures/foci/salis_mundus.png",
+  "max_per_spell": 1,
+  "research": {
+    "entry": "thaumaturgeadditions:focus_salis_mundus"
+  },
+  "sound": "thaumaturge:dust"
+}

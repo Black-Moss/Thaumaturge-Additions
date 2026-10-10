@@ -11,6 +11,7 @@ import com.blackmooss.thaumaturgeadditions.data.tag.ModBlockTagsProvider;
 import com.blackmooss.thaumaturgeadditions.data.tag.ModItemTagsProvider;
 import com.blackmooss.thaumaturgeadditions.registry.*;
 import com.leclowndu93150.thaumaturge.api.aspect.IAspect;
+import com.leclowndu93150.thaumaturge.api.spell.part.SpellPart;
 import com.leclowndu93150.thaumaturge.data.worldgen.aspect.AspectBootstrap;
 import com.mojang.logging.LogUtils;
 import net.minecraft.core.RegistrySetBuilder;
@@ -40,6 +41,7 @@ public class ThaumaturgeAdditions {
         TABlockEntities.BLOCK_ENTITIES.register(modEventBus);
         TADataComponents.DATA_COMPONENT_TYPES.register(modEventBus);
         TAItems.ITEMS.register(modEventBus);
+        TASpellBehaviors.BEHAVIORS.register(modEventBus);
         TAColorHandlers.register(modEventBus);
         modEventBus.addListener(SophisticatedBackpacksCompat::onRegisterUpgradeContainers);
     }
@@ -51,7 +53,8 @@ public class ThaumaturgeAdditions {
     @SubscribeEvent
     public static void onGatherData(GatherDataEvent.Client event) {
         RegistrySetBuilder registries = new RegistrySetBuilder()
-                .add(IAspect.REGISTRY_KEY, AspectBootstrap::bootstrap);
+                .add(IAspect.REGISTRY_KEY, AspectBootstrap::bootstrap)
+                .add(SpellPart.REGISTRY_KEY, TASpellBehaviors::bootstrapParts);
         event.createDatapackRegistryObjects(registries);
 
         event.createProvider(EnUsProvider::new);

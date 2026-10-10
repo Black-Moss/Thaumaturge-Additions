@@ -29,6 +29,8 @@ public class EnUsProvider extends LanguageProvider {
 
         add("focus.thaumaturgeadditions.salis_mundus.name", "Salis Mundus");
         add("focus.thaumaturgeadditions.salis_mundus.text", "A focus-form of magical dust: triggers transmutations on certain blocks without consuming Salis Mundus.");
+        add("spell.thaumaturgeadditions.salis_mundus.name", "Salis Mundus");
+        add("spell.thaumaturgeadditions.salis_mundus.desc", "Cast on a block to transmute it according to that block's transmutation recipe, without spending Salis Mundus.");
 
         add("screen.thaumaturgeadditions.arcane_workbench_upgrade", "Arcane Workbench");
         add("item.thaumaturgeadditions.travelersbackpack_arcane_workbench_upgrade.tooltip", "Consume the aura of the chunk to craft the arcane recipes anytime, anywhere, just like an Arcane Workbench!");

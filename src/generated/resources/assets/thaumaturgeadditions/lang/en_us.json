@@ -35,6 +35,8 @@
   "research.thaumaturgeadditions.void_traveller_boots.stage_1": "These boots are powered by the Void, and will make your travels even more efficient.<BR>They grant the same boons as a normal pair of Traveller's Boots, but twice as potent! They also repair themselves and hold far more Vis - yet they leave the wearer even more vulnerable to Warp...<BR>By the way, these boots can be dyed!",
   "research.thaumaturgeadditions.void_traveller_boots.title": "Void Traveller's Boots",
   "screen.thaumaturgeadditions.arcane_workbench_upgrade": "Arcane Workbench",
+  "spell.thaumaturgeadditions.salis_mundus.desc": "Cast on a block to transmute it according to that block's transmutation recipe, without spending Salis Mundus.",
+  "spell.thaumaturgeadditions.salis_mundus.name": "Salis Mundus",
   "trim_material.thaumaturge.brass": "Brass",
   "trim_material.thaumaturge.thaumium": "Thaumium",
   "trim_material.thaumaturge.void": "Void"
