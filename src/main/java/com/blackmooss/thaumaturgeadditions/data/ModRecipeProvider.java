@@ -204,19 +204,6 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has", this.has(result));
     }
 
-//    private void cluster(ItemLike result, String tag) {
-//        new CrucibleRecipeBuilder(
-//                aspects,
-//                RecipeCategory.MISC,
-//                new ItemStackTemplate(result.asItem()),
-//                commonTag("raw_materials/" + tag))
-//                .aspect(TTAspects.METALLUM, 5)
-//                .aspect(TTAspects.ORDO, 5)
-//                .gate(tcGate("metal_purification"))
-//                .unlockedBy("has", this.has(result.asItem()))
-//                .save(output, "%s:crucible/%s".formatted(ThaumaturgeAdditions.MODID, tag));
-//    }
-
     private ArcaneWorkbenchShapelessRecipeBuilder arcaneShapeless(RecipeCategory recipeCategory, ItemStackTemplate result, int vis) {
         return new ArcaneWorkbenchShapelessRecipeBuilder(recipeCategory,
                 result,
