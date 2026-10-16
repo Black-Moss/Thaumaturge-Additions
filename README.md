@@ -12,8 +12,8 @@ Adds the self-repairing Void Traveller's Boots, the Rainbow Scribing Tools, the 
 
 Each of the two backpack mods gets a matching pair of upgrades, with an identical workflow:
 
-- **Arcane Workbench Upgrade** — installs a full arcane workbench inside your backpack. A 3x3 crafting grid, six primal crystal slots (Aer / Ignis / Aqua / Terra / Ordo / Perditio) and a wand slot, laid out roughly like the vanilla Arcane Workbench. It draws on the vis of **the chunk you are currently in**.
-- **Arcane Charger Upgrade** — widens the vis drain from the single chunk underfoot to the **surrounding 3x3 chunks**, behaving just like the vanilla Arcane Workbench Charger. It has an on/off switch, so you can turn it off whenever you want to leave your local aura alone.
+- **Arcane Workbench Upgrade**: installs a full arcane workbench inside your backpack. A 3x3 crafting grid, six primal crystal slots (Aer / Ignis / Aqua / Terra / Ordo / Perditio) and a wand slot, laid out roughly like the vanilla Arcane Workbench. It draws on the vis of **the chunk you are currently in**.
+- **Arcane Charger Upgrade**: widens the vis drain from the single chunk underfoot to the **surrounding 3x3 chunks**, behaving just like the vanilla Arcane Workbench Charger. It has an on/off switch, so you can turn it off whenever you want to leave your local aura alone.
 
 Requires **[Traveler's Backpack](https://www.curseforge.com/minecraft/mc-mods/travelers-backpack)** and/or **[Sophisticated Backpacks](https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks)**. Each backpack mod is an independent optional dependency — install either one, or both.
 
