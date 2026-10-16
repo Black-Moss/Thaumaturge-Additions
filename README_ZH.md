@@ -53,7 +53,6 @@
 
 - **[旅行者背包](https://www.curseforge.com/minecraft/mc-mods/travelers-backpack)** 11.2.8+ —— 使用其奥术工作台与充能板升级
 - **[精妙背包](https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks)** 3.26.9+ —— 使用其奥术工作台与充能板升级
-- **JEI** —— 支持从 JEI 配方直接转移到背包工作台
 
 ## 许可证
 

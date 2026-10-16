@@ -53,7 +53,6 @@ Optional:
 
 - **[Traveler's Backpack](https://www.curseforge.com/minecraft/mc-mods/travelers-backpack)** 11.2.8+ — for its Arcane Workbench and Charger upgrades
 - **[Sophisticated Backpacks](https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks)** 3.26.9+ — for its Arcane Workbench and Charger upgrades
-- **JEI** — to transfer recipes from JEI straight into the backpack workbench
 
 ## License
 
