@@ -24,7 +24,7 @@
 - 界面内实时显示当前可用灵气。
 - 完整的 JEI 集成：两个背包升级都已注册为工作台提供者，可以从 JEI 配方界面直接跳进背包里合成。
 
-需要 **旅行者背包** 与/或 **精妙背包**。两个背包模组都是各自独立的可选依赖——装其中一个，或者两个都装。
+需要 **[旅行者背包](https://www.curseforge.com/minecraft/mc-mods/travelers-backpack)** 与/或 **[精妙背包](https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks)**。两个背包模组都是各自独立的可选依赖——装其中一个，或者两个都装。
 
 ### 虚空旅行者之靴
 
@@ -60,8 +60,8 @@
 
 可选：
 
-- **Traveler's Backpack** 11.2.8+ —— 使用其奥术工作台与充能板升级
-- **Sophisticated Backpacks** 3.26.9+ —— 使用其奥术工作台与充能板升级
+- **[旅行者背包](https://www.curseforge.com/minecraft/mc-mods/travelers-backpack)** 11.2.8+ —— 使用其奥术工作台与充能板升级
+- **[精妙背包](https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks)** 3.26.9+ —— 使用其奥术工作台与充能板升级
 - **JEI** —— 支持从 JEI 配方直接转移到背包工作台
 
 ## 许可证

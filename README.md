@@ -24,7 +24,7 @@ Convenience details:
 - Live readout of the vis available to the workbench.
 - Full JEI integration: both backpack upgrades are registered as crafting stations, so you can jump straight from a JEI recipe into your backpack and craft there.
 
-Requires **Traveler's Backpack** and/or **Sophisticated Backpacks**. Each backpack mod is an independent optional dependency — install either one, or both.
+Requires **[Traveler's Backpack](https://www.curseforge.com/minecraft/mc-mods/travelers-backpack)** and/or **[Sophisticated Backpacks](https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks)**. Each backpack mod is an independent optional dependency — install either one, or both.
 
 ### Void Traveller's Boots
 
@@ -60,8 +60,8 @@ Salis Mundus in the shape of a proper focus. Cast it at a block that has a trans
 
 Optional:
 
-- **Traveler's Backpack** 11.2.8+ — for its Arcane Workbench and Charger upgrades
-- **Sophisticated Backpacks** 3.26.9+ — for its Arcane Workbench and Charger upgrades
+- **[Traveler's Backpack](https://www.curseforge.com/minecraft/mc-mods/travelers-backpack)** 11.2.8+ — for its Arcane Workbench and Charger upgrades
+- **[Sophisticated Backpacks](https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks)** 3.26.9+ — for its Arcane Workbench and Charger upgrades
 - **JEI** — to transfer recipes from JEI straight into the backpack workbench
 
 ## License
