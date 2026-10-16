@@ -15,15 +15,6 @@ Each of the two backpack mods gets a matching pair of upgrades, with an identica
 - **Arcane Workbench Upgrade** — installs a full arcane workbench inside your backpack. A 3x3 crafting grid, six primal crystal slots (Aer / Ignis / Aqua / Terra / Ordo / Perditio) and a wand slot, laid out roughly like the vanilla Arcane Workbench. It draws on the vis of **the chunk you are currently in**.
 - **Arcane Charger Upgrade** — widens the vis drain from the single chunk underfoot to the **surrounding 3x3 chunks**, behaving just like the vanilla Arcane Workbench Charger. It has an on/off switch, so you can turn it off whenever you want to leave your local aura alone.
 
-Convenience details:
-
-- Fully supports the wand and six primal crystals required by arcane recipes.
-- **Crafting table recipes work too** — if no arcane recipe matches, the grid falls back to ordinary crafting table recipes, costing no vis, crystals or wand.
-- **Auto-refill toggle** — after crafting, consumed grid slots are automatically restocked from your backpack or inventory.
-- **Shift-click destination toggle** — choose whether shift-clicking the result sends it into the backpack storage or your inventory.
-- Live readout of the vis available to the workbench.
-- Full JEI integration: both backpack upgrades are registered as crafting stations, so you can jump straight from a JEI recipe into your backpack and craft there.
-
 Requires **[Traveler's Backpack](https://www.curseforge.com/minecraft/mc-mods/travelers-backpack)** and/or **[Sophisticated Backpacks](https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks)**. Each backpack mod is an independent optional dependency — install either one, or both.
 
 ### Void Traveller's Boots
