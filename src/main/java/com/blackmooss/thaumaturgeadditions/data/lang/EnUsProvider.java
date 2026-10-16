@@ -37,10 +37,6 @@ public class EnUsProvider extends LanguageProvider {
         add("item.thaumaturgeadditions.sophisticatedbackpacks_arcane_workbench_upgrade.tooltip", "Consume the aura of the chunk to craft the arcane recipes anytime, anywhere, just like an Arcane Workbench!");
         add("item.thaumaturgeadditions.travelersbackpack_arcane_charger_upgrade.tooltip", "In the backpack: lets the Arcane Workbench upgrade draw vis from the surrounding 3x3 chunks.");
         add("item.thaumaturgeadditions.sophisticatedbackpacks_arcane_charger_upgrade.tooltip", "In the backpack: lets the Arcane Workbench upgrade draw vis from the surrounding 3x3 chunks.");
-
-        add("trim_material.thaumaturge.brass", "Brass");
-        add("trim_material.thaumaturge.thaumium", "Thaumium");
-        add("trim_material.thaumaturge.void", "Void");
     }
 
     private void research() {
@@ -67,17 +63,11 @@ public class EnUsProvider extends LanguageProvider {
                 "Honestly, I'm sick of diving for squid. That ink is practically staining my research table black... Why does writing have to use black dye? Can't it be a \"Gorgeous Black\"?",
                 "No matter what dye you put in this little bottle, it always writes in black — truly a \"Gorgeous Black\".");
 
-        addResearch("sophisticatedbackpacks_arcane_workbench_upgrade", "Sophisticated Backpack Arcane Workbench Upgrade",
+        addResearch("arcane_workbench_upgrade", "Arcane Workbench Upgrade",
                 "Since you can already craft inside a backpack, who wouldn't want to craft with vis inside a backpack too?",
                 "This backpack upgrade consumes the aura of the chunk to craft arcane recipes anytime, anywhere, just like an Arcane Workbench!");
 
-        addResearchAddenda("sophisticatedbackpacks_arcane_workbench_upgrade", "Don't forget to install a charger in the backpack!");
-
-        addResearch("travelersbackpack_arcane_workbench_upgrade", "Traveler's Backpack Arcane Workbench Upgrade",
-                "Since you can already craft inside a backpack, who wouldn't want to craft with vis inside a backpack too?",
-                "This backpack upgrade consumes the aura of the chunk to craft arcane recipes anytime, anywhere, just like an Arcane Workbench!");
-
-        addResearchAddenda("travelersbackpack_arcane_workbench_upgrade", "Don't forget to install a charger in the backpack!");
+        addResearchAddenda("arcane_workbench_upgrade", "Don't forget to install a charger in the backpack!");
     }
 
     private void addResearch(String researchId, String title, String... stage) {

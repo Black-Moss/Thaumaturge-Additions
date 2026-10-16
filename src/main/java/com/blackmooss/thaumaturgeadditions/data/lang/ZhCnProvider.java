@@ -37,10 +37,6 @@ public class ZhCnProvider extends LanguageProvider {
         add("item.thaumaturgeadditions.sophisticatedbackpacks_arcane_workbench_upgrade.tooltip", "消耗所在区块的灵气随时随地合成奥术配方，就像奥术工作台一样！");
         add("item.thaumaturgeadditions.travelersbackpack_arcane_charger_upgrade.tooltip", "装在背包里：让奥术工作台升级从周围 3x3 区块吸取灵气。");
         add("item.thaumaturgeadditions.sophisticatedbackpacks_arcane_charger_upgrade.tooltip", "装在背包里：让奥术工作台升级从周围 3x3 区块吸取灵气。");
-
-        add("trim_material.thaumaturge.brass", "黄铜");
-        add("trim_material.thaumaturge.thaumium", "神秘");
-        add("trim_material.thaumaturge.void", "虚空金属");
     }
 
     private void research() {
@@ -67,17 +63,11 @@ public class ZhCnProvider extends LanguageProvider {
                 "老实说，我真的受够下水打鱿鱼了，那些乌漆麻黑的染料都快把我的研究台染黑了……凭什么写东西必须要黑色染料？不能是五彩斑斓的黑吗？",
                 "这个小瓶子里面无论装什么染料，写出来都是黑色的，名副其实“五彩斑斓的黑”。");
 
-        addResearch("sophisticatedbackpacks_arcane_workbench_upgrade", "精妙背包奥术工作台升级",
+        addResearch("arcane_workbench_upgrade", "奥术工作台升级",
                 "既然可以在背包里面合成，谁会不想在背包里面用灵气合成呢？",
                 "这个背包升级可以消耗所在区块的灵气随时随地合成奥术配方，就像奥术工作台一样！");
 
-        addResearchAddenda("sophisticatedbackpacks_arcane_workbench_upgrade", "可不能忘记在背包里面装一个充能器！");
-
-        addResearch("travelersbackpack_arcane_workbench_upgrade", "旅行者背包奥术工作台升级",
-                "既然可以在背包里面合成，谁会不想在背包里面用灵气合成呢？",
-                "这个背包升级可以消耗所在区块的灵气随时随地合成奥术配方，就像奥术工作台一样！");
-
-        addResearchAddenda("travelersbackpack_arcane_workbench_upgrade", "可不能忘记在背包里面装一个充能器！");
+        addResearchAddenda("arcane_workbench_upgrade", "可不能忘记在背包里面装一个充能器！");
     }
 
     private void addResearch(String researchId, String title, String... stage) {

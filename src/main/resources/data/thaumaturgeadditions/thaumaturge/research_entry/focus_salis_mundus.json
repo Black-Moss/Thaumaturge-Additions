@@ -4,7 +4,7 @@
   "parents": [
     "thaumaturge:focus_elemental"
   ],
-  "column": 1,
+  "column": -1,
   "row": 3,
   "icons": [
     "focus:thaumaturgeadditions:salis_mundus"

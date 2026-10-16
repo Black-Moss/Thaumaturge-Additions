@@ -1,17 +1,30 @@
 {
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "travelersbackpack"
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:mod_loaded",
+        "modid": "sophisticatedbackpacks"
+      }
+    }
+  ],
   "category": "thaumaturge:basics",
-  "name": "research.thaumaturgeadditions.travelersbackpack_arcane_workbench_upgrade.title",
+  "name": "research.thaumaturgeadditions.arcane_workbench_upgrade.title",
   "parents": [
     "thaumaturge:first_steps"
   ],
-  "column": -2,
+  "column": -1,
   "row": 1,
   "icons": [
     "thaumaturgeadditions:travelersbackpack_arcane_workbench_upgrade"
   ],
   "stages": [
     {
-      "text": "research.thaumaturgeadditions.travelersbackpack_arcane_workbench_upgrade.stage_0",
+      "text": "research.thaumaturgeadditions.arcane_workbench_upgrade.stage_0",
       "required_knowledge": [
         {
           "type": "theory",
@@ -29,7 +42,7 @@
       ]
     },
     {
-      "text": "research.thaumaturgeadditions.travelersbackpack_arcane_workbench_upgrade.stage_1",
+      "text": "research.thaumaturgeadditions.arcane_workbench_upgrade.stage_1",
       "recipes": [
         "thaumaturgeadditions:arcane_workbench/travelersbackpack_arcane_workbench_upgrade"
       ]
@@ -37,7 +50,7 @@
   ],
   "addenda": [
     {
-      "text": "research.thaumaturgeadditions.travelersbackpack_arcane_workbench_upgrade.addendum_0",
+      "text": "research.thaumaturgeadditions.arcane_workbench_upgrade.addendum_0",
       "required_research": [
         "thaumaturge:workbench_charger"
       ],

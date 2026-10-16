@@ -1,4 +1,14 @@
 {
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "sophisticatedbackpacks"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "travelersbackpack"
+    }
+  ],
   "type": "thaumaturge:arcane_workbench_shaped",
   "crystals": [
     {
@@ -21,7 +31,7 @@
     }
   ],
   "key": {
-    "C": "travelersbackpack:crafting_upgrade",
+    "C": "sophisticatedbackpacks:crafting_upgrade",
     "S": "thaumaturge:salis_mundus"
   },
   "pattern": [
@@ -30,10 +40,10 @@
     " S "
   ],
   "research": {
-    "entry": "thaumaturgeadditions:travelersbackpack_arcane_workbench_upgrade"
+    "entry": "thaumaturgeadditions:arcane_workbench_upgrade"
   },
   "result": {
-    "id": "thaumaturgeadditions:travelersbackpack_arcane_workbench_upgrade"
+    "id": "thaumaturgeadditions:sophisticatedbackpacks_arcane_workbench_upgrade"
   },
   "vis": 100
 }

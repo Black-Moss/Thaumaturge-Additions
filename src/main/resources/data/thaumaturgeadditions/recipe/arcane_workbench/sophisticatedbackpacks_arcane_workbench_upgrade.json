@@ -1,47 +1,52 @@
 {
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "sophisticatedbackpacks"
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:mod_loaded",
+        "modid": "travelersbackpack"
+      }
+    }
+  ],
   "type": "thaumaturge:arcane_workbench_shaped",
   "crystals": [
     {
-      "amount": 5,
       "aspect": "thaumaturge:aer"
     },
     {
-      "amount": 5,
       "aspect": "thaumaturge:terra"
     },
     {
-      "amount": 5,
       "aspect": "thaumaturge:ignis"
     },
     {
-      "amount": 5,
       "aspect": "thaumaturge:aqua"
     },
     {
-      "amount": 5,
       "aspect": "thaumaturge:ordo"
     },
     {
-      "amount": 5,
       "aspect": "thaumaturge:perditio"
     }
   ],
   "key": {
-    "B": "sophisticatedbackpacks:upgrade_base",
-    "C": "thaumaturge:arcane_workbench_charger",
-    "R": "thaumaturge:vis_resonator",
-    "T": "thaumaturge:ingot_thaumium"
+    "C": "sophisticatedbackpacks:crafting_upgrade",
+    "S": "thaumaturge:salis_mundus"
   },
   "pattern": [
-    " C ",
-    "RBR",
-    " T "
+    " S ",
+    "SCS",
+    " S "
   ],
   "research": {
     "entry": "thaumaturgeadditions:sophisticatedbackpacks_arcane_workbench_upgrade"
   },
   "result": {
-    "id": "thaumaturgeadditions:sophisticatedbackpacks_arcane_charger_upgrade"
+    "id": "thaumaturgeadditions:sophisticatedbackpacks_arcane_workbench_upgrade"
   },
-  "vis": 200
+  "vis": 100
 }
