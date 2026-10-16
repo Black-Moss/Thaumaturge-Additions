@@ -7,7 +7,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-public class TACreativeModeTabs {
+public final class TACreativeModeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, ThaumaturgeAdditions.MODID);
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> THAUMATURGE_ADDITIONS = CREATIVE_MODE_TABS.register(ThaumaturgeAdditions.MODID,
             () -> CreativeModeTab.builder()

@@ -19,6 +19,7 @@ public final class ModBlockTagsProvider extends BlockTagsProvider {
     protected void addTags(HolderLookup.@NonNull Provider provider) {
 
     }
+
     @Override
     public @NonNull String getName() {
         return "Thaumaturge Additions Block Tags";

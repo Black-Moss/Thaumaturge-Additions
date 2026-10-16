@@ -1,5 +1,6 @@
 package com.blackmooss.thaumaturgeadditions.spell;
 
+import com.blackmooss.thaumaturgeadditions.registry.TASpellBehaviors;
 import com.leclowndu93150.thaumaturge.api.recipe.DustTrigger;
 import com.leclowndu93150.thaumaturge.api.recipe.DustTriggerInput;
 import com.leclowndu93150.thaumaturge.api.recipe.DustTriggerPlacement;
@@ -10,7 +11,6 @@ import com.leclowndu93150.thaumaturge.api.spell.cast.SpellTarget;
 import com.leclowndu93150.thaumaturge.content.recipe.dust.DustTriggerSwapQueue;
 import com.leclowndu93150.thaumaturge.registry.TTItems;
 import com.leclowndu93150.thaumaturge.registry.TTRecipeTypes;
-import com.blackmooss.thaumaturgeadditions.registry.TASpellBehaviors;
 import com.leclowndu93150.thaumaturge.registry.TTSounds;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
@@ -28,12 +28,10 @@ import net.minecraft.world.phys.Vec3;
 import java.util.Optional;
 
 public final class SalisMundusEffect extends AbstractEffectBehavior {
-    private static final float SOUND_VOLUME = 0.33F;
-
     public static final MapCodec<SalisMundusEffect> CODEC = RecordCodecBuilder.mapCodec(i -> i
             .group(Codec.INT.optionalFieldOf("swap_delay", 50).forGetter(SalisMundusEffect::swapDelay))
             .apply(i, SalisMundusEffect::new));
-
+    private static final float SOUND_VOLUME = 0.33F;
     private final int swapDelay;
 
     public SalisMundusEffect(int swapDelay) {

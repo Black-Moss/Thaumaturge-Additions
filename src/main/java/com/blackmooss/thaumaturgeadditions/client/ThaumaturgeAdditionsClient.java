@@ -1,7 +1,10 @@
-package com.blackmooss.thaumaturgeadditions.client.equipment;
+package com.blackmooss.thaumaturgeadditions.client;
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
+import com.blackmooss.thaumaturgeadditions.client.render.blockentity.VoidBrainJarRenderer;
+import com.blackmooss.thaumaturgeadditions.client.tint.RainbowTintSource;
 import com.blackmooss.thaumaturgeadditions.item.VoidTravellerBootsItem;
+import com.blackmooss.thaumaturgeadditions.registry.TABlockEntities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -10,10 +13,22 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 
 @EventBusSubscriber(modid = ThaumaturgeAdditions.MODID, value = Dist.CLIENT)
-public final class VoidTravellerBootsClientHandler {
-    private VoidTravellerBootsClientHandler() {
+public final class ThaumaturgeAdditionsClient {
+    private ThaumaturgeAdditionsClient() {
+    }
+
+    @SubscribeEvent
+    public static void onRegister(EntityRenderersEvent.RegisterRenderers event) {
+        event.registerBlockEntityRenderer(TABlockEntities.VOID_BRAIN_JAR.get(), VoidBrainJarRenderer::new);
+    }
+
+    @SubscribeEvent
+    private static void onRegisterItemTintSources(RegisterColorHandlersEvent.ItemTintSources event) {
+        event.register(RainbowTintSource.ID, RainbowTintSource.MAP_CODEC);
     }
 
     @SubscribeEvent
