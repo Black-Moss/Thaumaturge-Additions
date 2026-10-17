@@ -48,6 +48,7 @@ public final class VoidBrainJarRenderer implements BlockEntityRenderer<VoidBrain
         while (delta < -(float) Math.PI) {
             delta += ((float) Math.PI * 2F);
         }
+
         float yawRadians = jar.rotb + delta * partialTick;
         float time = (float) (Minecraft.getInstance().player == null ? 0 : Minecraft.getInstance().player.tickCount) + partialTick;
         float bobOffset = Mth.sin(time / BOB_PERIOD) * BOB_AMPLITUDE + BOB_AMPLITUDE;
