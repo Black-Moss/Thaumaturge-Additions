@@ -11,7 +11,7 @@ public final class RainbowTintSource {
     }
 
     public static int tint(ItemStack stack, int tintIndex) {
-        if (tintIndex != 0) {
+        if (tintIndex != 1) {
             return -1;
         }
         float hue = (System.currentTimeMillis() % CYCLE_MS) / (float) CYCLE_MS;
