@@ -1,13 +1,9 @@
 package com.blackmooss.thaumaturgeadditions.block;
 
-import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
 import com.blackmooss.thaumaturgeadditions.registry.TABlockEntities;
-import com.leclowndu93150.thaumaturge.registry.TTDataComponents;
 import com.leclowndu93150.thaumaturge.registry.TTSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.component.DataComponentGetter;
-import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -15,15 +11,11 @@ import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
-import net.minecraft.util.ProblemReporter;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.storage.TagValueOutput;
-import net.minecraft.world.level.storage.ValueInput;
-import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.jspecify.annotations.NonNull;
@@ -60,7 +52,6 @@ public final class VoidBrainJarBlockEntity extends BlockEntity {
         if (entity.xp > XP_MAX) {
             entity.xp = XP_MAX;
         }
-        // 始终吸引附近的经验球（满后依然吸，以便把溢出球吞掉删除）
         entity.pullClosestOrb(level, pos);
         if (entity.eatDelay > 0) {
             entity.eatDelay--;
@@ -79,7 +70,7 @@ public final class VoidBrainJarBlockEntity extends BlockEntity {
                 int stored = Math.min(value, space);
                 entity.xp += stored;
             }
-            orb.playSound(SoundEvents.GENERIC_EAT.value(), 0.1F,
+            orb.playSound(SoundEvents.GENERIC_EAT, 0.1F,
                     (level.getRandom().nextFloat() - level.getRandom().nextFloat()) * 0.2F + 1.0F);
             orb.discard();
         }
@@ -198,47 +189,26 @@ public final class VoidBrainJarBlockEntity extends BlockEntity {
     }
 
     @Override
-    protected void loadAdditional(@NonNull ValueInput input) {
-        super.loadAdditional(input);
-        xp = input.getIntOr("XP", 0);
+    protected void loadAdditional(@NonNull CompoundTag tag, HolderLookup.@NonNull Provider registries) {
+        super.loadAdditional(tag, registries);
+        xp = tag.getInt("XP");
     }
 
     @Override
-    protected void saveAdditional(@NonNull ValueOutput output) {
-        super.saveAdditional(output);
-        output.putInt("XP", xp);
+    protected void saveAdditional(@NonNull CompoundTag tag, HolderLookup.@NonNull Provider registries) {
+        super.saveAdditional(tag, registries);
+        tag.putInt("XP", xp);
     }
 
     @Override
     public @NonNull CompoundTag getUpdateTag(HolderLookup.@NonNull Provider registries) {
         CompoundTag nbt = super.getUpdateTag(registries);
-        try (ProblemReporter.ScopedCollector reporter = new ProblemReporter.ScopedCollector(this.problemPath(), ThaumaturgeAdditions.LOGGER)) {
-            TagValueOutput output = TagValueOutput.createWithContext(reporter, registries);
-            saveAdditional(output);
-            nbt.merge(output.buildResult());
-        }
+        saveAdditional(nbt, registries);
         return nbt;
     }
 
     @Override
     public Packet<ClientGamePacketListener> getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
-    }
-
-    @Override
-    public void collectImplicitComponents(DataComponentMap.@NonNull Builder builder) {
-        super.collectImplicitComponents(builder);
-        if (xp > 0) {
-            builder.set(TTDataComponents.STORED_XP.get(), xp);
-        }
-    }
-
-    @Override
-    protected void applyImplicitComponents(@NonNull DataComponentGetter input) {
-        super.applyImplicitComponents(input);
-        Integer stored = input.get(TTDataComponents.STORED_XP.get());
-        if (stored != null) {
-            setXp(stored);
-        }
     }
 }

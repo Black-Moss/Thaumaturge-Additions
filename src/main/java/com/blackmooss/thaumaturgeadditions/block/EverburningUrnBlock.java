@@ -6,7 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
@@ -61,7 +61,7 @@ public class EverburningUrnBlock extends BaseEntityBlock {
     }
 
     @Override
-    protected @NonNull InteractionResult useItemOn(
+    protected @NonNull ItemInteractionResult useItemOn(
             @NonNull ItemStack stack,
             @NonNull BlockState state,
             Level level,
@@ -70,17 +70,17 @@ public class EverburningUrnBlock extends BaseEntityBlock {
             @NonNull InteractionHand hand,
             @NonNull BlockHitResult hit) {
         if (level.isClientSide()) {
-            return InteractionResult.SUCCESS;
+            return ItemInteractionResult.SUCCESS;
         }
         if (!(level.getBlockEntity(pos) instanceof EverburningUrnBlockEntity urn)) {
-            return InteractionResult.PASS;
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
         if (FluidUtil.interactWithFluidHandler(player, hand, level, pos, hit.getDirection())) {
             urn.setChanged();
             playLavaSound(level, pos);
-            return InteractionResult.SUCCESS;
+            return ItemInteractionResult.SUCCESS;
         }
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     @Override

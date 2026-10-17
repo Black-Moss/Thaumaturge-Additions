@@ -1,3 +1,7 @@
+# 1.21.1 的 language provider 是 javafml（不是 neoforge）；loaderVersion 用 [1,)（FML 主版本），
+# 不要写 NeoForge 版本号，否则报 "Missing language javafml version [21.1.259,)"
+modLoader="javafml"
+loaderVersion = "${loader_version_range}"
 license = "${mod_license}"
 
 [[mods]]
@@ -41,13 +45,13 @@ side = "BOTH"
 [[dependencies.${ mod_id }]]
 modId = "travelersbackpack"
 type = "optional"
-versionRange = "[11.2.8,)"
+versionRange = "[10.1,)"
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.${ mod_id }]]
 modId = "sophisticatedbackpacks"
 type = "optional"
-versionRange = "[3.26.9,)"
+versionRange = "[3.26,)"
 ordering = "AFTER"
 side = "BOTH"

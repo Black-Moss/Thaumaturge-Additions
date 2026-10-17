@@ -1,24 +1,28 @@
 package com.blackmooss.thaumaturgeadditions.item;
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
+import com.blackmooss.thaumaturgeadditions.registry.TAMaterials;
 import com.leclowndu93150.thaumaturge.api.items.ChargeDisplay;
 import com.leclowndu93150.thaumaturge.api.items.ChargeProfile;
 import com.leclowndu93150.thaumaturge.api.items.IVisDiscountGear;
 import com.leclowndu93150.thaumaturge.api.items.RechargeAccess;
 import com.leclowndu93150.thaumaturge.content.equipment.VoidGearItem;
 import com.leclowndu93150.thaumaturge.registry.TTDataComponents;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 
 public class VoidTravellerBootsItem extends VoidGearItem implements IVisDiscountGear {
     public static final float SAFE_FALL_DISTANCE_BONUS = 6.0F;
@@ -31,7 +35,8 @@ public class VoidTravellerBootsItem extends VoidGearItem implements IVisDiscount
     private static final Vec3 FORWARD = new Vec3(0.0, 0.0, 1.0);
 
     public VoidTravellerBootsItem(Item.Properties properties) {
-        super(properties.component(TTDataComponents.RECHARGEABLE.get(), new ChargeProfile(350, ChargeDisplay.ON_CHANGE)));
+        super(TAMaterials.ARMOR_VOID_TRAVELLER_HOLDER, ArmorItem.Type.BOOTS,
+                properties.component(TTDataComponents.RECHARGEABLE.get(), new ChargeProfile(350, ChargeDisplay.ON_CHANGE)));
     }
 
     public static void clientMovementTick(Player player, ItemStack stack) {
@@ -50,9 +55,9 @@ public class VoidTravellerBootsItem extends VoidGearItem implements IVisDiscount
     }
 
     @Override
-    public void inventoryTick(ItemStack stack, ServerLevel level, Entity entity, @Nullable EquipmentSlot slot) {
-        super.inventoryTick(stack, level, entity, slot);
-        if (slot != EquipmentSlot.FEET || !(entity instanceof ServerPlayer player)) {
+    public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
+        super.inventoryTick(stack, level, entity, slotId, isSelected);
+        if (!(entity instanceof ServerPlayer player) || player.getItemBySlot(EquipmentSlot.FEET) != stack) {
             return;
         }
         if (player.tickCount % 20 == 0) {
@@ -64,12 +69,10 @@ public class VoidTravellerBootsItem extends VoidGearItem implements IVisDiscount
             }
             stack.set(TTDataComponents.ENERGY.get(), energy);
         }
+        boolean moving = player.getDeltaMovement().horizontalDistanceSqr() > 1.0E-5;
         boolean active = RechargeAccess.getCharge(stack) > 0
                 && !player.getAbilities().flying
-                && (player.getLastClientInput().forward()
-                || player.getLastClientInput().backward()
-                || player.getLastClientInput().left()
-                || player.getLastClientInput().right())
+                && moving
                 && !player.isShiftKeyDown();
         AttributeInstance stepHeight = player.getAttribute(Attributes.STEP_HEIGHT);
         AttributeInstance jumpHeight = player.getAttribute(Attributes.JUMP_STRENGTH);
@@ -87,6 +90,12 @@ public class VoidTravellerBootsItem extends VoidGearItem implements IVisDiscount
                 jumpHeight.removeModifier(JUMP_MODIFIER.id());
             }
         }
+    }
+
+    @Override
+    public @NonNull ItemAttributeModifiers getDefaultAttributeModifiers() {
+        return super.getDefaultAttributeModifiers()
+                .withModifierAdded(Attributes.SAFE_FALL_DISTANCE, SAFE_FALL_MODIFIER, EquipmentSlotGroup.FEET);
     }
 
     @Override

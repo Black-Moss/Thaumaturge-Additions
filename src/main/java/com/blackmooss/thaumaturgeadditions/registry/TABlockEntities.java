@@ -3,6 +3,7 @@ package com.blackmooss.thaumaturgeadditions.registry;
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
 import com.blackmooss.thaumaturgeadditions.block.EverburningUrnBlockEntity;
 import com.blackmooss.thaumaturgeadditions.block.VoidBrainJarBlockEntity;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -12,16 +13,17 @@ import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import java.util.Set;
 
 @EventBusSubscriber(modid = ThaumaturgeAdditions.MODID)
 public final class TABlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, ThaumaturgeAdditions.MODID);
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<VoidBrainJarBlockEntity>> VOID_BRAIN_JAR =
-            BLOCK_ENTITIES.register("void_brain_jar", () -> new BlockEntityType<>(VoidBrainJarBlockEntity::new, Set.of(TABlocks.VOID_BRAIN_JAR.get())));
+            BLOCK_ENTITIES.register("void_brain_jar", () -> BlockEntityType.Builder
+                    .of(VoidBrainJarBlockEntity::new, TABlocks.VOID_BRAIN_JAR.get()).build(null));
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<EverburningUrnBlockEntity>> EVERBURNING_URN =
-            BLOCK_ENTITIES.register("everburning_urn", () -> new BlockEntityType<>(EverburningUrnBlockEntity::new, Set.of(TABlocks.EVERBURNING_URN.get())));
+            BLOCK_ENTITIES.register("everburning_urn", () -> BlockEntityType.Builder
+                    .of(EverburningUrnBlockEntity::new, TABlocks.EVERBURNING_URN.get()).build(null));
 
     private TABlockEntities() {
     }

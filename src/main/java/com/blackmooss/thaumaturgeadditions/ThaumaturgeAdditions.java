@@ -1,10 +1,8 @@
 package com.blackmooss.thaumaturgeadditions;
 
-import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.SophisticatedBackpacksCompat;
 import com.blackmooss.thaumaturgeadditions.data.ModBlockLootSubProvider;
 import com.blackmooss.thaumaturgeadditions.data.lang.EnUsProvider;
 import com.blackmooss.thaumaturgeadditions.data.lang.ZhCnProvider;
-import com.blackmooss.thaumaturgeadditions.data.model.ModItemModelProvider;
 import com.blackmooss.thaumaturgeadditions.data.tag.ModBlockTagsProvider;
 import com.blackmooss.thaumaturgeadditions.data.tag.ModItemTagsProvider;
 import com.blackmooss.thaumaturgeadditions.registry.*;
@@ -13,8 +11,6 @@ import com.leclowndu93150.thaumaturge.api.spell.part.SpellPart;
 import com.leclowndu93150.thaumaturge.data.worldgen.aspect.AspectBootstrap;
 import com.mojang.logging.LogUtils;
 import net.minecraft.core.RegistrySetBuilder;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
@@ -23,8 +19,6 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import org.slf4j.Logger;
 
@@ -44,7 +38,6 @@ public class ThaumaturgeAdditions {
         TADataComponents.DATA_COMPONENT_TYPES.register(modEventBus);
         TAItems.ITEMS.register(modEventBus);
         TASpellBehaviors.BEHAVIORS.register(modEventBus);
-        modEventBus.addListener(SophisticatedBackpacksCompat::onRegisterUpgradeContainers);
     }
 
     public static ResourceLocation identifier(String path) {
@@ -62,7 +55,6 @@ public class ThaumaturgeAdditions {
         event.createProvider(ZhCnProvider::new);
 
 //        event.createProvider(ModRecipeProvider.Runner::new);
-//        event.createProvider(ModModelProvider::new);
         event.createBlockAndItemTags(
                 (output, lookupProvider)
                         -> new ModBlockTagsProvider(output, lookupProvider, event.getExistingFileHelper()),

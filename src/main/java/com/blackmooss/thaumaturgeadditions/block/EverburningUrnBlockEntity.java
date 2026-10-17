@@ -1,6 +1,5 @@
 package com.blackmooss.thaumaturgeadditions.block;
 
-import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
 import com.blackmooss.thaumaturgeadditions.registry.TABlockEntities;
 import com.leclowndu93150.thaumaturge.api.aura.AuraHelper;
 import com.leclowndu93150.thaumaturge.content.effect.EffectDispatch;
@@ -12,22 +11,18 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.ProblemReporter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.level.storage.TagValueOutput;
-import net.minecraft.world.level.storage.ValueInput;
-import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.capabilities.Capabilities;
-import net.neoforged.neoforge.transfer.ResourceHandler;
-import net.neoforged.neoforge.transfer.fluid.FluidResource;
-import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
-import net.neoforged.neoforge.transfer.transaction.Transaction;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
+import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import org.jspecify.annotations.NonNull;
 
 import java.util.ArrayList;
@@ -47,15 +42,14 @@ public final class EverburningUrnBlockEntity extends BlockEntity {
     private static final int TRAIL_EXTEND = 0;
     private static final double TRAIL_UPWARD = 0.2;
 
-    private final FluidStacksResourceHandler tank = new FluidStacksResourceHandler(1, CAPACITY) {
+    private final FluidTank tank = new FluidTank(CAPACITY) {
         @Override
-        public boolean isValid(int index, FluidResource resource) {
-            return resource.is(Fluids.LAVA);
+        public boolean isFluidValid(FluidStack stack) {
+            return stack.getFluid() == Fluids.LAVA;
         }
 
         @Override
-        protected void onContentsChanged(int index, net.neoforged.neoforge.fluids.@NonNull FluidStack previousContents) {
-            super.onContentsChanged(index, previousContents);
+        protected void onContentsChanged() {
             setChanged();
         }
     };
@@ -88,7 +82,7 @@ public final class EverburningUrnBlockEntity extends BlockEntity {
             int zz = entity.handlers.get(i);
             BlockPos target = entity.zonePos(zz);
             BlockState targetState = server.getBlockState(target);
-            ResourceHandler<FluidResource> handler = server.getCapability(Capabilities.Fluid.BLOCK, target, Direction.UP);
+            IFluidHandler handler = server.getCapability(Capabilities.FluidHandler.BLOCK, target, Direction.UP);
             if (handler == null) {
                 if (!targetState.is(Blocks.CAULDRON)
                         && !targetState.is(Blocks.LAVA_CAULDRON)
@@ -103,13 +97,7 @@ public final class EverburningUrnBlockEntity extends BlockEntity {
                     entity.pourInto(server, target);
                 }
             } else {
-                int moved;
-                try (Transaction ctx = Transaction.openRoot()) {
-                    moved = handler.insert(FluidResource.of(Fluids.LAVA), PUSH_AMOUNT, ctx);
-                    if (moved > 0) {
-                        ctx.commit();
-                    }
-                }
+                int moved = handler.fill(new FluidStack(Fluids.LAVA, PUSH_AMOUNT), FluidAction.EXECUTE);
                 if (moved > 0) {
                     entity.drainLava(moved);
                     entity.pourInto(server, target);
@@ -130,26 +118,20 @@ public final class EverburningUrnBlockEntity extends BlockEntity {
         }
     }
 
-    public FluidStacksResourceHandler getTank() {
-        return tank;
+    public FluidTank getTank() {
+        return this.tank;
     }
 
     public int lavaAmount() {
-        return tank.getAmountAsInt(0);
+        return this.tank.getFluidAmount();
     }
 
     public void drainLava(int amount) {
-        try (Transaction ctx = Transaction.openRoot()) {
-            tank.extract(FluidResource.of(Fluids.LAVA), amount, ctx);
-            ctx.commit();
-        }
+        this.tank.drain(amount, FluidAction.EXECUTE);
     }
 
     private void fillLava(int amount) {
-        try (Transaction ctx = Transaction.openRoot()) {
-            tank.insert(FluidResource.of(Fluids.LAVA), amount, ctx);
-            ctx.commit();
-        }
+        this.tank.fill(new FluidStack(Fluids.LAVA, amount), FluidAction.EXECUTE);
     }
 
     private BlockPos zonePos(int zone) {
@@ -160,7 +142,7 @@ public final class EverburningUrnBlockEntity extends BlockEntity {
     }
 
     private boolean acceptsLava(ServerLevel server, BlockPos pos) {
-        if (server.getCapability(Capabilities.Fluid.BLOCK, pos, Direction.UP) != null) {
+        if (server.getCapability(Capabilities.FluidHandler.BLOCK, pos, Direction.UP) != null) {
             return true;
         }
         BlockState state = server.getBlockState(pos);
@@ -169,39 +151,34 @@ public final class EverburningUrnBlockEntity extends BlockEntity {
 
     private void pourInto(ServerLevel server, BlockPos target) {
         Vec3 from = new Vec3(getBlockPos().getX() + 0.5, getBlockPos().getY() + TRAIL_SOURCE_Y, getBlockPos().getZ() + 0.5);
-        EffectDispatch.spawnEssentiaStream(server, from, Vec3.atCenterOf(target), TRAIL_COLOR, 0, counter, TRAIL_SCALE, TRAIL_EXTEND, TRAIL_UPWARD);
+        EffectDispatch.spawnEssentiaStream(server, from, Vec3.atCenterOf(target), TRAIL_COLOR, 0, this.counter, TRAIL_SCALE, TRAIL_EXTEND, TRAIL_UPWARD);
     }
 
     @Override
-    protected void saveAdditional(@NonNull ValueOutput output) {
-        super.saveAdditional(output);
-        tank.serialize(output.child("Tank"));
-        int[] zones = new int[handlers.size()];
+    protected void saveAdditional(@NonNull CompoundTag tag, HolderLookup.@NonNull Provider registries) {
+        super.saveAdditional(tag, registries);
+        tag.put("Tank", this.tank.writeToNBT(registries, new CompoundTag()));
+        int[] zones = new int[this.handlers.size()];
         for (int i = 0; i < zones.length; i++) {
-            zones[i] = handlers.get(i);
+            zones[i] = this.handlers.get(i);
         }
-        output.putIntArray("Handlers", zones);
+        tag.putIntArray("Handlers", zones);
     }
 
     @Override
-    protected void loadAdditional(@NonNull ValueInput input) {
-        super.loadAdditional(input);
-        input.child("Tank").ifPresent(tank::deserialize);
-        handlers.clear();
-        int[] zones = input.getIntArray("Handlers").orElse(new int[0]);
-        for (int zone : zones) {
-            handlers.add(zone);
+    protected void loadAdditional(@NonNull CompoundTag tag, HolderLookup.@NonNull Provider registries) {
+        super.loadAdditional(tag, registries);
+        this.tank.readFromNBT(registries, tag.getCompound("Tank"));
+        this.handlers.clear();
+        for (int zone : tag.getIntArray("Handlers")) {
+            this.handlers.add(zone);
         }
     }
 
     @Override
     public @NonNull CompoundTag getUpdateTag(HolderLookup.@NonNull Provider registries) {
         CompoundTag nbt = super.getUpdateTag(registries);
-        try (ProblemReporter.ScopedCollector reporter = new ProblemReporter.ScopedCollector(this.problemPath(), ThaumaturgeAdditions.LOGGER)) {
-            TagValueOutput output = TagValueOutput.createWithContext(reporter, registries);
-            saveAdditional(output);
-            nbt.merge(output.buildResult());
-        }
+        saveAdditional(nbt, registries);
         return nbt;
     }
 

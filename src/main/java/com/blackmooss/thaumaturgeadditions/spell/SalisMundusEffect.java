@@ -63,7 +63,7 @@ public final class SalisMundusEffect extends AbstractEffectBehavior {
 
         ItemStack dust = new ItemStack(TTItems.SALIS_MUNDUS.get());
         DustTriggerInput input = new DustTriggerInput(dust, level, pos, clicked);
-        Optional<RecipeHolder<DustTrigger>> match = level.recipeAccess().getRecipeFor(TTRecipeTypes.DUST_TRIGGER.get(), input, level);
+        Optional<RecipeHolder<DustTrigger>> match = level.getRecipeManager().getRecipeFor(TTRecipeTypes.DUST_TRIGGER.get(), input, level);
         if (match.isEmpty()) {
             return;
         }
@@ -71,7 +71,7 @@ public final class SalisMundusEffect extends AbstractEffectBehavior {
         if (!trigger.doesPassGate(player)) {
             return;
         }
-        ItemStack result = trigger.assemble(input);
+        ItemStack result = trigger.assemble(input, level.registryAccess());
         if (result.isEmpty()) {
             return;
         }

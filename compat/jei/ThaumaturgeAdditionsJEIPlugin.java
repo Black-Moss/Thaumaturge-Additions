@@ -1,0 +1,38 @@
+package com.blackmooss.thaumaturgeadditions.compat.jei;
+
+import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
+import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.SophisticatedBackpacksCompat;
+import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.TravelersBackpackCompat;
+import com.blackmooss.thaumaturgeadditions.registry.TAItems;
+import com.leclowndu93150.thaumaturge.compat.jei.category.ArcaneWorkbenchCategory;
+import mezz.jei.api.IModPlugin;
+import mezz.jei.api.JeiPlugin;
+import mezz.jei.api.constants.RecipeTypes;
+import mezz.jei.api.registration.IRecipeCatalystRegistration;
+import net.minecraft.resources.ResourceLocation;
+import org.jspecify.annotations.NonNull;
+
+@JeiPlugin
+public final class ThaumaturgeAdditionsJEIPlugin implements IModPlugin {
+    private static final ResourceLocation PLUGIN_UID = ThaumaturgeAdditions.identifier("jei_plugin");
+
+    public ThaumaturgeAdditionsJEIPlugin() {
+    }
+
+    @Override
+    public @NonNull ResourceLocation getPluginUid() {
+        return PLUGIN_UID;
+    }
+
+    @Override
+    public void registerRecipeCatalysts(@NonNull IRecipeCatalystRegistration registration) {
+        if (SophisticatedBackpacksCompat.isLoaded()) {
+            registration.addRecipeCatalysts(RecipeTypes.CRAFTING, TAItems.SOPHISTICATED_BACKPACKS_ARCANE_WORKBENCH_UPGRADE.get());
+            registration.addRecipeCatalysts(ArcaneWorkbenchCategory.RECIPE_TYPE, TAItems.SOPHISTICATED_BACKPACKS_ARCANE_WORKBENCH_UPGRADE.get());
+        }
+        if (TravelersBackpackCompat.isLoaded()) {
+            registration.addRecipeCatalysts(RecipeTypes.CRAFTING, TAItems.TRAVELERS_BACKPACK_ARCANE_WORKBENCH_UPGRADE.get());
+            registration.addRecipeCatalysts(ArcaneWorkbenchCategory.RECIPE_TYPE, TAItems.TRAVELERS_BACKPACK_ARCANE_WORKBENCH_UPGRADE.get());
+        }
+    }
+}

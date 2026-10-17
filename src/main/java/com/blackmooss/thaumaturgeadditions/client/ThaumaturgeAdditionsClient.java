@@ -5,6 +5,7 @@ import com.blackmooss.thaumaturgeadditions.client.render.blockentity.VoidBrainJa
 import com.blackmooss.thaumaturgeadditions.client.tint.RainbowTintSource;
 import com.blackmooss.thaumaturgeadditions.item.VoidTravellerBootsItem;
 import com.blackmooss.thaumaturgeadditions.registry.TABlockEntities;
+import com.blackmooss.thaumaturgeadditions.registry.TAItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -25,10 +26,10 @@ public final class ThaumaturgeAdditionsClient {
     public static void onRegister(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(TABlockEntities.VOID_BRAIN_JAR.get(), VoidBrainJarRenderer::new);
     }
-
     @SubscribeEvent
-    private static void onRegisterItemTintSources(RegisterColorHandlersEvent.ItemTintSources event) {
-        event.register(RainbowTintSource.ID, RainbowTintSource.MAP_CODEC);
+    public static void onRegisterItemColors(RegisterColorHandlersEvent.Item event) {
+        //noinspection deprecation
+        event.getItemColors().register(RainbowTintSource::tint, TAItems.RAINBOW_SCRIBING_TOOLS.get());
     }
 
     @SubscribeEvent

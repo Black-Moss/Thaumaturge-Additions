@@ -1,15 +1,10 @@
 package com.blackmooss.thaumaturgeadditions.registry;
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
-import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.SophisticatedBackpacksCompat;
-import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.TravelersBackpackCompat;
 import com.blackmooss.thaumaturgeadditions.item.VoidTravellerBootsItem;
-import net.minecraft.world.entity.EquipmentSlotGroup;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.equipment.ArmorType;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -20,32 +15,25 @@ public final class TAItems {
     public static final DeferredItem<BlockItem> EVERBURNING_URN = ITEMS.registerSimpleBlockItem(TABlocks.EVERBURNING_URN);
 
     public static final DeferredItem<VoidTravellerBootsItem> VOID_TRAVELLER_BOOTS = ITEMS.registerItem(
-            "void_traveller_boots", VoidTravellerBootsItem::new, props -> props
-                    .humanoidArmor(TAMaterials.ARMOR_VOID_TRAVELLER, ArmorType.BOOTS)
-                    .durability(350)
-                    .rarity(Rarity.EPIC)
-                    .attributes(TAMaterials.ARMOR_VOID_TRAVELLER.createAttributes(ArmorType.BOOTS)
-                            .withModifierAdded(Attributes.SAFE_FALL_DISTANCE, VoidTravellerBootsItem.SAFE_FALL_MODIFIER, EquipmentSlotGroup.FEET)));
+            "void_traveller_boots", VoidTravellerBootsItem::new, new Item.Properties().rarity(Rarity.EPIC));
 
     public static final DeferredItem<Item> RAINBOW_SCRIBING_TOOLS = ITEMS.registerItem(
-            "rainbow_scribing_tools", Item::new, props -> props
-                    .stacksTo(1)
-                    .durability(100));
+            "rainbow_scribing_tools", Item::new, new Item.Properties().stacksTo(1).durability(100));
 
-    public static final DeferredItem<Item> SOPHISTICATED_BACKPACKS_ARCANE_WORKBENCH_UPGRADE = ITEMS.registerItem(
-            "sophisticatedbackpacks_arcane_workbench_upgrade", SophisticatedBackpacksCompat::createArcaneWorkbenchUpgradeItem, props -> props
-                    .stacksTo(16));
-
-    public static final DeferredItem<Item> TRAVELERS_BACKPACK_ARCANE_WORKBENCH_UPGRADE = ITEMS.registerItem(
-            "travelersbackpack_arcane_workbench_upgrade", TravelersBackpackCompat::createArcaneWorkbenchUpgradeItem, props -> props
-                    .stacksTo(16));
-
-    public static final DeferredItem<Item> SOPHISTICATED_BACKPACKS_ARCANE_CHARGER_UPGRADE = ITEMS.registerItem(
-            "sophisticatedbackpacks_arcane_charger_upgrade", SophisticatedBackpacksCompat::createArcaneChargerUpgradeItem, props -> props
-                    .stacksTo(16));
-    public static final DeferredItem<Item> TRAVELERS_BACKPACK_ARCANE_CHARGER_UPGRADE = ITEMS.registerItem(
-            "travelersbackpack_arcane_charger_upgrade", TravelersBackpackCompat::createArcaneChargerUpgradeItem, props -> props
-                    .stacksTo(16));
+    // public static final DeferredItem<Item> SOPHISTICATED_BACKPACKS_ARCANE_WORKBENCH_UPGRADE = ITEMS.registerItem(
+    //            "sophisticatedbackpacks_arcane_workbench_upgrade", SophisticatedBackpacksCompat::createArcaneWorkbenchUpgradeItem, props -> props
+    //                    .stacksTo(16));
+    //
+    //    public static final DeferredItem<Item> TRAVELERS_BACKPACK_ARCANE_WORKBENCH_UPGRADE = ITEMS.registerItem(
+    //            "travelersbackpack_arcane_workbench_upgrade", TravelersBackpackCompat::createArcaneWorkbenchUpgradeItem, props -> props
+    //                    .stacksTo(16));
+    //
+    //    public static final DeferredItem<Item> SOPHISTICATED_BACKPACKS_ARCANE_CHARGER_UPGRADE = ITEMS.registerItem(
+    //            "sophisticatedbackpacks_arcane_charger_upgrade", SophisticatedBackpacksCompat::createArcaneChargerUpgradeItem, props -> props
+    //                    .stacksTo(16));
+    //    public static final DeferredItem<Item> TRAVELERS_BACKPACK_ARCANE_CHARGER_UPGRADE = ITEMS.registerItem(
+    //            "travelersbackpack_arcane_charger_upgrade", TravelersBackpackCompat::createArcaneChargerUpgradeItem, props -> props
+    //                    .stacksTo(16));
 
     private TAItems() {
     }

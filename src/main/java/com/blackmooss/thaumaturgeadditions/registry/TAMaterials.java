@@ -2,33 +2,30 @@ package com.blackmooss.thaumaturgeadditions.registry;
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
 import com.leclowndu93150.thaumaturge.registry.TTItemTags;
-import net.minecraft.resources.ResourceKey;
+import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.item.equipment.ArmorMaterial;
-import net.minecraft.world.item.equipment.ArmorType;
-import net.minecraft.world.item.equipment.EquipmentAsset;
-import net.minecraft.world.item.equipment.EquipmentAssets;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.crafting.Ingredient;
 
+import java.util.List;
 import java.util.Map;
 
 public final class TAMaterials {
-    public static final ResourceKey<EquipmentAsset> ASSET_VOID_TRAVELLER =
-            ResourceKey.create(EquipmentAssets.ROOT_ID, ThaumaturgeAdditions.identifier("void_traveller"));
-
     public static final ArmorMaterial ARMOR_VOID_TRAVELLER = new ArmorMaterial(
-            25,
             Map.of(
-                    ArmorType.BOOTS, 4,
-                    ArmorType.LEGGINGS, 7,
-                    ArmorType.CHESTPLATE, 9,
-                    ArmorType.HELMET, 4),
+                    ArmorItem.Type.BOOTS, 4,
+                    ArmorItem.Type.LEGGINGS, 7,
+                    ArmorItem.Type.CHESTPLATE, 9,
+                    ArmorItem.Type.HELMET, 4),
             25,
             SoundEvents.ARMOR_EQUIP_LEATHER,
+            () -> Ingredient.of(TTItemTags.INGOTS_VOID_METAL),
+            List.of(new ArmorMaterial.Layer(ThaumaturgeAdditions.identifier("void_traveller"))),
             2.0F,
-            0.0F,
-            TTItemTags.INGOTS_VOID_METAL,
-            ASSET_VOID_TRAVELLER
-    );
+            0.0F);
+
+    public static final Holder<ArmorMaterial> ARMOR_VOID_TRAVELLER_HOLDER = Holder.direct(ARMOR_VOID_TRAVELLER);
 
     private TAMaterials() {
     }
