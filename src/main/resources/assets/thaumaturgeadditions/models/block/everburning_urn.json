@@ -4,7 +4,7 @@
   "parent": "minecraft:block/block",
   "textures": {
     "0": "thaumaturgeadditions:block/everburning_urn",
-    "1": "thaumaturgeadditions:block/everburning_urn_fire",
+    "1": "thaumaturgeadditions:block/everburning_urn_side",
     "particle": "thaumaturgeadditions:block/everburning_urn"
   },
   "elements": [

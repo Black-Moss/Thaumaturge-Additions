@@ -38,6 +38,7 @@ public class ThaumaturgeAdditions {
         TADataComponents.DATA_COMPONENT_TYPES.register(modEventBus);
         TAItems.ITEMS.register(modEventBus);
         TASpellBehaviors.BEHAVIORS.register(modEventBus);
+        TARecipes.RECIPE_SERIALIZERS.register(modEventBus);
     }
 
     public static ResourceLocation identifier(String path) {

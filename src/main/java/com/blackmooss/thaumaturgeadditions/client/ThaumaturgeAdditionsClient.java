@@ -7,6 +7,7 @@ import com.blackmooss.thaumaturgeadditions.item.VoidTravellerBootsItem;
 import com.blackmooss.thaumaturgeadditions.registry.TABlockEntities;
 import com.blackmooss.thaumaturgeadditions.registry.TAItems;
 import net.minecraft.client.Minecraft;
+import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
@@ -27,10 +28,13 @@ public final class ThaumaturgeAdditionsClient {
         event.registerBlockEntityRenderer(TABlockEntities.VOID_BRAIN_JAR.get(), VoidBrainJarRenderer::new);
     }
 
+    @SuppressWarnings("deprecation")
     @SubscribeEvent
     public static void onRegisterItemColors(RegisterColorHandlersEvent.Item event) {
-        //noinspection deprecation
         event.getItemColors().register(RainbowTintSource::tint, TAItems.RAINBOW_SCRIBING_TOOLS.get());
+        event.getItemColors().register(
+                (stack, tintIndex) -> tintIndex == 1 ? DyedItemColor.getOrDefault(stack, 0xFF6A3880) : -1,
+                TAItems.VOID_TRAVELLER_BOOTS.get());
     }
 
     @SubscribeEvent

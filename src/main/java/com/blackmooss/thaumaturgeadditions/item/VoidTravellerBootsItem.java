@@ -16,10 +16,15 @@ import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import java.util.function.Consumer;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.jspecify.annotations.NonNull;
@@ -101,5 +106,20 @@ public class VoidTravellerBootsItem extends VoidGearItem implements IVisDiscount
     @Override
     public int getVisDiscount(ItemStack stack) {
         return 5;
+    }
+
+    @Override
+    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
+        consumer.accept(new IClientItemExtensions() {
+            @Override
+            public int getArmorLayerTintColor(
+                    @NonNull ItemStack stack,
+                    @NonNull LivingEntity entity,
+                    ArmorMaterial.@NonNull Layer layer,
+                    int layerIdx,
+                    int fallbackColor) {
+                return layer.dyeable() ? DyedItemColor.getOrDefault(stack, 0xFF6A3880) : -1;
+            }
+        });
     }
 }

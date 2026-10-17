@@ -21,7 +21,11 @@ public final class TAMaterials {
             25,
             SoundEvents.ARMOR_EQUIP_LEATHER,
             () -> Ingredient.of(TTItemTags.INGOTS_VOID_METAL),
-            List.of(new ArmorMaterial.Layer(ThaumaturgeAdditions.identifier("void_traveller"))),
+            // 照抄 VOID_ROBE 双层：基础层(靴形，不染) + overlay 层(可染)
+            // 基础 -> void_traveller_layer_1/2.png；overlay(suffix "_over") -> void_traveller_layer_1_over/2_over.png
+            List.of(
+                    new ArmorMaterial.Layer(ThaumaturgeAdditions.identifier("void_traveller"), "", false),
+                    new ArmorMaterial.Layer(ThaumaturgeAdditions.identifier("void_traveller"), "_over", true)),
             2.0F,
             0.0F);
 
