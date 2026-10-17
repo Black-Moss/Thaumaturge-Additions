@@ -12,6 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -44,6 +45,12 @@ public class EverburningUrnBlock extends BaseEntityBlock {
     @Override
     protected @NonNull MapCodec<EverburningUrnBlock> codec() {
         return CODEC;
+    }
+
+    // 1.21.1 必须显式声明，否则方块模型不渲染（与 Thaumaturge 的方块一致）
+    @Override
+    protected @NonNull RenderShape getRenderShape(@NonNull BlockState state) {
+        return RenderShape.MODEL;
     }
 
     @Override
