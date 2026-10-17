@@ -2,7 +2,7 @@ package com.blackmooss.thaumaturgeadditions.client.tint;
 
 import net.minecraft.world.item.ItemStack;
 
-import java.awt.Color;
+import java.awt.*;
 
 public final class RainbowTintSource {
     private static final long CYCLE_MS = 3333L;

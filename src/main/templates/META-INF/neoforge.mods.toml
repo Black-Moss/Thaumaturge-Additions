@@ -1,6 +1,4 @@
-# 1.21.1 的 language provider 是 javafml（不是 neoforge）；loaderVersion 用 [1,)（FML 主版本），
-# 不要写 NeoForge 版本号，否则报 "Missing language javafml version [21.1.259,)"
-modLoader="javafml"
+modLoader = "javafml"
 loaderVersion = "${loader_version_range}"
 license = "${mod_license}"
 

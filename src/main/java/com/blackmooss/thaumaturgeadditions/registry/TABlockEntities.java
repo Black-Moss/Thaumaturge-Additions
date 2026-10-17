@@ -3,7 +3,6 @@ package com.blackmooss.thaumaturgeadditions.registry;
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
 import com.blackmooss.thaumaturgeadditions.block.EverburningUrnBlockEntity;
 import com.blackmooss.thaumaturgeadditions.block.VoidBrainJarBlockEntity;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.SubscribeEvent;

@@ -15,10 +15,15 @@ public final class TAItems {
     public static final DeferredItem<BlockItem> EVERBURNING_URN = ITEMS.registerSimpleBlockItem(TABlocks.EVERBURNING_URN);
 
     public static final DeferredItem<VoidTravellerBootsItem> VOID_TRAVELLER_BOOTS = ITEMS.registerItem(
-            "void_traveller_boots", VoidTravellerBootsItem::new, new Item.Properties().rarity(Rarity.EPIC));
+            "void_traveller_boots", VoidTravellerBootsItem::new, new Item.Properties()
+                    .rarity(Rarity.EPIC)
+                    .stacksTo(1)
+                    .durability(350));
 
     public static final DeferredItem<Item> RAINBOW_SCRIBING_TOOLS = ITEMS.registerItem(
-            "rainbow_scribing_tools", Item::new, new Item.Properties().stacksTo(1).durability(100));
+            "rainbow_scribing_tools", Item::new, new Item.Properties()
+                    .stacksTo(1)
+                    .durability(100));
 
     // public static final DeferredItem<Item> SOPHISTICATED_BACKPACKS_ARCANE_WORKBENCH_UPGRADE = ITEMS.registerItem(
     //            "sophisticatedbackpacks_arcane_workbench_upgrade", SophisticatedBackpacksCompat::createArcaneWorkbenchUpgradeItem, props -> props
