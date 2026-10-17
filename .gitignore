@@ -32,3 +32,5 @@ run/
 **/src/generated/**/.cache/
 repo/
 !**/src/**/repo/
+
+/thaumaturge-1.21.1-NeoForge-1.0.3.jar

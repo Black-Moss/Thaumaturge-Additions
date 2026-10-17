@@ -10,7 +10,6 @@ import org.jspecify.annotations.NonNull;
 import java.util.Set;
 
 public class ModBlockLootSubProvider extends BlockLootSubProvider {
-
     public ModBlockLootSubProvider(HolderLookup.Provider lookupProvider) {
         super(Set.of(), FeatureFlags.DEFAULT_FLAGS, lookupProvider);
     }

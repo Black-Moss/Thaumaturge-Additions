@@ -7,14 +7,13 @@ import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 
 public class EnUsProvider extends LanguageProvider {
-
     public EnUsProvider(PackOutput output) {
         super(output, ThaumaturgeAdditions.MODID, "en_us");
     }
 
     @Override
     protected void addTranslations() {
-        add("itemGroup.thaumaturgeadditions", "Thaumaturge Additions");
+        add("itemGroup." + ThaumaturgeAdditions.MODID, "Thaumaturge Additions");
         research();
 
         addItem(TAItems.VOID_TRAVELLER_BOOTS, "Void Traveller's Boots");

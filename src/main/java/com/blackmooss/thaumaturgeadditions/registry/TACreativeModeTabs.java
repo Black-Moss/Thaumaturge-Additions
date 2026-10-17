@@ -12,7 +12,7 @@ public final class TACreativeModeTabs {
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> THAUMATURGE_ADDITIONS = CREATIVE_MODE_TABS.register(ThaumaturgeAdditions.MODID,
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.thaumaturgeadditions"))
-                    .icon(() -> TAItems.VOID_TRAVELLER_BOOTS.get().getDefaultInstance()).displayItems((_, output) -> {
+                    .icon(() -> TAItems.VOID_TRAVELLER_BOOTS.get().getDefaultInstance()).displayItems((itemDisplayParameters, output) -> {
                         output.accept(TAItems.VOID_TRAVELLER_BOOTS.get());
                         output.accept(TAItems.VOID_BRAIN_JAR.get());
                         output.accept(TAItems.EVERBURNING_URN.get());

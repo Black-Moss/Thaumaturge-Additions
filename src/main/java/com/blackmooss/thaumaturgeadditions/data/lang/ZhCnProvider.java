@@ -7,14 +7,13 @@ import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 
 public class ZhCnProvider extends LanguageProvider {
-
     public ZhCnProvider(PackOutput output) {
         super(output, ThaumaturgeAdditions.MODID, "zh_cn");
     }
 
     @Override
     protected void addTranslations() {
-        add("itemGroup.thaumaturgeadditions", "Thaumaturge 附加");
+        add("itemGroup." + ThaumaturgeAdditions.MODID, "神秘附加");
         research();
 
         addItem(TAItems.VOID_TRAVELLER_BOOTS, "虚空旅行者之靴");

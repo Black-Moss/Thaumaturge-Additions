@@ -2,10 +2,9 @@ package com.blackmooss.thaumaturgeadditions;
 
 import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.SophisticatedBackpacksCompat;
 import com.blackmooss.thaumaturgeadditions.data.ModBlockLootSubProvider;
-import com.blackmooss.thaumaturgeadditions.data.ModModelProvider;
-import com.blackmooss.thaumaturgeadditions.data.ModRecipeProvider;
 import com.blackmooss.thaumaturgeadditions.data.lang.EnUsProvider;
 import com.blackmooss.thaumaturgeadditions.data.lang.ZhCnProvider;
+import com.blackmooss.thaumaturgeadditions.data.model.ModItemModelProvider;
 import com.blackmooss.thaumaturgeadditions.data.tag.ModBlockTagsProvider;
 import com.blackmooss.thaumaturgeadditions.data.tag.ModItemTagsProvider;
 import com.blackmooss.thaumaturgeadditions.registry.*;
@@ -14,14 +13,18 @@ import com.leclowndu93150.thaumaturge.api.spell.part.SpellPart;
 import com.leclowndu93150.thaumaturge.data.worldgen.aspect.AspectBootstrap;
 import com.mojang.logging.LogUtils;
 import net.minecraft.core.RegistrySetBuilder;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import org.slf4j.Logger;
 
@@ -44,12 +47,12 @@ public class ThaumaturgeAdditions {
         modEventBus.addListener(SophisticatedBackpacksCompat::onRegisterUpgradeContainers);
     }
 
-    public static Identifier identifier(String path) {
-        return Identifier.fromNamespaceAndPath(MODID, path);
+    public static ResourceLocation identifier(String path) {
+        return ResourceLocation.fromNamespaceAndPath(MODID, path);
     }
 
     @SubscribeEvent
-    public static void onGatherData(GatherDataEvent.Client event) {
+    public static void onGatherData(GatherDataEvent event) {
         RegistrySetBuilder registries = new RegistrySetBuilder()
                 .add(IAspect.REGISTRY_KEY, AspectBootstrap::bootstrap)
                 .add(SpellPart.REGISTRY_KEY, TASpellBehaviors::bootstrapParts);
@@ -57,10 +60,14 @@ public class ThaumaturgeAdditions {
 
         event.createProvider(EnUsProvider::new);
         event.createProvider(ZhCnProvider::new);
-        event.createProvider(ModRecipeProvider.Runner::new);
-        event.createProvider(ModModelProvider::new);
-        event.createProvider(ModItemTagsProvider::new);
-        event.createProvider(ModBlockTagsProvider::new);
+
+//        event.createProvider(ModRecipeProvider.Runner::new);
+//        event.createProvider(ModModelProvider::new);
+        event.createBlockAndItemTags(
+                (output, lookupProvider)
+                        -> new ModBlockTagsProvider(output, lookupProvider, event.getExistingFileHelper()),
+                (output, lookupProvider, blockTags)
+                        -> new ModItemTagsProvider(output, lookupProvider, blockTags, event.getExistingFileHelper()));
 
         event.createProvider((output, lookupProvider) -> new LootTableProvider(
                 output,

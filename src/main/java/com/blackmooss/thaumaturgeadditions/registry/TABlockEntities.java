@@ -28,7 +28,7 @@ public final class TABlockEntities {
 
     @SubscribeEvent
     public static void onRegisterCapabilities(RegisterCapabilitiesEvent event) {
-        event.registerBlockEntity(Capabilities.Fluid.BLOCK, TABlockEntities.EVERBURNING_URN.get(),
-                (be, _) -> be.getTank());
+        event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, TABlockEntities.EVERBURNING_URN.get(),
+                (be, direction) -> be.getTank());
     }
 }
