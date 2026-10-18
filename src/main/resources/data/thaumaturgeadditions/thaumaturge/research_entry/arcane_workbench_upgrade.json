@@ -53,8 +53,8 @@
     {
       "text": "research.thaumaturgeadditions.arcane_workbench_upgrade.stage_1",
       "recipes": [
-        "thaumaturgeadditions:arcane_workbench/sophisticatedbackpacks_arcane_workbench_upgrade",
-        "thaumaturgeadditions:arcane_workbench/travelersbackpack_arcane_workbench_upgrade"
+        "thaumaturgeadditions:arcane_workbench/sophisticatedbackpacks_arcane_workbench_upgrade_and",
+        "thaumaturgeadditions:arcane_workbench/travelersbackpack_arcane_workbench_upgrade_and"
       ]
     }
   ],
@@ -65,8 +65,8 @@
         "thaumaturge:workbench_charger"
       ],
       "recipes": [
-        "thaumaturgeadditions:arcane_workbench/sophisticatedbackpacks_arcane_charger_upgrade",
-        "thaumaturgeadditions:arcane_workbench/travelersbackpack_arcane_charger_upgrade"
+        "thaumaturgeadditions:arcane_workbench/sophisticatedbackpacks_arcane_charger_upgrade_and",
+        "thaumaturgeadditions:arcane_workbench/travelersbackpack_arcane_charger_upgrade_and"
       ]
     }
   ],
