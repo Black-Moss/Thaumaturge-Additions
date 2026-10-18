@@ -1,0 +1,58 @@
+{
+  "type": "thaumaturge:infusion",
+  "aspects": [
+    {
+      "amount": 40,
+      "aspect": "thaumaturge:ignis"
+    },
+    {
+      "amount": 20,
+      "aspect": "thaumaturge:terra"
+    },
+    {
+      "amount": 10,
+      "aspect": "thaumaturge:potentia"
+    },
+    {
+      "amount": 10,
+      "aspect": "thaumaturge:fabrico"
+    }
+  ],
+  "catalyst": {
+    "item": "thaumaturge:everfull_urn"
+  },
+  "components": [
+    {
+      "item": "minecraft:nether_brick"
+    },
+    {
+      "item": "minecraft:nether_brick"
+    },
+    {
+      "item": "minecraft:lava_bucket"
+    },
+    {
+      "type": "neoforge:components",
+      "components": {
+        "thaumaturge:crystal_aspect": {
+          "aspect": "thaumaturge:ignis"
+        }
+      },
+      "items": "thaumaturge:essentia_crystal"
+    },
+    {
+      "item": "minecraft:obsidian"
+    },
+    {
+      "item": "minecraft:lava_bucket"
+    }
+  ],
+  "instability": 6,
+  "research": {
+    "entry": "thaumaturgeadditions:everburning_urn"
+  },
+  "result": {
+    "count": 1,
+    "id": "thaumaturgeadditions:everburning_urn"
+  }
+}

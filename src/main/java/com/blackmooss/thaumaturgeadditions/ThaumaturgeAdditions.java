@@ -1,6 +1,7 @@
 package com.blackmooss.thaumaturgeadditions;
 
 import com.blackmooss.thaumaturgeadditions.data.ModBlockLootSubProvider;
+import com.blackmooss.thaumaturgeadditions.data.ModRecipeProvider;
 import com.blackmooss.thaumaturgeadditions.data.lang.EnUsProvider;
 import com.blackmooss.thaumaturgeadditions.data.lang.ZhCnProvider;
 import com.blackmooss.thaumaturgeadditions.data.tag.ModBlockTagsProvider;
@@ -55,7 +56,7 @@ public class ThaumaturgeAdditions {
         event.createProvider(EnUsProvider::new);
         event.createProvider(ZhCnProvider::new);
 
-//        event.createProvider(ModRecipeProvider.Runner::new);
+        event.createProvider(ModRecipeProvider::new);
         event.createBlockAndItemTags(
                 (output, lookupProvider)
                         -> new ModBlockTagsProvider(output, lookupProvider, event.getExistingFileHelper()),
