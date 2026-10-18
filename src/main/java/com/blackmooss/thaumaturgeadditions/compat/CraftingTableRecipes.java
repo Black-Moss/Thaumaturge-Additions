@@ -34,7 +34,7 @@ public final class CraftingTableRecipes {
             return null;
         }
         try {
-            ItemStack output = recipe.value().assemble(input);
+            ItemStack output = recipe.value().assemble(input, level.registryAccess());
             if (output.isEmpty()) {
                 return null;
             }
@@ -50,7 +50,9 @@ public final class CraftingTableRecipes {
             return null;
         }
         try {
-            return serverLevel.recipeAccess().recipeMap().getRecipesFor(RecipeType.CRAFTING, input, level).findFirst().orElse(null);
+            return serverLevel.getServer().getRecipeManager()
+                    .getRecipesFor(RecipeType.CRAFTING, input, level)
+                    .stream().findFirst().orElse(null);
         } catch (Exception exception) {
             ThaumaturgeAdditions.LOGGER.error("Backpack arcane workbench: failed to look up crafting table recipe", exception);
             return null;

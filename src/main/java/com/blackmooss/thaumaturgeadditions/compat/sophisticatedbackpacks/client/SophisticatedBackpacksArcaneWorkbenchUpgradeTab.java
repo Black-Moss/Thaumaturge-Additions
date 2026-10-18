@@ -9,13 +9,11 @@ import com.leclowndu93150.thaumaturge.content.recipe.workbench.ArcaneCraftingRec
 import com.leclowndu93150.thaumaturge.content.workbench.WorkbenchPayment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphicsExtractor;
-import net.minecraft.client.renderer.RenderPipelines;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.Slot;
-import net.p3pp3rf1y.sophisticatedbackpacks.client.gui.BackpackButtonDefinitions;
-import net.p3pp3rf1y.sophisticatedcore.client.gui.IForegroundRenderable;
+import net.p3pp3rf1y.sophisticatedbackpacks.client.gui.SBPButtonDefinitions;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.StorageScreenBase;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.UpgradeSettingsTab;
 import net.p3pp3rf1y.sophisticatedcore.client.gui.controls.ToggleButton;
@@ -26,8 +24,7 @@ import org.jspecify.annotations.NonNull;
 import java.util.List;
 
 public class SophisticatedBackpacksArcaneWorkbenchUpgradeTab
-        extends UpgradeSettingsTab<SophisticatedBackpacksArcaneWorkbenchUpgradeContainer>
-        implements IForegroundRenderable {
+        extends UpgradeSettingsTab<SophisticatedBackpacksArcaneWorkbenchUpgradeContainer> {
     public static final int PANEL_WIDTH = 100;
     public static final int PANEL_HEIGHT = 131;
     private static final int PANEL_OFFSET_X = 3;
@@ -72,45 +69,49 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeTab
         this.openTabDimension = new Dimension(PANEL_OFFSET_X + PANEL_WIDTH + 3, PANEL_OFFSET_Y + PANEL_HEIGHT + 4);
         this.addHideableChild(new ToggleButton<>(
                 new Position(this.x + PANEL_OFFSET_X + SHIFT_CLICK_BUTTON_POSITION.x(), this.y + PANEL_OFFSET_Y + SHIFT_CLICK_BUTTON_POSITION.y()),
-                BackpackButtonDefinitions.SHIFT_CLICK_TARGET,
+                SBPButtonDefinitions.SHIFT_CLICK_TARGET,
                 button -> this.getContainer().setShiftClickIntoStorage(!this.getContainer().shouldShiftClickIntoStorage()),
                 this.getContainer()::shouldShiftClickIntoStorage));
-        // 自动填充方格：合成后空掉的合成格自动从背包/物品栏补材料（复用 SB 自带按钮图标）
         this.addHideableChild(new ToggleButton<>(
                 new Position(this.x + PANEL_OFFSET_X + REFILL_BUTTON_POSITION.x(), this.y + PANEL_OFFSET_Y + REFILL_BUTTON_POSITION.y()),
-                BackpackButtonDefinitions.REFILL_CRAFTING_GRID,
+                SBPButtonDefinitions.REFILL_CRAFTING_GRID,
                 button -> this.getContainer().setRefillCraftingGrid(!this.getContainer().shouldRefillCraftingGrid()),
                 this.getContainer()::shouldRefillCraftingGrid));
     }
 
     @Override
-    protected void extractBg(@NonNull GuiGraphicsExtractor guiGraphics, @NonNull Minecraft minecraft, int mouseX, int mouseY) {
-        super.extractBg(guiGraphics, minecraft, mouseX, mouseY);
+    protected void renderBg(@NonNull GuiGraphics guiGraphics, @NonNull Minecraft minecraft, int mouseX, int mouseY) {
+        super.renderBg(guiGraphics, minecraft, mouseX, mouseY);
         if (!this.isOpen) {
             return;
         }
-        guiGraphics.blit(RenderPipelines.GUI_TEXTURED, PANEL_TEXTURE, this.x + PANEL_OFFSET_X, this.y + PANEL_OFFSET_Y,
+        guiGraphics.blit(PANEL_TEXTURE, this.x + PANEL_OFFSET_X, this.y + PANEL_OFFSET_Y,
                 0.0F, 0.0F, PANEL_WIDTH, PANEL_HEIGHT, PANEL_TEXTURE_SIZE, PANEL_TEXTURE_SIZE);
-        guiGraphics.blit(RenderPipelines.GUI_TEXTURED, WAND_SLOT_TEXTURE,
+        guiGraphics.blit(WAND_SLOT_TEXTURE,
                 this.x + PANEL_OFFSET_X + WAND_SLOT_POSITION.x() - WAND_FRAME_OFFSET_X,
                 this.y + PANEL_OFFSET_Y + WAND_SLOT_POSITION.y() - WAND_FRAME_OFFSET_Y,
                 0.0F, 0.0F, WAND_FRAME_WIDTH, WAND_FRAME_HEIGHT, WAND_FRAME_WIDTH, WAND_FRAME_HEIGHT);
     }
 
     @Override
-    public void extractForeground(@NonNull GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTicks) {
+    public void render(@NonNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+        super.render(guiGraphics, mouseX, mouseY, partialTicks);
         if (!this.isOpen) {
             return;
         }
+        this.renderVisLine(guiGraphics);
+    }
+
+    private void renderVisLine(@NonNull GuiGraphics guiGraphics) {
         int available = this.getContainer().getStoredAura();
         Component text = Component.translatable(VIS_AVAILABLE_KEY, available);
         Font font = this.font;
         int halfWidth = font.width(text) / 2;
-        guiGraphics.pose().pushMatrix();
-        guiGraphics.pose().translate(this.x + PANEL_OFFSET_X + VIS_LINE_CENTER_X, this.y + PANEL_OFFSET_Y + VIS_LINE_Y);
-        guiGraphics.pose().scale(VIS_TEXT_SCALE);
-        guiGraphics.text(font, text, -halfWidth, 0, this.requiredVis() > available ? VIS_COLOR_INSUFFICIENT : VIS_COLOR_AVAILABLE, false);
-        guiGraphics.pose().popMatrix();
+        guiGraphics.pose().pushPose();
+        guiGraphics.pose().translate(this.x + PANEL_OFFSET_X + VIS_LINE_CENTER_X, this.y + PANEL_OFFSET_Y + VIS_LINE_Y, 0.0F);
+        guiGraphics.pose().scale(VIS_TEXT_SCALE, VIS_TEXT_SCALE, VIS_TEXT_SCALE);
+        guiGraphics.drawString(font, text, -halfWidth, 0, this.requiredVis() > available ? VIS_COLOR_INSUFFICIENT : VIS_COLOR_AVAILABLE, false);
+        guiGraphics.pose().popPose();
     }
 
     private int requiredVis() {

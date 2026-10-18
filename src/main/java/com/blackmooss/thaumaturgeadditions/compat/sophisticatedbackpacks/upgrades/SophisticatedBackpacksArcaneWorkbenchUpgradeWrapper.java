@@ -18,10 +18,9 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.p3pp3rf1y.sophisticatedcore.api.IStorageWrapper;
 import net.p3pp3rf1y.sophisticatedcore.init.ModCoreDataComponents;
-import net.p3pp3rf1y.sophisticatedcore.inventory.ComponentItemStacksHandler;
+import net.p3pp3rf1y.sophisticatedcore.inventory.StatefulComponentItemHandler;
 import net.p3pp3rf1y.sophisticatedcore.upgrades.ITickableUpgrade;
 import net.p3pp3rf1y.sophisticatedcore.upgrades.UpgradeWrapperBase;
 import net.p3pp3rf1y.sophisticatedcore.util.InventoryHelper;
@@ -47,7 +46,7 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper
 
     private static final int AURA_REFRESH_INTERVAL = 10;
 
-    private final ComponentItemStacksHandler inventory;
+    private final StatefulComponentItemHandler inventory;
     private Runnable resultRefreshHandler = () -> {
     };
 
@@ -58,17 +57,17 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper
         }
         upgrade.remove(DataComponents.CONTAINER);
 
-        this.inventory = new ComponentItemStacksHandler(upgrade, ModCoreDataComponents.LENIENT_CONTAINER.get(), SIZE) {
+        this.inventory = new StatefulComponentItemHandler(upgrade, ModCoreDataComponents.LENIENT_CONTAINER.get(), SIZE) {
             @Override
-            protected void onContentsChanged(int index, @NonNull ItemStack previousContents) {
-                super.onContentsChanged(index, previousContents);
+            protected void onContentsChanged(int index, @NonNull ItemStack previousContents, @NonNull ItemStack newContents) {
+                super.onContentsChanged(index, previousContents, newContents);
                 SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.this.save();
                 SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.this.resultRefreshHandler.run();
             }
 
             @Override
-            public boolean isValid(int slot, @NonNull ItemResource resource) {
-                return SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.this.isValidSlot(slot, resource.toStack());
+            public boolean isItemValid(int slot, @NonNull ItemStack stack) {
+                return SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.this.isValidSlot(slot, stack);
             }
         };
     }
@@ -82,7 +81,7 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper
         return true;
     }
 
-    public ComponentItemStacksHandler getInventory() {
+    public StatefulComponentItemHandler getInventory() {
         return this.inventory;
     }
 
@@ -182,6 +181,7 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper
     }
 
     private boolean extractFromStorage(ItemStack stack) {
-        return InventoryHelper.extractMatching(this.storageWrapper.getInventoryHandler(), s -> ItemStack.isSameItemSameComponents(s, stack), 1) > 0;
+        return !InventoryHelper.extractFromInventory(
+                s -> ItemStack.isSameItemSameComponents(s, stack), 1, this.storageWrapper.getInventoryHandler(), false).isEmpty();
     }
 }

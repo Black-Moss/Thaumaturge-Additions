@@ -20,7 +20,7 @@ public final class SophisticatedBackpacksArcaneWorkbenchAuraSource implements IW
         if (!SophisticatedBackpacksCompat.WORKBENCH_IDENTITY.equals(context.hostIdentity())) {
             return 0;
         }
-        ServerLevel serverLevel = player.level();
+        ServerLevel serverLevel = player.serverLevel();
         BlockPos anchor = context.blockPosition().orElseGet(player::blockPosition);
         if (SophisticatedBackpacksArcaneChargerUpgradeItem.hasCharger(player)) {
             return WorkbenchChargerAura.drain(serverLevel, WorkbenchChargerAura.anchors(anchor), need, transaction);

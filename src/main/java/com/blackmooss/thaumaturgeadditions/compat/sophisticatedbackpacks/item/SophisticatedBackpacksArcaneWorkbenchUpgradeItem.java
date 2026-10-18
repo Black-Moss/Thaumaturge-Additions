@@ -25,7 +25,7 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeItem
     };
 
     public SophisticatedBackpacksArcaneWorkbenchUpgradeItem(Properties properties) {
-        super(LIMIT_CONFIG, properties);
+        super(LIMIT_CONFIG);
     }
 
     @Override

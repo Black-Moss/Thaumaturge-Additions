@@ -16,17 +16,16 @@ public final class WorkbenchChargerAura {
     }
 
     public static List<BlockPos> anchors(BlockPos anchor) {
-        ChunkPos center = ChunkPos.containing(anchor);
+        ChunkPos center = new ChunkPos(anchor);
         List<BlockPos> anchors = new ArrayList<>(9);
         for (int x = -CHARGER_RADIUS; x <= CHARGER_RADIUS; x++) {
             for (int z = -CHARGER_RADIUS; z <= CHARGER_RADIUS; z++) {
-                anchors.add(new ChunkPos(center.x() + x, center.z() + z).getMiddleBlockPosition(anchor.getY()));
+                anchors.add(new ChunkPos(center.x + x, center.z + z).getMiddleBlockPosition(anchor.getY()));
             }
         }
         return anchors;
     }
 
-    // 读数用：把所有锚点的灵气加起来（对齐原版 BlockEntityArcaneWorkbench.refreshAura）
     public static int total(ServerLevel level, List<BlockPos> anchors) {
         int total = 0;
         for (BlockPos anchor : anchors) {

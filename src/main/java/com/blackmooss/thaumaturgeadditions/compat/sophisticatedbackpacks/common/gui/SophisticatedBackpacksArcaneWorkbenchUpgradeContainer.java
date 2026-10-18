@@ -15,12 +15,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ResultContainer;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.neoforged.neoforge.transfer.item.ItemResource;
 import com.leclowndu93150.thaumaturge.api.transaction.Transaction;
 import net.p3pp3rf1y.sophisticatedcore.common.gui.SlotSuppliedHandler;
 import net.p3pp3rf1y.sophisticatedcore.common.gui.UpgradeContainerBase;
 import net.p3pp3rf1y.sophisticatedcore.common.gui.UpgradeContainerType;
-import net.p3pp3rf1y.sophisticatedcore.inventory.ComponentItemStacksHandler;
+import net.p3pp3rf1y.sophisticatedcore.inventory.StatefulComponentItemHandler;
 import net.p3pp3rf1y.sophisticatedcore.util.NBTHelper;
 import org.jspecify.annotations.NonNull;
 
@@ -46,7 +45,6 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeContainer
     ) {
         super(player, upgradeContainerId, upgradeWrapper, type);
         for (int slot = 0; slot < SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.SIZE; slot++) {
-            // 槽位坐标由标签页在打开时统一摆放
             this.slots.add(new SlotSuppliedHandler(this.supplyFromWrapper(SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper::getInventory), slot, -100, -100));
         }
         this.resultSlot = new SophisticatedBackpacksArcaneResultSlot(this.craftResult, this, -100, -100);
@@ -64,9 +62,9 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeContainer
     }
 
     @Override
-    public void handlePacket(CompoundTag data) {
-        data.getBoolean(DATA_SHIFT_CLICK_INTO_STORAGE).ifPresent(this::setShiftClickIntoStorage);
-        data.getBoolean(DATA_REFILL_CRAFTING_GRID).ifPresent(this::setRefillCraftingGrid);
+    public void handlePacket(@NonNull CompoundTag data) {
+        NBTHelper.getBoolean(data, DATA_SHIFT_CLICK_INTO_STORAGE).ifPresent(this::setShiftClickIntoStorage);
+        NBTHelper.getBoolean(data, DATA_REFILL_CRAFTING_GRID).ifPresent(this::setRefillCraftingGrid);
     }
 
     public boolean isServerSide() {
@@ -145,14 +143,14 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeContainer
         if (!this.upgradeWrapper.shouldRefillCraftingGrid()) {
             return;
         }
-        ComponentItemStacksHandler inventory = this.upgradeWrapper.getInventory();
+        StatefulComponentItemHandler inventory = this.upgradeWrapper.getInventory();
         for (int slot = 0; slot < SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.GRID_SLOTS; slot++) {
             ItemStack before = gridBefore.get(slot);
             if (before.isEmpty() || !inventory.getStackInSlot(slot).isEmpty()) {
                 continue;
             }
             if (this.upgradeWrapper.extractFromStorageOrPlayer(player, before)) {
-                inventory.set(slot, ItemResource.of(before), 1);
+                inventory.setStackInSlot(slot, before.copyWithCount(1));
             }
         }
     }
@@ -215,7 +213,7 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeContainer
         this.refreshResult();
         ItemStack displayed = slot.getItem();
         if (!displayed.isEmpty()) {
-            displayed.getItem().onCraftedBy(displayed, this.player);
+            displayed.getItem().onCraftedBy(displayed, this.player.level(), this.player);
         }
         return displayed;
     }

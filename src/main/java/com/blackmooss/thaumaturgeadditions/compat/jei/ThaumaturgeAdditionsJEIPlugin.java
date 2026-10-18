@@ -2,7 +2,6 @@ package com.blackmooss.thaumaturgeadditions.compat.jei;
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
 import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.SophisticatedBackpacksCompat;
-import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.TravelersBackpackCompat;
 import com.blackmooss.thaumaturgeadditions.registry.TAItems;
 import com.leclowndu93150.thaumaturge.compat.jei.category.ArcaneWorkbenchCategory;
 import mezz.jei.api.IModPlugin;
@@ -30,9 +29,6 @@ public final class ThaumaturgeAdditionsJEIPlugin implements IModPlugin {
             registration.addRecipeCatalysts(RecipeTypes.CRAFTING, TAItems.SOPHISTICATED_BACKPACKS_ARCANE_WORKBENCH_UPGRADE.get());
             registration.addRecipeCatalysts(ArcaneWorkbenchCategory.RECIPE_TYPE, TAItems.SOPHISTICATED_BACKPACKS_ARCANE_WORKBENCH_UPGRADE.get());
         }
-        if (TravelersBackpackCompat.isLoaded()) {
-            registration.addRecipeCatalysts(RecipeTypes.CRAFTING, TAItems.TRAVELERS_BACKPACK_ARCANE_WORKBENCH_UPGRADE.get());
-            registration.addRecipeCatalysts(ArcaneWorkbenchCategory.RECIPE_TYPE, TAItems.TRAVELERS_BACKPACK_ARCANE_WORKBENCH_UPGRADE.get());
-        }
+        // Traveler's Backpack 兼容暂时禁用，待移植到 1.21.1 后恢复
     }
 }

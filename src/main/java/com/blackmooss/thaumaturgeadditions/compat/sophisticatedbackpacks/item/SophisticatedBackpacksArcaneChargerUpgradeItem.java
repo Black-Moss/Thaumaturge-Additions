@@ -28,7 +28,7 @@ public class SophisticatedBackpacksArcaneChargerUpgradeItem
     };
 
     public SophisticatedBackpacksArcaneChargerUpgradeItem(Properties properties) {
-        super(LIMIT_CONFIG, properties);
+        super(LIMIT_CONFIG);
     }
 
     public static boolean hasCharger(Player player) {
