@@ -9,6 +9,7 @@ import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.upgrade
 import com.leclowndu93150.thaumaturge.api.recipe.ArcaneCraftingTransaction;
 import com.leclowndu93150.thaumaturge.api.recipe.ArcaneWorkbenchContext;
 import com.leclowndu93150.thaumaturge.content.recipe.workbench.ArcaneCraftingInput;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
@@ -36,6 +37,7 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeContainer
 
     private final ResultContainer craftResult = new ResultContainer();
     private final SophisticatedBackpacksArcaneResultSlot resultSlot;
+    private String lastGridLog = "";
 
     public SophisticatedBackpacksArcaneWorkbenchUpgradeContainer(
             Player player,
@@ -58,6 +60,7 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeContainer
         if (this.isServerSide()) {
             this.upgradeWrapper.updateStoredAura(this.player.level(), this.player.blockPosition());
         }
+        ThaumaturgeAdditions.LOGGER.info("SB 奥术工作台升级: 容器 onInit, serverSide={}", this.isServerSide());
         this.refreshResult();
     }
 
@@ -87,22 +90,50 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeContainer
         ArcaneCraftingInput input = positioned.input();
         if (input.width() <= 0 || input.height() <= 0) {
             this.craftResult.setItem(0, ItemStack.EMPTY);
+            this.lastGridLog = "";
             return;
         }
         ArcaneCraftingTransaction.Result result = ArcaneCraftingTransaction.preview(this.context(), (ServerPlayer) this.player, input);
         if (result.successful()) {
             this.craftResult.setItem(0, result.output());
+            ThaumaturgeAdditions.LOGGER.debug("SB 奥术工作台升级: 预览命中奥术配方, 产出={}", result.output());
             return;
         }
         if (result.failure() == ArcaneCraftingTransaction.Failure.NO_RECIPE) {
             CraftingTableRecipes.VanillaCraft vanilla = CraftingTableRecipes.plan(this.player.level(), this.gridStacks());
             this.craftResult.setItem(0, vanilla == null ? ItemStack.EMPTY : vanilla.output());
+            this.logGridOnce("NO_RECIPE(回退原版合成)", input);
             return;
         }
         if (input.ingredientCount() > 0) {
-            ThaumaturgeAdditions.LOGGER.debug("Sophisticated Backpacks arcane workbench upgrade: craft preview failed - {}", result.failure());
+            this.logGridOnce("预览失败:" + result.failure(), input);
         }
         this.craftResult.setItem(0, ItemStack.EMPTY);
+    }
+
+    private void logGridOnce(String tag, ArcaneCraftingInput input) {
+        String summary = this.gridSummary();
+        if (summary.equals(this.lastGridLog)) {
+            return;
+        }
+        this.lastGridLog = summary;
+        ThaumaturgeAdditions.LOGGER.info("SB 奥术工作台升级 [{}]; 网格(9格)={}", tag, summary);
+    }
+
+    private String gridSummary() {
+        StringBuilder sb = new StringBuilder();
+        List<ItemStack> stacks = this.gridStacks();
+        for (int i = 0; i < stacks.size(); i++) {
+            ItemStack s = stacks.get(i);
+            if (s.isEmpty()) {
+                continue;
+            }
+            if (sb.length() > 0) {
+                sb.append(", ");
+            }
+            sb.append(i).append(':').append(BuiltInRegistries.ITEM.getKey(s.getItem())).append('x').append(s.getCount());
+        }
+        return sb.length() == 0 ? "空" : sb.toString();
     }
 
     private List<ItemStack> gridStacks() {
@@ -162,16 +193,21 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeContainer
             return false;
         }
         boolean crafted = false;
+        // 消耗期间抑制 resultRefreshHandler，避免重入 preview（在已打开事务里再开 root 事务，TT 禁止，会导致只消耗第一个材料）
+        this.upgradeWrapper.setSuppressResultRefresh(true);
         try (Transaction transaction = Transaction.openRoot()) {
             SophisticatedBackpacksArcaneWorkbenchCraftingStore store = new SophisticatedBackpacksArcaneWorkbenchCraftingStore(
                     this.upgradeWrapper.getInventory(), serverPlayer, positioned.left(), positioned.top(), input.width(), input.height());
             ArcaneCraftingTransaction.Result result = ArcaneCraftingTransaction.craft(this.context(), serverPlayer, input, store, transaction);
+            ThaumaturgeAdditions.LOGGER.info("SB 奥术工作台升级 performCraft: 成功={}, 失败={}, 产出={}, 取出={}", result.successful(), result.failure(), result.output(), takenStack);
             if (result.successful() && ItemStack.isSameItemSameComponents(result.output(), takenStack)) {
                 crafted = true;
                 transaction.commit();
             } else if (result.failure() == ArcaneCraftingTransaction.Failure.NO_RECIPE) {
                 crafted = this.performVanillaCraft(serverPlayer, takenStack, transaction);
             }
+        } finally {
+            this.upgradeWrapper.setSuppressResultRefresh(false);
         }
         return crafted;
     }

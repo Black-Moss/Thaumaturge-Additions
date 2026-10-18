@@ -1,11 +1,13 @@
 package com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.upgrades;
 
+import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
 import com.leclowndu93150.thaumaturge.api.aspect.AspectInstance;
 import com.leclowndu93150.thaumaturge.api.aspect.AspectList;
 import com.leclowndu93150.thaumaturge.api.aspect.IAspect;
 import com.leclowndu93150.thaumaturge.api.recipe.IArcaneCraftingStore;
 import com.leclowndu93150.thaumaturge.content.taint.item.ItemEssentiaCrystal;
 import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import com.leclowndu93150.thaumaturge.api.transaction.RootCommitJournal;
@@ -47,6 +49,7 @@ public final class SophisticatedBackpacksArcaneWorkbenchCraftingStore implements
             }
         }
         if (!consumeCrystals(consumption.crystals(), transaction)) {
+            ThaumaturgeAdditions.LOGGER.info("SB 奥术工作台升级 consume: 元素晶体不足, 需要={}", consumption.crystals());
             return false;
         }
         replaceWand(consumption.wand(), transaction);
@@ -65,7 +68,10 @@ public final class SophisticatedBackpacksArcaneWorkbenchCraftingStore implements
             int y = slot / SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.GRID_WIDTH - this.top;
             boolean inside = x >= 0 && x < this.width && y >= 0 && y < this.height;
             ItemStack expected = inside ? grid.get(x + y * this.width) : ItemStack.EMPTY;
-            if (!ItemStack.matches(getStack(slot), expected)) {
+            ItemStack actual = getStack(slot);
+            if (!ItemStack.matches(actual, expected)) {
+                ThaumaturgeAdditions.LOGGER.info("SB 奥术工作台升级 consume: 槽{}不匹配 期望={} 实际={} 同物品={}",
+                        slot, idOf(expected), idOf(actual), ItemStack.isSameItem(actual, expected));
                 return false;
             }
         }
@@ -133,5 +139,9 @@ public final class SophisticatedBackpacksArcaneWorkbenchCraftingStore implements
 
     private ItemStack getStack(int slot) {
         return this.items.getStackInSlot(slot);
+    }
+
+    private static String idOf(ItemStack stack) {
+        return stack.isEmpty() ? "empty" : BuiltInRegistries.ITEM.getKey(stack.getItem()) + "x" + stack.getCount();
     }
 }

@@ -49,9 +49,11 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper
     private final StatefulComponentItemHandler inventory;
     private Runnable resultRefreshHandler = () -> {
     };
+    private boolean suppressResultRefresh = false;
 
     public SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper(IStorageWrapper storageWrapper, ItemStack upgrade, Consumer<ItemStack> upgradeSaveHandler) {
         super(storageWrapper, upgrade, upgradeSaveHandler);
+        ThaumaturgeAdditions.LOGGER.info("SB 奥术工作台升级: 实例化 Wrapper, item={}", upgrade.getItemHolder().getRegisteredName());
         if (upgrade.has(DataComponents.CONTAINER)) {
             upgrade.set(ModCoreDataComponents.LENIENT_CONTAINER.get(), upgrade.get(DataComponents.CONTAINER));
         }
@@ -62,7 +64,11 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper
             protected void onContentsChanged(int index, @NonNull ItemStack previousContents, @NonNull ItemStack newContents) {
                 super.onContentsChanged(index, previousContents, newContents);
                 SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.this.save();
-                SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.this.resultRefreshHandler.run();
+                // 合成消耗期间会重入调用 resultRefreshHandler -> refreshResult -> ArcaneCraftingTransaction.preview，
+                // 而 preview 会在已打开的事务里再开 root 事务（TT 明确禁止），导致只消耗第一个材料。故合成时抑制刷新。
+                if (!SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.this.suppressResultRefresh) {
+                    SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.this.resultRefreshHandler.run();
+                }
             }
 
             @Override
@@ -70,6 +76,10 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper
                 return SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.this.isValidSlot(slot, stack);
             }
         };
+    }
+
+    public void setSuppressResultRefresh(boolean suppress) {
+        this.suppressResultRefresh = suppress;
     }
 
     private static boolean extractFromPlayer(Player player, ItemStack stack) {
@@ -99,8 +109,10 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper
     }
 
     public boolean isValidSlot(int slot, ItemStack stack) {
+        // 空堆叠视为合法：SB 的快移/清空会用 setStackInSlot(slot, EMPTY)，
+        // StatefulComponentItemHandler.setStackInSlot 会先走 isItemValid，空堆叠若返回 false 会抛 "Invalid stack ... air"
         if (stack.isEmpty()) {
-            return false;
+            return true;
         }
         if (slot >= CRYSTAL_START && slot < CRYSTAL_START + CRYSTAL_SLOTS) {
             return SlotCrystalEssentia.isValidCrystal(stack, PRIMAL_ORDER.get(slot - CRYSTAL_START));

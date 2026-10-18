@@ -17,6 +17,7 @@ public final class SophisticatedBackpacksClientCompat {
         if (!SophisticatedBackpacksCompat.isLoaded()) {
             return;
         }
+        ThaumaturgeAdditions.LOGGER.info("SB 兼容: 注册奥术工作台升级 tab (RegisterMenuScreensEvent)");
         SophisticatedBackpacksArcaneWorkbenchTabRegistration.register();
     }
 }

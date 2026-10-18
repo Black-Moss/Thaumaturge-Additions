@@ -3,6 +3,7 @@ package com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks;
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
 import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.item.SophisticatedBackpacksArcaneChargerItemFactory;
 import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.item.SophisticatedBackpacksArcaneWorkbenchItemFactory;
+import com.blackmooss.thaumaturgeadditions.registry.TAItems;
 import com.leclowndu93150.thaumaturge.api.recipe.RegisterWorkbenchAuraSourcesEvent;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.Item;
@@ -44,10 +45,12 @@ public final class SophisticatedBackpacksCompat {
         return isLoaded() ? SophisticatedBackpacksArcaneChargerItemFactory.create(properties) : new Item(properties);
     }
 
+    @SubscribeEvent
     public static void onRegisterUpgradeContainers(RegisterEvent event) {
         if (!isLoaded() || !event.getRegistryKey().equals(Registries.MENU)) {
             return;
         }
+        ThaumaturgeAdditions.LOGGER.info("SB 兼容: 注册奥术工作台升级容器, itemId={}", TAItems.SOPHISTICATED_BACKPACKS_ARCANE_WORKBENCH_UPGRADE.getId());
         SophisticatedBackpacksArcaneWorkbenchContainerRegistration.register();
     }
 }
