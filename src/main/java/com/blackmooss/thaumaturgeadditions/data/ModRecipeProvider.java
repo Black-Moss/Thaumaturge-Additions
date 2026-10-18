@@ -22,7 +22,7 @@
 //import net.minecraft.data.recipes.RecipeCategory;
 //import net.minecraft.data.recipes.RecipeOutput;
 //import net.minecraft.data.recipes.RecipeProvider;
-//import net.minecraft.resources.identifier;
+//import net.minecraft.resources.ResourceLocation;
 //import net.minecraft.resources.ResourceKey;
 //import net.minecraft.tags.ItemTags;
 //import net.minecraft.tags.TagKey;
@@ -54,7 +54,7 @@
 //    }
 //
 //    private static ResearchGate taGate(String path) {
-//        return new ResearchGate(ThaumaturgeAdditions.identifier(path), Optional.empty(), false);
+//        return new ResearchGate(ThaumaturgeAdditions.ResourceLocation(path), Optional.empty(), false);
 //    }
 //
 //    @Override
@@ -171,7 +171,7 @@
 //
 //    private HolderSet<Item> tag(String space, String path) {
 //        return this.lookupProvider.getOrThrow(TagKey.create(
-//                Registries.ITEM, identifier.fromNamespaceAndPath(
+//                Registries.ITEM, ResourceLocation.fromNamespaceAndPath(
 //                        space, path)));
 //    }
 //

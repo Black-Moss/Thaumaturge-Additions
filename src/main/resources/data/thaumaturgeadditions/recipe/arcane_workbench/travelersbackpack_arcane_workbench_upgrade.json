@@ -1,4 +1,4 @@
-{
+﻿{
   "neoforge:conditions": [
     {
       "type": "neoforge:mod_loaded",
@@ -34,8 +34,8 @@
     }
   ],
   "key": {
-    "C": "travelersbackpack:crafting_upgrade",
-    "S": "thaumaturge:salis_mundus"
+    "C": { "item": "travelersbackpack:crafting_upgrade" },
+    "S": { "item": "thaumaturge:salis_mundus" }
   },
   "pattern": [
     " S ",

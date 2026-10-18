@@ -1,4 +1,4 @@
-{
+﻿{
   "neoforge:conditions": [
     {
       "type": "neoforge:mod_loaded",
@@ -40,10 +40,10 @@
     }
   ],
   "key": {
-    "B": "sophisticatedbackpacks:upgrade_base",
-    "C": "thaumaturge:arcane_workbench_charger",
-    "R": "thaumaturge:vis_resonator",
-    "T": "thaumaturge:ingot_thaumium"
+    "B": { "item": "sophisticatedbackpacks:upgrade_base" },
+    "C": { "item": "thaumaturge:arcane_workbench_charger" },
+    "R": { "item": "thaumaturge:vis_resonator" },
+    "T": { "item": "thaumaturge:ingot_thaumium" }
   },
   "pattern": [
     " C ",
