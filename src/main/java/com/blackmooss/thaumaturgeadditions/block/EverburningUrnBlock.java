@@ -47,7 +47,6 @@ public class EverburningUrnBlock extends BaseEntityBlock {
         return CODEC;
     }
 
-    // 1.21.1 必须显式声明，否则方块模型不渲染（与 Thaumaturge 的方块一致）
     @Override
     protected @NonNull RenderShape getRenderShape(@NonNull BlockState state) {
         return RenderShape.MODEL;
