@@ -1,17 +1,17 @@
 package com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks;
 
 import com.blackmooss.thaumaturgeadditions.compat.WorkbenchChargerAura;
-import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.item.SophisticatedBackpacksArcaneChargerUpgradeItem;
+import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.item.SBArcaneChargerUpgradeItem;
 import com.leclowndu93150.thaumaturge.api.aura.AuraHelper;
 import com.leclowndu93150.thaumaturge.api.recipe.ArcaneWorkbenchContext;
 import com.leclowndu93150.thaumaturge.api.recipe.IArcaneWorkbench;
 import com.leclowndu93150.thaumaturge.api.recipe.IWorkbenchAuraSource;
+import com.leclowndu93150.thaumaturge.api.transaction.TransactionContext;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import com.leclowndu93150.thaumaturge.api.transaction.TransactionContext;
 
-public final class SophisticatedBackpacksArcaneWorkbenchAuraSource implements IWorkbenchAuraSource {
+public final class SBArcaneWorkbenchAuraSource implements IWorkbenchAuraSource {
     @Override
     public int supply(ArcaneWorkbenchContext context, ServerPlayer player, IArcaneWorkbench workbench, int need, TransactionContext transaction) {
         if (need <= 0 || context.kind() != ArcaneWorkbenchContext.Kind.VIRTUAL) {
@@ -22,7 +22,7 @@ public final class SophisticatedBackpacksArcaneWorkbenchAuraSource implements IW
         }
         ServerLevel serverLevel = player.serverLevel();
         BlockPos anchor = context.blockPosition().orElseGet(player::blockPosition);
-        if (SophisticatedBackpacksArcaneChargerUpgradeItem.hasCharger(player)) {
+        if (SBArcaneChargerUpgradeItem.hasCharger(player)) {
             return WorkbenchChargerAura.drain(serverLevel, WorkbenchChargerAura.anchors(anchor), need, transaction);
         }
         return (int) AuraHelper.drainVis(serverLevel, anchor, need, transaction);

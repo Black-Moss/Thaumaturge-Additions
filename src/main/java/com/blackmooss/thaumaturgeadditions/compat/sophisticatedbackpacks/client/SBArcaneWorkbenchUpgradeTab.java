@@ -1,7 +1,7 @@
 package com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.client;
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
-import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.common.gui.SophisticatedBackpacksArcaneWorkbenchUpgradeContainer;
+import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.common.gui.SBArcaneWorkbenchUpgradeContainer;
 import com.leclowndu93150.thaumaturge.TTIds;
 import com.leclowndu93150.thaumaturge.content.recipe.ThaumaturgeCraftingManager;
 import com.leclowndu93150.thaumaturge.content.recipe.workbench.ArcaneCraftingInput;
@@ -10,6 +10,7 @@ import com.leclowndu93150.thaumaturge.content.workbench.WorkbenchPayment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.Slot;
@@ -22,9 +23,12 @@ import net.p3pp3rf1y.sophisticatedcore.client.gui.utils.Position;
 import org.jspecify.annotations.NonNull;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
-public class SophisticatedBackpacksArcaneWorkbenchUpgradeTab
-        extends UpgradeSettingsTab<SophisticatedBackpacksArcaneWorkbenchUpgradeContainer> {
+public class SBArcaneWorkbenchUpgradeTab
+        extends UpgradeSettingsTab<SBArcaneWorkbenchUpgradeContainer> {
     public static final int PANEL_WIDTH = 100;
     public static final int PANEL_HEIGHT = 131;
     private static final int PANEL_OFFSET_X = 3;
@@ -57,9 +61,10 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeTab
     private static final float VIS_TEXT_SCALE = 0.5F;
     private static final int VIS_COLOR_AVAILABLE = 0xFF6E6EEE;
     private static final int VIS_COLOR_INSUFFICIENT = 0xFFEE6E6E;
+    private static final Set<String> OPEN_TAB_KEYS = ConcurrentHashMap.newKeySet();
 
-    public SophisticatedBackpacksArcaneWorkbenchUpgradeTab(
-            SophisticatedBackpacksArcaneWorkbenchUpgradeContainer upgradeContainer,
+    public SBArcaneWorkbenchUpgradeTab(
+            SBArcaneWorkbenchUpgradeContainer upgradeContainer,
             Position position,
             StorageScreenBase<?> screen
     ) {
@@ -79,14 +84,42 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeTab
                 this.getContainer()::shouldRefillCraftingGrid));
     }
 
+    private String openTabKey() {
+        return this.getContainer().getPlayer().getUUID() + "#" + this.getContainer().getUpgradeContainerId();
+    }
+
     @Override
     protected void onTabOpen() {
+        OPEN_TAB_KEYS.add(this.openTabKey());
         super.onTabOpen();
         int width = Math.max(this.getWidth(), PANEL_OFFSET_X + PANEL_WIDTH + 3);
         int height = Math.max(this.getHeight(), PANEL_OFFSET_Y + PANEL_HEIGHT + 4);
         this.setWidth(width);
         this.setHeight(height);
         this.openTabDimension = new Dimension(width, height);
+    }
+
+    @Override
+    protected void onTabClose() {
+        OPEN_TAB_KEYS.remove(this.openTabKey());
+        super.onTabClose();
+    }
+
+    @Override
+    public void onAfterInit() {
+        super.onAfterInit();
+        if (!this.isOpen && OPEN_TAB_KEYS.contains(this.openTabKey())) {
+            this.setOpen(true);
+        }
+    }
+
+    @Override
+    public @NonNull Optional<Rect2i> getTabRectangle() {
+        if (this.isOpen) {
+            return Optional.of(new Rect2i(this.x, this.y,
+                    PANEL_OFFSET_X + PANEL_WIDTH + 3, PANEL_OFFSET_Y + PANEL_HEIGHT + 4));
+        }
+        return super.getTabRectangle();
     }
 
     @Override

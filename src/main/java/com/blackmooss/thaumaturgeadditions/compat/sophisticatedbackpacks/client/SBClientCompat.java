@@ -8,8 +8,8 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 
 @EventBusSubscriber(modid = ThaumaturgeAdditions.MODID, value = Dist.CLIENT)
-public final class SophisticatedBackpacksClientCompat {
-    private SophisticatedBackpacksClientCompat() {
+public final class SBClientCompat {
+    private SBClientCompat() {
     }
 
     @SubscribeEvent
@@ -17,6 +17,6 @@ public final class SophisticatedBackpacksClientCompat {
         if (!SophisticatedBackpacksCompat.isLoaded()) {
             return;
         }
-        SophisticatedBackpacksArcaneWorkbenchTabRegistration.register();
+        SBArcaneWorkbenchTabRegistration.register();
     }
 }

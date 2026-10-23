@@ -1,9 +1,8 @@
 package com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks;
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
-import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.item.SophisticatedBackpacksArcaneChargerItemFactory;
-import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.item.SophisticatedBackpacksArcaneWorkbenchItemFactory;
-import com.blackmooss.thaumaturgeadditions.registry.TAItems;
+import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.item.SBArcaneChargerItemFactory;
+import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.item.SBArcaneWorkbenchItemFactory;
 import com.leclowndu93150.thaumaturge.api.recipe.RegisterWorkbenchAuraSourcesEvent;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.Item;
@@ -32,17 +31,17 @@ public final class SophisticatedBackpacksCompat {
 
     @SubscribeEvent
     public static void onRegisterAuraSources(RegisterWorkbenchAuraSourcesEvent event) {
-        event.register(new SophisticatedBackpacksArcaneWorkbenchAuraSource());
+        event.register(new SBArcaneWorkbenchAuraSource());
     }
 
     public static Item createArcaneWorkbenchUpgradeItem(Item.Properties properties) {
         Objects.requireNonNull(properties, "properties");
-        return isLoaded() ? SophisticatedBackpacksArcaneWorkbenchItemFactory.create(properties) : new Item(properties);
+        return isLoaded() ? SBArcaneWorkbenchItemFactory.create(properties) : new Item(properties);
     }
 
     public static Item createArcaneChargerUpgradeItem(Item.Properties properties) {
         Objects.requireNonNull(properties, "properties");
-        return isLoaded() ? SophisticatedBackpacksArcaneChargerItemFactory.create(properties) : new Item(properties);
+        return isLoaded() ? SBArcaneChargerItemFactory.create(properties) : new Item(properties);
     }
 
     @SubscribeEvent
@@ -50,6 +49,6 @@ public final class SophisticatedBackpacksCompat {
         if (!isLoaded() || !event.getRegistryKey().equals(Registries.MENU)) {
             return;
         }
-        SophisticatedBackpacksArcaneWorkbenchContainerRegistration.register();
+        SBArcaneWorkbenchContainerRegistration.register();
     }
 }

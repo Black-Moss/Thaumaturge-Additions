@@ -1,9 +1,8 @@
 package com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.upgrades;
 
-import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
 import com.blackmooss.thaumaturgeadditions.compat.WorkbenchChargerAura;
-import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.item.SophisticatedBackpacksArcaneChargerUpgradeItem;
-import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.item.SophisticatedBackpacksArcaneWorkbenchUpgradeItem;
+import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.item.SBArcaneChargerUpgradeItem;
+import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.item.SBArcaneWorkbenchUpgradeItem;
 import com.blackmooss.thaumaturgeadditions.registry.TADataComponents;
 import com.leclowndu93150.thaumaturge.api.aspect.IAspect;
 import com.leclowndu93150.thaumaturge.api.aspect.TTAspects;
@@ -13,7 +12,6 @@ import com.leclowndu93150.thaumaturge.content.workbench.SlotWorkbenchWand;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -30,8 +28,8 @@ import org.jspecify.annotations.Nullable;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper
-        extends UpgradeWrapperBase<SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper, SophisticatedBackpacksArcaneWorkbenchUpgradeItem>
+public class SBArcaneWorkbenchUpgradeWrapper
+        extends UpgradeWrapperBase<SBArcaneWorkbenchUpgradeWrapper, SBArcaneWorkbenchUpgradeItem>
         implements ITickableUpgrade {
     public static final int GRID_WIDTH = 3;
     public static final int GRID_HEIGHT = 3;
@@ -51,7 +49,7 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper
     };
     private boolean suppressResultRefresh = false;
 
-    public SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper(IStorageWrapper storageWrapper, ItemStack upgrade, Consumer<ItemStack> upgradeSaveHandler) {
+    public SBArcaneWorkbenchUpgradeWrapper(IStorageWrapper storageWrapper, ItemStack upgrade, Consumer<ItemStack> upgradeSaveHandler) {
         super(storageWrapper, upgrade, upgradeSaveHandler);
         if (upgrade.has(DataComponents.CONTAINER)) {
             upgrade.set(ModCoreDataComponents.LENIENT_CONTAINER.get(), upgrade.get(DataComponents.CONTAINER));
@@ -62,21 +60,17 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper
             @Override
             protected void onContentsChanged(int index, @NonNull ItemStack previousContents, @NonNull ItemStack newContents) {
                 super.onContentsChanged(index, previousContents, newContents);
-                SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.this.save();
-                if (!SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.this.suppressResultRefresh) {
-                    SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.this.resultRefreshHandler.run();
+                SBArcaneWorkbenchUpgradeWrapper.this.save();
+                if (!SBArcaneWorkbenchUpgradeWrapper.this.suppressResultRefresh) {
+                    SBArcaneWorkbenchUpgradeWrapper.this.resultRefreshHandler.run();
                 }
             }
 
             @Override
             public boolean isItemValid(int slot, @NonNull ItemStack stack) {
-                return SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.this.isValidSlot(slot, stack);
+                return SBArcaneWorkbenchUpgradeWrapper.this.isValidSlot(slot, stack);
             }
         };
-    }
-
-    public void setSuppressResultRefresh(boolean suppress) {
-        this.suppressResultRefresh = suppress;
     }
 
     private static boolean extractFromPlayer(Player player, ItemStack stack) {
@@ -86,6 +80,10 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper
         }
         player.getInventory().removeItem(slot, 1);
         return true;
+    }
+
+    public void setSuppressResultRefresh(boolean suppress) {
+        this.suppressResultRefresh = suppress;
     }
 
     public StatefulComponentItemHandler getInventory() {
@@ -139,20 +137,17 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper
             return;
         }
         int aura;
-        if (level instanceof ServerLevel serverLevel && this.hasChargerInstalled()) {
-            aura = WorkbenchChargerAura.total(serverLevel, WorkbenchChargerAura.anchors(pos));
+        if (this.hasChargerInstalled()) {
+            aura = WorkbenchChargerAura.total(level, WorkbenchChargerAura.anchors(pos));
         } else {
             aura = (int) AuraHelper.getVis(level, pos);
-        }
-        if (aura != this.getStoredAura()) {
-            ThaumaturgeAdditions.LOGGER.debug("Sophisticated Backpacks arcane workbench: aura at {} -> {}", pos, aura);
         }
         this.setStoredAura(aura);
     }
 
     private boolean hasChargerInstalled() {
         return this.storageWrapper.getUpgradeHandler()
-                .hasUpgrade(SophisticatedBackpacksArcaneChargerUpgradeItem.TYPE);
+                .hasUpgrade(SBArcaneChargerUpgradeItem.TYPE);
     }
 
     @Override
@@ -161,7 +156,6 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper
             return;
         }
         this.setCooldown(level, AURA_REFRESH_INTERVAL);
-        this.updateStoredAura(level, entity == null ? pos : entity.blockPosition());
         this.resultRefreshHandler.run();
     }
 
