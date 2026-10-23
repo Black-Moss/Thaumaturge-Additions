@@ -31,8 +31,12 @@
     }
   ],
   "key": {
-    "C": { "item": "sophisticatedbackpacks:crafting_upgrade" },
-    "S": { "item": "thaumaturge:salis_mundus" }
+    "C": {
+      "item": "sophisticatedbackpacks:crafting_upgrade"
+    },
+    "S": {
+      "item": "thaumaturge:salis_mundus"
+    }
   },
   "pattern": [
     " S ",

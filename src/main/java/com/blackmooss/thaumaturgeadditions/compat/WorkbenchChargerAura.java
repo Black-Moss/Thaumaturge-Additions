@@ -1,10 +1,11 @@
 package com.blackmooss.thaumaturgeadditions.compat;
 
 import com.leclowndu93150.thaumaturge.api.aura.AuraHelper;
+import com.leclowndu93150.thaumaturge.api.transaction.TransactionContext;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.ChunkPos;
-import com.leclowndu93150.thaumaturge.api.transaction.TransactionContext;
+import net.minecraft.world.level.Level;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ public final class WorkbenchChargerAura {
         return anchors;
     }
 
-    public static int total(ServerLevel level, List<BlockPos> anchors) {
+    public static int total(Level level, List<BlockPos> anchors) {
         int total = 0;
         for (BlockPos anchor : anchors) {
             total += (int) AuraHelper.getVis(level, anchor);

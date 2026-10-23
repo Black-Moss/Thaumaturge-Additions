@@ -3,6 +3,7 @@ package com.blackmooss.thaumaturgeadditions.compat;
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
 import com.leclowndu93150.thaumaturge.api.aspect.AspectList;
 import com.leclowndu93150.thaumaturge.api.recipe.IArcaneCraftingStore;
+import com.leclowndu93150.thaumaturge.api.transaction.TransactionContext;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingInput;
@@ -10,7 +11,6 @@ import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import com.leclowndu93150.thaumaturge.api.transaction.TransactionContext;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;

@@ -40,10 +40,18 @@
     }
   ],
   "key": {
-    "B": { "item": "travelersbackpack:blank_upgrade" },
-    "C": { "item": "thaumaturge:arcane_workbench_charger" },
-    "R": { "item": "thaumaturge:vis_resonator" },
-    "T": { "item": "thaumaturge:ingot_thaumium" }
+    "B": {
+      "item": "travelersbackpack:blank_upgrade"
+    },
+    "C": {
+      "item": "thaumaturge:arcane_workbench_charger"
+    },
+    "R": {
+      "item": "thaumaturge:vis_resonator"
+    },
+    "T": {
+      "item": "thaumaturge:ingot_thaumium"
+    }
   },
   "pattern": [
     " C ",

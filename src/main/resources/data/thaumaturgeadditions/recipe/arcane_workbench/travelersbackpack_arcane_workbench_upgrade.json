@@ -34,8 +34,12 @@
     }
   ],
   "key": {
-    "C": { "item": "travelersbackpack:crafting_upgrade" },
-    "S": { "item": "thaumaturge:salis_mundus" }
+    "C": {
+      "item": "travelersbackpack:crafting_upgrade"
+    },
+    "S": {
+      "item": "thaumaturge:salis_mundus"
+    }
   },
   "pattern": [
     " S ",
