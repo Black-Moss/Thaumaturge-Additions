@@ -50,7 +50,6 @@ public final class SophisticatedBackpacksCompat {
         if (!isLoaded() || !event.getRegistryKey().equals(Registries.MENU)) {
             return;
         }
-        ThaumaturgeAdditions.LOGGER.info("SB 兼容: 注册奥术工作台升级容器, itemId={}", TAItems.SOPHISTICATED_BACKPACKS_ARCANE_WORKBENCH_UPGRADE.getId());
         SophisticatedBackpacksArcaneWorkbenchContainerRegistration.register();
     }
 }

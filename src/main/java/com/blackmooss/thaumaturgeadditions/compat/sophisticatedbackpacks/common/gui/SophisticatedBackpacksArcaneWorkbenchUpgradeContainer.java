@@ -1,6 +1,5 @@
 package com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.common.gui;
 
-import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
 import com.blackmooss.thaumaturgeadditions.compat.CraftingTableRecipes;
 import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.SophisticatedBackpacksCompat;
 import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.common.gui.slot.SophisticatedBackpacksArcaneResultSlot;
@@ -8,6 +7,7 @@ import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.upgrade
 import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.upgrades.SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper;
 import com.leclowndu93150.thaumaturge.api.recipe.ArcaneCraftingTransaction;
 import com.leclowndu93150.thaumaturge.api.recipe.ArcaneWorkbenchContext;
+import com.leclowndu93150.thaumaturge.api.transaction.Transaction;
 import com.leclowndu93150.thaumaturge.content.recipe.workbench.ArcaneCraftingInput;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
@@ -16,7 +16,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ResultContainer;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import com.leclowndu93150.thaumaturge.api.transaction.Transaction;
 import net.p3pp3rf1y.sophisticatedcore.common.gui.SlotSuppliedHandler;
 import net.p3pp3rf1y.sophisticatedcore.common.gui.UpgradeContainerBase;
 import net.p3pp3rf1y.sophisticatedcore.common.gui.UpgradeContainerType;
@@ -60,7 +59,6 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeContainer
         if (this.isServerSide()) {
             this.upgradeWrapper.updateStoredAura(this.player.level(), this.player.blockPosition());
         }
-        ThaumaturgeAdditions.LOGGER.info("SB 奥术工作台升级: 容器 onInit, serverSide={}", this.isServerSide());
         this.refreshResult();
     }
 
@@ -96,17 +94,12 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeContainer
         ArcaneCraftingTransaction.Result result = ArcaneCraftingTransaction.preview(this.context(), (ServerPlayer) this.player, input);
         if (result.successful()) {
             this.craftResult.setItem(0, result.output());
-            ThaumaturgeAdditions.LOGGER.debug("SB 奥术工作台升级: 预览命中奥术配方, 产出={}", result.output());
             return;
         }
         if (result.failure() == ArcaneCraftingTransaction.Failure.NO_RECIPE) {
             CraftingTableRecipes.VanillaCraft vanilla = CraftingTableRecipes.plan(this.player.level(), this.gridStacks());
             this.craftResult.setItem(0, vanilla == null ? ItemStack.EMPTY : vanilla.output());
-            this.logGridOnce("NO_RECIPE(回退原版合成)", input);
             return;
-        }
-        if (input.ingredientCount() > 0) {
-            this.logGridOnce("预览失败:" + result.failure(), input);
         }
         this.craftResult.setItem(0, ItemStack.EMPTY);
     }
@@ -117,7 +110,6 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeContainer
             return;
         }
         this.lastGridLog = summary;
-        ThaumaturgeAdditions.LOGGER.info("SB 奥术工作台升级 [{}]; 网格(9格)={}", tag, summary);
     }
 
     private String gridSummary() {
@@ -128,12 +120,12 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeContainer
             if (s.isEmpty()) {
                 continue;
             }
-            if (sb.length() > 0) {
+            if (!sb.isEmpty()) {
                 sb.append(", ");
             }
             sb.append(i).append(':').append(BuiltInRegistries.ITEM.getKey(s.getItem())).append('x').append(s.getCount());
         }
-        return sb.length() == 0 ? "空" : sb.toString();
+        return sb.isEmpty() ? "Null" : sb.toString();
     }
 
     private List<ItemStack> gridStacks() {
@@ -193,13 +185,11 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeContainer
             return false;
         }
         boolean crafted = false;
-        // 消耗期间抑制 resultRefreshHandler，避免重入 preview（在已打开事务里再开 root 事务，TT 禁止，会导致只消耗第一个材料）
         this.upgradeWrapper.setSuppressResultRefresh(true);
         try (Transaction transaction = Transaction.openRoot()) {
             SophisticatedBackpacksArcaneWorkbenchCraftingStore store = new SophisticatedBackpacksArcaneWorkbenchCraftingStore(
                     this.upgradeWrapper.getInventory(), serverPlayer, positioned.left(), positioned.top(), input.width(), input.height());
             ArcaneCraftingTransaction.Result result = ArcaneCraftingTransaction.craft(this.context(), serverPlayer, input, store, transaction);
-            ThaumaturgeAdditions.LOGGER.info("SB 奥术工作台升级 performCraft: 成功={}, 失败={}, 产出={}, 取出={}", result.successful(), result.failure(), result.output(), takenStack);
             if (result.successful() && ItemStack.isSameItemSameComponents(result.output(), takenStack)) {
                 crafted = true;
                 transaction.commit();

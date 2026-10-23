@@ -1,6 +1,5 @@
 package com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.upgrades;
 
-import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
 import com.leclowndu93150.thaumaturge.api.aspect.AspectInstance;
 import com.leclowndu93150.thaumaturge.api.aspect.AspectList;
 import com.leclowndu93150.thaumaturge.api.aspect.IAspect;
@@ -45,11 +44,10 @@ public final class SophisticatedBackpacksArcaneWorkbenchCraftingStore implements
         List<ItemStack> overflow = new ArrayList<>();
         for (int y = 0; y < this.height; y++) {
             for (int x = 0; x < this.width; x++) {
-                consumeGridSlot(x, y, consumption, overflow, transaction);
+                consumeGridSlot(x, y, consumption, overflow);
             }
         }
-        if (!consumeCrystals(consumption.crystals(), transaction)) {
-            ThaumaturgeAdditions.LOGGER.info("SB 奥术工作台升级 consume: 元素晶体不足, 需要={}", consumption.crystals());
+        if (!consumeCrystals(consumption.crystals())) {
             return false;
         }
         replaceWand(consumption.wand(), transaction);
@@ -70,15 +68,13 @@ public final class SophisticatedBackpacksArcaneWorkbenchCraftingStore implements
             ItemStack expected = inside ? grid.get(x + y * this.width) : ItemStack.EMPTY;
             ItemStack actual = getStack(slot);
             if (!ItemStack.matches(actual, expected)) {
-                ThaumaturgeAdditions.LOGGER.info("SB 奥术工作台升级 consume: 槽{}不匹配 期望={} 实际={} 同物品={}",
-                        slot, idOf(expected), idOf(actual), ItemStack.isSameItem(actual, expected));
                 return false;
             }
         }
         return true;
     }
 
-    private void consumeGridSlot(int x, int y, Consumption consumption, List<ItemStack> overflow, TransactionContext transaction) {
+    private void consumeGridSlot(int x, int y, Consumption consumption, List<ItemStack> overflow) {
         int compact = x + y * this.width;
         int slot = x + this.left + (y + this.top) * SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.GRID_WIDTH;
         ItemStack current = getStack(slot);
@@ -100,7 +96,7 @@ public final class SophisticatedBackpacksArcaneWorkbenchCraftingStore implements
         }
     }
 
-    private boolean consumeCrystals(AspectList crystals, TransactionContext transaction) {
+    private boolean consumeCrystals(AspectList crystals) {
         for (AspectInstance entry : crystals.entries()) {
             int needed = entry.amount();
             for (int index = 0; index < SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.CRYSTAL_SLOTS && needed > 0; index++) {

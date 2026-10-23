@@ -80,7 +80,21 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeTab
     }
 
     @Override
-    protected void renderBg(@NonNull GuiGraphics guiGraphics, @NonNull Minecraft minecraft, int mouseX, int mouseY) {
+    protected void onTabOpen() {
+        super.onTabOpen();
+        int width = Math.max(this.getWidth(), PANEL_OFFSET_X + PANEL_WIDTH + 3);
+        int height = Math.max(this.getHeight(), PANEL_OFFSET_Y + PANEL_HEIGHT + 4);
+        this.setWidth(width);
+        this.setHeight(height);
+        this.openTabDimension = new Dimension(width, height);
+    }
+
+    @Override
+    protected void renderBg(
+            @NonNull GuiGraphics guiGraphics,
+            @NonNull Minecraft minecraft,
+            int mouseX,
+            int mouseY) {
         super.renderBg(guiGraphics, minecraft, mouseX, mouseY);
         if (!this.isOpen) {
             return;
@@ -94,7 +108,11 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeTab
     }
 
     @Override
-    public void render(@NonNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+    public void render(
+            @NonNull GuiGraphics guiGraphics,
+            int mouseX,
+            int mouseY,
+            float partialTicks) {
         super.render(guiGraphics, mouseX, mouseY, partialTicks);
         if (!this.isOpen) {
             return;
