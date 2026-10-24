@@ -79,4 +79,9 @@ public class ModModelProvider extends ModelProvider {
         rainbowScribingTools(itemModels);
         arcaneWorkbenchUpgrade(itemModels);
     }
+
+    @Override
+    public @NonNull String getName() {
+        return "Thaumaturge Additions Models";
+    }
 }
