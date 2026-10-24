@@ -1,7 +1,7 @@
 package com.blackmooss.thaumaturgeadditions;
 
 import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.SophisticatedBackpacksCompat;
-import com.blackmooss.thaumaturgeadditions.config.TACommonConfig;
+import com.blackmooss.thaumaturgeadditions.config.ThaumaturgeAdditionsCommonConfig;
 import com.blackmooss.thaumaturgeadditions.data.ModBlockLootSubProvider;
 import com.blackmooss.thaumaturgeadditions.data.ModModelProvider;
 import com.blackmooss.thaumaturgeadditions.data.ModRecipeProvider;
@@ -49,7 +49,7 @@ public class ThaumaturgeAdditions {
         modEventBus.addListener(SophisticatedBackpacksCompat::onRegisterUpgradeContainers);
 
         modContainer.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
-        modContainer.registerConfig(ModConfig.Type.COMMON, TACommonConfig.SPEC);
+        modContainer.registerConfig(ModConfig.Type.COMMON, ThaumaturgeAdditionsCommonConfig.SPEC);
     }
 
     public static Identifier identifier(String path) {

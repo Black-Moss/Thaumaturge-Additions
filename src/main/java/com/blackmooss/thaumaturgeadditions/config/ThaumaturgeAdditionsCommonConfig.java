@@ -2,7 +2,7 @@ package com.blackmooss.thaumaturgeadditions.config;
 
 import net.neoforged.neoforge.common.ModConfigSpec;
 
-public final class TACommonConfig {
+public final class ThaumaturgeAdditionsCommonConfig {
     private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
 
     public static final ModConfigSpec.BooleanValue EVERBURNING_URN_AUTO_FILL = BUILDER

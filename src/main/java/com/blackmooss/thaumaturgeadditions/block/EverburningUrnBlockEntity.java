@@ -1,7 +1,7 @@
 package com.blackmooss.thaumaturgeadditions.block;
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
-import com.blackmooss.thaumaturgeadditions.config.TACommonConfig;
+import com.blackmooss.thaumaturgeadditions.config.ThaumaturgeAdditionsCommonConfig;
 import com.blackmooss.thaumaturgeadditions.registry.TABlockEntities;
 import com.leclowndu93150.thaumaturge.api.aura.AuraHelper;
 import com.leclowndu93150.thaumaturge.content.effect.EffectDispatch;
@@ -78,7 +78,7 @@ public final class EverburningUrnBlockEntity extends BlockEntity {
         if (entity.counter % WORK_INTERVAL != 0 || !(level instanceof ServerLevel server)) {
             return;
         }
-        if (TACommonConfig.EVERBURNING_URN_AUTO_FILL.get()) {
+        if (ThaumaturgeAdditionsCommonConfig.EVERBURNING_URN_AUTO_FILL.get()) {
             entity.zone++;
             BlockPos probe = entity.zonePos(entity.zone);
             if (!entity.handlers.contains(entity.zone % 75) && entity.acceptsLava(server, probe)) {
