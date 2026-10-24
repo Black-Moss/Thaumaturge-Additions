@@ -54,6 +54,11 @@ Optional:
 - **[Traveler's Backpack](https://www.curseforge.com/minecraft/mc-mods/travelers-backpack)** 11.2.8+ — for its Arcane Workbench and Charger upgrades
 - **[Sophisticated Backpacks](https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks)** 3.26.9+ — for its Arcane Workbench and Charger upgrades
 
+## Acknowledgements
+
+- Lorc: See [COPYRIGHT.md](src/main/resources/COPYRIGHT.md) for details
+- IReyI: Provide Russian translation
+
 ## License
 
 [LGPL-3.0](LICENSE.md)
