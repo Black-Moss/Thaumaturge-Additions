@@ -7,14 +7,16 @@ import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 
 public class EnUsProvider extends LanguageProvider {
+
     public EnUsProvider(PackOutput output) {
         super(output, ThaumaturgeAdditions.MODID, "en_us");
     }
 
     @Override
     protected void addTranslations() {
-        add("itemGroup." + ThaumaturgeAdditions.MODID, "Thaumaturge Additions");
+        add("itemGroup.thaumaturgeadditions", "Thaumaturge Additions");
         research();
+        configuration();
 
         addItem(TAItems.VOID_TRAVELLER_BOOTS, "Void Traveller's Boots");
         addItem(TAItems.RAINBOW_SCRIBING_TOOLS, "Rainbow Scribing Tools");
@@ -32,9 +34,9 @@ public class EnUsProvider extends LanguageProvider {
         add("spell.thaumaturgeadditions.salis_mundus.desc", "Cast on a block to transmute it according to that block's transmutation recipe, without spending Salis Mundus.");
 
         add("screen.thaumaturgeadditions.arcane_workbench_upgrade", "Arcane Workbench");
-        add("item.travelersbackpack.travelersbackpack_arcane_workbench_upgrade_tooltip", "Consume the aura of the chunk to craft the arcane recipes anytime, anywhere, just like an Arcane Workbench!");
+        add("item.thaumaturgeadditions.travelersbackpack_arcane_workbench_upgrade.tooltip", "Consume the aura of the chunk to craft the arcane recipes anytime, anywhere, just like an Arcane Workbench!");
         add("item.thaumaturgeadditions.sophisticatedbackpacks_arcane_workbench_upgrade.tooltip", "Consume the aura of the chunk to craft the arcane recipes anytime, anywhere, just like an Arcane Workbench!");
-        add("item.travelersbackpack.travelersbackpack_arcane_charger_upgrade_tooltip", "In the backpack: lets the Arcane Workbench upgrade draw vis from the surrounding 3x3 chunks.");
+        add("item.thaumaturgeadditions.travelersbackpack_arcane_charger_upgrade.tooltip", "In the backpack: lets the Arcane Workbench upgrade draw vis from the surrounding 3x3 chunks.");
         add("item.thaumaturgeadditions.sophisticatedbackpacks_arcane_charger_upgrade.tooltip", "In the backpack: lets the Arcane Workbench upgrade draw vis from the surrounding 3x3 chunks.");
     }
 
@@ -53,10 +55,10 @@ public class EnUsProvider extends LanguageProvider {
 
         addResearch("everburning_urn", "Everburning Urn",
                 "The Everfull Urn is an incredibly useful device, but I'm convinced that I can do better. Something similar, but for other types of fluids. Fluids like, say... lava?",
-                "By infusing the Everfull Urn with a series of microscopic portals to the Nether, I'm able to siphon all the lava that I could ever need. The process is not perfect, however." +
-                        "<BR>For one thing, it's slow. Whereas its watery brethren fills up in moments, this device, which I've dubbed the Everburning Urn, takes about a minute to generate a single bucket." +
-                        "<BR>The process is much more draining to the aura, as well. My calculations indicate that maintaining the portal mesh consumes about 25 points of vis from the aura." +
-                        "<BR>Finally, for safety's sake, I've disabled the urn's ability to automatically fill nearby vessels. Can't have liquid hot magma just flying around the place.");
+                "By infusing the Everfull Urn with a lattice of microscopic portals to the Nether, I'm able to siphon all the lava that I could ever need. The process is not perfect, however." +
+                        "<BR>For one thing, it is bound to the aura. Whereas its watery brethren fill up in moments, this device, which I've dubbed the Everburning Urn, can only conjure lava as fast as it draws vis from the local aura, a trickle at a time." +
+                        "<BR>The cost is modest, though: keeping the portal mesh alive spends barely a point of vis for every bucket it yields." +
+                        "<BR>What I did not expect was its lack of restraint. Left to itself, the urn reaches out and pours into any nearby cauldron or fluid container it can find. I've since learned to keep that impulse in check, though the option to let it run wild remains.");
 
         addResearch("rainbow_scribing_tools", "Rainbow Scribing Tools",
                 "Honestly, I'm sick of diving for squid. That ink is practically staining my research table black... Why does writing have to use black dye? Can't it be a \"Gorgeous Black\"?",
@@ -67,6 +69,15 @@ public class EnUsProvider extends LanguageProvider {
                 "This backpack upgrade consumes the aura of the chunk to craft arcane recipes anytime, anywhere, just like an Arcane Workbench!");
 
         addResearchAddenda("arcane_workbench_upgrade", "Don't forget to install a charger in the backpack!");
+    }
+
+    private void configuration() {
+        addConfiguration("title", "Thaumaturge Additions Config");
+
+        addConfiguration("section.thaumaturgeadditions.client.toml", "Thaumaturge Additions Client Settings");
+        addConfiguration("section.thaumaturgeadditions.client.toml.title", "Thaumaturge Additions Client Settings");
+
+        addConfiguration("everburning_urn_auto_fill", "Everburning Urn Auto Fill");
     }
 
     private void addResearch(String researchId, String title, String... stage) {
@@ -80,5 +91,9 @@ public class EnUsProvider extends LanguageProvider {
         for (int i = 0; i < stage.length; i++) {
             add("research.%s.%s.addendum_%d".formatted(ThaumaturgeAdditions.MODID, researchId, i), stage[i]);
         }
+    }
+
+    private void addConfiguration(String configID, String translations) {
+        add("%s.configuration.%s".formatted(ThaumaturgeAdditions.MODID, configID), translations);
     }
 }

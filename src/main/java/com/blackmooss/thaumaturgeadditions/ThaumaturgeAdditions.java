@@ -1,14 +1,18 @@
 package com.blackmooss.thaumaturgeadditions;
 
+import com.blackmooss.thaumaturgeadditions.config.ThaumaturgeAdditionsCommonConfig;
 import com.blackmooss.thaumaturgeadditions.data.ModBlockLootSubProvider;
 import com.blackmooss.thaumaturgeadditions.data.ModRecipeProvider;
 import com.blackmooss.thaumaturgeadditions.data.lang.EnUsProvider;
 import com.blackmooss.thaumaturgeadditions.data.lang.ZhCnProvider;
+import com.blackmooss.thaumaturgeadditions.data.lang.ZhTwProvider;
 import com.blackmooss.thaumaturgeadditions.data.tag.ModBlockTagsProvider;
 import com.blackmooss.thaumaturgeadditions.data.tag.ModItemTagsProvider;
 import com.blackmooss.thaumaturgeadditions.registry.*;
 import com.leclowndu93150.thaumaturge.api.aspect.IAspect;
 import com.leclowndu93150.thaumaturge.api.spell.part.SpellPart;
+import com.leclowndu93150.thaumaturge.client.donator.DonatorCapeClient;
+import com.leclowndu93150.thaumaturge.client.donator.DonatorConfigFilter;
 import com.leclowndu93150.thaumaturge.data.worldgen.aspect.AspectBootstrap;
 import com.mojang.logging.LogUtils;
 import net.minecraft.core.RegistrySetBuilder;
@@ -20,6 +24,9 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
+import net.neoforged.neoforge.client.gui.ConfigurationScreen;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import org.slf4j.Logger;
 
@@ -40,6 +47,9 @@ public class ThaumaturgeAdditions {
         TAItems.ITEMS.register(modEventBus);
         TASpellBehaviors.BEHAVIORS.register(modEventBus);
         TARecipes.RECIPE_SERIALIZERS.register(modEventBus);
+
+        modContainer.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
+        modContainer.registerConfig(ModConfig.Type.COMMON, ThaumaturgeAdditionsCommonConfig.SPEC);
     }
 
     public static ResourceLocation identifier(String path) {
@@ -55,6 +65,7 @@ public class ThaumaturgeAdditions {
 
         event.createProvider(EnUsProvider::new);
         event.createProvider(ZhCnProvider::new);
+        event.createProvider(ZhTwProvider::new);
 
         event.createProvider(ModRecipeProvider::new);
         event.createBlockAndItemTags(

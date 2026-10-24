@@ -1,4 +1,4 @@
-﻿{
+{
   "block.thaumaturgeadditions.everburning_urn": "Негасимая урна",
   "block.thaumaturgeadditions.void_brain_jar": "Пустотный мозг в банке",
   "focus.thaumaturgeadditions.salis_mundus.name": "Salis mundus",
@@ -19,7 +19,7 @@
   "research.thaumaturgeadditions.arcane_workbench_upgrade.stage_1": "Потребляет вис из ауры чтобы создавать волшебные предмет везде и всегда. Прямо как волшебный верстак!",
   "research.thaumaturgeadditions.arcane_workbench_upgrade.title": "Улучшение для рюкзака",
   "research.thaumaturgeadditions.everburning_urn.stage_0": "Вечная урна чертовски полезна. Но я уверен, что его можно сделать лучше!<BR>Что если, например, использовать её для §cлавы§0?",
-  "research.thaumaturgeadditions.everburning_urn.stage_1": "Мне получилось создать вечный источник лавы! Наполнив Вечную урну множеством мелких порталов в Незер она получила возможность наполняться за счет лавы оттуда!<BR>Жаль процесс не лишен недостатков. Он медленный. Если первоначальная урна наполнялась сразу, то этой требуется около минуты.<BR>Кроме того, поддержание порталов требует затрат вис из ауры, около 25 за ведро, если мои расчеты верны.<PAGE>§nДополнение:§r<BR>Опытным путем я пришел к вывооду, что надо убрать возможность заполнения рядом стоящих ёмкостей. Не хватало мне ещё создать второй Незер.",
+  "research.thaumaturgeadditions.everburning_urn.stage_1": "Наполнив Вечную урну сетью крошечных порталов в Незер, я смог черпать всю лаву, что мне только понадобится. Впрочем, процесс не лишён недостатков.<BR>Во-первых, она привязана к ауре. Пока её водяная родня наполняется в мгновение ока, это устройство — которое я окрестил Негасимой урной — способно вызывать лаву лишь так быстро, как тянет вис из окружающей ауры, по капле.<BR>Затраты же скромные: поддержание сети порталов тратит едва ли очко виса на каждое ведро лавы.<BR>Чего я не ожидал, так это её бесконтрольности. Предоставленная сама себе, урна тянется и выливает лаву в любой близлежащий котёл или ёмкость с жидкостью, что сможет найти. С тех пор я научился держать этот порыв в узде, хотя возможность дать ей разгуляться никуда не делась.",
   "research.thaumaturgeadditions.everburning_urn.title": "Негасимая урна",
   "research.thaumaturgeadditions.focus_salis_mundus.stage_0": "Несмотря на дешевизну Salis Mundus мне нужно его много. А каждый раз при его создании чего-то да не хватает.<BR>Неужели нет способа повторить этот эффект, используя энергию вис, а не кристаллы?",
   "research.thaumaturgeadditions.focus_salis_mundus.stage_1": "Я смог повторить эффект этой магической пыли в виде фокуса, так что теперь я могу трансмутировать предметы используя магию без использовать Salis mundus.<BR>Ну... А что ещё надо от него?",
@@ -32,5 +32,9 @@
   "research.thaumaturgeadditions.void_traveller_boots.title": "Пустотные сапоги путешественника",
   "screen.thaumaturgeadditions.arcane_workbench_upgrade": "Улучшение: волшебный верстак",
   "spell.thaumaturgeadditions.salis_mundus.desc": "Заставляет блок трансмутировать, если тот может.",
-  "spell.thaumaturgeadditions.salis_mundus.name": "Salis mundus"
+  "spell.thaumaturgeadditions.salis_mundus.name": "Salis mundus",
+  "thaumaturgeadditions.configuration.everburning_urn_auto_fill": "Негасимая урна Автозаполнение",
+  "thaumaturgeadditions.configuration.section.thaumaturgeadditions.client.toml": "Тауматургические дополнения Клиент Настройки",
+  "thaumaturgeadditions.configuration.section.thaumaturgeadditions.client.toml.title": "Тауматургические дополнения Клиент Настройки",
+  "thaumaturgeadditions.configuration.title": "Тауматургические дополнения Настройки"
 }
