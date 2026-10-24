@@ -14,7 +14,7 @@ public class ZhCnProvider extends LanguageProvider {
 
     @Override
     protected void addTranslations() {
-        add("itemGroup.thaumaturgeadditions", "Thaumaturge 附加");
+        add("itemGroup.thaumaturgeadditions", "神秘附加");
         research();
 
         addItem(TAItems.VOID_TRAVELLER_BOOTS, "虚空旅行者之靴");
