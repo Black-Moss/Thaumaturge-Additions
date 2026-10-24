@@ -1,5 +1,6 @@
 package com.blackmooss.thaumaturgeadditions.block;
 
+import com.blackmooss.thaumaturgeadditions.config.ThaumaturgeAdditionsCommonConfig;
 import com.blackmooss.thaumaturgeadditions.registry.TABlockEntities;
 import com.leclowndu93150.thaumaturge.api.aura.AuraHelper;
 import com.leclowndu93150.thaumaturge.content.effect.EffectDispatch;
@@ -71,40 +72,42 @@ public final class EverburningUrnBlockEntity extends BlockEntity {
         if (entity.counter % WORK_INTERVAL != 0 || !(level instanceof ServerLevel server)) {
             return;
         }
-        entity.zone++;
-        BlockPos probe = entity.zonePos(entity.zone);
-        if (!entity.handlers.contains(entity.zone % 75) && entity.acceptsLava(server, probe)) {
-            entity.handlers.add(entity.zone % 75);
-            entity.setChanged();
-        }
-        int i = 0;
-        while (i < entity.handlers.size() && entity.lavaAmount() >= PUSH_AMOUNT) {
-            int zz = entity.handlers.get(i);
-            BlockPos target = entity.zonePos(zz);
-            BlockState targetState = server.getBlockState(target);
-            IFluidHandler handler = server.getCapability(Capabilities.FluidHandler.BLOCK, target, Direction.UP);
-            if (handler == null) {
-                if (!targetState.is(Blocks.CAULDRON)
-                        && !targetState.is(Blocks.LAVA_CAULDRON)
-                        || entity.lavaAmount() < CAULDRON_COST) {
-                    entity.handlers.remove(i);
-                    entity.setChanged();
-                    continue;
-                }
-                if (targetState.is(Blocks.CAULDRON)) {
-                    server.setBlock(target, Blocks.LAVA_CAULDRON.defaultBlockState(), Block.UPDATE_CLIENTS);
-                    entity.drainLava(CAULDRON_COST);
-                    entity.pourInto(server, target);
-                }
-            } else {
-                int moved = handler.fill(new FluidStack(Fluids.LAVA, PUSH_AMOUNT), FluidAction.EXECUTE);
-                if (moved > 0) {
-                    entity.drainLava(moved);
-                    entity.pourInto(server, target);
-                    break;
-                }
+        if (ThaumaturgeAdditionsCommonConfig.EVERBURNING_URN_AUTO_FILL.get()) {
+            entity.zone++;
+            BlockPos probe = entity.zonePos(entity.zone);
+            if (!entity.handlers.contains(entity.zone % 75) && entity.acceptsLava(server, probe)) {
+                entity.handlers.add(entity.zone % 75);
+                entity.setChanged();
             }
-            i++;
+            int i = 0;
+            while (i < entity.handlers.size() && entity.lavaAmount() >= PUSH_AMOUNT) {
+                int zz = entity.handlers.get(i);
+                BlockPos target = entity.zonePos(zz);
+                BlockState targetState = server.getBlockState(target);
+                IFluidHandler handler = server.getCapability(Capabilities.FluidHandler.BLOCK, target, Direction.UP);
+                if (handler == null) {
+                    if (!targetState.is(Blocks.CAULDRON)
+                            && !targetState.is(Blocks.LAVA_CAULDRON)
+                            || entity.lavaAmount() < CAULDRON_COST) {
+                        entity.handlers.remove(i);
+                        entity.setChanged();
+                        continue;
+                    }
+                    if (targetState.is(Blocks.CAULDRON)) {
+                        server.setBlock(target, Blocks.LAVA_CAULDRON.defaultBlockState(), Block.UPDATE_CLIENTS);
+                        entity.drainLava(CAULDRON_COST);
+                        entity.pourInto(server, target);
+                    }
+                } else {
+                    int moved = handler.fill(new FluidStack(Fluids.LAVA, PUSH_AMOUNT), FluidAction.EXECUTE);
+                    if (moved > 0) {
+                        entity.drainLava(moved);
+                        entity.pourInto(server, target);
+                        break;
+                    }
+                }
+                i++;
+            }
         }
         if (entity.lavaAmount() < CAPACITY) {
             float demand = Math.min(MAX_REFILL_VIS, (CAPACITY - entity.lavaAmount()) / (float) CAPACITY);
