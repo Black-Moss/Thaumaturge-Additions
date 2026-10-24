@@ -19,7 +19,7 @@
   "research.thaumaturgeadditions.arcane_workbench_upgrade.stage_1": "This backpack upgrade consumes the aura of the chunk to craft arcane recipes anytime, anywhere, just like an Arcane Workbench!",
   "research.thaumaturgeadditions.arcane_workbench_upgrade.title": "Arcane Workbench Upgrade",
   "research.thaumaturgeadditions.everburning_urn.stage_0": "The Everfull Urn is an incredibly useful device, but I'm convinced that I can do better. Something similar, but for other types of fluids. Fluids like, say... lava?",
-  "research.thaumaturgeadditions.everburning_urn.stage_1": "By infusing the Everfull Urn with a series of microscopic portals to the Nether, I'm able to siphon all the lava that I could ever need. The process is not perfect, however.<BR>For one thing, it's slow. Whereas its watery brethren fills up in moments, this device, which I've dubbed the Everburning Urn, takes about a minute to generate a single bucket.<BR>The process is much more draining to the aura, as well. My calculations indicate that maintaining the portal mesh consumes about 25 points of vis from the aura.<BR>Finally, for safety's sake, I've disabled the urn's ability to automatically fill nearby vessels. Can't have liquid hot magma just flying around the place.",
+  "research.thaumaturgeadditions.everburning_urn.stage_1": "By infusing the Everfull Urn with a lattice of microscopic portals to the Nether, I'm able to siphon all the lava that I could ever need. The process is not perfect, however.<BR>For one thing, it is bound to the aura. Whereas its watery brethren fill up in moments, this device, which I've dubbed the Everburning Urn, can only conjure lava as fast as it draws vis from the local aura, a trickle at a time.<BR>The cost is modest, though: keeping the portal mesh alive spends barely a point of vis for every bucket it yields.<BR>What I did not expect was its lack of restraint. Left to itself, the urn reaches out and pours into any nearby cauldron or fluid container it can find. Convenient, to be sure, if a touch alarming when it starts ladling molten rock into everything within reach.",
   "research.thaumaturgeadditions.everburning_urn.title": "Everburning Urn",
   "research.thaumaturgeadditions.focus_salis_mundus.stage_0": "Although Salis Mundus is cheap, it's also a lot of salt. Every time I need to build something, I'll always be short on it.<BR>It's just a formality to apply some magic to it, why not just smelt it?",
   "research.thaumaturgeadditions.focus_salis_mundus.stage_1": "A focus version of the magical dust. Triggers transmutations on certain blocks without consuming Salis Mundus.<BR>Nothing more to it than that.",
@@ -32,5 +32,9 @@
   "research.thaumaturgeadditions.void_traveller_boots.title": "Void Traveller's Boots",
   "screen.thaumaturgeadditions.arcane_workbench_upgrade": "Arcane Workbench",
   "spell.thaumaturgeadditions.salis_mundus.desc": "Cast on a block to transmute it according to that block's transmutation recipe, without spending Salis Mundus.",
-  "spell.thaumaturgeadditions.salis_mundus.name": "Salis Mundus"
+  "spell.thaumaturgeadditions.salis_mundus.name": "Salis Mundus",
+  "thaumaturgeadditions.configuration.everburning_urn_auto_fill": "Everburning Urn Auto Fill",
+  "thaumaturgeadditions.configuration.section.thaumaturgeadditions.client.toml": "Thaumaturge Additions Client Settings",
+  "thaumaturgeadditions.configuration.section.thaumaturgeadditions.client.toml.title": "Thaumaturge Additions Client Settings",
+  "thaumaturgeadditions.configuration.title": "Thaumaturge Additions Config"
 }

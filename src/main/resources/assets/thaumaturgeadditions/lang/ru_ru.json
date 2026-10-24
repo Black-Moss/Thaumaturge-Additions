@@ -32,5 +32,9 @@
   "research.thaumaturgeadditions.void_traveller_boots.title": "Пустотные сапоги путешественника",
   "screen.thaumaturgeadditions.arcane_workbench_upgrade": "Улучшение: волшебный верстак",
   "spell.thaumaturgeadditions.salis_mundus.desc": "Заставляет блок трансмутировать, если тот может.",
-  "spell.thaumaturgeadditions.salis_mundus.name": "Salis mundus"
+  "spell.thaumaturgeadditions.salis_mundus.name": "Salis mundus",
+  "thaumaturgeadditions.configuration.everburning_urn_auto_fill": "Негасимая урна Автозаполнение",
+  "thaumaturgeadditions.configuration.section.thaumaturgeadditions.client.toml": "Тауматургические дополнения Клиент Настройки",
+  "thaumaturgeadditions.configuration.section.thaumaturgeadditions.client.toml.title": "Тауматургические дополнения Клиент Настройки",
+  "thaumaturgeadditions.configuration.title": "Тауматургические дополнения Настройки"
 }

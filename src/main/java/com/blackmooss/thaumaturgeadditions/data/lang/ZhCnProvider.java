@@ -16,6 +16,7 @@ public class ZhCnProvider extends LanguageProvider {
     protected void addTranslations() {
         add("itemGroup.thaumaturgeadditions", "神秘附加");
         research();
+        configuration();
 
         addItem(TAItems.VOID_TRAVELLER_BOOTS, "虚空旅行者之靴");
         addItem(TAItems.RAINBOW_SCRIBING_TOOLS, "彩虹笔与墨");
@@ -54,10 +55,10 @@ public class ZhCnProvider extends LanguageProvider {
 
         addResearch("everburning_urn", "永燃之瓮",
                 "虽然无尽之瓮极其便利，但我确信还能更进一步。制造一种类似的、但适用于其他类型流体的装置。比如说……熔岩？",
-                "通过向无尽之瓮中注入一系列通往下界的微型传送门，我能够汲取到我所需的全部熔岩。然而，这个过程并非完美无缺。" +
-                        "<BR>首先，速度很慢。它水版本的兄弟顷刻间就能填满，但这个被我称为“永燃之瓮”的装置，需要大约一分钟才能生成一桶熔岩。" +
-                        "<BR>同时，这个过程对灵气场的消耗也大得多。据我计算，维持传送门网络大约会消耗灵气场中25点灵气。" +
-                        "<BR>最后，为了安全起见，我禁用了这个瓮自动填充附近容器的功能。可不能让滚烫的熔岩四处飞溅。");
+                "通过向无尽之瓮中注入一组通往下界的微型传送门，我能够汲取到所需的全部熔岩。然而，这个过程并非完美无缺。" +
+                        "<BR>首先，它受制于灵气场。它水版本的兄弟顷刻间就能填满，而这个被我称为“永燃之瓮”的装置，只能随着从局部灵气场汲取灵气的速度缓缓凝出熔岩，一次不过涓滴。" +
+                        "<BR>不过消耗倒不大：维持传送门网络，每产出一桶熔岩大约只耗去灵气场中1点灵气。" +
+                        "<BR>我没料到的是它全无节制。放任不管时，它会主动把熔岩灌进附近任何一个炼药锅或带流体能力的容器里。后来我总算学会约束这股冲动——不过，想让它撒欢也不是不行。");
 
         addResearch("rainbow_scribing_tools", "彩虹笔与墨",
                 "老实说，我真的受够下水打鱿鱼了，那些乌漆麻黑的染料都快把我的研究台染黑了……凭什么写东西必须要黑色染料？不能是五彩斑斓的黑吗？",
@@ -68,6 +69,15 @@ public class ZhCnProvider extends LanguageProvider {
                 "这个背包升级可以消耗所在区块的灵气随时随地合成奥术配方，就像奥术工作台一样！");
 
         addResearchAddenda("arcane_workbench_upgrade", "可不能忘记在背包里面装一个充能器！");
+    }
+
+    private void configuration() {
+        addConfiguration("title", "神秘附加配置文件");
+
+        addConfiguration("section.thaumaturgeadditions.client.toml", "神秘附加客户端配置文件");
+        addConfiguration("section.thaumaturgeadditions.client.toml.title", "神秘附加客户端配置文件");
+
+        addConfiguration("everburning_urn_auto_fill", "永燃之瓮自动填充");
     }
 
     private void addResearch(String researchId, String title, String... stage) {
@@ -81,5 +91,9 @@ public class ZhCnProvider extends LanguageProvider {
         for (int i = 0; i < stage.length; i++) {
             add("research.%s.%s.addendum_%d".formatted(ThaumaturgeAdditions.MODID, researchId, i), stage[i]);
         }
+    }
+
+    private void addConfiguration(String configID, String translations) {
+        add("%s.configuration.%s".formatted(ThaumaturgeAdditions.MODID, configID), translations);
     }
 }

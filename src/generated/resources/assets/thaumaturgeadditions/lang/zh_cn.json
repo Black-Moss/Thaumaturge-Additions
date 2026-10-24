@@ -32,5 +32,9 @@
   "research.thaumaturgeadditions.void_traveller_boots.title": "虚空旅行者之靴",
   "screen.thaumaturgeadditions.arcane_workbench_upgrade": "奥术工作台",
   "spell.thaumaturgeadditions.salis_mundus.desc": "对着方块施放，按该方块的转化配方替换它，且不额外消耗世界盐。",
-  "spell.thaumaturgeadditions.salis_mundus.name": "世界盐"
+  "spell.thaumaturgeadditions.salis_mundus.name": "世界盐",
+  "thaumaturgeadditions.configuration.everburning_urn_auto_fill": "永燃之瓮自动填充",
+  "thaumaturgeadditions.configuration.section.thaumaturgeadditions.client.toml": "神秘附加客户端配置文件",
+  "thaumaturgeadditions.configuration.section.thaumaturgeadditions.client.toml.title": "神秘附加客户端配置文件",
+  "thaumaturgeadditions.configuration.title": "神秘附加配置文件"
 }

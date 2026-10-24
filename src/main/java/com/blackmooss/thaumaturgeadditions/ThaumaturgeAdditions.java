@@ -1,6 +1,7 @@
 package com.blackmooss.thaumaturgeadditions;
 
 import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.SophisticatedBackpacksCompat;
+import com.blackmooss.thaumaturgeadditions.config.TACommonConfig;
 import com.blackmooss.thaumaturgeadditions.data.ModBlockLootSubProvider;
 import com.blackmooss.thaumaturgeadditions.data.ModModelProvider;
 import com.blackmooss.thaumaturgeadditions.data.ModRecipeProvider;
@@ -23,6 +24,9 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
+import net.neoforged.neoforge.client.gui.ConfigurationScreen;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import org.slf4j.Logger;
 
@@ -43,6 +47,9 @@ public class ThaumaturgeAdditions {
         TAItems.ITEMS.register(modEventBus);
         TASpellBehaviors.BEHAVIORS.register(modEventBus);
         modEventBus.addListener(SophisticatedBackpacksCompat::onRegisterUpgradeContainers);
+
+        modContainer.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
+        modContainer.registerConfig(ModConfig.Type.COMMON, TACommonConfig.SPEC);
     }
 
     public static Identifier identifier(String path) {

@@ -16,6 +16,7 @@ public class ZhTwProvider extends LanguageProvider {
     protected void addTranslations() {
         add("itemGroup.thaumaturgeadditions", "神秘附加");
         research();
+        configuration();
 
         addItem(TAItems.VOID_TRAVELLER_BOOTS, "虛空旅人之靴");
         addItem(TAItems.RAINBOW_SCRIBING_TOOLS, "彩虹書記用具");
@@ -67,7 +68,17 @@ public class ZhTwProvider extends LanguageProvider {
                 "既然可以在背包裏面合成，誰會不想在背包裏面用靈氣合成呢？",
                 "這個背包升級可以消耗所在區塊的靈氣隨時隨地合成奧術配方，就像奧術工作臺一樣！");
 
-        addResearchAddenda("arcane_workbench_upgrade", "可不能忘記在背包裏面裝一個充能器！");    }
+        addResearchAddenda("arcane_workbench_upgrade", "可不能忘記在背包裏面裝一個充能器！");
+    }
+
+    private void configuration() {
+        addConfiguration("title", "神秘附加配置文件");
+
+        addConfiguration("section.thaumaturgeadditions.client.toml", "神秘附加客戶端配置文件");
+        addConfiguration("section.thaumaturgeadditions.client.toml.title", "神秘附加客戶端配置文件");
+
+        addConfiguration("everburning_urn_auto_fill", "永燃之瓮自動填充");
+    }
 
     private void addResearch(String researchId, String title, String... stage) {
         add("research.%s.%s.title".formatted(ThaumaturgeAdditions.MODID, researchId), title);
@@ -80,5 +91,9 @@ public class ZhTwProvider extends LanguageProvider {
         for (int i = 0; i < stage.length; i++) {
             add("research.%s.%s.addendum_%d".formatted(ThaumaturgeAdditions.MODID, researchId, i), stage[i]);
         }
+    }
+
+    private void addConfiguration(String configID, String translations) {
+        add("%s.configuration.%s".formatted(ThaumaturgeAdditions.MODID, configID), translations);
     }
 }
