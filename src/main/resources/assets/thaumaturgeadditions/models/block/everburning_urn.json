@@ -1,117 +1,526 @@
 {
-	"format_version": "26.3",
-	"credit": "Made with Blockbench",
-	"parent": "minecraft:block/block",
-	"textures": {
-		"0": "thaumaturgeadditions:block/everburning_urn",
-		"1": "thaumaturgeadditions:block/everburning_urn_fire",
-		"particle": "thaumaturgeadditions:block/everburning_urn"
-	},
-	"elements": [
-		{
-			"name": "foot",
-			"from": [4, 0, 4],
-			"to": [12, 1, 12],
-			"faces": {
-				"north": {"uv": [0, 8, 8, 9], "texture": "#0"},
-				"east": {"uv": [0, 8, 8, 9], "texture": "#0"},
-				"south": {"uv": [0, 8, 8, 9], "texture": "#0"},
-				"west": {"uv": [0, 8, 8, 9], "texture": "#0"},
-				"down": {"uv": [0, 0, 8, 8], "texture": "#0", "cullface": "down"}
-			}
-		},
-		{
-			"name": "belly",
-			"from": [3, 1, 3],
-			"to": [13, 9, 13],
-			"faces": {
-				"north": {"uv": [0, 0, 16.4, 12.8], "texture": "#1"},
-				"east": {"uv": [0, 0, 16, 12.8], "texture": "#1"},
-				"south": {"uv": [0, 0, 16, 12.8], "texture": "#1"},
-				"west": {"uv": [0, 0, 15.86667, 12.8], "texture": "#1"},
-				"up": {"uv": [0, 0, 8, 8], "texture": "#0"},
-				"down": {"uv": [0, 0, 8, 8], "texture": "#0"}
-			}
-		},
-		{
-			"name": "shoulder",
-			"from": [4, 9, 4],
-			"to": [12, 10, 12],
-			"faces": {
-				"north": {"uv": [0, 9, 8, 10], "texture": "#0"},
-				"east": {"uv": [0, 9, 8, 10], "texture": "#0"},
-				"south": {"uv": [0, 9, 8, 10], "texture": "#0"},
-				"west": {"uv": [0, 9, 8, 10], "texture": "#0"},
-				"up": {"uv": [1, 1, 7, 7], "texture": "#0"}
-			}
-		},
-		{
-			"name": "neck",
-			"from": [5, 10, 5],
-			"to": [11, 13, 11],
-			"faces": {
-				"north": {"uv": [0, 10, 6, 13], "texture": "#0"},
-				"east": {"uv": [0, 10, 6, 13], "texture": "#0"},
-				"south": {"uv": [0, 10, 6, 13], "texture": "#0"},
-				"west": {"uv": [0, 10, 6, 13], "texture": "#0"}
-			}
-		},
-		{
-			"name": "collar",
-			"from": [4, 13, 4],
-			"to": [12, 15, 12],
-			"faces": {
-				"north": {"uv": [0, 13, 8, 15], "texture": "#0"},
-				"east": {"uv": [0, 13, 8, 15], "texture": "#0"},
-				"south": {"uv": [0, 13, 8, 15], "texture": "#0"},
-				"west": {"uv": [0, 13, 8, 15], "texture": "#0"},
-				"up": {"uv": [8, 8, 16, 16], "texture": "#0"},
-				"down": {"uv": [8, 8, 16, 16], "texture": "#0"}
-			}
-		},
-		{
-			"name": "rim_north",
-			"from": [4, 15, 4],
-			"to": [12, 16, 5],
-			"faces": {
-				"north": {"uv": [0, 15, 8, 16], "texture": "#0"},
-				"east": {"uv": [0, 15, 1, 16], "texture": "#0"},
-				"south": {"uv": [8, 8, 16, 9], "texture": "#0"},
-				"west": {"uv": [0, 15, 1, 16], "texture": "#0"},
-				"up": {"uv": [8, 8, 16, 9], "texture": "#0"}
-			}
-		},
-		{
-			"name": "rim_south",
-			"from": [4, 15, 11],
-			"to": [12, 16, 12],
-			"faces": {
-				"north": {"uv": [8, 15, 16, 16], "texture": "#0"},
-				"east": {"uv": [0, 15, 1, 16], "texture": "#0"},
-				"south": {"uv": [0, 15, 8, 16], "texture": "#0"},
-				"west": {"uv": [0, 15, 1, 16], "texture": "#0"},
-				"up": {"uv": [8, 15, 16, 16], "texture": "#0"}
-			}
-		},
-		{
-			"name": "rim_west",
-			"from": [4, 15, 5],
-			"to": [5, 16, 11],
-			"faces": {
-				"east": {"uv": [8, 9, 9, 15], "texture": "#0"},
-				"west": {"uv": [1, 15, 7, 16], "texture": "#0"},
-				"up": {"uv": [8, 9, 9, 15], "texture": "#0"}
-			}
-		},
-		{
-			"name": "rim_east",
-			"from": [11, 15, 5],
-			"to": [12, 16, 11],
-			"faces": {
-				"east": {"uv": [1, 15, 7, 16], "texture": "#0"},
-				"west": {"uv": [15, 9, 16, 15], "texture": "#0"},
-				"up": {"uv": [15, 9, 16, 15], "texture": "#0"}
-			}
-		}
-	]
+  "format_version": "26.3",
+  "credit": "Made with Blockbench",
+  "parent": "minecraft:block/block",
+  "textures": {
+    "0": "thaumaturgeadditions:block/everburning_urn",
+    "1": "thaumaturgeadditions:block/everburning_urn_fire",
+    "particle": "thaumaturgeadditions:block/everburning_urn"
+  },
+  "elements": [
+    {
+      "name": "foot",
+      "from": [
+        4,
+        0,
+        4
+      ],
+      "to": [
+        12,
+        1,
+        12
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            8,
+            8,
+            9
+          ],
+          "texture": "#0"
+        },
+        "east": {
+          "uv": [
+            0,
+            8,
+            8,
+            9
+          ],
+          "texture": "#0"
+        },
+        "south": {
+          "uv": [
+            0,
+            8,
+            8,
+            9
+          ],
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            0,
+            8,
+            8,
+            9
+          ],
+          "texture": "#0"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            8,
+            8
+          ],
+          "texture": "#0",
+          "cullface": "down"
+        }
+      }
+    },
+    {
+      "name": "belly",
+      "from": [
+        3,
+        1,
+        3
+      ],
+      "to": [
+        13,
+        9,
+        13
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            16.4,
+            12.8
+          ],
+          "texture": "#1"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            16,
+            12.8
+          ],
+          "texture": "#1"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            16,
+            12.8
+          ],
+          "texture": "#1"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            15.86667,
+            12.8
+          ],
+          "texture": "#1"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            8,
+            8
+          ],
+          "texture": "#0"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            8,
+            8
+          ],
+          "texture": "#0"
+        }
+      }
+    },
+    {
+      "name": "shoulder",
+      "from": [
+        4,
+        9,
+        4
+      ],
+      "to": [
+        12,
+        10,
+        12
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            9,
+            8,
+            10
+          ],
+          "texture": "#0"
+        },
+        "east": {
+          "uv": [
+            0,
+            9,
+            8,
+            10
+          ],
+          "texture": "#0"
+        },
+        "south": {
+          "uv": [
+            0,
+            9,
+            8,
+            10
+          ],
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            0,
+            9,
+            8,
+            10
+          ],
+          "texture": "#0"
+        },
+        "up": {
+          "uv": [
+            1,
+            1,
+            7,
+            7
+          ],
+          "texture": "#0"
+        }
+      }
+    },
+    {
+      "name": "neck",
+      "from": [
+        5,
+        10,
+        5
+      ],
+      "to": [
+        11,
+        13,
+        11
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            10,
+            6,
+            13
+          ],
+          "texture": "#0"
+        },
+        "east": {
+          "uv": [
+            0,
+            10,
+            6,
+            13
+          ],
+          "texture": "#0"
+        },
+        "south": {
+          "uv": [
+            0,
+            10,
+            6,
+            13
+          ],
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            0,
+            10,
+            6,
+            13
+          ],
+          "texture": "#0"
+        }
+      }
+    },
+    {
+      "name": "collar",
+      "from": [
+        4,
+        13,
+        4
+      ],
+      "to": [
+        12,
+        15,
+        12
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            13,
+            8,
+            15
+          ],
+          "texture": "#0"
+        },
+        "east": {
+          "uv": [
+            0,
+            13,
+            8,
+            15
+          ],
+          "texture": "#0"
+        },
+        "south": {
+          "uv": [
+            0,
+            13,
+            8,
+            15
+          ],
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            0,
+            13,
+            8,
+            15
+          ],
+          "texture": "#0"
+        },
+        "up": {
+          "uv": [
+            8,
+            8,
+            16,
+            16
+          ],
+          "texture": "#0"
+        },
+        "down": {
+          "uv": [
+            8,
+            8,
+            16,
+            16
+          ],
+          "texture": "#0"
+        }
+      }
+    },
+    {
+      "name": "rim_north",
+      "from": [
+        4,
+        15,
+        4
+      ],
+      "to": [
+        12,
+        16,
+        5
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            15,
+            8,
+            16
+          ],
+          "texture": "#0"
+        },
+        "east": {
+          "uv": [
+            0,
+            15,
+            1,
+            16
+          ],
+          "texture": "#0"
+        },
+        "south": {
+          "uv": [
+            8,
+            8,
+            16,
+            9
+          ],
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            0,
+            15,
+            1,
+            16
+          ],
+          "texture": "#0"
+        },
+        "up": {
+          "uv": [
+            8,
+            8,
+            16,
+            9
+          ],
+          "texture": "#0"
+        }
+      }
+    },
+    {
+      "name": "rim_south",
+      "from": [
+        4,
+        15,
+        11
+      ],
+      "to": [
+        12,
+        16,
+        12
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            8,
+            15,
+            16,
+            16
+          ],
+          "texture": "#0"
+        },
+        "east": {
+          "uv": [
+            0,
+            15,
+            1,
+            16
+          ],
+          "texture": "#0"
+        },
+        "south": {
+          "uv": [
+            0,
+            15,
+            8,
+            16
+          ],
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            0,
+            15,
+            1,
+            16
+          ],
+          "texture": "#0"
+        },
+        "up": {
+          "uv": [
+            8,
+            15,
+            16,
+            16
+          ],
+          "texture": "#0"
+        }
+      }
+    },
+    {
+      "name": "rim_west",
+      "from": [
+        4,
+        15,
+        5
+      ],
+      "to": [
+        5,
+        16,
+        11
+      ],
+      "faces": {
+        "east": {
+          "uv": [
+            8,
+            9,
+            9,
+            15
+          ],
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            1,
+            15,
+            7,
+            16
+          ],
+          "texture": "#0"
+        },
+        "up": {
+          "uv": [
+            8,
+            9,
+            9,
+            15
+          ],
+          "texture": "#0"
+        }
+      }
+    },
+    {
+      "name": "rim_east",
+      "from": [
+        11,
+        15,
+        5
+      ],
+      "to": [
+        12,
+        16,
+        11
+      ],
+      "faces": {
+        "east": {
+          "uv": [
+            1,
+            15,
+            7,
+            16
+          ],
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            15,
+            9,
+            16,
+            15
+          ],
+          "texture": "#0"
+        },
+        "up": {
+          "uv": [
+            15,
+            9,
+            16,
+            15
+          ],
+          "texture": "#0"
+        }
+      }
+    }
+  ]
 }
