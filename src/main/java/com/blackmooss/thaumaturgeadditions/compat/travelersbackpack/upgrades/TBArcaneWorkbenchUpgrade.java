@@ -8,7 +8,6 @@ import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.menu.slot.Ar
 import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.menu.slot.TBArcaneResultSlot;
 import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.menu.slot.TBArcaneWorkbenchSlot;
 import com.blackmooss.thaumaturgeadditions.registry.TADataComponents;
-import com.leclowndu93150.thaumaturge.api.aspect.IAspect;
 import com.leclowndu93150.thaumaturge.api.aspect.TTAspects;
 import com.leclowndu93150.thaumaturge.api.aura.AuraHelper;
 import com.leclowndu93150.thaumaturge.api.recipe.ArcaneCraftingTransaction;
@@ -24,7 +23,6 @@ import com.tiviacz.travelersbackpack.util.ContainerContentsHelper;
 import com.tiviacz.travelersbackpack.util.StacksHandlerUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
@@ -70,6 +68,8 @@ public class TBArcaneWorkbenchUpgrade extends UpgradeBase<TBArcaneWorkbenchUpgra
 
     private final ItemStacksResourceHandler items;
     private final ResultContainer resultContainer = new ResultContainer();
+
+    private boolean suppressResultRefresh = false;
 
     public TBArcaneWorkbenchUpgrade(UpgradeManager manager, int dataHolderSlot, NonNullList<ItemStack> contents) {
         super(manager, dataHolderSlot, new Point(TAB_WIDTH, TAB_HEIGHT));
@@ -167,12 +167,15 @@ public class TBArcaneWorkbenchUpgrade extends UpgradeBase<TBArcaneWorkbenchUpgra
     }
 
     public void refreshResult() {
+        if (this.suppressResultRefresh) {
+            return;
+        }
         ServerPlayer player = craftingPlayer();
         if (player == null) {
             return;
         }
         refreshAura(player.level(), player.blockPosition());
-        if (!cannotCraft()) {
+        if (cannotCraft()) {
             this.resultContainer.setItem(0, ItemStack.EMPTY);
             return;
         }
@@ -200,32 +203,37 @@ public class TBArcaneWorkbenchUpgrade extends UpgradeBase<TBArcaneWorkbenchUpgra
 
     public ItemStack takeCraft() {
         ServerPlayer player = craftingPlayer();
-        ItemStack displayed = this.resultContainer.getItem(0);
-        if (player == null || displayed.isEmpty()) {
+        if (player == null) {
             return ItemStack.EMPTY;
         }
         ItemStack crafted = ItemStack.EMPTY;
+        this.suppressResultRefresh = true;
         try (Transaction transaction = Transaction.openRoot()) {
             ArcaneCraftingInput.Positioned positioned = buildPositionedInput();
             ArcaneCraftingInput input = positioned.input();
             TBArcaneWorkbenchCraftingStore store = new TBArcaneWorkbenchCraftingStore(
                     this.items, player, positioned.left(), positioned.top(), input.width(), input.height());
             ArcaneCraftingTransaction.Result result = ArcaneCraftingTransaction.craft(context(player), player, input, store, transaction);
-            if (result.successful() && ItemStack.matches(result.output(), displayed)) {
+            if (result.successful()) {
                 crafted = result.output();
                 transaction.commit();
             } else if (result.failure() == ArcaneCraftingTransaction.Failure.NO_RECIPE) {
-                crafted = takeVanillaCraft(player, displayed, transaction);
+                crafted = takeVanillaCraft(player, transaction);
+                if (!crafted.isEmpty()) {
+                    transaction.commit();
+                }
             }
+        } finally {
+            this.suppressResultRefresh = false;
         }
         refreshResult();
         return crafted;
     }
 
-    private ItemStack takeVanillaCraft(ServerPlayer player, ItemStack displayed, TransactionContext transaction) {
+    private ItemStack takeVanillaCraft(ServerPlayer player, TransactionContext transaction) {
         List<ItemStack> slots = gridStacks();
         CraftingTableRecipes.VanillaCraft vanilla = CraftingTableRecipes.plan(player.level(), slots);
-        if (vanilla == null || !ItemStack.matches(vanilla.output(), displayed)) {
+        if (vanilla == null) {
             return ItemStack.EMPTY;
         }
         TBArcaneWorkbenchCraftingStore store = new TBArcaneWorkbenchCraftingStore(

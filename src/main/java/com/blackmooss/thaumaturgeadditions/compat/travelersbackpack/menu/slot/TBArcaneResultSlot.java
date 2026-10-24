@@ -1,8 +1,8 @@
 package com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.menu.slot;
 
 import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.upgrades.TBArcaneWorkbenchUpgrade;
+import com.tiviacz.travelersbackpack.init.ModDataComponents;
 import net.minecraft.world.Container;
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
@@ -12,13 +12,10 @@ import java.util.Objects;
 
 public final class TBArcaneResultSlot extends Slot {
     private final TBArcaneWorkbenchUpgrade upgrade;
-    private final Player player;
-    private int amountCrafted;
 
     public TBArcaneResultSlot(TBArcaneWorkbenchUpgrade upgrade, Player player, Container container, int x, int y) {
         super(container, 0, x, y);
         this.upgrade = Objects.requireNonNull(upgrade, "upgrade");
-        this.player = Objects.requireNonNull(player, "player");
     }
 
     @Override
@@ -28,63 +25,25 @@ public final class TBArcaneResultSlot extends Slot {
 
     @Override
     public boolean mayPickup(@NonNull Player player) {
-        return this.upgrade.cannotCraft();
-    }
-
-    @Override
-    public @NonNull ItemStack remove(int amount) {
-        if (this.upgrade.craftsOnServer()) {
-            return super.remove(amount);
-        }
-        return this.upgrade.takeCraft();
-    }
-
-    @Override
-    protected void onSwapCraft(int numItemsCrafted) {
-        this.amountCrafted += numItemsCrafted;
-        if (this.upgrade.craftsOnServer()) {
-            return;
-        }
-        ItemStack displayed = getItem().copy();
-        if (this.upgrade.takeCraft().isEmpty()) {
-            undoSwapTake(displayed);
-        }
-    }
-
-    @Override
-    protected void onQuickCraft(@NonNull ItemStack stack, int amount) {
-        this.amountCrafted += amount;
+        return !this.upgrade.cannotCraft();
     }
 
     @Override
     public void onTake(@NonNull Player player, @NonNull ItemStack stack) {
-        this.amountCrafted = 0;
+        if (!player.level().isClientSide()) {
+            this.upgrade.takeCraft();
+        }
         this.upgrade.refreshResult();
     }
 
     public ItemStack craftForQuickMove(Player player) {
-        if (this.upgrade.craftsOnServer()) {
+        if (player.level().isClientSide()) {
             return ItemStack.EMPTY;
         }
         return this.upgrade.takeCraft();
     }
 
     public boolean shiftClickToBackpack() {
-        return this.upgrade.shiftClickToBackpack(this.upgrade.getDataHolderStack());
-    }
-
-    private void undoSwapTake(ItemStack displayed) {
-        if (displayed.isEmpty()) {
-            return;
-        }
-        Inventory inventory = this.player.getInventory();
-        for (int slot = 0; slot < inventory.getContainerSize(); slot++) {
-            ItemStack stack = inventory.getItem(slot);
-            if (ItemStack.isSameItemSameComponents(stack, displayed)) {
-                stack.shrink(1);
-                inventory.setChanged();
-                return;
-            }
-        }
+        return this.upgrade.getDataHolderStack().getOrDefault(ModDataComponents.SHIFT_CLICK_TO_BACKPACK, false);
     }
 }

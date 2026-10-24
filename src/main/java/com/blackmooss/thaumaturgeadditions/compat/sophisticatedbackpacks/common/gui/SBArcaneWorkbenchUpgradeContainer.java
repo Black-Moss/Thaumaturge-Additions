@@ -172,6 +172,9 @@ public class SBArcaneWorkbenchUpgradeContainer
                 transaction.commit();
             } else if (result.failure() == ArcaneCraftingTransaction.Failure.NO_RECIPE) {
                 crafted = this.performVanillaCraft(serverPlayer, takenStack, transaction);
+                if (crafted) {
+                    transaction.commit();
+                }
             }
         }
         return crafted;
