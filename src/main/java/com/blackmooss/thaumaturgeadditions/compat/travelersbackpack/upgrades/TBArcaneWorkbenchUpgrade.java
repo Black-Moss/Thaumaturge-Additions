@@ -44,7 +44,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class TBArcaneWorkbenchUpgrade extends UpgradeBase<TBArcaneWorkbenchUpgrade>
-        implements ITickableUpgrade, IEnable, IMoveSelector {
+        implements ITickableUpgrade, IMoveSelector {
     public static final int GRID_WIDTH = 3;
     public static final int GRID_HEIGHT = 3;
     public static final int GRID_SLOTS = GRID_WIDTH * GRID_HEIGHT;
@@ -52,9 +52,6 @@ public class TBArcaneWorkbenchUpgrade extends UpgradeBase<TBArcaneWorkbenchUpgra
     public static final int CRYSTAL_START = GRID_SLOTS;
     public static final int WAND_SLOT = GRID_SLOTS + CRYSTAL_SLOTS;
     public static final int SIZE = WAND_SLOT + 1;
-
-    public static final List<ResourceKey<IAspect>> PRIMAL_ORDER = List.of(
-            TTAspects.AER, TTAspects.IGNIS, TTAspects.AQUA, TTAspects.TERRA, TTAspects.ORDO, TTAspects.PERDITIO);
 
     public static final int TAB_WIDTH = 100;
     public static final int TAB_HEIGHT = 131;
@@ -77,11 +74,6 @@ public class TBArcaneWorkbenchUpgrade extends UpgradeBase<TBArcaneWorkbenchUpgra
     public TBArcaneWorkbenchUpgrade(UpgradeManager manager, int dataHolderSlot, NonNullList<ItemStack> contents) {
         super(manager, dataHolderSlot, new Point(TAB_WIDTH, TAB_HEIGHT));
         this.items = createHandler(Objects.requireNonNull(contents, "contents"));
-    }
-
-    @Override
-    public boolean isEnabled(UpgradeBase<?> upgrade) {
-        return true;
     }
 
     @Override
@@ -125,7 +117,7 @@ public class TBArcaneWorkbenchUpgrade extends UpgradeBase<TBArcaneWorkbenchUpgra
         }
         for (int index = 0; index < CRYSTAL_SLOTS; index++) {
             Point point = CRYSTAL_SLOT_POSITIONS.get(index);
-            slots.add(new ArcaneCrystalSlot(this, this.items, CRYSTAL_START + index, x + point.x(), y + point.y(), PRIMAL_ORDER.get(index)));
+            slots.add(new ArcaneCrystalSlot(this, this.items, CRYSTAL_START + index, x + point.x(), y + point.y(), TTAspects.PRIMALS.get(index)));
         }
         slots.add(TBArcaneWorkbenchSlot.wand(this, this.items, WAND_SLOT, x + WAND_SLOT_POSITION.x(), y + WAND_SLOT_POSITION.y()));
         slots.add(new TBArcaneResultSlot(this, menu.player, this.resultContainer, x + RESULT_SLOT_POSITION.x(), y + RESULT_SLOT_POSITION.y()));
@@ -149,8 +141,8 @@ public class TBArcaneWorkbenchUpgrade extends UpgradeBase<TBArcaneWorkbenchUpgra
         refreshResult();
     }
 
-    public boolean canCraft() {
-        return isTabOpened() && isEnabled(this);
+    public boolean cannotCraft() {
+        return !isTabOpened();
     }
 
     public boolean craftsOnServer() {
@@ -180,7 +172,7 @@ public class TBArcaneWorkbenchUpgrade extends UpgradeBase<TBArcaneWorkbenchUpgra
             return;
         }
         refreshAura(player.level(), player.blockPosition());
-        if (!canCraft()) {
+        if (!cannotCraft()) {
             this.resultContainer.setItem(0, ItemStack.EMPTY);
             return;
         }

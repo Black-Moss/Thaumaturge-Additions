@@ -28,7 +28,7 @@ public final class TBArcaneResultSlot extends Slot {
 
     @Override
     public boolean mayPickup(@NonNull Player player) {
-        return this.upgrade.canCraft();
+        return this.upgrade.cannotCraft();
     }
 
     @Override
