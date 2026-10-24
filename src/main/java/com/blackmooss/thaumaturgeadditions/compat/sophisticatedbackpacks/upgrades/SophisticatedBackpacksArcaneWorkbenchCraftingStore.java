@@ -61,9 +61,9 @@ public final class SophisticatedBackpacksArcaneWorkbenchCraftingStore implements
         if (grid.size() != this.width * this.height) {
             return false;
         }
-        for (int slot = 0; slot < SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.GRID_SLOTS; slot++) {
-            int x = slot % SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.GRID_WIDTH - this.left;
-            int y = slot / SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.GRID_WIDTH - this.top;
+        for (int slot = 0; slot < SBArcaneWorkbenchUpgradeWrapper.GRID_SLOTS; slot++) {
+            int x = slot % SBArcaneWorkbenchUpgradeWrapper.GRID_WIDTH - this.left;
+            int y = slot / SBArcaneWorkbenchUpgradeWrapper.GRID_WIDTH - this.top;
             boolean inside = x >= 0 && x < this.width && y >= 0 && y < this.height;
             ItemStack expected = inside ? grid.get(x + y * this.width) : ItemStack.EMPTY;
             if (!ItemStack.matches(getStack(slot), expected)) {
@@ -75,7 +75,7 @@ public final class SophisticatedBackpacksArcaneWorkbenchCraftingStore implements
 
     private void consumeGridSlot(int x, int y, Consumption consumption, List<ItemStack> overflow, TransactionContext transaction) {
         int compact = x + y * this.width;
-        int slot = x + this.left + (y + this.top) * SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.GRID_WIDTH;
+        int slot = x + this.left + (y + this.top) * SBArcaneWorkbenchUpgradeWrapper.GRID_WIDTH;
         ItemStack current = getStack(slot);
         if (current.isEmpty()) {
             return;
@@ -98,8 +98,8 @@ public final class SophisticatedBackpacksArcaneWorkbenchCraftingStore implements
     private boolean consumeCrystals(AspectList crystals, TransactionContext transaction) {
         for (AspectInstance entry : crystals.entries()) {
             int needed = entry.amount();
-            for (int index = 0; index < SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.CRYSTAL_SLOTS && needed > 0; index++) {
-                int slot = SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.CRYSTAL_START + index;
+            for (int index = 0; index < SBArcaneWorkbenchUpgradeWrapper.CRYSTAL_SLOTS && needed > 0; index++) {
+                int slot = SBArcaneWorkbenchUpgradeWrapper.CRYSTAL_START + index;
                 ItemStack crystal = getStack(slot);
                 if (crystal.isEmpty() || !(crystal.getItem() instanceof ItemEssentiaCrystal)) {
                     continue;
@@ -119,7 +119,7 @@ public final class SophisticatedBackpacksArcaneWorkbenchCraftingStore implements
     }
 
     private void replaceWand(ItemStack wand, TransactionContext transaction) {
-        int slot = SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.WAND_SLOT;
+        int slot = SBArcaneWorkbenchUpgradeWrapper.WAND_SLOT;
         ItemStack current = getStack(slot);
         if (ItemStack.matches(current, wand)) {
             return;

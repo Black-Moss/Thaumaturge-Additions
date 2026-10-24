@@ -1,6 +1,6 @@
 package com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.menu.slot;
 
-import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.upgrades.TravelersBackpackArcaneWorkbenchUpgrade;
+import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.upgrades.TBArcaneWorkbenchUpgrade;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -10,12 +10,12 @@ import org.jspecify.annotations.NonNull;
 
 import java.util.Objects;
 
-public final class TravelersBackpackArcaneResultSlot extends Slot {
-    private final TravelersBackpackArcaneWorkbenchUpgrade upgrade;
+public final class TBArcaneResultSlot extends Slot {
+    private final TBArcaneWorkbenchUpgrade upgrade;
     private final Player player;
     private int amountCrafted;
 
-    public TravelersBackpackArcaneResultSlot(TravelersBackpackArcaneWorkbenchUpgrade upgrade, Player player, Container container, int x, int y) {
+    public TBArcaneResultSlot(TBArcaneWorkbenchUpgrade upgrade, Player player, Container container, int x, int y) {
         super(container, 0, x, y);
         this.upgrade = Objects.requireNonNull(upgrade, "upgrade");
         this.player = Objects.requireNonNull(player, "player");

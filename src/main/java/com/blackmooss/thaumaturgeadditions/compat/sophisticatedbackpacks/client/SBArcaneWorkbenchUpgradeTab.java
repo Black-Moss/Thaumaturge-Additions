@@ -1,7 +1,7 @@
 package com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.client;
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
-import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.common.gui.SophisticatedBackpacksArcaneWorkbenchUpgradeContainer;
+import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.common.gui.SBArcaneWorkbenchUpgradeContainer;
 import com.leclowndu93150.thaumaturge.TTIds;
 import com.leclowndu93150.thaumaturge.content.recipe.ThaumaturgeCraftingManager;
 import com.leclowndu93150.thaumaturge.content.recipe.workbench.ArcaneCraftingInput;
@@ -25,8 +25,8 @@ import org.jspecify.annotations.NonNull;
 
 import java.util.List;
 
-public class SophisticatedBackpacksArcaneWorkbenchUpgradeTab
-        extends UpgradeSettingsTab<SophisticatedBackpacksArcaneWorkbenchUpgradeContainer>
+public class SBArcaneWorkbenchUpgradeTab
+        extends UpgradeSettingsTab<SBArcaneWorkbenchUpgradeContainer>
         implements IForegroundRenderable {
     public static final int PANEL_WIDTH = 100;
     public static final int PANEL_HEIGHT = 131;
@@ -61,8 +61,8 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeTab
     private static final int VIS_COLOR_AVAILABLE = 0xFF6E6EEE;
     private static final int VIS_COLOR_INSUFFICIENT = 0xFFEE6E6E;
 
-    public SophisticatedBackpacksArcaneWorkbenchUpgradeTab(
-            SophisticatedBackpacksArcaneWorkbenchUpgradeContainer upgradeContainer,
+    public SBArcaneWorkbenchUpgradeTab(
+            SBArcaneWorkbenchUpgradeContainer upgradeContainer,
             Position position,
             StorageScreenBase<?> screen
     ) {
@@ -75,7 +75,6 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeTab
                 BackpackButtonDefinitions.SHIFT_CLICK_TARGET,
                 button -> this.getContainer().setShiftClickIntoStorage(!this.getContainer().shouldShiftClickIntoStorage()),
                 this.getContainer()::shouldShiftClickIntoStorage));
-        // 自动填充方格：合成后空掉的合成格自动从背包/物品栏补材料（复用 SB 自带按钮图标）
         this.addHideableChild(new ToggleButton<>(
                 new Position(this.x + PANEL_OFFSET_X + REFILL_BUTTON_POSITION.x(), this.y + PANEL_OFFSET_Y + REFILL_BUTTON_POSITION.y()),
                 BackpackButtonDefinitions.REFILL_CRAFTING_GRID,

@@ -17,6 +17,6 @@ public final class SophisticatedBackpacksClientCompat {
         if (!SophisticatedBackpacksCompat.isLoaded()) {
             return;
         }
-        SophisticatedBackpacksArcaneWorkbenchTabRegistration.register();
+        SBArcaneWorkbenchTabRegistration.register();
     }
 }

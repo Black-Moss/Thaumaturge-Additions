@@ -13,9 +13,8 @@ import net.minecraft.world.item.ItemStack;
 
 import java.util.List;
 
-public class TravelersBackpackArcaneChargerUpgrade extends UpgradeBase<TravelersBackpackArcaneChargerUpgrade> implements IEnable {
-    public TravelersBackpackArcaneChargerUpgrade(UpgradeManager manager, int dataHolderSlot) {
-        // 与 TB 自带的灯笼升级保持一致（同为无标签页升级）
+public class TBArcaneChargerUpgrade extends UpgradeBase<TBArcaneChargerUpgrade> implements IEnable {
+    public TBArcaneChargerUpgrade(UpgradeManager manager, int dataHolderSlot) {
         super(manager, dataHolderSlot, new Point(40, 28));
     }
 

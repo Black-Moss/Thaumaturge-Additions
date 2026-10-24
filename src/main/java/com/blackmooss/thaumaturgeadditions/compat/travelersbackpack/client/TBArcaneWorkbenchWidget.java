@@ -1,7 +1,7 @@
 package com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.client;
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
-import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.upgrades.TravelersBackpackArcaneWorkbenchUpgrade;
+import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.upgrades.TBArcaneWorkbenchUpgrade;
 import com.leclowndu93150.thaumaturge.TTIds;
 import com.leclowndu93150.thaumaturge.content.recipe.ThaumaturgeCraftingManager;
 import com.leclowndu93150.thaumaturge.content.recipe.workbench.ArcaneCraftingInput;
@@ -21,7 +21,7 @@ import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 
-public class TravelersBackpackArcaneWorkbenchWidget extends UpgradeWidgetBase<TravelersBackpackArcaneWorkbenchUpgrade> {
+public class TBArcaneWorkbenchWidget extends UpgradeWidgetBase<TBArcaneWorkbenchUpgrade> {
     private static final Identifier PANEL_TEXTURE = ThaumaturgeAdditions.identifier("textures/gui/arcane_workbench_upgrade.png");
     private static final Identifier WAND_SLOT_TEXTURE = TTIds.rl("textures/gui/workbench_wand_slot.png");
     private static final int PANEL_TEXTURE_SIZE = 256;
@@ -40,7 +40,7 @@ public class TravelersBackpackArcaneWorkbenchWidget extends UpgradeWidgetBase<Tr
 
     private final ResultArrowElement resultArrowElement;
 
-    public TravelersBackpackArcaneWorkbenchWidget(BackpackScreen screen, TravelersBackpackArcaneWorkbenchUpgrade upgrade, Point pos) {
+    public TBArcaneWorkbenchWidget(BackpackScreen screen, TBArcaneWorkbenchUpgrade upgrade, Point pos) {
         super(screen, upgrade, pos, new Point(0, 0), "screen.thaumaturgeadditions.arcane_workbench_upgrade");
         WidgetElement arrowElement = new WidgetElement(ARROW_POSITION, ARROW_SIZE);
         this.resultArrowElement = new ResultArrowElement(screen, this, arrowElement);
@@ -54,7 +54,7 @@ public class TravelersBackpackArcaneWorkbenchWidget extends UpgradeWidgetBase<Tr
         int left = this.pos.x();
         int top = this.pos.y();
         graphics.blit(RenderPipelines.GUI_TEXTURED, PANEL_TEXTURE, left, top, 0.0F, 0.0F,
-                TravelersBackpackArcaneWorkbenchUpgrade.TAB_WIDTH, TravelersBackpackArcaneWorkbenchUpgrade.TAB_HEIGHT, PANEL_TEXTURE_SIZE, PANEL_TEXTURE_SIZE);
+                TBArcaneWorkbenchUpgrade.TAB_WIDTH, TBArcaneWorkbenchUpgrade.TAB_HEIGHT, PANEL_TEXTURE_SIZE, PANEL_TEXTURE_SIZE);
         drawAvailableVis(graphics, left, top);
         graphics.item(StacksHandlerUtils.getStackInSlot(this.screen.getWrapper().getUpgrades(), this.dataHolderSlot), left + 4, top + 4);
         this.resultArrowElement.renderBg(graphics, x, y, mouseX, mouseY);
@@ -65,7 +65,7 @@ public class TravelersBackpackArcaneWorkbenchWidget extends UpgradeWidgetBase<Tr
         if (!this.isTabOpened()) {
             return;
         }
-        Point wand = TravelersBackpackArcaneWorkbenchUpgrade.WAND_SLOT_POSITION;
+        Point wand = TBArcaneWorkbenchUpgrade.WAND_SLOT_POSITION;
         graphics.blit(RenderPipelines.GUI_TEXTURED, WAND_SLOT_TEXTURE,
                 this.pos.x() + wand.x() - WAND_FRAME_OFFSET_X, this.pos.y() + wand.y() - WAND_FRAME_OFFSET_Y,
                 0.0F, 0.0F, WAND_FRAME_WIDTH, WAND_FRAME_HEIGHT, WAND_FRAME_WIDTH, WAND_FRAME_HEIGHT);

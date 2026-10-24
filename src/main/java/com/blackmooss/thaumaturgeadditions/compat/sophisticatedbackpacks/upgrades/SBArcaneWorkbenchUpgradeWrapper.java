@@ -2,8 +2,8 @@ package com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.upgrad
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
 import com.blackmooss.thaumaturgeadditions.compat.WorkbenchChargerAura;
-import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.item.SophisticatedBackpacksArcaneChargerUpgradeItem;
-import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.item.SophisticatedBackpacksArcaneWorkbenchUpgradeItem;
+import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.item.SBArcaneChargerUpgradeItem;
+import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.item.SBArcaneWorkbenchUpgradeItem;
 import com.blackmooss.thaumaturgeadditions.registry.TADataComponents;
 import com.leclowndu93150.thaumaturge.api.aspect.IAspect;
 import com.leclowndu93150.thaumaturge.api.aspect.TTAspects;
@@ -31,8 +31,8 @@ import org.jspecify.annotations.Nullable;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper
-        extends UpgradeWrapperBase<SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper, SophisticatedBackpacksArcaneWorkbenchUpgradeItem>
+public class SBArcaneWorkbenchUpgradeWrapper
+        extends UpgradeWrapperBase<SBArcaneWorkbenchUpgradeWrapper, SBArcaneWorkbenchUpgradeItem>
         implements ITickableUpgrade {
     public static final int GRID_WIDTH = 3;
     public static final int GRID_HEIGHT = 3;
@@ -51,7 +51,7 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper
     private Runnable resultRefreshHandler = () -> {
     };
 
-    public SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper(IStorageWrapper storageWrapper, ItemStack upgrade, Consumer<ItemStack> upgradeSaveHandler) {
+    public SBArcaneWorkbenchUpgradeWrapper(IStorageWrapper storageWrapper, ItemStack upgrade, Consumer<ItemStack> upgradeSaveHandler) {
         super(storageWrapper, upgrade, upgradeSaveHandler);
         if (upgrade.has(DataComponents.CONTAINER)) {
             upgrade.set(ModCoreDataComponents.LENIENT_CONTAINER.get(), upgrade.get(DataComponents.CONTAINER));
@@ -62,13 +62,13 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper
             @Override
             protected void onContentsChanged(int index, @NonNull ItemStack previousContents) {
                 super.onContentsChanged(index, previousContents);
-                SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.this.save();
-                SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.this.resultRefreshHandler.run();
+                SBArcaneWorkbenchUpgradeWrapper.this.save();
+                SBArcaneWorkbenchUpgradeWrapper.this.resultRefreshHandler.run();
             }
 
             @Override
             public boolean isValid(int slot, @NonNull ItemResource resource) {
-                return SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.this.isValidSlot(slot, resource.toStack());
+                return SBArcaneWorkbenchUpgradeWrapper.this.isValidSlot(slot, resource.toStack());
             }
         };
     }
@@ -146,7 +146,7 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper
 
     private boolean hasChargerInstalled() {
         return this.storageWrapper.getUpgradeHandler()
-                .hasUpgrade(SophisticatedBackpacksArcaneChargerUpgradeItem.TYPE);
+                .hasUpgrade(SBArcaneChargerUpgradeItem.TYPE);
     }
 
     @Override

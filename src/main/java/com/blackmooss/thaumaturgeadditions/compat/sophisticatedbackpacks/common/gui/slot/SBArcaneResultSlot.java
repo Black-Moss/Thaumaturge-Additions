@@ -1,6 +1,6 @@
 package com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.common.gui.slot;
 
-import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.common.gui.SophisticatedBackpacksArcaneWorkbenchUpgradeContainer;
+import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.common.gui.SBArcaneWorkbenchUpgradeContainer;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.Slot;
@@ -9,10 +9,10 @@ import org.jspecify.annotations.NonNull;
 
 import java.util.Objects;
 
-public final class SophisticatedBackpacksArcaneResultSlot extends Slot {
-    private final SophisticatedBackpacksArcaneWorkbenchUpgradeContainer container;
+public final class SBArcaneResultSlot extends Slot {
+    private final SBArcaneWorkbenchUpgradeContainer container;
 
-    public SophisticatedBackpacksArcaneResultSlot(Container resultContainer, SophisticatedBackpacksArcaneWorkbenchUpgradeContainer container, int x, int y) {
+    public SBArcaneResultSlot(Container resultContainer, SBArcaneWorkbenchUpgradeContainer container, int x, int y) {
         super(Objects.requireNonNull(resultContainer, "resultContainer"), 0, x, y);
         this.container = Objects.requireNonNull(container, "container");
     }

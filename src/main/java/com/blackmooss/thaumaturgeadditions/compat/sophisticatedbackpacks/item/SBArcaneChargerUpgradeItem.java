@@ -1,6 +1,6 @@
 package com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.item;
 
-import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.upgrades.SophisticatedBackpacksArcaneChargerUpgradeWrapper;
+import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.upgrades.SBArcaneChargerUpgradeWrapper;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Player;
 import net.p3pp3rf1y.sophisticatedbackpacks.backpack.wrapper.BackpackWrapper;
@@ -10,10 +10,10 @@ import org.jspecify.annotations.NonNull;
 
 import java.util.List;
 
-public class SophisticatedBackpacksArcaneChargerUpgradeItem
-        extends UpgradeItemBase<SophisticatedBackpacksArcaneChargerUpgradeWrapper> {
-    public static final UpgradeType<SophisticatedBackpacksArcaneChargerUpgradeWrapper> TYPE =
-            new UpgradeType<>(SophisticatedBackpacksArcaneChargerUpgradeWrapper::new);
+public class SBArcaneChargerUpgradeItem
+        extends UpgradeItemBase<SBArcaneChargerUpgradeWrapper> {
+    public static final UpgradeType<SBArcaneChargerUpgradeWrapper> TYPE =
+            new UpgradeType<>(SBArcaneChargerUpgradeWrapper::new);
 
     private static final IUpgradeCountLimitConfig LIMIT_CONFIG = new IUpgradeCountLimitConfig() {
         @Override
@@ -27,7 +27,7 @@ public class SophisticatedBackpacksArcaneChargerUpgradeItem
         }
     };
 
-    public SophisticatedBackpacksArcaneChargerUpgradeItem(Properties properties) {
+    public SBArcaneChargerUpgradeItem(Properties properties) {
         super(LIMIT_CONFIG, properties);
     }
 
@@ -37,7 +37,7 @@ public class SophisticatedBackpacksArcaneChargerUpgradeItem
     }
 
     @Override
-    public @NonNull UpgradeType<SophisticatedBackpacksArcaneChargerUpgradeWrapper> getType() {
+    public @NonNull UpgradeType<SBArcaneChargerUpgradeWrapper> getType() {
         return TYPE;
     }
 

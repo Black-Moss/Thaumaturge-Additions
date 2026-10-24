@@ -1,6 +1,6 @@
 package com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.menu.slot;
 
-import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.upgrades.TravelersBackpackArcaneWorkbenchUpgrade;
+import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.upgrades.TBArcaneWorkbenchUpgrade;
 import com.leclowndu93150.thaumaturge.api.aspect.IAspect;
 import com.leclowndu93150.thaumaturge.content.workbench.SlotCrystalEssentia;
 import com.tiviacz.travelersbackpack.inventory.menu.slot.UpgradeSlotItemHandler;
@@ -11,10 +11,10 @@ import org.jspecify.annotations.NonNull;
 
 import java.util.Objects;
 
-public class ArcaneCrystalSlot extends UpgradeSlotItemHandler<TravelersBackpackArcaneWorkbenchUpgrade> {
+public class ArcaneCrystalSlot extends UpgradeSlotItemHandler<TBArcaneWorkbenchUpgrade> {
     private final ResourceKey<IAspect> aspect;
 
-    public ArcaneCrystalSlot(TravelersBackpackArcaneWorkbenchUpgrade upgrade, ItemStacksResourceHandler items, int index, int x, int y, ResourceKey<IAspect> aspect) {
+    public ArcaneCrystalSlot(TBArcaneWorkbenchUpgrade upgrade, ItemStacksResourceHandler items, int index, int x, int y, ResourceKey<IAspect> aspect) {
         super(upgrade, items, index, x, y);
         this.aspect = Objects.requireNonNull(aspect, "aspect");
     }

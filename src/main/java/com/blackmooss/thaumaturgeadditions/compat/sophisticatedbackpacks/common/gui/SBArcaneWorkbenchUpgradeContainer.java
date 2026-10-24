@@ -3,9 +3,9 @@ package com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.common
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
 import com.blackmooss.thaumaturgeadditions.compat.CraftingTableRecipes;
 import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.SophisticatedBackpacksCompat;
-import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.common.gui.slot.SophisticatedBackpacksArcaneResultSlot;
+import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.common.gui.slot.SBArcaneResultSlot;
 import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.upgrades.SophisticatedBackpacksArcaneWorkbenchCraftingStore;
-import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.upgrades.SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper;
+import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.upgrades.SBArcaneWorkbenchUpgradeWrapper;
 import com.leclowndu93150.thaumaturge.api.recipe.ArcaneCraftingTransaction;
 import com.leclowndu93150.thaumaturge.api.recipe.ArcaneWorkbenchContext;
 import com.leclowndu93150.thaumaturge.content.recipe.workbench.ArcaneCraftingInput;
@@ -27,29 +27,28 @@ import org.jspecify.annotations.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SophisticatedBackpacksArcaneWorkbenchUpgradeContainer
-        extends UpgradeContainerBase<SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper, SophisticatedBackpacksArcaneWorkbenchUpgradeContainer> {
-    public static final UpgradeContainerType<SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper, SophisticatedBackpacksArcaneWorkbenchUpgradeContainer> TYPE =
-            new UpgradeContainerType<>(SophisticatedBackpacksArcaneWorkbenchUpgradeContainer::new);
+public class SBArcaneWorkbenchUpgradeContainer
+        extends UpgradeContainerBase<SBArcaneWorkbenchUpgradeWrapper, SBArcaneWorkbenchUpgradeContainer> {
+    public static final UpgradeContainerType<SBArcaneWorkbenchUpgradeWrapper, SBArcaneWorkbenchUpgradeContainer> TYPE =
+            new UpgradeContainerType<>(SBArcaneWorkbenchUpgradeContainer::new);
 
     private static final String DATA_SHIFT_CLICK_INTO_STORAGE = "shiftClickIntoStorage";
     private static final String DATA_REFILL_CRAFTING_GRID = "refill_crafting_grid";
 
     private final ResultContainer craftResult = new ResultContainer();
-    private final SophisticatedBackpacksArcaneResultSlot resultSlot;
+    private final SBArcaneResultSlot resultSlot;
 
-    public SophisticatedBackpacksArcaneWorkbenchUpgradeContainer(
+    public SBArcaneWorkbenchUpgradeContainer(
             Player player,
             int upgradeContainerId,
-            SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper upgradeWrapper,
-            UpgradeContainerType<SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper, SophisticatedBackpacksArcaneWorkbenchUpgradeContainer> type
+            SBArcaneWorkbenchUpgradeWrapper upgradeWrapper,
+            UpgradeContainerType<SBArcaneWorkbenchUpgradeWrapper, SBArcaneWorkbenchUpgradeContainer> type
     ) {
         super(player, upgradeContainerId, upgradeWrapper, type);
-        for (int slot = 0; slot < SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.SIZE; slot++) {
-            // 槽位坐标由标签页在打开时统一摆放
-            this.slots.add(new SlotSuppliedHandler(this.supplyFromWrapper(SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper::getInventory), slot, -100, -100));
+        for (int slot = 0; slot < SBArcaneWorkbenchUpgradeWrapper.SIZE; slot++) {
+            this.slots.add(new SlotSuppliedHandler(this.supplyFromWrapper(SBArcaneWorkbenchUpgradeWrapper::getInventory), slot, -100, -100));
         }
-        this.resultSlot = new SophisticatedBackpacksArcaneResultSlot(this.craftResult, this, -100, -100);
+        this.resultSlot = new SBArcaneResultSlot(this.craftResult, this, -100, -100);
         this.slots.add(this.resultSlot);
     }
 
@@ -73,7 +72,7 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeContainer
         return this.player instanceof ServerPlayer;
     }
 
-    public SophisticatedBackpacksArcaneResultSlot getResultSlot() {
+    public SBArcaneResultSlot getResultSlot() {
         return this.resultSlot;
     }
 
@@ -108,8 +107,8 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeContainer
     }
 
     private List<ItemStack> gridStacks() {
-        List<ItemStack> slots = new ArrayList<>(SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.GRID_SLOTS);
-        for (int index = 0; index < SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.GRID_SLOTS; index++) {
+        List<ItemStack> slots = new ArrayList<>(SBArcaneWorkbenchUpgradeWrapper.GRID_SLOTS);
+        for (int index = 0; index < SBArcaneWorkbenchUpgradeWrapper.GRID_SLOTS; index++) {
             slots.add(this.upgradeWrapper.getInventory().getStackInSlot(index));
         }
         return slots;
@@ -134,8 +133,8 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeContainer
     }
 
     private List<ItemStack> snapshotCraftingGrid() {
-        List<ItemStack> snapshot = new ArrayList<>(SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.GRID_SLOTS);
-        for (int slot = 0; slot < SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.GRID_SLOTS; slot++) {
+        List<ItemStack> snapshot = new ArrayList<>(SBArcaneWorkbenchUpgradeWrapper.GRID_SLOTS);
+        for (int slot = 0; slot < SBArcaneWorkbenchUpgradeWrapper.GRID_SLOTS; slot++) {
             snapshot.add(this.upgradeWrapper.getInventory().getStackInSlot(slot).copy());
         }
         return snapshot;
@@ -146,7 +145,7 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeContainer
             return;
         }
         ComponentItemStacksHandler inventory = this.upgradeWrapper.getInventory();
-        for (int slot = 0; slot < SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.GRID_SLOTS; slot++) {
+        for (int slot = 0; slot < SBArcaneWorkbenchUpgradeWrapper.GRID_SLOTS; slot++) {
             ItemStack before = gridBefore.get(slot);
             if (before.isEmpty() || !inventory.getStackInSlot(slot).isEmpty()) {
                 continue;
@@ -186,7 +185,7 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeContainer
         }
         SophisticatedBackpacksArcaneWorkbenchCraftingStore store = new SophisticatedBackpacksArcaneWorkbenchCraftingStore(
                 this.upgradeWrapper.getInventory(), serverPlayer, 0, 0, CraftingTableRecipes.GRID_WIDTH, CraftingTableRecipes.GRID_HEIGHT);
-        ItemStack wand = this.upgradeWrapper.getInventory().getStackInSlot(SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.WAND_SLOT);
+        ItemStack wand = this.upgradeWrapper.getInventory().getStackInSlot(SBArcaneWorkbenchUpgradeWrapper.WAND_SLOT);
         return CraftingTableRecipes.consume(store, vanilla, slots, wand, transaction);
     }
 
@@ -195,12 +194,12 @@ public class SophisticatedBackpacksArcaneWorkbenchUpgradeContainer
     }
 
     private ArcaneCraftingInput.Positioned buildPositionedInput() {
-        List<ItemStack> stacks = new ArrayList<>(SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.SIZE);
-        for (int index = 0; index < SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.SIZE; index++) {
+        List<ItemStack> stacks = new ArrayList<>(SBArcaneWorkbenchUpgradeWrapper.SIZE);
+        for (int index = 0; index < SBArcaneWorkbenchUpgradeWrapper.SIZE; index++) {
             stacks.add(this.upgradeWrapper.getInventory().getStackInSlot(index));
         }
-        return ArcaneCraftingInput.ofPositioned(SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.GRID_WIDTH,
-                SophisticatedBackpacksArcaneWorkbenchUpgradeWrapper.GRID_HEIGHT, stacks);
+        return ArcaneCraftingInput.ofPositioned(SBArcaneWorkbenchUpgradeWrapper.GRID_WIDTH,
+                SBArcaneWorkbenchUpgradeWrapper.GRID_HEIGHT, stacks);
     }
 
     private ArcaneWorkbenchContext context() {

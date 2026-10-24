@@ -1,6 +1,6 @@
 package com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.item;
 
-import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.upgrades.TravelersBackpackArcaneChargerUpgrade;
+import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.upgrades.TBArcaneChargerUpgrade;
 import com.tiviacz.travelersbackpack.attachment.AttachmentUtils;
 import com.tiviacz.travelersbackpack.inventory.BackpackWrapper;
 import com.tiviacz.travelersbackpack.inventory.UpgradeManager;
@@ -19,8 +19,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-public class TravelersBackpackArcaneChargerUpgradeItem extends UpgradeItem {
-    public TravelersBackpackArcaneChargerUpgradeItem(Properties properties) {
+public class TBArcaneChargerUpgradeItem extends UpgradeItem {
+    public TBArcaneChargerUpgradeItem(Properties properties) {
         super(properties, null);
     }
 
@@ -42,14 +42,14 @@ public class TravelersBackpackArcaneChargerUpgradeItem extends UpgradeItem {
             return false;
         }
         return BackpackWrapper.fromStack(backpack).getUpgradeManager()
-                .getUpgrade(TravelersBackpackArcaneChargerUpgrade.class)
+                .getUpgrade(TBArcaneChargerUpgrade.class)
                 .filter(charger -> charger.isEnabled(charger))
                 .isPresent();
     }
 
     @Override
     public Class<? extends UpgradeBase<?>> getUpgradeClass() {
-        return TravelersBackpackArcaneChargerUpgrade.class;
+        return TBArcaneChargerUpgrade.class;
     }
 
     @Override
@@ -59,7 +59,7 @@ public class TravelersBackpackArcaneChargerUpgradeItem extends UpgradeItem {
 
     @Override
     public TriFunction<UpgradeManager, Integer, ItemStack, Optional<? extends UpgradeBase<?>>> getUpgrade() {
-        return (upgradeManager, dataHolderSlot, provider) -> Optional.of(new TravelersBackpackArcaneChargerUpgrade(upgradeManager, dataHolderSlot));
+        return (upgradeManager, dataHolderSlot, provider) -> Optional.of(new TBArcaneChargerUpgrade(upgradeManager, dataHolderSlot));
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.item;
 
-import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.upgrades.TravelersBackpackArcaneWorkbenchUpgrade;
+import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.upgrades.TBArcaneWorkbenchUpgrade;
 import com.tiviacz.travelersbackpack.init.ModDataComponents;
 import com.tiviacz.travelersbackpack.inventory.UpgradeManager;
 import com.tiviacz.travelersbackpack.inventory.upgrades.UpgradeBase;
@@ -13,8 +13,8 @@ import org.apache.commons.lang3.function.TriFunction;
 
 import java.util.Optional;
 
-public class TravelersBackpackArcaneWorkbenchUpgradeItem extends UpgradeItem {
-    public TravelersBackpackArcaneWorkbenchUpgradeItem(Properties properties) {
+public class TBArcaneWorkbenchUpgradeItem extends UpgradeItem {
+    public TBArcaneWorkbenchUpgradeItem(Properties properties) {
         super(properties, null);
     }
 
@@ -30,15 +30,15 @@ public class TravelersBackpackArcaneWorkbenchUpgradeItem extends UpgradeItem {
 
     @Override
     public Class<? extends UpgradeBase<?>> getUpgradeClass() {
-        return TravelersBackpackArcaneWorkbenchUpgrade.class;
+        return TBArcaneWorkbenchUpgrade.class;
     }
 
     @Override
     public TriFunction<UpgradeManager, Integer, ItemStack, Optional<? extends UpgradeBase<?>>> getUpgrade() {
         return (upgradeManager, dataHolderSlot, provider) -> {
             ItemContainerContents contents = provider.getOrDefault(ModDataComponents.BACKPACK_CONTAINER, ItemContainerContents.EMPTY);
-            NonNullList<ItemStack> items = ContainerContentsHelper.getItems(contents, TravelersBackpackArcaneWorkbenchUpgrade.SIZE);
-            return Optional.of(new TravelersBackpackArcaneWorkbenchUpgrade(upgradeManager, dataHolderSlot, items));
+            NonNullList<ItemStack> items = ContainerContentsHelper.getItems(contents, TBArcaneWorkbenchUpgrade.SIZE);
+            return Optional.of(new TBArcaneWorkbenchUpgrade(upgradeManager, dataHolderSlot, items));
         };
     }
 }

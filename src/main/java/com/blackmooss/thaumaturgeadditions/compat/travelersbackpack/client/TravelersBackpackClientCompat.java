@@ -17,7 +17,7 @@ public final class TravelersBackpackClientCompat {
         if (!TravelersBackpackCompat.isLoaded()) {
             return;
         }
-        event.enqueueWork(TravelersBackpackArcaneWorkbenchWidgetRegistry::register);
-        event.enqueueWork(TravelersBackpackArcaneChargerWidgetRegistry::register);
+        event.enqueueWork(TBArcaneWorkbenchWidgetRegistry::register);
+        event.enqueueWork(TBArcaneChargerWidgetRegistry::register);
     }
 }

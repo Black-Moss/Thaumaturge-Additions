@@ -5,8 +5,8 @@ import com.blackmooss.thaumaturgeadditions.compat.CraftingTableRecipes;
 import com.blackmooss.thaumaturgeadditions.compat.WorkbenchChargerAura;
 import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.TravelersBackpackCompat;
 import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.menu.slot.ArcaneCrystalSlot;
-import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.menu.slot.TravelersBackpackArcaneResultSlot;
-import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.menu.slot.TravelersBackpackArcaneWorkbenchSlot;
+import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.menu.slot.TBArcaneResultSlot;
+import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.menu.slot.TBArcaneWorkbenchSlot;
 import com.blackmooss.thaumaturgeadditions.registry.TADataComponents;
 import com.leclowndu93150.thaumaturge.api.aspect.IAspect;
 import com.leclowndu93150.thaumaturge.api.aspect.TTAspects;
@@ -43,7 +43,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class TravelersBackpackArcaneWorkbenchUpgrade extends UpgradeBase<TravelersBackpackArcaneWorkbenchUpgrade>
+public class TBArcaneWorkbenchUpgrade extends UpgradeBase<TBArcaneWorkbenchUpgrade>
         implements ITickableUpgrade, IEnable, IMoveSelector {
     public static final int GRID_WIDTH = 3;
     public static final int GRID_HEIGHT = 3;
@@ -74,7 +74,7 @@ public class TravelersBackpackArcaneWorkbenchUpgrade extends UpgradeBase<Travele
     private final ItemStacksResourceHandler items;
     private final ResultContainer resultContainer = new ResultContainer();
 
-    public TravelersBackpackArcaneWorkbenchUpgrade(UpgradeManager manager, int dataHolderSlot, NonNullList<ItemStack> contents) {
+    public TBArcaneWorkbenchUpgrade(UpgradeManager manager, int dataHolderSlot, NonNullList<ItemStack> contents) {
         super(manager, dataHolderSlot, new Point(TAB_WIDTH, TAB_HEIGHT));
         this.items = createHandler(Objects.requireNonNull(contents, "contents"));
     }
@@ -121,14 +121,14 @@ public class TravelersBackpackArcaneWorkbenchUpgrade extends UpgradeBase<Travele
         List<Slot> slots = new ArrayList<>(SIZE + 1);
         for (int index = 0; index < GRID_SLOTS; index++) {
             Point point = GRID_SLOT_POSITIONS.get(index);
-            slots.add(TravelersBackpackArcaneWorkbenchSlot.grid(this, this.items, index, x + point.x(), y + point.y()));
+            slots.add(TBArcaneWorkbenchSlot.grid(this, this.items, index, x + point.x(), y + point.y()));
         }
         for (int index = 0; index < CRYSTAL_SLOTS; index++) {
             Point point = CRYSTAL_SLOT_POSITIONS.get(index);
             slots.add(new ArcaneCrystalSlot(this, this.items, CRYSTAL_START + index, x + point.x(), y + point.y(), PRIMAL_ORDER.get(index)));
         }
-        slots.add(TravelersBackpackArcaneWorkbenchSlot.wand(this, this.items, WAND_SLOT, x + WAND_SLOT_POSITION.x(), y + WAND_SLOT_POSITION.y()));
-        slots.add(new TravelersBackpackArcaneResultSlot(this, menu.player, this.resultContainer, x + RESULT_SLOT_POSITION.x(), y + RESULT_SLOT_POSITION.y()));
+        slots.add(TBArcaneWorkbenchSlot.wand(this, this.items, WAND_SLOT, x + WAND_SLOT_POSITION.x(), y + WAND_SLOT_POSITION.y()));
+        slots.add(new TBArcaneResultSlot(this, menu.player, this.resultContainer, x + RESULT_SLOT_POSITION.x(), y + RESULT_SLOT_POSITION.y()));
         return slots;
     }
 
@@ -216,7 +216,7 @@ public class TravelersBackpackArcaneWorkbenchUpgrade extends UpgradeBase<Travele
         try (Transaction transaction = Transaction.openRoot()) {
             ArcaneCraftingInput.Positioned positioned = buildPositionedInput();
             ArcaneCraftingInput input = positioned.input();
-            TravelersBackpackArcaneWorkbenchCraftingStore store = new TravelersBackpackArcaneWorkbenchCraftingStore(
+            TBArcaneWorkbenchCraftingStore store = new TBArcaneWorkbenchCraftingStore(
                     this.items, player, positioned.left(), positioned.top(), input.width(), input.height());
             ArcaneCraftingTransaction.Result result = ArcaneCraftingTransaction.craft(context(player), player, input, store, transaction);
             if (result.successful() && ItemStack.matches(result.output(), displayed)) {
@@ -236,7 +236,7 @@ public class TravelersBackpackArcaneWorkbenchUpgrade extends UpgradeBase<Travele
         if (vanilla == null || !ItemStack.matches(vanilla.output(), displayed)) {
             return ItemStack.EMPTY;
         }
-        TravelersBackpackArcaneWorkbenchCraftingStore store = new TravelersBackpackArcaneWorkbenchCraftingStore(
+        TBArcaneWorkbenchCraftingStore store = new TBArcaneWorkbenchCraftingStore(
                 this.items, player, 0, 0, CraftingTableRecipes.GRID_WIDTH, CraftingTableRecipes.GRID_HEIGHT);
         if (!CraftingTableRecipes.consume(store, vanilla, slots, StacksHandlerUtils.getStackInSlot(this.items, WAND_SLOT), transaction)) {
             return ItemStack.EMPTY;
@@ -292,7 +292,7 @@ public class TravelersBackpackArcaneWorkbenchUpgrade extends UpgradeBase<Travele
 
     private boolean hasChargerInstalled() {
         return getUpgradeManager()
-                .getUpgrade(TravelersBackpackArcaneChargerUpgrade.class)
+                .getUpgrade(TBArcaneChargerUpgrade.class)
                 .filter(charger -> charger.isEnabled(charger))
                 .isPresent();
     }
@@ -306,9 +306,9 @@ public class TravelersBackpackArcaneWorkbenchUpgrade extends UpgradeBase<Travele
         return new ItemStacksResourceHandler(contents) {
             @Override
             protected void onContentsChanged(int slot, @NonNull ItemStack previousStack) {
-                TravelersBackpackArcaneWorkbenchUpgrade.this.updateDataHolderUnchecked(
-                        dataHolderStack -> TravelersBackpackArcaneWorkbenchUpgrade.this.setSlotChanged(dataHolderStack, slot, StacksHandlerUtils.getStackInSlot(this, slot)));
-                TravelersBackpackArcaneWorkbenchUpgrade.this.refreshResult();
+                TBArcaneWorkbenchUpgrade.this.updateDataHolderUnchecked(
+                        dataHolderStack -> TBArcaneWorkbenchUpgrade.this.setSlotChanged(dataHolderStack, slot, StacksHandlerUtils.getStackInSlot(this, slot)));
+                TBArcaneWorkbenchUpgrade.this.refreshResult();
             }
         };
     }

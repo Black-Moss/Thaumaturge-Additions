@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public final class TravelersBackpackArcaneWorkbenchCraftingStore implements IArcaneCraftingStore {
+public final class TBArcaneWorkbenchCraftingStore implements IArcaneCraftingStore {
     private final ItemStacksResourceHandler items;
     private final Player player;
     private final int left;
@@ -26,7 +26,7 @@ public final class TravelersBackpackArcaneWorkbenchCraftingStore implements IArc
     private final int width;
     private final int height;
 
-    public TravelersBackpackArcaneWorkbenchCraftingStore(ItemStacksResourceHandler items, Player player, int left, int top, int width, int height) {
+    public TBArcaneWorkbenchCraftingStore(ItemStacksResourceHandler items, Player player, int left, int top, int width, int height) {
         this.items = Objects.requireNonNull(items, "items");
         this.player = Objects.requireNonNull(player, "player");
         this.left = left;
@@ -62,9 +62,9 @@ public final class TravelersBackpackArcaneWorkbenchCraftingStore implements IArc
         if (grid.size() != this.width * this.height) {
             return false;
         }
-        for (int slot = 0; slot < TravelersBackpackArcaneWorkbenchUpgrade.GRID_SLOTS; slot++) {
-            int x = slot % TravelersBackpackArcaneWorkbenchUpgrade.GRID_WIDTH - this.left;
-            int y = slot / TravelersBackpackArcaneWorkbenchUpgrade.GRID_WIDTH - this.top;
+        for (int slot = 0; slot < TBArcaneWorkbenchUpgrade.GRID_SLOTS; slot++) {
+            int x = slot % TBArcaneWorkbenchUpgrade.GRID_WIDTH - this.left;
+            int y = slot / TBArcaneWorkbenchUpgrade.GRID_WIDTH - this.top;
             boolean inside = x >= 0 && x < this.width && y >= 0 && y < this.height;
             ItemStack expected = inside ? grid.get(x + y * this.width) : ItemStack.EMPTY;
             if (!ItemStack.matches(getStack(slot), expected)) {
@@ -76,7 +76,7 @@ public final class TravelersBackpackArcaneWorkbenchCraftingStore implements IArc
 
     private void consumeGridSlot(int x, int y, Consumption consumption, List<ItemStack> overflow, TransactionContext transaction) {
         int compact = x + y * this.width;
-        int slot = x + this.left + (y + this.top) * TravelersBackpackArcaneWorkbenchUpgrade.GRID_WIDTH;
+        int slot = x + this.left + (y + this.top) * TBArcaneWorkbenchUpgrade.GRID_WIDTH;
         ItemStack current = getStack(slot);
         if (current.isEmpty()) {
             return;
@@ -99,8 +99,8 @@ public final class TravelersBackpackArcaneWorkbenchCraftingStore implements IArc
     private boolean consumeCrystals(AspectList crystals, TransactionContext transaction) {
         for (AspectInstance entry : crystals.entries()) {
             int needed = entry.amount();
-            for (int index = 0; index < TravelersBackpackArcaneWorkbenchUpgrade.CRYSTAL_SLOTS && needed > 0; index++) {
-                int slot = TravelersBackpackArcaneWorkbenchUpgrade.CRYSTAL_START + index;
+            for (int index = 0; index < TBArcaneWorkbenchUpgrade.CRYSTAL_SLOTS && needed > 0; index++) {
+                int slot = TBArcaneWorkbenchUpgrade.CRYSTAL_START + index;
                 ItemStack crystal = getStack(slot);
                 if (crystal.isEmpty() || !(crystal.getItem() instanceof ItemEssentiaCrystal)) {
                     continue;
@@ -120,7 +120,7 @@ public final class TravelersBackpackArcaneWorkbenchCraftingStore implements IArc
     }
 
     private void replaceWand(ItemStack wand, TransactionContext transaction) {
-        int slot = TravelersBackpackArcaneWorkbenchUpgrade.WAND_SLOT;
+        int slot = TBArcaneWorkbenchUpgrade.WAND_SLOT;
         ItemStack current = getStack(slot);
         if (ItemStack.matches(current, wand)) {
             return;
