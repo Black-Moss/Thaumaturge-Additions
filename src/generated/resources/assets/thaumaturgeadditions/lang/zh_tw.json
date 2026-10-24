@@ -19,7 +19,7 @@
   "research.thaumaturgeadditions.arcane_workbench_upgrade.stage_1": "這個背包升級可以消耗所在區塊的靈氣隨時隨地合成奧術配方，就像奧術工作臺一樣！",
   "research.thaumaturgeadditions.arcane_workbench_upgrade.title": "奧術工作臺升級",
   "research.thaumaturgeadditions.everburning_urn.stage_0": "雖然無盡之甕極其便利，但我確信還能更進一步。製造一種類似的、但適用於其他類型流體的裝置。比如說……熔岩？",
-  "research.thaumaturgeadditions.everburning_urn.stage_1": "通過向無盡之甕中注入一系列通往下界的微型傳送門，我能夠汲取到我所需的全部熔岩。然而，這個過程並非完美無缺。<BR>首先，速度很慢。它水版本的兄弟頃刻間就能填滿，但這個被我稱爲“永燃之甕”的裝置，需要大約一分鐘才能生成一桶熔岩。<BR>同時，這個過程對靈氣場的消耗也大得多。據我計算，維持傳送門網絡大約會消耗靈氣場中25點靈氣。<BR>最後，爲了安全起見，我禁用了這個甕自動填充附近容器的功能。可不能讓滾燙的熔岩四處飛濺。",
+  "research.thaumaturgeadditions.everburning_urn.stage_1": "通過向無盡之甕中注入一組通往下界的微型傳送門，我能夠汲取到所需的全部熔岩。然而，這個過程並非完美無缺。<BR>首先，它受制於靈氣場。它水版本的兄弟頃刻間就能填滿，而這個被我稱爲“永燃之甕”的裝置，只能隨著從局部靈氣場汲取靈氣的速度緩緩凝出熔岩，一次不過涓滴。<BR>不過消耗倒不大：維持傳送門網絡，每產出一桶熔岩大約只耗去靈氣場中1點靈氣。<BR>我沒料到的是它全無節制。放任不管時，它會主動把熔岩灌進附近任何一個煉藥鍋或帶流體能力的容器裏。後來我總算學會約束這股衝動——不過，想讓它撒歡也不是不行。",
   "research.thaumaturgeadditions.everburning_urn.title": "永燃之甕",
   "research.thaumaturgeadditions.focus_salis_mundus.stage_0": "雖然世界鹽本身足夠便宜，但是這玩意用量還是挺大的，每次要搭建一些結構需要世界鹽的時候，總會缺少一點點。<BR>本來也就是走個形式往上面撒點魔法，何必專門去研磨幾粒鹽呢？",
   "research.thaumaturgeadditions.focus_salis_mundus.stage_1": "世界鹽的核心版，施加於特定方塊時可觸發轉化，且不消耗世界鹽。<BR>僅此而已，也沒什麼別的了。",
