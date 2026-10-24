@@ -1,7 +1,0 @@
-{
-  "parent": "builtin/generated",
-  "textures": {
-    "layer0": "thaumaturgeadditions:item/rainbow_scribing_tools",
-    "layer1": "thaumaturgeadditions:item/rainbow_scribing_tools_overlay"
-  }
-}
