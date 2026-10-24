@@ -32,9 +32,9 @@ public class ZhCnProvider extends LanguageProvider {
         add("spell.thaumaturgeadditions.salis_mundus.desc", "对着方块施放，按该方块的转化配方替换它，且不额外消耗世界盐。");
 
         add("screen.thaumaturgeadditions.arcane_workbench_upgrade", "奥术工作台");
-        add("item.thaumaturgeadditions.travelersbackpack_arcane_workbench_upgrade.tooltip", "消耗所在区块的灵气随时随地合成奥术配方，就像奥术工作台一样！");
+        add("item.travelersbackpack.travelersbackpack_arcane_workbench_upgrade_tooltip", "消耗所在区块的灵气随时随地合成奥术配方，就像奥术工作台一样！");
         add("item.thaumaturgeadditions.sophisticatedbackpacks_arcane_workbench_upgrade.tooltip", "消耗所在区块的灵气随时随地合成奥术配方，就像奥术工作台一样！");
-        add("item.thaumaturgeadditions.travelersbackpack_arcane_charger_upgrade.tooltip", "装在背包里：让奥术工作台升级从周围 3x3 区块吸取灵气。");
+        add("item.travelersbackpack.travelersbackpack_arcane_charger_upgrade_tooltip", "装在背包里：让奥术工作台升级从周围 3x3 区块吸取灵气。");
         add("item.thaumaturgeadditions.sophisticatedbackpacks_arcane_charger_upgrade.tooltip", "装在背包里：让奥术工作台升级从周围 3x3 区块吸取灵气。");
     }
 

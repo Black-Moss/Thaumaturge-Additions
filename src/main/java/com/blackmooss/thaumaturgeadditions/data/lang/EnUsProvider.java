@@ -32,9 +32,9 @@ public class EnUsProvider extends LanguageProvider {
         add("spell.thaumaturgeadditions.salis_mundus.desc", "Cast on a block to transmute it according to that block's transmutation recipe, without spending Salis Mundus.");
 
         add("screen.thaumaturgeadditions.arcane_workbench_upgrade", "Arcane Workbench");
-        add("item.thaumaturgeadditions.travelersbackpack_arcane_workbench_upgrade.tooltip", "Consume the aura of the chunk to craft the arcane recipes anytime, anywhere, just like an Arcane Workbench!");
+        add("item.travelersbackpack.travelersbackpack_arcane_workbench_upgrade_tooltip", "Consume the aura of the chunk to craft the arcane recipes anytime, anywhere, just like an Arcane Workbench!");
         add("item.thaumaturgeadditions.sophisticatedbackpacks_arcane_workbench_upgrade.tooltip", "Consume the aura of the chunk to craft the arcane recipes anytime, anywhere, just like an Arcane Workbench!");
-        add("item.thaumaturgeadditions.travelersbackpack_arcane_charger_upgrade.tooltip", "In the backpack: lets the Arcane Workbench upgrade draw vis from the surrounding 3x3 chunks.");
+        add("item.travelersbackpack.travelersbackpack_arcane_charger_upgrade_tooltip", "In the backpack: lets the Arcane Workbench upgrade draw vis from the surrounding 3x3 chunks.");
         add("item.thaumaturgeadditions.sophisticatedbackpacks_arcane_charger_upgrade.tooltip", "In the backpack: lets the Arcane Workbench upgrade draw vis from the surrounding 3x3 chunks.");
     }
 

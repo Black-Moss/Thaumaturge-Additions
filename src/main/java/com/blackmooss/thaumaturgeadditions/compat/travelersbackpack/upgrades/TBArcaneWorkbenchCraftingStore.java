@@ -4,29 +4,27 @@ import com.leclowndu93150.thaumaturge.api.aspect.AspectInstance;
 import com.leclowndu93150.thaumaturge.api.aspect.AspectList;
 import com.leclowndu93150.thaumaturge.api.aspect.IAspect;
 import com.leclowndu93150.thaumaturge.api.recipe.IArcaneCraftingStore;
+import com.leclowndu93150.thaumaturge.api.transaction.RootCommitJournal;
+import com.leclowndu93150.thaumaturge.api.transaction.TransactionContext;
 import com.leclowndu93150.thaumaturge.content.taint.item.ItemEssentiaCrystal;
-import com.tiviacz.travelersbackpack.util.StacksHandlerUtils;
 import net.minecraft.core.Holder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.neoforged.neoforge.transfer.item.ItemResource;
-import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
-import net.neoforged.neoforge.transfer.transaction.RootCommitJournal;
-import net.neoforged.neoforge.transfer.transaction.TransactionContext;
+import net.neoforged.neoforge.items.ItemStackHandler;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public final class TravelersBackpackArcaneWorkbenchCraftingStore implements IArcaneCraftingStore {
-    private final ItemStacksResourceHandler items;
+public final class TBArcaneWorkbenchCraftingStore implements IArcaneCraftingStore {
+    private final ItemStackHandler items;
     private final Player player;
     private final int left;
     private final int top;
     private final int width;
     private final int height;
 
-    public TravelersBackpackArcaneWorkbenchCraftingStore(ItemStacksResourceHandler items, Player player, int left, int top, int width, int height) {
+    public TBArcaneWorkbenchCraftingStore(ItemStackHandler items, Player player, int left, int top, int width, int height) {
         this.items = Objects.requireNonNull(items, "items");
         this.player = Objects.requireNonNull(player, "player");
         this.left = left;
@@ -45,10 +43,10 @@ public final class TravelersBackpackArcaneWorkbenchCraftingStore implements IArc
         List<ItemStack> overflow = new ArrayList<>();
         for (int y = 0; y < this.height; y++) {
             for (int x = 0; x < this.width; x++) {
-                consumeGridSlot(x, y, consumption, overflow, transaction);
+                consumeGridSlot(x, y, consumption, overflow);
             }
         }
-        if (!consumeCrystals(consumption.crystals(), transaction)) {
+        if (!consumeCrystals(consumption.crystals())) {
             return false;
         }
         replaceWand(consumption.wand(), transaction);
@@ -62,9 +60,9 @@ public final class TravelersBackpackArcaneWorkbenchCraftingStore implements IArc
         if (grid.size() != this.width * this.height) {
             return false;
         }
-        for (int slot = 0; slot < TravelersBackpackArcaneWorkbenchUpgrade.GRID_SLOTS; slot++) {
-            int x = slot % TravelersBackpackArcaneWorkbenchUpgrade.GRID_WIDTH - this.left;
-            int y = slot / TravelersBackpackArcaneWorkbenchUpgrade.GRID_WIDTH - this.top;
+        for (int slot = 0; slot < TBArcaneWorkbenchUpgrade.GRID_SLOTS; slot++) {
+            int x = slot % TBArcaneWorkbenchUpgrade.GRID_WIDTH - this.left;
+            int y = slot / TBArcaneWorkbenchUpgrade.GRID_WIDTH - this.top;
             boolean inside = x >= 0 && x < this.width && y >= 0 && y < this.height;
             ItemStack expected = inside ? grid.get(x + y * this.width) : ItemStack.EMPTY;
             if (!ItemStack.matches(getStack(slot), expected)) {
@@ -74,14 +72,14 @@ public final class TravelersBackpackArcaneWorkbenchCraftingStore implements IArc
         return true;
     }
 
-    private void consumeGridSlot(int x, int y, Consumption consumption, List<ItemStack> overflow, TransactionContext transaction) {
+    private void consumeGridSlot(int x, int y, Consumption consumption, List<ItemStack> overflow) {
         int compact = x + y * this.width;
-        int slot = x + this.left + (y + this.top) * TravelersBackpackArcaneWorkbenchUpgrade.GRID_WIDTH;
+        int slot = x + this.left + (y + this.top) * TBArcaneWorkbenchUpgrade.GRID_WIDTH;
         ItemStack current = getStack(slot);
         if (current.isEmpty()) {
             return;
         }
-        if (this.items.extract(slot, ItemResource.of(current), 1, transaction) <= 0) {
+        if (this.items.extractItem(slot, 1, false).isEmpty()) {
             return;
         }
         ItemStack remainder = compact < consumption.remainders().size() ? consumption.remainders().get(compact) : ItemStack.EMPTY;
@@ -90,17 +88,17 @@ public final class TravelersBackpackArcaneWorkbenchCraftingStore implements IArc
         }
         ItemStack leftOver = getStack(slot);
         if (leftOver.isEmpty() || ItemStack.isSameItemSameComponents(leftOver, remainder)) {
-            this.items.insert(slot, ItemResource.of(remainder), remainder.getCount(), transaction);
+            this.items.insertItem(slot, remainder, false);
         } else {
             overflow.add(remainder.copy());
         }
     }
 
-    private boolean consumeCrystals(AspectList crystals, TransactionContext transaction) {
+    private boolean consumeCrystals(AspectList crystals) {
         for (AspectInstance entry : crystals.entries()) {
             int needed = entry.amount();
-            for (int index = 0; index < TravelersBackpackArcaneWorkbenchUpgrade.CRYSTAL_SLOTS && needed > 0; index++) {
-                int slot = TravelersBackpackArcaneWorkbenchUpgrade.CRYSTAL_START + index;
+            for (int index = 0; index < TBArcaneWorkbenchUpgrade.CRYSTAL_SLOTS && needed > 0; index++) {
+                int slot = TBArcaneWorkbenchUpgrade.CRYSTAL_START + index;
                 ItemStack crystal = getStack(slot);
                 if (crystal.isEmpty() || !(crystal.getItem() instanceof ItemEssentiaCrystal)) {
                     continue;
@@ -110,7 +108,7 @@ public final class TravelersBackpackArcaneWorkbenchCraftingStore implements IArc
                     continue;
                 }
                 int removed = Math.min(needed, crystal.getCount());
-                needed -= this.items.extract(slot, ItemResource.of(crystal), removed, transaction);
+                needed -= this.items.extractItem(slot, removed, false).getCount();
             }
             if (needed > 0) {
                 return false;
@@ -120,20 +118,20 @@ public final class TravelersBackpackArcaneWorkbenchCraftingStore implements IArc
     }
 
     private void replaceWand(ItemStack wand, TransactionContext transaction) {
-        int slot = TravelersBackpackArcaneWorkbenchUpgrade.WAND_SLOT;
+        int slot = TBArcaneWorkbenchUpgrade.WAND_SLOT;
         ItemStack current = getStack(slot);
         if (ItemStack.matches(current, wand)) {
             return;
         }
         if (!current.isEmpty()) {
-            this.items.extract(slot, ItemResource.of(current), current.getCount(), transaction);
+            this.items.extractItem(slot, current.getCount(), false);
         }
         if (!wand.isEmpty()) {
-            this.items.insert(slot, ItemResource.of(wand), wand.getCount(), transaction);
+            this.items.insertItem(slot, wand, false);
         }
     }
 
     private ItemStack getStack(int slot) {
-        return StacksHandlerUtils.getStackInSlot(this.items, slot);
+        return this.items.getStackInSlot(slot);
     }
 }

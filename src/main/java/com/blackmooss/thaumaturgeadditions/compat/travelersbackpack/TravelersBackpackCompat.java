@@ -1,8 +1,8 @@
 package com.blackmooss.thaumaturgeadditions.compat.travelersbackpack;
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
-import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.item.TravelersBackpackArcaneChargerItemFactory;
-import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.item.TravelersBackpackArcaneWorkbenchItemFactory;
+import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.item.TBArcaneChargerItemFactory;
+import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.item.TBArcaneWorkbenchItemFactory;
 import com.leclowndu93150.thaumaturge.api.recipe.RegisterWorkbenchAuraSourcesEvent;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -29,16 +29,16 @@ public final class TravelersBackpackCompat {
 
     @SubscribeEvent
     public static void onRegisterAuraSources(RegisterWorkbenchAuraSourcesEvent event) {
-        event.register(new TravelersBackpackArcaneWorkbenchAuraSource());
+        event.register(new TBArcaneWorkbenchAuraSource());
     }
 
     public static Item createArcaneWorkbenchUpgradeItem(Item.Properties properties) {
         Objects.requireNonNull(properties, "properties");
-        return isLoaded() ? TravelersBackpackArcaneWorkbenchItemFactory.create(properties) : new Item(properties);
+        return isLoaded() ? TBArcaneWorkbenchItemFactory.create(properties) : new Item(properties);
     }
 
     public static Item createArcaneChargerUpgradeItem(Item.Properties properties) {
         Objects.requireNonNull(properties, "properties");
-        return isLoaded() ? TravelersBackpackArcaneChargerItemFactory.create(properties) : new Item(properties);
+        return isLoaded() ? TBArcaneChargerItemFactory.create(properties) : new Item(properties);
     }
 }

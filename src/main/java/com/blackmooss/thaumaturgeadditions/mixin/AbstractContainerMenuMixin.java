@@ -1,7 +1,7 @@
 package com.blackmooss.thaumaturgeadditions.mixin;
 
 import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.TravelersBackpackCompat;
-import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.menu.slot.TravelersBackpackArcaneResultSlot;
+import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.menu.slot.TBArcaneResultSlot;
 import com.tiviacz.travelersbackpack.inventory.menu.BackpackBaseMenu;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -36,7 +36,7 @@ public abstract class AbstractContainerMenuMixin {
         if (slotId < 0 || slotId >= menu.slots.size()) {
             return;
         }
-        if (!(menu.slots.get(slotId) instanceof TravelersBackpackArcaneResultSlot resultSlot) || !(menu instanceof BackpackBaseMenu backpackMenu)) {
+        if (!(menu.slots.get(slotId) instanceof TBArcaneResultSlot resultSlot) || !(menu instanceof BackpackBaseMenu backpackMenu)) {
             return;
         }
         if (!resultSlot.mayPickup(player)) {

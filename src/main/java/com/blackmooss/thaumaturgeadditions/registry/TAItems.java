@@ -2,6 +2,7 @@ package com.blackmooss.thaumaturgeadditions.registry;
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
 import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.SophisticatedBackpacksCompat;
+import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.TravelersBackpackCompat;
 import com.blackmooss.thaumaturgeadditions.item.VoidTravellerBootsItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -31,14 +32,14 @@ public final class TAItems {
                     .stacksTo(16));
 
     public static final DeferredItem<Item> TRAVELERS_BACKPACK_ARCANE_WORKBENCH_UPGRADE = ITEMS.registerItem(
-            "travelersbackpack_arcane_workbench_upgrade", Item::new, new Item.Properties()
+            "travelersbackpack_arcane_workbench_upgrade", TravelersBackpackCompat::createArcaneWorkbenchUpgradeItem, new Item.Properties()
                     .stacksTo(16));
 
     public static final DeferredItem<Item> SOPHISTICATED_BACKPACKS_ARCANE_CHARGER_UPGRADE = ITEMS.registerItem(
             "sophisticatedbackpacks_arcane_charger_upgrade", SophisticatedBackpacksCompat::createArcaneChargerUpgradeItem, new Item.Properties()
                     .stacksTo(16));
     public static final DeferredItem<Item> TRAVELERS_BACKPACK_ARCANE_CHARGER_UPGRADE = ITEMS.registerItem(
-            "travelersbackpack_arcane_charger_upgrade", Item::new, new Item.Properties()
+            "travelersbackpack_arcane_charger_upgrade", TravelersBackpackCompat::createArcaneChargerUpgradeItem, new Item.Properties()
                     .stacksTo(16));
 
     private TAItems() {
