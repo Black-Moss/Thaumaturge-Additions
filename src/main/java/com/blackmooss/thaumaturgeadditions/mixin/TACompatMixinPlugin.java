@@ -1,4 +1,4 @@
-﻿package com.blackmooss.thaumaturgeadditions.mixin;
+package com.blackmooss.thaumaturgeadditions.mixin;
 
 import org.jspecify.annotations.Nullable;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
