@@ -2,6 +2,7 @@
   "required": true,
   "package": "com.blackmooss.thaumaturgeadditions.mixin",
   "compatibilityLevel": "JAVA_25",
+  "plugin": "com.blackmooss.thaumaturgeadditions.mixin.TACompatMixinPlugin",
   "mixins": [
     "AbstractContainerMenuMixin"
   ],

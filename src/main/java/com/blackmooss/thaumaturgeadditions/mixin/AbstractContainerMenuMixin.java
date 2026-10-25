@@ -23,7 +23,12 @@ public abstract class AbstractContainerMenuMixin {
             boolean backwards);
 
     @Inject(method = "clicked", at = @At("HEAD"), cancellable = true)
-    private void thaumaturgeadditions$quickMoveArcaneResult(int slotIndex, int buttonNum, ContainerInput containerInput, Player player, CallbackInfo callback) {
+    private void thaumaturgeadditions$quickMoveArcaneResult(
+            int slotIndex,
+            int buttonNum,
+            ContainerInput containerInput,
+            Player player,
+            CallbackInfo callback) {
         if (containerInput != ContainerInput.QUICK_MOVE || !TravelersBackpackCompat.isLoaded()) {
             return;
         }
