@@ -137,8 +137,8 @@ dependencies {
     // Mystical Agriculture
 //    implementation 'com.blakebr0.mysticalagriculture:MysticalAgriculture:26.1.2-9.0.10'
 
-    // Better Inventory and Backpacks
-    implementation "curse.maven:better-inventory-and-backpacks-1618019:${better_inventory_and_backpacks_version}"
+    implementation "maven.modrinth:cVNW5lr6:AsQ0Y2G9"
+    implementation "maven.modrinth:5faXoLqX:IMssx9du"
 }
 
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
