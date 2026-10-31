@@ -1,3 +1,6 @@
+![CurseForge 下载](https://img.shields.io/curseforge/dt/1748112?style=for-the-badge&logo=curseforge&logoColor=%23F16436)
+![GitHub 最后提交](https://img.shields.io/github/last-commit/Black-Moss/Thaumaturge-Additions?style=for-the-badge&logo=github&logoColor=%23181717)
+
 [English Guide](README.md)
 
 # Thaumaturge Additions

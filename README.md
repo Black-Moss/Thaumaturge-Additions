@@ -1,3 +1,6 @@
+![CurseForge Downloads](https://img.shields.io/curseforge/dt/1748112?style=for-the-badge&logo=curseforge&logoColor=%23F16436)
+![GitHub last commit](https://img.shields.io/github/last-commit/Black-Moss/Thaumaturge-Additions?style=for-the-badge&logo=github&logoColor=%23181717)
+
 [中文指南](README_ZH.md)
 
 # Thaumaturge Additions
