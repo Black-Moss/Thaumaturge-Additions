@@ -11,9 +11,9 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
@@ -33,6 +33,14 @@ public final class ThaumaturgeAdditionsClient {
     @SubscribeEvent
     private static void onRegisterItemTintSources(RegisterColorHandlersEvent.ItemTintSources event) {
         event.register(RainbowTintSource.ID, RainbowTintSource.MAP_CODEC);
+    }
+
+    @SubscribeEvent
+    public static void onClientSetup(FMLClientSetupEvent event) {
+        ModList.get()
+                .getModContainerById(ThaumaturgeAdditions.MODID)
+                .ifPresent(container ->
+                        container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new));
     }
 
     @SubscribeEvent
