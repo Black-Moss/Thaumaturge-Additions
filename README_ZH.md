@@ -1,11 +1,5 @@
-<div align="center">
-    <a href="https://www.curseforge.com/minecraft/mc-mods/thaumaturge-additions">
-        <img alt="CurseForge 下载" src="https://img.shields.io/curseforge/dt/1748112?style=for-the-badge&logo=curseforge&logoColor=%23F16436&link=https%3A%2F%2Fwww.curseforge.com%2Fminecraft%2Fmc-mods%2Fthaumaturge-additions">
-    </a>
-    <a href="https://github.com/Black-Moss/Thaumaturge-Additions">
-        <img alt="GitHub 最后提交" src="https://img.shields.io/github/last-commit/Black-Moss/Thaumaturge-Additions?style=for-the-badge&logo=github&logoColor=%23181717&link=https%3A%2F%2Fgithub.com%2FBlack-Moss%2FThaumaturge-Additions">
-    </a>
-</div>
+![CurseForge 下载](https://img.shields.io/curseforge/dt/1748112?style=for-the-badge&logo=curseforge&logoColor=%23F16436)
+![GitHub 最后提交](https://img.shields.io/github/last-commit/Black-Moss/Thaumaturge-Additions?style=for-the-badge&logo=github&logoColor=%23181717)
 
 [English Guide](README.md)
 
