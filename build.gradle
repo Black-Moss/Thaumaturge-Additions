@@ -123,13 +123,13 @@ dependencies {
     implementation "maven.modrinth:jade:${jade_version}"
 
     // Traveler's Backpack
-    compileOnly "maven.modrinth:rlloIFEV:${travelersbackpack_version}"
+    implementation "maven.modrinth:rlloIFEV:${travelersbackpack_version}"
 
     // Sophisticated Core
-    compileOnly "maven.modrinth:sophisticated-core:${sophisticatedcore_version}"
+    implementation "maven.modrinth:sophisticated-core:${sophisticatedcore_version}"
 
     // Sophisticated Backpacks
-    compileOnly "maven.modrinth:sophisticated-backpacks:${sophisticatedbackpacks_version}"
+    implementation "maven.modrinth:sophisticated-backpacks:${sophisticatedbackpacks_version}"
 }
 
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
