@@ -33,4 +33,4 @@ run/
 repo/
 !**/src/**/repo/
 
-/thaumaturge-1.21.1-NeoForge-*.jar
+/thaumaturge-*
