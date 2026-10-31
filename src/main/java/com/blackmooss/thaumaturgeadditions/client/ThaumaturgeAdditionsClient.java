@@ -13,10 +13,14 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.DyedItemColor;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
+import net.neoforged.neoforge.client.gui.ConfigurationScreen;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 
 @EventBusSubscriber(modid = ThaumaturgeAdditions.MODID, value = Dist.CLIENT)
 public final class ThaumaturgeAdditionsClient {
@@ -35,6 +39,14 @@ public final class ThaumaturgeAdditionsClient {
         event.getItemColors().register(
                 (stack, tintIndex) -> tintIndex == 1 ? DyedItemColor.getOrDefault(stack, 0xFF6A3880) : -1,
                 TAItems.VOID_TRAVELLER_BOOTS.get());
+    }
+
+    @SubscribeEvent
+    public static void onClientSetup(FMLClientSetupEvent event) {
+        ModList.get()
+                .getModContainerById(ThaumaturgeAdditions.MODID)
+                .ifPresent(container ->
+                        container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new));
     }
 
     @SubscribeEvent
