@@ -7,7 +7,6 @@ import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 
 public class ZhTwProvider extends LanguageProvider {
-
     public ZhTwProvider(PackOutput output) {
         super(output, ThaumaturgeAdditions.MODID, "zh_tw");
     }
