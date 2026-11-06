@@ -46,16 +46,10 @@
 
 以核心形态存在的世界盐。对拥有转化配方的方块施放即可完成转化，且**不会消耗世界盐本身**，让大规模转化工程对库存的压力小得多。
 
-## 运行需求
+## 鸣谢
 
-- Minecraft 26.1.2
-- NeoForge 26.1.2.114 及以上
-- **[Thaumaturge](https://www.curseforge.com/minecraft/mc-mods/thaumaturge)** 1.0.2 及以上（必需）
-
-可选：
-
-- **[旅行者背包](https://www.curseforge.com/minecraft/mc-mods/travelers-backpack)** 11.2.8+ —— 使用其奥术工作台与充能板升级
-- **[精妙背包](https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks)** 3.26.9+ —— 使用其奥术工作台与充能板升级
+- Lorc：详见[COPYRIGHT.md](src/main/resources/COPYRIGHT.md)
+- IReyI：提供俄语翻译
 
 ## 许可证
 

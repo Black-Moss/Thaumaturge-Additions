@@ -5,7 +5,6 @@ import com.blackmooss.thaumaturgeadditions.data.ModBlockLootSubProvider;
 import com.blackmooss.thaumaturgeadditions.data.ModRecipeProvider;
 import com.blackmooss.thaumaturgeadditions.data.lang.EnUsProvider;
 import com.blackmooss.thaumaturgeadditions.data.lang.ZhCnProvider;
-import com.blackmooss.thaumaturgeadditions.data.lang.ZhTwProvider;
 import com.blackmooss.thaumaturgeadditions.data.tag.ModBlockTagsProvider;
 import com.blackmooss.thaumaturgeadditions.data.tag.ModItemTagsProvider;
 import com.blackmooss.thaumaturgeadditions.registry.*;
@@ -60,7 +59,6 @@ public class ThaumaturgeAdditions {
 
         event.createProvider(EnUsProvider::new);
         event.createProvider(ZhCnProvider::new);
-        event.createProvider(ZhTwProvider::new);
 
         event.createProvider(ModRecipeProvider::new);
         event.createBlockAndItemTags(

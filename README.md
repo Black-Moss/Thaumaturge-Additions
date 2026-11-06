@@ -46,16 +46,10 @@ A sibling of the Everfull Urn, except it produces lava instead of water. You can
 
 Salis Mundus in the shape of a proper focus. Cast it at a block that has a transmutation recipe and the block is converted — and you do not consume the Salis Mundus itself, which makes large-scale transmutation projects far less painful on your reserves.
 
-## Requirements
+## Acknowledgements
 
-- Minecraft 26.1.2
-- NeoForge 26.1.2.114 or newer
-- **[Thaumaturge](https://www.curseforge.com/minecraft/mc-mods/thaumaturge)** 1.0.2 or newer (required)
-
-Optional:
-
-- **[Traveler's Backpack](https://www.curseforge.com/minecraft/mc-mods/travelers-backpack)** 11.2.8+ — for its Arcane Workbench and Charger upgrades
-- **[Sophisticated Backpacks](https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks)** 3.26.9+ — for its Arcane Workbench and Charger upgrades
+- Lorc: See [COPYRIGHT.md](src/main/resources/COPYRIGHT.md) for details
+- IReyI: Provide Russian translation
 
 ## License
 
