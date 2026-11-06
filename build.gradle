@@ -107,7 +107,7 @@ dependencies {
     implementation "maven.modrinth:lithostitched:${lithostitched_version}"
 
     // Thaumaturge
-    implementation files("thaumaturge-${thaumaturge_version}.jar")
+    implementation "curse.maven:thaumaturge-1628024:${thaumaturge_version}"
 
     // JEI
     compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
