@@ -25,7 +25,10 @@ import com.tiviacz.travelersbackpack.inventory.BackpackWrapper;
 import com.tiviacz.travelersbackpack.inventory.UpgradeManager;
 import com.tiviacz.travelersbackpack.inventory.menu.BackpackBaseMenu;
 import com.tiviacz.travelersbackpack.inventory.menu.slot.BackpackSlotItemHandler;
-import com.tiviacz.travelersbackpack.inventory.upgrades.*;
+import com.tiviacz.travelersbackpack.inventory.upgrades.IMoveSelector;
+import com.tiviacz.travelersbackpack.inventory.upgrades.ITickableUpgrade;
+import com.tiviacz.travelersbackpack.inventory.upgrades.Point;
+import com.tiviacz.travelersbackpack.inventory.upgrades.UpgradeBase;
 import com.tiviacz.travelersbackpack.util.InventoryHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
@@ -160,16 +163,16 @@ public class TBArcaneWorkbenchUpgrade extends UpgradeBase<TBArcaneWorkbenchUpgra
         return getDataHolderStack().getOrDefault(TADataComponents.BACKPACK_WORKBENCH_AURA, 0);
     }
 
-    public ItemStack getResultStack() {
-        return this.resultContainer.getItem(0);
-    }
-
     private void setStoredAura(int aura) {
         ItemStack dataHolderStack = getDataHolderStack();
         if (dataHolderStack.isEmpty()) {
             return;
         }
         updateDataHolderUnchecked(TADataComponents.BACKPACK_WORKBENCH_AURA.get(), aura <= 0 ? null : aura);
+    }
+
+    public ItemStack getResultStack() {
+        return this.resultContainer.getItem(0);
     }
 
     public void refreshResult() {

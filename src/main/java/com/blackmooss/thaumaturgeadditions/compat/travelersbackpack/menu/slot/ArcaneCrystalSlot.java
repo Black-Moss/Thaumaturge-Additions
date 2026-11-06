@@ -19,12 +19,12 @@ public class ArcaneCrystalSlot extends UpgradeSlotItemHandler<TBArcaneWorkbenchU
         this.aspect = Objects.requireNonNull(aspect, "aspect");
     }
 
-    public ResourceKey<IAspect> getAspect() {
-        return this.aspect;
-    }
-
     public static boolean isValidCrystal(ItemStack stack, ResourceKey<IAspect> aspect) {
         return !stack.isEmpty() && SlotCrystalEssentia.isValidCrystal(stack, aspect);
+    }
+
+    public ResourceKey<IAspect> getAspect() {
+        return this.aspect;
     }
 
     @Override
