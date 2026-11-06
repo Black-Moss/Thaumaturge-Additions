@@ -12,6 +12,15 @@ public final class TACompatMixinPlugin implements IMixinConfigPlugin {
     private static final String TRAVELERS_BACKPACK_MENU =
             "com.tiviacz.travelersbackpack.inventory.menu.BackpackBaseMenu";
 
+    private static boolean isClassPresent() {
+        try {
+            Class.forName(TACompatMixinPlugin.TRAVELERS_BACKPACK_MENU, false, TACompatMixinPlugin.class.getClassLoader());
+            return true;
+        } catch (ClassNotFoundException | LinkageError ignored) {
+            return false;
+        }
+    }
+
     @Override
     public @Nullable String getRefMapperConfig() {
         return null;
@@ -23,15 +32,6 @@ public final class TACompatMixinPlugin implements IMixinConfigPlugin {
             return isClassPresent();
         }
         return true;
-    }
-
-    private static boolean isClassPresent() {
-        try {
-            Class.forName(TACompatMixinPlugin.TRAVELERS_BACKPACK_MENU, false, TACompatMixinPlugin.class.getClassLoader());
-            return true;
-        } catch (ClassNotFoundException | LinkageError ignored) {
-            return false;
-        }
     }
 
     @Override
