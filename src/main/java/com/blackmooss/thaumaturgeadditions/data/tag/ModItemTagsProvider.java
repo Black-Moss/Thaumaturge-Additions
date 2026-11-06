@@ -7,7 +7,9 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.data.tags.TagsProvider;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jspecify.annotations.NonNull;
 
@@ -26,6 +28,42 @@ public final class ModItemTagsProvider extends ItemTagsProvider {
     protected void addTags(HolderLookup.@NonNull Provider provider) {
         tag(TTItemTags.SCRIBING_TOOLS)
                 .add(TAItems.RAINBOW_SCRIBING_TOOLS.get());
+
+        tag(TTItemTags.TRIMMABLE_ARMOR)
+                .add(TAItems.VOID_TRAVELLER_BOOTS.get());
+
+        tag(TTItemTags.ARMORS_BOOTS)
+                .add(TAItems.VOID_TRAVELLER_BOOTS.get());
+
+        tag(ItemTags.VANISHING_ENCHANTABLE)
+                .add(TAItems.VOID_TRAVELLER_BOOTS.get());
+
+        tag(ItemTags.FOOT_ARMOR)
+                .add(TAItems.VOID_TRAVELLER_BOOTS.get());
+
+        tag(ItemTags.FOOT_ARMOR_ENCHANTABLE)
+                .add(TAItems.VOID_TRAVELLER_BOOTS.get());
+
+        tag(ItemTags.ARMOR_ENCHANTABLE)
+                .add(TAItems.VOID_TRAVELLER_BOOTS.get());
+
+        tag(ItemTags.EQUIPPABLE_ENCHANTABLE)
+                .add(TAItems.VOID_TRAVELLER_BOOTS.get());
+
+        tag(ItemTags.DURABILITY_ENCHANTABLE)
+                .add(TAItems.VOID_TRAVELLER_BOOTS.get());
+
+        tag(ItemTags.TRIMMABLE_ARMOR)
+                .add(TAItems.VOID_TRAVELLER_BOOTS.get());
+
+        tag(Tags.Items.ARMORS)
+                .add(TAItems.VOID_TRAVELLER_BOOTS.get());
+
+        tag(Tags.Items.ENCHANTABLES)
+                .add(TAItems.VOID_TRAVELLER_BOOTS.get());
+
+//        tag(Tags.Items.ARMORS_HUMANOID)
+//                .add(TAItems.VOID_TRAVELLER_BOOTS.get());
     }
 
     @Override
