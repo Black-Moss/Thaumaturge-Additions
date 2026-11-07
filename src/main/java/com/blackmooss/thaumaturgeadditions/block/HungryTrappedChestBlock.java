@@ -9,8 +9,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.stats.Stat;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.Mth;
-import net.minecraft.world.Container;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.ChestBlock;
@@ -20,7 +18,6 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.ChestType;
 import org.jspecify.annotations.NonNull;
 
 public class HungryTrappedChestBlock extends ChestBlock {
@@ -30,32 +27,10 @@ public class HungryTrappedChestBlock extends ChestBlock {
         super(TABlockEntities.HUNGRY_TRAPPED_CHEST::get, SoundEvents.CHEST_OPEN, SoundEvents.CHEST_CLOSE, properties);
     }
 
-    private static int stackSignal(@NonNull BlockGetter level, @NonNull BlockPos pos, @NonNull BlockState state) {
-        float ratio = 0.0F;
-        if (level.getBlockEntity(pos) instanceof Container container) {
-            ratio = maxStackRatio(container);
-        }
-        if (state.getValue(ChestBlock.TYPE) != ChestType.SINGLE
-                && level.getBlockEntity(pos.relative(ChestBlock.getConnectedDirection(state)))
-                instanceof Container neighbour) {
-            ratio = Math.max(ratio, maxStackRatio(neighbour));
-        }
-        return Mth.clamp(Mth.floor(ratio * 15.0F), 0, 15);
-    }
-
-    private static float maxStackRatio(@NonNull Container container) {
-        float ratio = 0.0F;
-        for (int slot = 0; slot < container.getContainerSize(); slot++) {
-            ItemStack stack = container.getItem(slot);
-            if (stack.isEmpty()) {
-                continue;
-            }
-            int limit = Math.min(container.getMaxStackSize(), stack.getMaxStackSize());
-            if (limit > 0) {
-                ratio = Math.max(ratio, (float) stack.getCount() / limit);
-            }
-        }
-        return ratio;
+    private static int pulseSignal(@NonNull BlockGetter level, @NonNull BlockPos pos) {
+        return level.getBlockEntity(pos) instanceof HungryTrappedChestBlockEntity chest
+                ? chest.getPulseStrength()
+                : 0;
     }
 
     @Override
@@ -90,7 +65,7 @@ public class HungryTrappedChestBlock extends ChestBlock {
             @NonNull BlockPos pos,
             @NonNull Direction direction) {
         return Math.max(Mth.clamp(ChestBlockEntity.getOpenCount(level, pos), 0, 15),
-                stackSignal(level, pos, state));
+                pulseSignal(level, pos));
     }
 
     @Override
@@ -99,7 +74,7 @@ public class HungryTrappedChestBlock extends ChestBlock {
             @NonNull Level level,
             @NonNull BlockPos pos,
             @NonNull Direction direction) {
-        return stackSignal(level, pos, state);
+        return pulseSignal(level, pos);
     }
 
     @Override
