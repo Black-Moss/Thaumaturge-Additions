@@ -2,9 +2,9 @@
   "required": true,
   "package": "com.blackmooss.thaumaturgeadditions.mixin",
   "compatibilityLevel": "JAVA_25",
-  "plugin": "com.blackmooss.thaumaturgeadditions.mixin.TACompatMixinPlugin",
+  "plugin": "com.blackmooss.thaumaturgeadditions.mixin.travelersbackpack.TravelersBackpackMixinPlugin",
   "mixins": [
-    "AbstractContainerMenuMixin"
+    "travelersbackpack.AbstractContainerMenuMixin"
   ],
   "injectors": {
     "defaultRequire": 1

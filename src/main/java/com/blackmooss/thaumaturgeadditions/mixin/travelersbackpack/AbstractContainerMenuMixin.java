@@ -1,4 +1,4 @@
-package com.blackmooss.thaumaturgeadditions.mixin;
+package com.blackmooss.thaumaturgeadditions.mixin.travelersbackpack;
 
 import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.TravelersBackpackCompat;
 import com.blackmooss.thaumaturgeadditions.compat.travelersbackpack.menu.slot.TBArcaneResultSlot;

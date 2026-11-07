@@ -1,20 +1,20 @@
-package com.blackmooss.thaumaturgeadditions.mixin;
+package com.blackmooss.thaumaturgeadditions.mixin.travelersbackpack;
 
 import org.jspecify.annotations.Nullable;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 
 import java.util.List;
 
-public final class TACompatMixinPlugin implements IMixinConfigPlugin {
+public final class TravelersBackpackMixinPlugin implements IMixinConfigPlugin {
     private static final String ABSTRACT_CONTAINER_MENU_MIXIN =
-            "com.blackmooss.thaumaturgeadditions.mixin.AbstractContainerMenuMixin";
+            "com.blackmooss.thaumaturgeadditions.mixin.travelersbackpack.AbstractContainerMenuMixin";
 
     private static final String TRAVELERS_BACKPACK_MENU =
             "com.tiviacz.travelersbackpack.inventory.menu.BackpackBaseMenu";
 
     private static boolean isClassPresent() {
         try {
-            Class.forName(TACompatMixinPlugin.TRAVELERS_BACKPACK_MENU, false, TACompatMixinPlugin.class.getClassLoader());
+            Class.forName(TravelersBackpackMixinPlugin.TRAVELERS_BACKPACK_MENU, false, TravelersBackpackMixinPlugin.class.getClassLoader());
             return true;
         } catch (ClassNotFoundException | LinkageError ignored) {
             return false;
