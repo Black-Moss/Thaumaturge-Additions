@@ -102,7 +102,7 @@ dependencies {
     implementation "maven.modrinth:lithostitched:${lithostitched_version}"
 
     // Thaumaturge
-    implementation "curse.maven:thaumaturge-1628024:${thaumaturge_version}"
+    implementation "curse.maven:thaumaturge-1628024:${thaumaturge_id}"
 
     // JEI
     compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
@@ -118,26 +118,31 @@ dependencies {
     implementation "maven.modrinth:jade:${jade_version}"
 
     // Traveler's Backpack
-    implementation "maven.modrinth:rlloIFEV:${travelersbackpack_version}"
+    implementation "maven.modrinth:rlloIFEV:${travelersbackpack_id}"
 
     // Sophisticated Core
-    implementation "maven.modrinth:sophisticated-core:${sophisticatedcore_version}"
+    implementation "maven.modrinth:sophisticated-core:${sophisticatedcore_id}"
 
     // Sophisticated Backpacks
-    implementation "maven.modrinth:sophisticated-backpacks:${sophisticatedbackpacks_version}"
+    implementation "maven.modrinth:sophisticated-backpacks:${sophisticatedbackpacks_id}"
 }
 
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
     var replaceProperties = [
-            minecraft_version      : minecraft_version,
-            minecraft_version_range: minecraft_version_range,
-            neo_version            : neo_version,
-            mod_id                 : mod_id,
-            mod_name               : mod_name,
-            mod_license            : mod_license,
-            mod_version            : mod_version,
-            mod_authors            : mod_authors,
-            mod_description        : mod_description
+            minecraft_version             : minecraft_version,
+            minecraft_version_range       : minecraft_version_range,
+            neo_version                   : neo_version,
+            mod_id                        : mod_id,
+            mod_name                      : mod_name,
+            mod_license                   : mod_license,
+            mod_version                   : mod_version,
+            mod_authors                   : mod_authors,
+            mod_description               : mod_description,
+            thaumaturge_version           : thaumaturge_version,
+            jei_version                   : jei_version,
+            travelersbackpack_version     : travelersbackpack_version,
+            sophisticatedcore_version     : sophisticatedcore_version,
+            sophisticatedbackpacks_version: sophisticatedbackpacks_version
     ]
     inputs.properties replaceProperties
     expand replaceProperties

@@ -34,26 +34,34 @@ side = "BOTH"
 [[dependencies.${ mod_id }]]
 modId = "thaumaturge"
 type = "required"
-versionRange = "[1.1.0,)"
+versionRange = "[${thaumaturge_version},)"
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.${ mod_id }]]
 modId = "jei"
 type = "optional"
+versionRange = "[${jei_version},)"
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.${ mod_id }]]
 modId = "travelersbackpack"
 type = "optional"
-versionRange = "[11.2.8,)"
+versionRange = "[${travelersbackpack_version},)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.${ mod_id }]]
+modId = "sophisticatedcore"
+type = "optional"
+versionRange = "[${sophisticatedcore_version},)"
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.${ mod_id }]]
 modId = "sophisticatedbackpacks"
 type = "optional"
-versionRange = "[3.26.9,)"
+versionRange = "[${sophisticatedbackpacks_version},)"
 ordering = "AFTER"
 side = "BOTH"
