@@ -22,11 +22,22 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ChestBlock.class)
 public abstract class ChestBlockMenuProviderMixin {
+    @Unique
+    private static boolean thaumaturgeadditions$hasCustomName(Level level, BlockPos pos) {
+        return level.getBlockEntity(pos) instanceof BaseContainerBlockEntity container
+                && container.getCustomName() != null;
+    }
+
     @Inject(method = "getMenuProvider", at = @At("RETURN"), cancellable = true)
     private void thaumaturgeadditions$nameLargeHungryChest(
-            BlockState state, Level level, BlockPos pos, CallbackInfoReturnable<MenuProvider> callback) {
+            BlockState state,
+            Level level,
+            BlockPos pos,
+            CallbackInfoReturnable<MenuProvider> callback) {
         MenuProvider provider = callback.getReturnValue();
-        if (provider == null || level == null || state == null
+        if (provider == null
+                || level == null
+                || state == null
                 || !(state.getBlock() instanceof BlockHungryChest)
                 || state.getValue(ChestBlock.TYPE) == ChestType.SINGLE) {
             return;
@@ -49,11 +60,5 @@ public abstract class ChestBlockMenuProviderMixin {
                 return provider.createMenu(containerId, inventory, player);
             }
         });
-    }
-
-    @Unique
-    private static boolean thaumaturgeadditions$hasCustomName(Level level, BlockPos pos) {
-        return level.getBlockEntity(pos) instanceof BaseContainerBlockEntity container
-                && container.getCustomName() != null;
     }
 }
