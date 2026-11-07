@@ -82,7 +82,7 @@ public class ModModelProvider extends ModelProvider {
         itemModels.itemModelOutput.accept(TAItems.HUNGRY_TRAPPED_CHEST.get(), new SpecialModelWrapper.Unbaked(
                 Identifier.withDefaultNamespace("item/chest"),
                 Optional.empty(),
-                new ChestSpecialRenderer.Unbaked(TTIds.rl("hungry"))));
+                new ChestSpecialRenderer.Unbaked(ThaumaturgeAdditions.identifier("hungry_trapped"))));
     }
 
     @Override

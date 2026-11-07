@@ -28,6 +28,7 @@ public class ZhCnProvider extends LanguageProvider {
         addBlock(TABlocks.EVERBURNING_URN, "永燃之瓮");
         addBlock(TABlocks.HUNGRY_TRAPPED_CHEST, "饕餮陷阱箱");
         add("gui.thaumaturgeadditions.large_hungry_chest.title", "大型饕餮箱子");
+        add("gui.thaumaturgeadditions.large_hungry_trapped_chest.title", "大型饕餮陷阱箱");
 
         add("focus.thaumaturgeadditions.salis_mundus.name", "世界盐");
         add("focus.thaumaturgeadditions.salis_mundus.text", "魔法尘埃的核心版，施加于特定方块时可触发转化，且不消耗世界盐。");

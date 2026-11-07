@@ -4,21 +4,25 @@ import com.blackmooss.thaumaturgeadditions.registry.TABlockEntities;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.stats.Stat;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.Mth;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.ChestBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
-import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.entity.ChestBlockEntity;
+import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.ChestType;
 import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 public class HungryTrappedChestBlock extends ChestBlock {
     public static final MapCodec<HungryTrappedChestBlock> CODEC = simpleCodec(HungryTrappedChestBlock::new);
@@ -31,6 +35,11 @@ public class HungryTrappedChestBlock extends ChestBlock {
         return level.getBlockEntity(pos) instanceof HungryTrappedChestBlockEntity chest
                 ? chest.getPulseStrength()
                 : 0;
+    }
+
+    private static boolean hasCustomName(@NonNull Level level, @NonNull BlockPos pos) {
+        return level.getBlockEntity(pos) instanceof BaseContainerBlockEntity container
+                && container.getCustomName() != null;
     }
 
     @Override
@@ -46,6 +55,35 @@ public class HungryTrappedChestBlock extends ChestBlock {
     @Override
     public @NonNull BlockEntity newBlockEntity(@NonNull BlockPos pos, @NonNull BlockState state) {
         return new HungryTrappedChestBlockEntity(pos, state);
+    }
+
+    @Override
+    protected @Nullable MenuProvider getMenuProvider(
+            @NonNull BlockState state,
+            @NonNull Level level,
+            @NonNull BlockPos pos) {
+        MenuProvider provider = super.getMenuProvider(state, level, pos);
+        if (provider == null || state.getValue(ChestBlock.TYPE) == ChestType.SINGLE) {
+            return provider;
+        }
+        if (hasCustomName(level, pos)
+                || hasCustomName(level, pos.relative(ChestBlock.getConnectedDirection(state)))) {
+            return provider;
+        }
+        return new MenuProvider() {
+            @Override
+            public @NonNull Component getDisplayName() {
+                return Component.translatable("gui.thaumaturgeadditions.large_hungry_trapped_chest.title");
+            }
+
+            @Override
+            public @Nullable AbstractContainerMenu createMenu(
+                    int containerId,
+                    @NonNull Inventory inventory,
+                    @NonNull Player player) {
+                return provider.createMenu(containerId, inventory, player);
+            }
+        };
     }
 
     @Override

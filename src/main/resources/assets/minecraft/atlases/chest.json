@@ -7,6 +7,18 @@
     {
       "type": "single",
       "resource": "thaumaturgeadditions:entity/chest/hungry_right"
+    },
+    {
+      "type": "single",
+      "resource": "thaumaturgeadditions:entity/chest/hungry_trapped"
+    },
+    {
+      "type": "single",
+      "resource": "thaumaturgeadditions:entity/chest/hungry_trapped_left"
+    },
+    {
+      "type": "single",
+      "resource": "thaumaturgeadditions:entity/chest/hungry_trapped_right"
     }
   ]
 }

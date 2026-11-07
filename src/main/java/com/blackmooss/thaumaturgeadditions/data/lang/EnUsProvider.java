@@ -28,6 +28,7 @@ public class EnUsProvider extends LanguageProvider {
         addBlock(TABlocks.EVERBURNING_URN, "Everburning Urn");
         addBlock(TABlocks.HUNGRY_TRAPPED_CHEST, "Trapped Hungry Chest");
         add("gui.thaumaturgeadditions.large_hungry_chest.title", "Large Hungry Chest");
+        add("gui.thaumaturgeadditions.large_hungry_trapped_chest.title", "Large Hungry Trapped Chest");
 
         add("focus.thaumaturgeadditions.salis_mundus.name", "Salis Mundus");
         add("focus.thaumaturgeadditions.salis_mundus.text", "A focus-form of magical dust: triggers transmutations on certain blocks without consuming Salis Mundus.");
