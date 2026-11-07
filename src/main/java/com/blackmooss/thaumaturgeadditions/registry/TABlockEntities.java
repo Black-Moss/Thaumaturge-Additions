@@ -2,6 +2,7 @@ package com.blackmooss.thaumaturgeadditions.registry;
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
 import com.blackmooss.thaumaturgeadditions.block.EverburningUrnBlockEntity;
+import com.blackmooss.thaumaturgeadditions.block.HungryTrappedChestBlockEntity;
 import com.blackmooss.thaumaturgeadditions.block.VoidBrainJarBlockEntity;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -23,6 +24,10 @@ public final class TABlockEntities {
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<EverburningUrnBlockEntity>> EVERBURNING_URN =
             BLOCK_ENTITIES.register("everburning_urn", () -> new BlockEntityType<>(EverburningUrnBlockEntity::new, Set.of(TABlocks.EVERBURNING_URN.get())));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<HungryTrappedChestBlockEntity>> HUNGRY_TRAPPED_CHEST =
+            BLOCK_ENTITIES.register("hungry_trapped_chest", () -> new BlockEntityType<>(HungryTrappedChestBlockEntity::new, Set.of(TABlocks.HUNGRY_TRAPPED_CHEST.get())));
+
 
     private TABlockEntities() {
     }

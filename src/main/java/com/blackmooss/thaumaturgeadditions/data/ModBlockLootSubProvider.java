@@ -24,5 +24,6 @@ public class ModBlockLootSubProvider extends BlockLootSubProvider {
     protected void generate() {
         dropSelf(TABlocks.VOID_BRAIN_JAR.get());
         dropSelf(TABlocks.EVERBURNING_URN.get());
+        dropSelf(TABlocks.HUNGRY_TRAPPED_CHEST.get());
     }
 }

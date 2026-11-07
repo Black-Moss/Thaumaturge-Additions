@@ -16,6 +16,7 @@ public final class TACreativeModeTabs {
                         output.accept(TAItems.VOID_TRAVELLER_BOOTS.get());
                         output.accept(TAItems.VOID_BRAIN_JAR.get());
                         output.accept(TAItems.EVERBURNING_URN.get());
+                        output.accept(TAItems.HUNGRY_TRAPPED_CHEST.get());
                         output.accept(TAItems.RAINBOW_SCRIBING_TOOLS.get());
                         output.accept(TAItems.SOPHISTICATED_BACKPACKS_ARCANE_WORKBENCH_UPGRADE.get());
                         output.accept(TAItems.TRAVELERS_BACKPACK_ARCANE_WORKBENCH_UPGRADE.get());

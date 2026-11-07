@@ -1,6 +1,7 @@
 package com.blackmooss.thaumaturgeadditions.block;
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
+import com.blackmooss.thaumaturgeadditions.registry.TABlocks;
 import com.leclowndu93150.thaumaturge.registry.TTBlocks;
 import net.minecraft.world.level.block.ChestBlock;
 import net.minecraft.world.level.block.DoubleBlockCombiner;
@@ -18,7 +19,7 @@ import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
 @EventBusSubscriber(modid = ThaumaturgeAdditions.MODID)
-public final class HungryChestCapabilityCompat {
+public final class HungryChestCapability {
     private static final DoubleBlockCombiner.Combiner<ChestBlockEntity, ResourceHandler<ItemResource>> CHEST_HANDLER = new DoubleBlockCombiner.Combiner<>() {
         @Override
         public @NonNull ResourceHandler<ItemResource> acceptDouble(
@@ -40,7 +41,7 @@ public final class HungryChestCapabilityCompat {
         }
     };
 
-    private HungryChestCapabilityCompat() {
+    private HungryChestCapability() {
     }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
@@ -50,6 +51,6 @@ public final class HungryChestCapabilityCompat {
                 return null;
             }
             return chestBlock.combine(state, level, pos, true).apply(CHEST_HANDLER);
-        }, TTBlocks.HUNGRY_CHEST.get());
+        }, TTBlocks.HUNGRY_CHEST.get(), TABlocks.HUNGRY_TRAPPED_CHEST.get());
     }
 }

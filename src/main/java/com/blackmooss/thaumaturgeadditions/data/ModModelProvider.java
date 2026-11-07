@@ -11,16 +11,20 @@ import net.minecraft.client.color.item.Dye;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
+import net.minecraft.client.data.models.MultiVariant;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.model.ItemModelUtils;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
+import net.minecraft.client.renderer.block.dispatch.Variant;
 import net.minecraft.client.renderer.item.CompositeModel;
 import net.minecraft.client.renderer.item.CuboidItemModelWrapper;
 import net.minecraft.client.renderer.item.SpecialModelWrapper;
+import net.minecraft.client.renderer.special.ChestSpecialRenderer;
 import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.Identifier;
+import net.minecraft.util.random.WeightedList;
 import org.jspecify.annotations.NonNull;
 
 import java.util.List;
@@ -71,6 +75,16 @@ public class ModModelProvider extends ModelProvider {
                 ItemModelUtils.tintedModel(modelId, new Constant(0xFFFFFF), new RainbowTintSource()));
     }
 
+    private static void hungryTrappedChest(BlockModelGenerators blockModels, ItemModelGenerators itemModels) {
+        Identifier empty = TTIds.rl("block/empty");
+        MultiVariant variant = new MultiVariant(WeightedList.of(new Variant(empty)));
+        blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(TABlocks.HUNGRY_TRAPPED_CHEST.get(), variant));
+        itemModels.itemModelOutput.accept(TAItems.HUNGRY_TRAPPED_CHEST.get(), new SpecialModelWrapper.Unbaked(
+                Identifier.withDefaultNamespace("item/chest"),
+                Optional.empty(),
+                new ChestSpecialRenderer.Unbaked(TTIds.rl("hungry"))));
+    }
+
     @Override
     protected void registerModels(@NonNull BlockModelGenerators blockModels, @NonNull ItemModelGenerators itemModels) {
         voidJar(blockModels, itemModels);
@@ -78,6 +92,7 @@ public class ModModelProvider extends ModelProvider {
         everburningUrn(blockModels, itemModels);
         rainbowScribingTools(itemModels);
         arcaneWorkbenchUpgrade(itemModels);
+        hungryTrappedChest(blockModels, itemModels);
     }
 
     @Override

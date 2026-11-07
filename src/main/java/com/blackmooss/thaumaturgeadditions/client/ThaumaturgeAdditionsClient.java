@@ -2,6 +2,7 @@ package com.blackmooss.thaumaturgeadditions.client;
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
 import com.blackmooss.thaumaturgeadditions.client.render.blockentity.HungryChestDoubleRenderer;
+import com.blackmooss.thaumaturgeadditions.client.render.blockentity.HungryTrappedChestRenderer;
 import com.blackmooss.thaumaturgeadditions.client.render.blockentity.VoidBrainJarRenderer;
 import com.blackmooss.thaumaturgeadditions.client.tint.RainbowTintSource;
 import com.blackmooss.thaumaturgeadditions.item.VoidTravellerBootsItem;
@@ -31,6 +32,7 @@ public final class ThaumaturgeAdditionsClient {
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void onRegister(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(TABlockEntities.VOID_BRAIN_JAR.get(), VoidBrainJarRenderer::new);
+        event.registerBlockEntityRenderer(TABlockEntities.HUNGRY_TRAPPED_CHEST.get(), HungryTrappedChestRenderer::new);
         event.registerBlockEntityRenderer(TTBlockEntities.HUNGRY_CHEST.get(), HungryChestDoubleRenderer::new);
     }
 
