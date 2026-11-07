@@ -28,6 +28,8 @@ public final class ModBlockTagsProvider extends BlockTagsProvider {
                 .add(TABlocks.HUNGRY_TRAPPED_CHEST.get());
         tag(Tags.Blocks.CHESTS_WOODEN)
                 .add(TABlocks.HUNGRY_TRAPPED_CHEST.get());
+        tag(Tags.Blocks.CHESTS_TRAPPED)
+                .add(TABlocks.HUNGRY_TRAPPED_CHEST.get());
     }
 
     @Override

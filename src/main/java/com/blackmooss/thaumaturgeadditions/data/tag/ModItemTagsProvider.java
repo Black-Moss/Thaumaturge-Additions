@@ -53,6 +53,8 @@ public final class ModItemTagsProvider extends ItemTagsProvider {
                 .add(TAItems.HUNGRY_TRAPPED_CHEST.get());
         tag(Tags.Items.CHESTS_WOODEN)
                 .add(TAItems.HUNGRY_TRAPPED_CHEST.get());
+        tag(Tags.Items.CHESTS_TRAPPED)
+                .add(TAItems.HUNGRY_TRAPPED_CHEST.get());
     }
 
     @Override
