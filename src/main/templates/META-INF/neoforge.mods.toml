@@ -12,6 +12,8 @@ displayURL = "https://www.curseforge.com/minecraft/mc-mods/thaumaturge-additions
 
 [[mixins]]
 config = "${mod_id}.mixins.json"
+
+[[mixins]]
 config = "${mod_id}.travelersbackpack.mixins.json"
 requiredMods = ["travelersbackpack"]
 

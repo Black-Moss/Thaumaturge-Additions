@@ -1,0 +1,12 @@
+{
+  "sources": [
+    {
+      "type": "single",
+      "resource": "thaumaturgeadditions:entity/chest/hungry_left"
+    },
+    {
+      "type": "single",
+      "resource": "thaumaturgeadditions:entity/chest/hungry_right"
+    }
+  ]
+}

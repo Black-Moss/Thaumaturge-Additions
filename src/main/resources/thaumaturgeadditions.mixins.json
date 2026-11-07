@@ -3,6 +3,7 @@
   "package": "com.blackmooss.thaumaturgeadditions.mixin",
   "compatibilityLevel": "JAVA_25",
   "mixins": [
+    "BlockHungryChestMixin"
   ],
   "injectors": {
     "defaultRequire": 1
