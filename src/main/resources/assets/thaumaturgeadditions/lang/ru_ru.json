@@ -1,8 +1,11 @@
 {
   "block.thaumaturgeadditions.everburning_urn": "Негасимая урна",
+  "block.thaumaturgeadditions.hungry_trapped_chest": "Trapped Hungry Chest",
   "block.thaumaturgeadditions.void_brain_jar": "Пустотный мозг в банке",
   "focus.thaumaturgeadditions.salis_mundus.name": "Salis mundus",
   "focus.thaumaturgeadditions.salis_mundus.text": "Фокус в виде магической пыли: трансмутирует блоки без расхода Salis mundus",
+  "gui.thaumaturgeadditions.large_hungry_chest.title": "Large Hungry Chest",
+  "gui.thaumaturgeadditions.large_hungry_trapped_chest.title": "Large Hungry Trapped Chest",
   "item.thaumaturgeadditions.rainbow_scribing_tools": "Радужные письменные принадлежности",
   "item.thaumaturgeadditions.sophisticatedbackpacks_arcane_charger_upgrade": "SB Улучешение: волшебный верстак с зарядкой",
   "item.thaumaturgeadditions.sophisticatedbackpacks_arcane_charger_upgrade.tooltip": "Будучи в улучшениях рюкзака позволяет волшебному верстаку высасывать виз из области 3x3 чанка.",
