@@ -26,6 +26,9 @@ public class EnUsProvider extends LanguageProvider {
 
         addBlock(TABlocks.VOID_BRAIN_JAR, "Void Brain in a Jar");
         addBlock(TABlocks.EVERBURNING_URN, "Everburning Urn");
+        addBlock(TABlocks.HUNGRY_TRAPPED_CHEST, "Trapped Hungry Chest");
+        add("gui.thaumaturgeadditions.large_hungry_chest.title", "Large Hungry Chest");
+        add("gui.thaumaturgeadditions.large_hungry_trapped_chest.title", "Large Hungry Trapped Chest");
 
         add("focus.thaumaturgeadditions.salis_mundus.name", "Salis Mundus");
         add("focus.thaumaturgeadditions.salis_mundus.text", "A focus-form of magical dust: triggers transmutations on certain blocks without consuming Salis Mundus.");
@@ -68,6 +71,15 @@ public class EnUsProvider extends LanguageProvider {
                 "This backpack upgrade consumes the aura of the chunk to craft arcane recipes anytime, anywhere, just like an Arcane Workbench!");
 
         addResearchAddenda("arcane_workbench_upgrade", "Don't forget to install a charger in the backpack!");
+
+        addResearch("hungry_trapped_chest", "Trapped Hungry Chest",
+                "I must say, reading a hopper's contents with a comparator takes up a dreadful amount of space, and a hopper cannot gather dropped items from every direction the way a Hungry Chest does. It seems only sensible to combine the two.",
+                "The Trapped Hungry Chest snatches up dropped items just like an ordinary Hungry Chest, and like a trapped chest it emits a redstone signal while open. Best of all, the instant it swallows something it emits a signal whose strength reflects what fraction of a full stack of that item it just took in. For example:" +
+                        "<BR>64 Grass Blocks -> signal strength 15;" +
+                        "<BR>32 Iron Ingots -> signal strength 7;" +
+                        "<BR>16 Ender Pearls -> signal strength 15." +
+                        "<BR>And so on..." +
+                        "<LINE>Place two Trapped Hungry Chests side by side and the signal is shared between both halves.");
     }
 
     private void configuration() {
