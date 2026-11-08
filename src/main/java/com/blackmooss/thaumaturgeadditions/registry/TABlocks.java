@@ -2,8 +2,10 @@ package com.blackmooss.thaumaturgeadditions.registry;
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
 import com.blackmooss.thaumaturgeadditions.block.EverburningUrnBlock;
+import com.blackmooss.thaumaturgeadditions.block.HungryTrappedChestBlock;
 import com.blackmooss.thaumaturgeadditions.block.VoidBrainJarBlock;
 import com.leclowndu93150.thaumaturge.registry.TTSoundTypes;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -26,6 +28,14 @@ public final class TABlocks {
                     .mapColor(MapColor.STONE)
                     .strength(2.0F, 10.0F)
                     .sound(TTSoundTypes.URN)
+                    .noOcclusion());
+
+    public static final DeferredBlock<HungryTrappedChestBlock> HUNGRY_TRAPPED_CHEST = BLOCKS.registerBlock(
+            "hungry_trapped_chest", HungryTrappedChestBlock::new,
+            BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.WOOD)
+                    .strength(2.0F)
+                    .sound(SoundType.WOOD)
                     .noOcclusion());
 
     private TABlocks() {

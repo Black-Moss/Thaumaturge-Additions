@@ -1,17 +1,21 @@
 package com.blackmooss.thaumaturgeadditions.client;
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
+import com.blackmooss.thaumaturgeadditions.client.render.blockentity.HungryChestDoubleRenderer;
+import com.blackmooss.thaumaturgeadditions.client.render.blockentity.HungryTrappedChestRenderer;
 import com.blackmooss.thaumaturgeadditions.client.render.blockentity.VoidBrainJarRenderer;
 import com.blackmooss.thaumaturgeadditions.client.tint.RainbowTintSource;
 import com.blackmooss.thaumaturgeadditions.item.VoidTravellerBootsItem;
 import com.blackmooss.thaumaturgeadditions.registry.TABlockEntities;
 import com.blackmooss.thaumaturgeadditions.registry.TAItems;
+import com.leclowndu93150.thaumaturge.registry.TTBlockEntities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.DyedItemColor;
 import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -27,9 +31,11 @@ public final class ThaumaturgeAdditionsClient {
     private ThaumaturgeAdditionsClient() {
     }
 
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.LOW)
     public static void onRegister(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(TABlockEntities.VOID_BRAIN_JAR.get(), VoidBrainJarRenderer::new);
+        event.registerBlockEntityRenderer(TABlockEntities.HUNGRY_TRAPPED_CHEST.get(), HungryTrappedChestRenderer::new);
+        event.registerBlockEntityRenderer(TTBlockEntities.HUNGRY_CHEST.get(), HungryChestDoubleRenderer::new);
     }
 
     @SuppressWarnings("deprecation")

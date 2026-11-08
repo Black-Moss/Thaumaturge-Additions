@@ -1,0 +1,14 @@
+﻿{
+  "required": true,
+  "package": "com.blackmooss.thaumaturgeadditions.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ChestBlockMenuProviderMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}

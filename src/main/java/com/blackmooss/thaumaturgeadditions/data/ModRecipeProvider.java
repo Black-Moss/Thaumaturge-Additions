@@ -21,6 +21,8 @@ import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -59,19 +61,19 @@ public final class ModRecipeProvider extends RecipeProvider {
         this.aspects = this.registries.lookupOrThrow(IAspect.REGISTRY_KEY);
 
         voidTravellerBoots();
+        rainbowScribingTools();
 
         // 虚空缸中之脑
-        arcaneShapeless(TAItems.VOID_BRAIN_JAR.get(), 50)
+        arcaneShapeless(TAItems.VOID_BRAIN_JAR.get(),
+                50)
                 .aspect(TTAspects.PERDITIO)
                 .requires(TTItems.JAR_BRAIN)
                 .gate(ttGate("warded_jars"))
-                .unlockedBy("has", has(TTItems.JAR_BRAIN))
                 .save(output);
 
         // 永燃之瓮
         infusion(TAItems.EVERBURNING_URN.get(),
-                TTItems.EVERFULL_URN.get(),
-                RecipeCategory.BUILDING_BLOCKS)
+                TTItems.EVERFULL_URN.get())
                 .component(Ingredient.of(Items.NETHER_BRICK))
                 .component(Ingredient.of(Items.NETHER_BRICK))
                 .component(Ingredient.of(Items.LAVA_BUCKET))
@@ -84,11 +86,18 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .aspect(TTAspects.FABRICO, 10)
                 .instability(6)
                 .gate(taGate("everburning_urn"))
-                .unlockedBy("has", has(TAItems.EVERBURNING_URN.get()))
                 .save(output);
 
+        arcaneShapeless(TAItems.HUNGRY_TRAPPED_CHEST.get(), 10)
+                .requires(TTItems.HUNGRY_CHEST.get())
+                .requires(Items.TRIPWIRE_HOOK)
+                .gate(taGate("hungry_trapped_chest"))
+                .save(output);
+    }
+
+    private void rainbowScribingTools() {
         // 彩虹笔与墨
-        infusion((TAItems.RAINBOW_SCRIBING_TOOLS.get()),
+        infusion(TAItems.RAINBOW_SCRIBING_TOOLS.get(),
                 TTItems.SCRIBING_TOOLS.get())
                 .component(Ingredient.of(Tags.Items.DYES_BLACK))
                 .component(Ingredient.of(Tags.Items.DYES_BLUE))
@@ -110,21 +119,20 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .aspect(TTAspects.ORDO, 25)
                 .instability(2)
                 .gate(taGate("rainbow_scribing_tools"))
-                .unlockedBy("has", has(TAItems.RAINBOW_SCRIBING_TOOLS.get()))
                 .save(output);
 
         // 填充彩虹笔与墨
-        new ShapelessRecipeBuilder(RecipeCategory.TOOLS, new ItemStack(TAItems.RAINBOW_SCRIBING_TOOLS.get()))
+        new ShapelessRecipeBuilder(RecipeCategory.TOOLS, TAItems.RAINBOW_SCRIBING_TOOLS.get().getDefaultInstance())
                 .requires(TAItems.RAINBOW_SCRIBING_TOOLS.get())
                 .requires(Tags.Items.DYES)
                 .unlockedBy("has", has(TAItems.RAINBOW_SCRIBING_TOOLS.get()))
-                .save(output, ThaumaturgeAdditions.identifier("rainbow_scribing_tools_alt"));
+                .save(output, ThaumaturgeAdditions.MODID + ":rainbow_scribing_tools_alt");
+
     }
 
     private void voidTravellerBoots() {
         infusion(TAItems.VOID_TRAVELLER_BOOTS.get(),
-                TTItems.VOID_BOOTS.get(),
-                RecipeCategory.COMBAT)
+                TTItems.VOID_BOOTS.get())
                 .component(Ingredient.of(TTItems.TRAVELLER_BOOTS.get()))
                 .component(Ingredient.of(TTItems.PLATE_VOID.get()))
                 .component(Ingredient.of(TTItems.PLATE_VOID.get()))
@@ -142,61 +150,12 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .gate(taGate("void_traveller_boots"))
                 .unlockedBy("has", has(TAItems.VOID_TRAVELLER_BOOTS.get()))
                 .save(output);
+
     }
 
-    private InfusionRecipeBuilder infusion(ItemLike result, ItemLike catalyst, RecipeCategory category) {
-        return (InfusionRecipeBuilder) new InfusionRecipeBuilder(
-                aspects,
-                category,
-                new ItemStack(result.asItem()),
-                Ingredient.of(catalyst))
-                .unlockedBy("has", has(result));
-    }
-
-    private InfusionRecipeBuilder infusion(ItemLike result, ItemLike catalyst) {
-        return infusion(result, catalyst, RecipeCategory.MISC);
-    }
-
-    private CrucibleRecipeBuilder crucible(ItemLike result, ItemLike catalyst, RecipeCategory category) {
-        return (CrucibleRecipeBuilder) new CrucibleRecipeBuilder(
-                aspects,
-                category,
-                new ItemStack(result.asItem()),
-                Ingredient.of(catalyst))
-                .unlockedBy("has", has(result));
-    }
-
-    private CrucibleRecipeBuilder crucible(ItemLike result, ItemLike catalyst) {
-        return crucible(result, catalyst, RecipeCategory.MISC);
-    }
-
-    private ArcaneWorkbenchShapelessRecipeBuilder arcaneShapeless(RecipeCategory recipeCategory, ItemStack result, int vis) {
-        return new ArcaneWorkbenchShapelessRecipeBuilder(recipeCategory,
-                result,
-                aspects,
-                vis,
-                registries.lookupOrThrow(Registries.ITEM));
-    }
-
-    private ArcaneWorkbenchShapelessRecipeBuilder arcaneShapeless(ItemLike result, int vis, RecipeCategory recipeCategory) {
-        return arcaneShapeless(recipeCategory, new ItemStack(result.asItem()), vis);
-    }
-
-    private ArcaneWorkbenchShapelessRecipeBuilder arcaneShapeless(ItemLike result, int vis) {
-        return arcaneShapeless(result, vis, RecipeCategory.MISC);
-    }
-
-    private ArcaneWorkbenchShapedRecipeBuilder arcaneShaped(ItemStack result, int vis, RecipeCategory recipeCategory) {
-        return new ArcaneWorkbenchShapedRecipeBuilder(recipeCategory,
-                result,
-                this.items,
-                aspects,
-                vis);
-    }
-
-    private ArcaneWorkbenchShapedRecipeBuilder arcaneShaped(ItemLike result, int vis, RecipeCategory recipeCategory) {
-        return (ArcaneWorkbenchShapedRecipeBuilder) arcaneShaped(new ItemStack(result.asItem()), vis, recipeCategory)
-                .unlockedBy("has", has(result.asItem()));
+    private TagKey<Item> tag(String space, String path) {
+        return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(
+                        space, path));
     }
 
     private Ingredient crystal(ResourceKey<IAspect> aspect) {
@@ -205,5 +164,45 @@ public final class ModRecipeProvider extends RecipeProvider {
                 TTDataComponents.CRYSTAL_ASPECT.get(),
                 new AspectInstance(aspects.getOrThrow(aspect), 1),
                 TTItems.ESSENTIA_CRYSTAL.get());
+    }
+
+    private Ingredient commonTag(String path) {
+        return Ingredient.of(tag("c", path));
+    }
+
+    private InfusionRecipeBuilder infusion(ItemLike result, ItemLike catalyst) {
+        return (InfusionRecipeBuilder) new InfusionRecipeBuilder(
+                this.registries.lookupOrThrow(IAspect.REGISTRY_KEY),
+                RecipeCategory.MISC,
+                new ItemStack(result.asItem()),
+                Ingredient.of(catalyst))
+                .unlockedBy("has", has(result));
+    }
+
+    private CrucibleRecipeBuilder crucible(ItemLike result, ItemLike catalyst) {
+        return (CrucibleRecipeBuilder) new CrucibleRecipeBuilder(
+                aspects,
+                RecipeCategory.MISC,
+                new ItemStack(result.asItem()),
+                Ingredient.of(catalyst))
+                .unlockedBy("has", has(result));
+    }
+
+    private ArcaneWorkbenchShapelessRecipeBuilder arcaneShapeless(ItemLike result, int vis) {
+        return (ArcaneWorkbenchShapelessRecipeBuilder) new ArcaneWorkbenchShapelessRecipeBuilder(RecipeCategory.MISC,
+                new ItemStack(result.asItem()),
+                aspects,
+                vis,
+                registries.lookupOrThrow(Registries.ITEM))
+                .unlockedBy("has", has(result.asItem()));
+    }
+
+    private ArcaneWorkbenchShapedRecipeBuilder arcaneShaped(ItemLike result, int vis) {
+        return (ArcaneWorkbenchShapedRecipeBuilder) new ArcaneWorkbenchShapedRecipeBuilder(RecipeCategory.MISC,
+                new ItemStack(result.asItem()),
+                this.items,
+                aspects,
+                vis)
+                .unlockedBy("has", has(result.asItem()));
     }
 }

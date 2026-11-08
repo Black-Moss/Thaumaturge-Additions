@@ -15,6 +15,7 @@ public final class TAItems {
 
     public static final DeferredItem<BlockItem> VOID_BRAIN_JAR = ITEMS.registerSimpleBlockItem(TABlocks.VOID_BRAIN_JAR);
     public static final DeferredItem<BlockItem> EVERBURNING_URN = ITEMS.registerSimpleBlockItem(TABlocks.EVERBURNING_URN);
+    public static final DeferredItem<BlockItem> HUNGRY_TRAPPED_CHEST = ITEMS.registerSimpleBlockItem(TABlocks.HUNGRY_TRAPPED_CHEST);
 
     public static final DeferredItem<VoidTravellerBootsItem> VOID_TRAVELLER_BOOTS = ITEMS.registerItem(
             "void_traveller_boots", VoidTravellerBootsItem::new, new Item.Properties()

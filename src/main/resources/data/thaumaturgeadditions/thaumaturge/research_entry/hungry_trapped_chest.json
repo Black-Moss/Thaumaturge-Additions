@@ -1,0 +1,53 @@
+﻿{
+  "category": "thaumaturge:artifice",
+  "name": "research.thaumaturgeadditions.hungry_trapped_chest.title",
+  "parents": [
+    "thaumaturge:hungry_chest"
+  ],
+  "column": 3,
+  "row": 3,
+  "icons": [
+    "thaumaturgeadditions:hungry_trapped_chest"
+  ],
+  "stages": [
+    {
+      "text": "research.thaumaturgeadditions.hungry_trapped_chest.stage_0",
+      "obtain": [
+        {
+          "items": "#c:chests/trapped",
+          "amount": 1
+        },
+        {
+          "items": [
+            "minecraft:tripwire_hook"
+          ],
+          "amount": 1
+        }
+      ],
+      "required_knowledge": [
+        {
+          "type": "observation",
+          "category": "thaumaturge:golemancy",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "text": "research.thaumaturgeadditions.hungry_trapped_chest.stage_1",
+      "recipes": [
+        "thaumaturgeadditions:arcane_workbench/hungry_trapped_chest"
+      ]
+    }
+  ],
+  "note_aspects": [
+    {
+      "aspect": "thaumaturge:desiderium",
+      "amount": 3
+    },
+    {
+      "aspect": "thaumaturge:vacuos",
+      "amount": 3
+    }
+  ],
+  "complexity": 1
+}

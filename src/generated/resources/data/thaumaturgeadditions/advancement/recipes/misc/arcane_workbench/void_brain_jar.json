@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "thaumaturge:jar_brain"
+            "items": "thaumaturgeadditions:void_brain_jar"
           }
         ]
       },

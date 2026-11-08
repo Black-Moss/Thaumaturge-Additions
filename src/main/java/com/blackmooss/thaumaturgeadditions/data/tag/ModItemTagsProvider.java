@@ -31,39 +31,31 @@ public final class ModItemTagsProvider extends ItemTagsProvider {
 
         tag(TTItemTags.TRIMMABLE_ARMOR)
                 .add(TAItems.VOID_TRAVELLER_BOOTS.get());
-
         tag(TTItemTags.ARMORS_BOOTS)
                 .add(TAItems.VOID_TRAVELLER_BOOTS.get());
-
         tag(ItemTags.VANISHING_ENCHANTABLE)
                 .add(TAItems.VOID_TRAVELLER_BOOTS.get());
-
         tag(ItemTags.FOOT_ARMOR)
                 .add(TAItems.VOID_TRAVELLER_BOOTS.get());
-
         tag(ItemTags.FOOT_ARMOR_ENCHANTABLE)
                 .add(TAItems.VOID_TRAVELLER_BOOTS.get());
-
         tag(ItemTags.ARMOR_ENCHANTABLE)
                 .add(TAItems.VOID_TRAVELLER_BOOTS.get());
-
         tag(ItemTags.EQUIPPABLE_ENCHANTABLE)
                 .add(TAItems.VOID_TRAVELLER_BOOTS.get());
-
         tag(ItemTags.DURABILITY_ENCHANTABLE)
                 .add(TAItems.VOID_TRAVELLER_BOOTS.get());
-
         tag(ItemTags.TRIMMABLE_ARMOR)
                 .add(TAItems.VOID_TRAVELLER_BOOTS.get());
-
         tag(Tags.Items.ARMORS)
                 .add(TAItems.VOID_TRAVELLER_BOOTS.get());
-
         tag(Tags.Items.ENCHANTABLES)
                 .add(TAItems.VOID_TRAVELLER_BOOTS.get());
 
-//        tag(Tags.Items.ARMORS_HUMANOID)
-//                .add(TAItems.VOID_TRAVELLER_BOOTS.get());
+        tag(Tags.Items.CHESTS)
+                .add(TAItems.HUNGRY_TRAPPED_CHEST.get());
+        tag(Tags.Items.CHESTS_WOODEN)
+                .add(TAItems.HUNGRY_TRAPPED_CHEST.get());
     }
 
     @Override

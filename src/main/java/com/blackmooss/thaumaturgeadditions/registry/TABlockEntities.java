@@ -2,6 +2,7 @@ package com.blackmooss.thaumaturgeadditions.registry;
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
 import com.blackmooss.thaumaturgeadditions.block.EverburningUrnBlockEntity;
+import com.blackmooss.thaumaturgeadditions.block.HungryTrappedChestBlockEntity;
 import com.blackmooss.thaumaturgeadditions.block.VoidBrainJarBlockEntity;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -11,6 +12,8 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.Set;
 
 
 @EventBusSubscriber(modid = ThaumaturgeAdditions.MODID)
@@ -23,6 +26,11 @@ public final class TABlockEntities {
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<EverburningUrnBlockEntity>> EVERBURNING_URN =
             BLOCK_ENTITIES.register("everburning_urn", () -> BlockEntityType.Builder
                     .of(EverburningUrnBlockEntity::new, TABlocks.EVERBURNING_URN.get()).build(null));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<HungryTrappedChestBlockEntity>> HUNGRY_TRAPPED_CHEST =
+            BLOCK_ENTITIES.register("hungry_trapped_chest",  () -> BlockEntityType.Builder
+                    .of(HungryTrappedChestBlockEntity::new, TABlocks.HUNGRY_TRAPPED_CHEST.get()).build(null));
+
 
     private TABlockEntities() {
     }
