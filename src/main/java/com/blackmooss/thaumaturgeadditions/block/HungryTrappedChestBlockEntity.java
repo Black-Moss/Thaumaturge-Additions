@@ -13,9 +13,11 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.ChestBlock;
 import net.minecraft.world.level.block.TrappedChestBlock;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.ChestType;
 import net.minecraft.world.level.redstone.ExperimentalRedstoneUtils;
 import net.minecraft.world.level.redstone.Orientation;
 import net.minecraft.world.phys.AABB;
@@ -81,6 +83,9 @@ public class HungryTrappedChestBlockEntity extends ChestBlockEntity {
         if (pulseChanged) {
             level.blockEvent(pos, state.getBlock(), PULSE_EVENT, chest.pulseStrength);
             notifyRedstone(level, pos, state);
+            if (state.getValue(ChestBlock.TYPE) != ChestType.SINGLE) {
+                notifyRedstone(level, pos.relative(ChestBlock.getConnectedDirection(state)), state);
+            }
         }
     }
 

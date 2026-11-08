@@ -31,7 +31,16 @@ public class HungryTrappedChestBlock extends ChestBlock {
         super(TABlockEntities.HUNGRY_TRAPPED_CHEST::get, SoundEvents.CHEST_OPEN, SoundEvents.CHEST_CLOSE, properties);
     }
 
-    private static int pulseSignal(@NonNull BlockGetter level, @NonNull BlockPos pos) {
+    private static int pulseSignal(@NonNull BlockGetter level, @NonNull BlockPos pos, @NonNull BlockState state) {
+        int strength = strengthAt(level, pos);
+        if (state.getValue(ChestBlock.TYPE) != ChestType.SINGLE) {
+            strength = Math.max(strength,
+                    strengthAt(level, pos.relative(ChestBlock.getConnectedDirection(state))));
+        }
+        return strength;
+    }
+
+    private static int strengthAt(@NonNull BlockGetter level, @NonNull BlockPos pos) {
         return level.getBlockEntity(pos) instanceof HungryTrappedChestBlockEntity chest
                 ? chest.getPulseStrength()
                 : 0;
@@ -103,7 +112,7 @@ public class HungryTrappedChestBlock extends ChestBlock {
             @NonNull BlockPos pos,
             @NonNull Direction direction) {
         return Math.max(Mth.clamp(ChestBlockEntity.getOpenCount(level, pos), 0, 15),
-                pulseSignal(level, pos));
+                pulseSignal(level, pos, state));
     }
 
     @Override
@@ -112,7 +121,7 @@ public class HungryTrappedChestBlock extends ChestBlock {
             @NonNull Level level,
             @NonNull BlockPos pos,
             @NonNull Direction direction) {
-        return pulseSignal(level, pos);
+        return pulseSignal(level, pos, state);
     }
 
     @Override
