@@ -1,0 +1,15 @@
+{
+  "type": "thaumaturge:arcane_workbench_shapeless",
+  "crystals": [],
+  "ingredients": [
+    "thaumaturge:hungry_chest",
+    "minecraft:tripwire_hook"
+  ],
+  "research": {
+    "entry": "thaumaturgeadditions:hungry_trapped_chest"
+  },
+  "result": {
+    "id": "thaumaturgeadditions:hungry_trapped_chest"
+  },
+  "vis": 10
+}

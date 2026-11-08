@@ -71,6 +71,15 @@ public class ZhCnProvider extends LanguageProvider {
                 "这个背包升级可以消耗所在区块的灵气随时随地合成奥术配方，就像奥术工作台一样！");
 
         addResearchAddenda("arcane_workbench_upgrade", "可不能忘记在背包里面装一个充能器！");
+
+        addResearch("hungry_trapped_chest", "饕餮陷阱箱",
+                "不得不说通过比较器来检测漏斗容量的方式实在是很占地方，并且漏斗也不能像饕餮箱子一样可以全方面拾取，我认为有必要把他们合二为一。",
+                "饕餮陷阱箱可以像普通的饕餮箱子一样抓取掉落物，也能陷阱箱一样打开时会产生红石信号；最重要的是：它会根据抓取到的物品占其堆叠上限的比例输出信号。比如：" +
+                        "<BR>64个草方块->15级；" +
+                        "<BR>32个铁锭->7级；" +
+                        "<BR>16个末影珍珠->15级。" +
+                        "<BR>以此类推……" +
+                        "<LINE>当两个饕餮陷阱箱并排在一起时，可以同步传递其信号。");
     }
 
     private void configuration() {
