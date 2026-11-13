@@ -4,9 +4,6 @@ import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.common.
 import net.p3pp3rf1y.sophisticatedcore.client.gui.UpgradeGuiManager;
 
 public final class SBArcaneWorkbenchTabRegistration {
-    private SBArcaneWorkbenchTabRegistration() {
-    }
-
     public static void register() {
         UpgradeGuiManager.registerTab(SBArcaneWorkbenchUpgradeContainer.TYPE, SBArcaneWorkbenchUpgradeTab::new);
     }

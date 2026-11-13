@@ -10,8 +10,7 @@ import org.jspecify.annotations.NonNull;
 
 import java.util.List;
 
-public class SBArcaneChargerUpgradeItem
-        extends UpgradeItemBase<SBArcaneChargerUpgradeWrapper> {
+public class SBArcaneChargerUpgradeItem extends UpgradeItemBase<SBArcaneChargerUpgradeWrapper> {
     public static final UpgradeType<SBArcaneChargerUpgradeWrapper> TYPE =
             new UpgradeType<>(SBArcaneChargerUpgradeWrapper::new);
 

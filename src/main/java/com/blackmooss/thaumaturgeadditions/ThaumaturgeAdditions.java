@@ -1,6 +1,6 @@
 package com.blackmooss.thaumaturgeadditions;
 
-import com.blackmooss.thaumaturgeadditions.config.ThaumaturgeAdditionsCommonConfig;
+import com.blackmooss.thaumaturgeadditions.config.ThaumaturgeAdditionsServerConfig;
 import com.blackmooss.thaumaturgeadditions.data.ModBlockLootSubProvider;
 import com.blackmooss.thaumaturgeadditions.data.ModRecipeProvider;
 import com.blackmooss.thaumaturgeadditions.data.lang.EnUsProvider;
@@ -43,7 +43,7 @@ public class ThaumaturgeAdditions {
         TASpellBehaviors.BEHAVIORS.register(modEventBus);
         TARecipes.RECIPE_SERIALIZERS.register(modEventBus);
 
-        modContainer.registerConfig(ModConfig.Type.COMMON, ThaumaturgeAdditionsCommonConfig.SPEC);
+        modContainer.registerConfig(ModConfig.Type.COMMON, ThaumaturgeAdditionsServerConfig.SPEC);
     }
 
     public static ResourceLocation identifier(String path) {

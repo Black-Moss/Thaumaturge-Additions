@@ -29,6 +29,5 @@ public final class ThaumaturgeAdditionsJEIPlugin implements IModPlugin {
             registration.addRecipeCatalysts(RecipeTypes.CRAFTING, TAItems.SOPHISTICATED_BACKPACKS_ARCANE_WORKBENCH_UPGRADE.get());
             registration.addRecipeCatalysts(ArcaneWorkbenchCategory.RECIPE_TYPE, TAItems.SOPHISTICATED_BACKPACKS_ARCANE_WORKBENCH_UPGRADE.get());
         }
-        // Traveler's Backpack 兼容暂时禁用，待移植到 1.21.1 后恢复
     }
 }

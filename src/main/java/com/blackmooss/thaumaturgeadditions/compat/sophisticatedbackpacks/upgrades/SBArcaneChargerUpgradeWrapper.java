@@ -7,8 +7,7 @@ import net.p3pp3rf1y.sophisticatedcore.upgrades.UpgradeWrapperBase;
 
 import java.util.function.Consumer;
 
-public class SBArcaneChargerUpgradeWrapper
-        extends UpgradeWrapperBase<SBArcaneChargerUpgradeWrapper, SBArcaneChargerUpgradeItem> {
+public class SBArcaneChargerUpgradeWrapper extends UpgradeWrapperBase<SBArcaneChargerUpgradeWrapper, SBArcaneChargerUpgradeItem> {
     public SBArcaneChargerUpgradeWrapper(IStorageWrapper storageWrapper, ItemStack upgrade, Consumer<ItemStack> upgradeSaveHandler) {
         super(storageWrapper, upgrade, upgradeSaveHandler);
     }

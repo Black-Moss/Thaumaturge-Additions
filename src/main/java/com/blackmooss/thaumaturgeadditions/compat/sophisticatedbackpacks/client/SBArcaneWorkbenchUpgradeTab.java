@@ -27,8 +27,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class SBArcaneWorkbenchUpgradeTab
-        extends UpgradeSettingsTab<SBArcaneWorkbenchUpgradeContainer> {
+public class SBArcaneWorkbenchUpgradeTab extends UpgradeSettingsTab<SBArcaneWorkbenchUpgradeContainer> {
     public static final int PANEL_WIDTH = 100;
     public static final int PANEL_HEIGHT = 131;
     private static final int PANEL_OFFSET_X = 3;

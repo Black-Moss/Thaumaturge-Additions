@@ -15,6 +15,7 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
+import org.jspecify.annotations.NonNull;
 
 public final class HungryTrappedChestItemRenderer extends BlockEntityWithoutLevelRenderer {
     private static final Material MATERIAL = new Material(Sheets.CHEST_SHEET,
@@ -35,10 +36,10 @@ public final class HungryTrappedChestItemRenderer extends BlockEntityWithoutLeve
 
     @Override
     public void renderByItem(
-            ItemStack stack,
-            ItemDisplayContext context,
+            @NonNull ItemStack stack,
+            @NonNull ItemDisplayContext context,
             PoseStack poseStack,
-            MultiBufferSource buffer,
+            @NonNull MultiBufferSource buffer,
             int packedLight,
             int packedOverlay) {
         poseStack.pushPose();

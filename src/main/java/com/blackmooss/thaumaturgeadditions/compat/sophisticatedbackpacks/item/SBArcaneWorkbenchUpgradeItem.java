@@ -7,8 +7,7 @@ import org.jspecify.annotations.NonNull;
 
 import java.util.List;
 
-public class SBArcaneWorkbenchUpgradeItem
-        extends UpgradeItemBase<SBArcaneWorkbenchUpgradeWrapper> {
+public class SBArcaneWorkbenchUpgradeItem extends UpgradeItemBase<SBArcaneWorkbenchUpgradeWrapper> {
     private static final UpgradeType<SBArcaneWorkbenchUpgradeWrapper> TYPE =
             new UpgradeType<>(SBArcaneWorkbenchUpgradeWrapper::new);
 

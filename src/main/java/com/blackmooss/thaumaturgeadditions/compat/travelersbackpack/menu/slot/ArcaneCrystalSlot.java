@@ -14,7 +14,13 @@ import java.util.Objects;
 public class ArcaneCrystalSlot extends UpgradeSlotItemHandler<TBArcaneWorkbenchUpgrade> {
     private final ResourceKey<IAspect> aspect;
 
-    public ArcaneCrystalSlot(TBArcaneWorkbenchUpgrade upgrade, ItemStackHandler items, int index, int x, int y, ResourceKey<IAspect> aspect) {
+    public ArcaneCrystalSlot(
+            TBArcaneWorkbenchUpgrade upgrade,
+            ItemStackHandler items,
+            int index,
+            int x,
+            int y,
+            ResourceKey<IAspect> aspect) {
         super(upgrade, items, index, x, y);
         this.aspect = Objects.requireNonNull(aspect, "aspect");
     }

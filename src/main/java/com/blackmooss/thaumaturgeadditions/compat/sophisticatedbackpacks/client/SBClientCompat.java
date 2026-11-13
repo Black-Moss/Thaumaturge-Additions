@@ -9,9 +9,6 @@ import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 
 @EventBusSubscriber(modid = ThaumaturgeAdditions.MODID, value = Dist.CLIENT)
 public final class SBClientCompat {
-    private SBClientCompat() {
-    }
-
     @SubscribeEvent
     public static void onRegisterMenuScreens(RegisterMenuScreensEvent event) {
         if (!SophisticatedBackpacksCompat.isLoaded()) {

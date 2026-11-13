@@ -28,8 +28,7 @@ import org.jspecify.annotations.Nullable;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class SBArcaneWorkbenchUpgradeWrapper
-        extends UpgradeWrapperBase<SBArcaneWorkbenchUpgradeWrapper, SBArcaneWorkbenchUpgradeItem>
+public class SBArcaneWorkbenchUpgradeWrapper extends UpgradeWrapperBase<SBArcaneWorkbenchUpgradeWrapper, SBArcaneWorkbenchUpgradeItem>
         implements ITickableUpgrade {
     public static final int GRID_WIDTH = 3;
     public static final int GRID_HEIGHT = 3;
@@ -40,7 +39,12 @@ public class SBArcaneWorkbenchUpgradeWrapper
     public static final int SIZE = WAND_SLOT + 1;
 
     public static final List<ResourceKey<IAspect>> PRIMAL_ORDER = List.of(
-            TTAspects.AER, TTAspects.IGNIS, TTAspects.AQUA, TTAspects.TERRA, TTAspects.ORDO, TTAspects.PERDITIO);
+            TTAspects.AER,
+            TTAspects.IGNIS,
+            TTAspects.AQUA,
+            TTAspects.TERRA,
+            TTAspects.ORDO,
+            TTAspects.PERDITIO);
 
     private static final int AURA_REFRESH_INTERVAL = 10;
 
@@ -49,7 +53,10 @@ public class SBArcaneWorkbenchUpgradeWrapper
     };
     private boolean suppressResultRefresh = false;
 
-    public SBArcaneWorkbenchUpgradeWrapper(IStorageWrapper storageWrapper, ItemStack upgrade, Consumer<ItemStack> upgradeSaveHandler) {
+    public SBArcaneWorkbenchUpgradeWrapper(
+            IStorageWrapper storageWrapper,
+            ItemStack upgrade,
+            Consumer<ItemStack> upgradeSaveHandler) {
         super(storageWrapper, upgrade, upgradeSaveHandler);
         if (upgrade.has(DataComponents.CONTAINER)) {
             upgrade.set(ModCoreDataComponents.LENIENT_CONTAINER.get(), upgrade.get(DataComponents.CONTAINER));

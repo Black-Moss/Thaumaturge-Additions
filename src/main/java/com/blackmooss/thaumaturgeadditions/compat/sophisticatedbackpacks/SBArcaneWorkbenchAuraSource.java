@@ -13,7 +13,12 @@ import net.minecraft.server.level.ServerPlayer;
 
 public final class SBArcaneWorkbenchAuraSource implements IWorkbenchAuraSource {
     @Override
-    public int supply(ArcaneWorkbenchContext context, ServerPlayer player, IArcaneWorkbench workbench, int need, TransactionContext transaction) {
+    public int supply(
+            ArcaneWorkbenchContext context,
+            ServerPlayer player,
+            IArcaneWorkbench workbench,
+            int need,
+            TransactionContext transaction) {
         if (need <= 0 || context.kind() != ArcaneWorkbenchContext.Kind.VIRTUAL) {
             return 0;
         }

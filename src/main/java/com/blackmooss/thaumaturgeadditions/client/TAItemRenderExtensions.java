@@ -11,6 +11,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.common.util.Lazy;
+import org.jspecify.annotations.NonNull;
 
 @EventBusSubscriber(modid = ThaumaturgeAdditions.MODID, value = Dist.CLIENT)
 public final class TAItemRenderExtensions {
@@ -20,14 +21,11 @@ public final class TAItemRenderExtensions {
                 minecraft.getBlockEntityRenderDispatcher(), minecraft.getEntityModels());
     });
 
-    private TAItemRenderExtensions() {
-    }
-
     @SubscribeEvent
     public static void onRegisterClientExtensions(RegisterClientExtensionsEvent event) {
         event.registerItem(new IClientItemExtensions() {
             @Override
-            public BlockEntityWithoutLevelRenderer getCustomRenderer() {
+            public @NonNull BlockEntityWithoutLevelRenderer getCustomRenderer() {
                 return RENDERER.get();
             }
         }, TAItems.HUNGRY_TRAPPED_CHEST.get());

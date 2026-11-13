@@ -25,7 +25,10 @@ public final class SBArcaneWorkbenchCraftingStore implements IArcaneCraftingStor
     private final int width;
     private final int height;
 
-    public SBArcaneWorkbenchCraftingStore(StatefulComponentItemHandler items, Player player, int left, int top, int width, int height) {
+    public SBArcaneWorkbenchCraftingStore(
+            StatefulComponentItemHandler items,
+            Player player,
+            int left, int top, int width, int height) {
         this.items = Objects.requireNonNull(items, "items");
         this.player = Objects.requireNonNull(player, "player");
         this.left = left;

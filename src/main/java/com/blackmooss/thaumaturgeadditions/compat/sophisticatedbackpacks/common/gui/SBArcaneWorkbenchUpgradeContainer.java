@@ -26,8 +26,7 @@ import org.jspecify.annotations.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SBArcaneWorkbenchUpgradeContainer
-        extends UpgradeContainerBase<SBArcaneWorkbenchUpgradeWrapper, SBArcaneWorkbenchUpgradeContainer> {
+public class SBArcaneWorkbenchUpgradeContainer extends UpgradeContainerBase<SBArcaneWorkbenchUpgradeWrapper, SBArcaneWorkbenchUpgradeContainer> {
     public static final UpgradeContainerType<SBArcaneWorkbenchUpgradeWrapper, SBArcaneWorkbenchUpgradeContainer> TYPE =
             new UpgradeContainerType<>(SBArcaneWorkbenchUpgradeContainer::new);
 

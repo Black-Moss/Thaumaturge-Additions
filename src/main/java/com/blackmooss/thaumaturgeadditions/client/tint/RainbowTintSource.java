@@ -7,9 +7,6 @@ import java.awt.*;
 public final class RainbowTintSource {
     private static final long CYCLE_MS = 3333L;
 
-    private RainbowTintSource() {
-    }
-
     public static int tint(ItemStack stack, int tintIndex) {
         if (tintIndex != 1) {
             return -1;
