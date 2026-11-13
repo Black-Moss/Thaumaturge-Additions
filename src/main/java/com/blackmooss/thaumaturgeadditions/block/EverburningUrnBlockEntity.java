@@ -1,30 +1,24 @@
 package com.blackmooss.thaumaturgeadditions.block;
 
-import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
 import com.blackmooss.thaumaturgeadditions.config.ThaumaturgeAdditionsServerConfig;
 import com.blackmooss.thaumaturgeadditions.registry.TABlockEntities;
 import com.leclowndu93150.thaumaturge.api.aura.AuraHelper;
+import com.leclowndu93150.thaumaturge.content.blockentity.AbstractSyncedBlockEntity;
 import com.leclowndu93150.thaumaturge.content.effect.EffectDispatch;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
-import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.ProblemReporter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.level.storage.TagValueOutput;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.transfer.ResourceHandler;
 import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
@@ -34,36 +28,34 @@ import org.jspecify.annotations.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class EverburningUrnBlockEntity extends BlockEntity {
+public final class EverburningUrnBlockEntity extends AbstractSyncedBlockEntity {
     public static final int CAPACITY = 1000;
     private static final int WORK_INTERVAL = 5;
     private static final int PUSH_AMOUNT = 25;
     private static final int CAULDRON_COST = 333;
     private static final float MAX_REFILL_VIS = 0.1F;
-    private static final int ZONE_XZ = 5;
-    private static final int ZONE_Y = 3;
-    private static final int TRAIL_COLOR = 0xFF4500;
-    private static final double TRAIL_SOURCE_Y = 0.66;
-    private static final float TRAIL_SCALE = 0.1F;
-    private static final int TRAIL_EXTEND = 0;
-    private static final double TRAIL_UPWARD = 0.2;
+    private static final int PROBE_SIDE = 5;
+    private static final int PROBE_LAYER_AREA = 25;
+    private static final int CELL_COUNT = 75;
+    private static final int OWN_CELL = 37;
+    private static final int FIRST_CELL = 1;
+    private static final int STREAM_COLOR = 0xFF4500;
+    private static final int STREAM_TYPE = 0;
+    private static final int STREAM_COUNT = 4;
+    private static final float STREAM_SCALE = 0.1F;
+    private static final int STREAM_EXTEND = 0;
+    private static final double STREAM_LIFT = 0.2;
+    private static final double SOURCE_HEIGHT = 0.66;
+    private static final int SMOKE_COUNT = 4;
+    private static final double PARTICLE_SPREAD_HORIZONTAL = 0.2;
+    private static final double PARTICLE_SPREAD_VERTICAL = 0.1;
+    private static final String TANK_KEY = "Tank";
+    private static final String HANDLERS_KEY = "Handlers";
 
-    private final FluidStacksResourceHandler tank = new FluidStacksResourceHandler(1, CAPACITY) {
-        @Override
-        public boolean isValid(int index, FluidResource resource) {
-            return resource.is(Fluids.LAVA);
-        }
-
-        @Override
-        protected void onContentsChanged(int index, net.neoforged.neoforge.fluids.@NonNull FluidStack previousContents) {
-            super.onContentsChanged(index, previousContents);
-            setChanged();
-        }
-    };
-
-    private final List<Integer> handlers = new ArrayList<>();
-    private int zone;
-    private int counter;
+    private final UrnTank tank = new UrnTank();
+    private final List<BlockPos> targets = new ArrayList<>();
+    private int ticks;
+    private int probeCursor = FIRST_CELL;
 
     public EverburningUrnBlockEntity(BlockPos pos, BlockState state) {
         super(TABlockEntities.EVERBURNING_URN.get(), pos, state);
@@ -73,63 +65,13 @@ public final class EverburningUrnBlockEntity extends BlockEntity {
             Level level,
             BlockPos pos,
             BlockState state,
-            EverburningUrnBlockEntity entity) {
-        entity.counter++;
-        if (entity.counter % WORK_INTERVAL != 0 || !(level instanceof ServerLevel server)) {
-            return;
-        }
-        if (ThaumaturgeAdditionsServerConfig.EVERBURNING_URN_AUTO_FILL.get()) {
-            entity.zone++;
-            BlockPos probe = entity.zonePos(entity.zone);
-            if (!entity.handlers.contains(entity.zone % 75) && entity.acceptsLava(server, probe)) {
-                entity.handlers.add(entity.zone % 75);
-                entity.setChanged();
+            EverburningUrnBlockEntity urn) {
+        if (++urn.ticks % WORK_INTERVAL == 0 && level instanceof ServerLevel server) {
+            if (ThaumaturgeAdditionsServerConfig.EVERBURNING_URN_AUTO_FILL.get()) {
+                urn.probe(server);
+                urn.distribute(server);
             }
-            int i = 0;
-            while (i < entity.handlers.size() && entity.lavaAmount() >= PUSH_AMOUNT) {
-                int zz = entity.handlers.get(i);
-                BlockPos target = entity.zonePos(zz);
-                BlockState targetState = server.getBlockState(target);
-                ResourceHandler<FluidResource> handler = server.getCapability(Capabilities.Fluid.BLOCK, target, Direction.UP);
-                if (handler == null) {
-                    if (!targetState.is(Blocks.CAULDRON)
-                            && !targetState.is(Blocks.LAVA_CAULDRON)
-                            || entity.lavaAmount() < CAULDRON_COST) {
-                        entity.handlers.remove(i);
-                        entity.setChanged();
-                        continue;
-                    }
-                    if (targetState.is(Blocks.CAULDRON)) {
-                        server.setBlock(target, Blocks.LAVA_CAULDRON.defaultBlockState(), Block.UPDATE_CLIENTS);
-                        entity.drainLava(CAULDRON_COST);
-                        entity.pourInto(server, target);
-                    }
-                } else {
-                    int moved;
-                    try (Transaction ctx = Transaction.openRoot()) {
-                        moved = handler.insert(FluidResource.of(Fluids.LAVA), PUSH_AMOUNT, ctx);
-                        if (moved > 0) {
-                            ctx.commit();
-                        }
-                    }
-                    if (moved > 0) {
-                        entity.drainLava(moved);
-                        entity.pourInto(server, target);
-                        break;
-                    }
-                }
-                i++;
-            }
-        }
-        if (entity.lavaAmount() < CAPACITY) {
-            float demand = Math.min(MAX_REFILL_VIS, (CAPACITY - entity.lavaAmount()) / (float) CAPACITY);
-            if (demand > 0.0F) {
-                float drawn = AuraHelper.drainVis(server, pos, demand, false);
-                int lava = (int) (CAPACITY * drawn);
-                if (lava > 0) {
-                    entity.fillLava(lava);
-                }
-            }
+            urn.refill(server, pos);
         }
     }
 
@@ -142,74 +84,181 @@ public final class EverburningUrnBlockEntity extends BlockEntity {
     }
 
     public void drainLava(int amount) {
-        try (Transaction ctx = Transaction.openRoot()) {
-            tank.extract(FluidResource.of(Fluids.LAVA), amount, ctx);
-            ctx.commit();
+        try (Transaction transaction = Transaction.openRoot()) {
+            tank.extract(lava(), amount, transaction);
+            transaction.commit();
         }
     }
 
-    private void fillLava(int amount) {
-        try (Transaction ctx = Transaction.openRoot()) {
-            tank.insert(FluidResource.of(Fluids.LAVA), amount, ctx);
-            ctx.commit();
+    private static FluidResource lava() {
+        return FluidResource.of(Fluids.LAVA);
+    }
+
+    private void probe(ServerLevel level) {
+        int cell = probeCursor;
+        probeCursor = (probeCursor + 1) % CELL_COUNT;
+        if (probeCursor == OWN_CELL) {
+            probeCursor = (probeCursor + 1) % CELL_COUNT;
+        }
+        BlockPos pos = positionOf(cell);
+        if (level.hasChunkAt(pos) && !targets.contains(pos) && acceptsLava(level, pos)) {
+            targets.add(pos);
+            setChanged();
         }
     }
 
-    private BlockPos zonePos(int zone) {
-        int x = zone / ZONE_XZ % ZONE_XZ;
-        int y = zone / ZONE_XZ / ZONE_XZ % ZONE_Y;
-        int z = zone % ZONE_XZ;
-        return getBlockPos().offset(x - 2, y - 1, z - 2);
+    private BlockPos positionOf(int cell) {
+        int layer = cell / PROBE_LAYER_AREA;
+        int column = cell % PROBE_LAYER_AREA / PROBE_SIDE;
+        int row = cell % PROBE_SIDE;
+        return getBlockPos().offset(column - 2, layer - 1, row - 2);
     }
 
-    private boolean acceptsLava(ServerLevel server, BlockPos pos) {
-        if (server.getCapability(Capabilities.Fluid.BLOCK, pos, Direction.UP) != null) {
-            return true;
+    private int cellOf(BlockPos pos) {
+        int dx = pos.getX() - getBlockPos().getX();
+        int dy = pos.getY() - getBlockPos().getY();
+        int dz = pos.getZ() - getBlockPos().getZ();
+        if (Math.abs(dx) > 2 || Math.abs(dz) > 2 || Math.abs(dy) > 1) {
+            return -1;
         }
-        BlockState state = server.getBlockState(pos);
+        return (dy + 1) * PROBE_LAYER_AREA + (dx + 2) * PROBE_SIDE + dz + 2;
+    }
+
+    private static boolean isCauldron(BlockState state) {
         return state.is(Blocks.CAULDRON) || state.is(Blocks.LAVA_CAULDRON);
     }
 
-    private void pourInto(ServerLevel server, BlockPos target) {
-        Vec3 from = new Vec3(getBlockPos().getX() + 0.5, getBlockPos().getY() + TRAIL_SOURCE_Y, getBlockPos().getZ() + 0.5);
-        EffectDispatch.spawnEssentiaStream(server, from, Vec3.atCenterOf(target), TRAIL_COLOR, 0, counter, TRAIL_SCALE, TRAIL_EXTEND, TRAIL_UPWARD);
+    private static boolean acceptsLava(Level level, BlockPos pos) {
+        return isCauldron(level.getBlockState(pos))
+                || level.getCapability(Capabilities.Fluid.BLOCK, pos, Direction.UP) != null;
+    }
+
+    private void distribute(ServerLevel level) {
+        int index = 0;
+        while (index < targets.size() && lavaAmount() >= PUSH_AMOUNT) {
+            BlockPos target = targets.get(index);
+            if (!level.hasChunkAt(target)) {
+                index++;
+                continue;
+            }
+            BlockState state = level.getBlockState(target);
+            if (isCauldron(state)) {
+                if (lavaAmount() < CAULDRON_COST) {
+                    targets.remove(index);
+                    setChanged();
+                } else {
+                    fillCauldron(level, target, state);
+                    index++;
+                }
+            } else {
+                ResourceHandler<FluidResource> receiver =
+                        level.getCapability(Capabilities.Fluid.BLOCK, target, Direction.UP);
+                if (receiver == null) {
+                    targets.remove(index);
+                    setChanged();
+                } else {
+                    if (push(receiver) > 0) {
+                        pour(level, target);
+                        return;
+                    }
+                    index++;
+                }
+            }
+        }
+    }
+
+    private void fillCauldron(ServerLevel level, BlockPos target, BlockState state) {
+        if (!state.is(Blocks.CAULDRON)) {
+            return;
+        }
+        level.setBlock(target, Blocks.LAVA_CAULDRON.defaultBlockState(), Block.UPDATE_CLIENTS);
+        level.updateNeighbourForOutputSignal(target, state.getBlock());
+        drainLava(CAULDRON_COST);
+        pour(level, target);
+    }
+
+    private int push(ResourceHandler<FluidResource> receiver) {
+        try (Transaction transaction = Transaction.openRoot()) {
+            int accepted = receiver.insert(lava(), PUSH_AMOUNT, transaction);
+            if (accepted > 0) {
+                tank.extract(lava(), accepted, transaction);
+                transaction.commit();
+            }
+            return accepted;
+        }
+    }
+
+    private void pour(ServerLevel level, BlockPos target) {
+        Vec3 from = new Vec3(getBlockPos().getX() + 0.5, getBlockPos().getY() + SOURCE_HEIGHT,
+                getBlockPos().getZ() + 0.5);
+        EffectDispatch.spawnEssentiaStream(level, from, Vec3.atCenterOf(target), STREAM_COLOR,
+                STREAM_TYPE, STREAM_COUNT, STREAM_SCALE, STREAM_EXTEND, STREAM_LIFT);
+        level.sendParticles(ParticleTypes.SMOKE, target.getX() + 0.5, target.getY() + 1.0,
+                target.getZ() + 0.5, SMOKE_COUNT, PARTICLE_SPREAD_HORIZONTAL,
+                PARTICLE_SPREAD_VERTICAL, PARTICLE_SPREAD_HORIZONTAL, 0.0);
+    }
+
+    private void refill(ServerLevel level, BlockPos pos) {
+        int stored = lavaAmount();
+        if (stored < CAPACITY) {
+            float request = Math.min(MAX_REFILL_VIS, (CAPACITY - stored) / (float) CAPACITY);
+            if (request > 0.0F) {
+                int gained = (int) (CAPACITY * AuraHelper.drainVis(level, pos, request, false));
+                if (gained > 0) {
+                    try (Transaction transaction = Transaction.openRoot()) {
+                        tank.insert(lava(), gained, transaction);
+                        transaction.commit();
+                    }
+                }
+            }
+        }
     }
 
     @Override
     protected void saveAdditional(@NonNull ValueOutput output) {
         super.saveAdditional(output);
-        tank.serialize(output.child("Tank"));
-        int[] zones = new int[handlers.size()];
-        for (int i = 0; i < zones.length; i++) {
-            zones[i] = handlers.get(i);
+        tank.serialize(output.child(TANK_KEY));
+        int[] cells = new int[targets.size()];
+        for (int index = 0; index < cells.length; index++) {
+            cells[index] = cellOf(targets.get(index));
         }
-        output.putIntArray("Handlers", zones);
+        output.putIntArray(HANDLERS_KEY, cells);
     }
 
     @Override
     protected void loadAdditional(@NonNull ValueInput input) {
         super.loadAdditional(input);
-        input.child("Tank").ifPresent(tank::deserialize);
-        handlers.clear();
-        int[] zones = input.getIntArray("Handlers").orElse(new int[0]);
-        for (int zone : zones) {
-            handlers.add(zone);
-        }
+        input.child(TANK_KEY).ifPresent(tank::deserialize);
+        targets.clear();
+        input.getIntArray(HANDLERS_KEY).ifPresent(this::loadTargets);
     }
 
     @Override
-    public @NonNull CompoundTag getUpdateTag(HolderLookup.@NonNull Provider registries) {
-        CompoundTag nbt = super.getUpdateTag(registries);
-        try (ProblemReporter.ScopedCollector reporter = new ProblemReporter.ScopedCollector(this.problemPath(), ThaumaturgeAdditions.LOGGER)) {
-            TagValueOutput output = TagValueOutput.createWithContext(reporter, registries);
-            saveAdditional(output);
-            nbt.merge(output.buildResult());
-        }
-        return nbt;
+    protected void writeClientData(@NonNull ValueOutput output) {
+        tank.serialize(output.child(TANK_KEY));
     }
 
-    @Override
-    public Packet<ClientGamePacketListener> getUpdatePacket() {
-        return ClientboundBlockEntityDataPacket.create(this);
+    private void loadTargets(int[] cells) {
+        for (int cell : cells) {
+            if (cell >= 0 && cell < CELL_COUNT && cell != OWN_CELL) {
+                targets.add(positionOf(cell));
+            }
+        }
+    }
+
+    private final class UrnTank extends FluidStacksResourceHandler {
+        private UrnTank() {
+            super(1, CAPACITY);
+        }
+
+        @Override
+        public boolean isValid(int index, FluidResource resource) {
+            return resource.is(Fluids.LAVA);
+        }
+
+        @Override
+        protected void onContentsChanged(int index, @NonNull FluidStack previousContents) {
+            setChanged();
+        }
     }
 }
