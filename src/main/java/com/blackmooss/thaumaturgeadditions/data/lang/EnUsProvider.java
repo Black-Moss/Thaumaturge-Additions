@@ -83,11 +83,6 @@ public class EnUsProvider extends LanguageProvider {
     }
 
     private void configuration() {
-        addConfiguration("title", "Thaumaturge Additions Config");
-
-        addConfiguration("section.thaumaturgeadditions.client.toml", "Thaumaturge Additions Client Settings");
-        addConfiguration("section.thaumaturgeadditions.client.toml.title", "Thaumaturge Additions Client Settings");
-
         addConfiguration("everburning_urn_auto_fill", "Everburning Urn Auto Fill");
     }
 

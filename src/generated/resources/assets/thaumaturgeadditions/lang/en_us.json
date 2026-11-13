@@ -28,7 +28,7 @@
   "research.thaumaturgeadditions.focus_salis_mundus.stage_1": "A focus version of the magical dust. Triggers transmutations on certain blocks without consuming Salis Mundus.<BR>Nothing more to it than that.",
   "research.thaumaturgeadditions.focus_salis_mundus.title": "Focus Effect: Salis Mundus",
   "research.thaumaturgeadditions.hungry_trapped_chest.stage_0": "I must say, reading a hopper's contents with a comparator takes up a dreadful amount of space, and a hopper cannot gather dropped items from every direction the way a Hungry Chest does. It seems only sensible to combine the two.",
-  "research.thaumaturgeadditions.hungry_trapped_chest.stage_1": "The Trapped Hungry Chest snatches up dropped items just like an ordinary Hungry Chest, and like a trapped chest it emits a redstone signal while open. Best of all, the instant it swallows something it emits a signal whose strength reflects what fraction of a full stack of that item it just took in. For example:<BR>64 grass blocks -> signal strength 15;<BR>32 iron ingots -> signal strength 7;<BR>16 ender pearls -> signal strength 15.<BR>And so on...<LINE>Place two Trapped Hungry Chests side by side and the signal is shared between both halves.",
+  "research.thaumaturgeadditions.hungry_trapped_chest.stage_1": "The Trapped Hungry Chest snatches up dropped items just like an ordinary Hungry Chest, and like a trapped chest it emits a redstone signal while open. Best of all, the instant it swallows something it emits a signal whose strength reflects what fraction of a full stack of that item it just took in. For example:<BR>64 Grass Blocks -> signal strength 15;<BR>32 Iron Ingots -> signal strength 7;<BR>16 Ender Pearls -> signal strength 15.<BR>And so on...<LINE>Place two Trapped Hungry Chests side by side and the signal is shared between both halves.",
   "research.thaumaturgeadditions.hungry_trapped_chest.title": "Trapped Hungry Chest",
   "research.thaumaturgeadditions.rainbow_scribing_tools.stage_0": "Honestly, I'm sick of diving for squid. That ink is practically staining my research table black... Why does writing have to use black dye? Can't it be a \"Gorgeous Black\"?",
   "research.thaumaturgeadditions.rainbow_scribing_tools.stage_1": "No matter what dye you put in this little bottle, it always writes in black — truly a \"Gorgeous Black\".",
@@ -39,8 +39,5 @@
   "screen.thaumaturgeadditions.arcane_workbench_upgrade": "Arcane Workbench",
   "spell.thaumaturgeadditions.salis_mundus.desc": "Cast on a block to transmute it according to that block's transmutation recipe, without spending Salis Mundus.",
   "spell.thaumaturgeadditions.salis_mundus.name": "Salis Mundus",
-  "thaumaturgeadditions.configuration.everburning_urn_auto_fill": "Everburning Urn Auto Fill",
-  "thaumaturgeadditions.configuration.section.thaumaturgeadditions.client.toml": "Thaumaturge Additions Client Settings",
-  "thaumaturgeadditions.configuration.section.thaumaturgeadditions.client.toml.title": "Thaumaturge Additions Client Settings",
-  "thaumaturgeadditions.configuration.title": "Thaumaturge Additions Config"
+  "thaumaturgeadditions.configuration.everburning_urn_auto_fill": "Everburning Urn Auto Fill"
 }

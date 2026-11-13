@@ -1,7 +1,7 @@
 package com.blackmooss.thaumaturgeadditions;
 
 import com.blackmooss.thaumaturgeadditions.compat.sophisticatedbackpacks.SophisticatedBackpacksCompat;
-import com.blackmooss.thaumaturgeadditions.config.ThaumaturgeAdditionsCommonConfig;
+import com.blackmooss.thaumaturgeadditions.config.ThaumaturgeAdditionsServerConfig;
 import com.blackmooss.thaumaturgeadditions.data.ModBlockLootSubProvider;
 import com.blackmooss.thaumaturgeadditions.data.ModModelProvider;
 import com.blackmooss.thaumaturgeadditions.data.ModRecipeProvider;
@@ -45,7 +45,7 @@ public class ThaumaturgeAdditions {
         TASpellBehaviors.BEHAVIORS.register(modEventBus);
         modEventBus.addListener(SophisticatedBackpacksCompat::onRegisterUpgradeContainers);
 
-        modContainer.registerConfig(ModConfig.Type.COMMON, ThaumaturgeAdditionsCommonConfig.SPEC);
+        modContainer.registerConfig(ModConfig.Type.SERVER, ThaumaturgeAdditionsServerConfig.SPEC);
     }
 
     public static Identifier identifier(String path) {

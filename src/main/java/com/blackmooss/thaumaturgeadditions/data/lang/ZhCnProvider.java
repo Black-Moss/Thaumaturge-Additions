@@ -83,11 +83,6 @@ public class ZhCnProvider extends LanguageProvider {
     }
 
     private void configuration() {
-        addConfiguration("title", "神秘附加配置文件");
-
-        addConfiguration("section.thaumaturgeadditions.client.toml", "神秘附加客户端配置文件");
-        addConfiguration("section.thaumaturgeadditions.client.toml.title", "神秘附加客户端配置文件");
-
         addConfiguration("everburning_urn_auto_fill", "永燃之瓮自动填充");
     }
 
