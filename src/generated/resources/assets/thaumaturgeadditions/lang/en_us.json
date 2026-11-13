@@ -39,8 +39,5 @@
   "screen.thaumaturgeadditions.arcane_workbench_upgrade": "Arcane Workbench",
   "spell.thaumaturgeadditions.salis_mundus.desc": "Cast on a block to transmute it according to that block's transmutation recipe, without spending Salis Mundus.",
   "spell.thaumaturgeadditions.salis_mundus.name": "Salis Mundus",
-  "thaumaturgeadditions.configuration.everburning_urn_auto_fill": "Everburning Urn Auto Fill",
-  "thaumaturgeadditions.configuration.section.thaumaturgeadditions.client.toml": "Thaumaturge Additions Client Settings",
-  "thaumaturgeadditions.configuration.section.thaumaturgeadditions.client.toml.title": "Thaumaturge Additions Client Settings",
-  "thaumaturgeadditions.configuration.title": "Thaumaturge Additions Config"
+  "thaumaturgeadditions.configuration.everburning_urn_auto_fill": "Everburning Urn Auto Fill"
 }
