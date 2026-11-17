@@ -98,6 +98,9 @@ configurations {
 }
 
 dependencies {
+    // Lazy Cat
+    implementation "curse.maven:lazy-cat-1806291:${lazycat_id}"
+
     // Lithostitched
     implementation "maven.modrinth:lithostitched:${lithostitched_version}"
 
