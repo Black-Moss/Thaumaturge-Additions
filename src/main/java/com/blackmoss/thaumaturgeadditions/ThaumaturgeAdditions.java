@@ -42,7 +42,7 @@ public class ThaumaturgeAdditions {
         TABlockEntities.BLOCK_ENTITIES.register(modEventBus);
         TADataComponents.DATA_COMPONENT_TYPES.register(modEventBus);
         TAItems.ITEMS.register(modEventBus);
-        TASpellBehaviors.BEHAVIORS.register(modEventBus);
+        TASpellBehaviors.SPELL_BEHAVIORS.register(modEventBus);
         modEventBus.addListener(SophisticatedBackpacksCompat::onRegisterUpgradeContainers);
 
         modContainer.registerConfig(ModConfig.Type.SERVER, ThaumaturgeAdditionsServerConfig.SPEC);
