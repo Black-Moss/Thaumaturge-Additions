@@ -87,7 +87,7 @@ public final class ModRecipeProvider extends LazyCatRecipeProvider {
                 .component(Ingredient.of(Items.NETHER_BRICK))
                 .component(Ingredient.of(Items.NETHER_BRICK))
                 .component(Ingredient.of(Items.LAVA_BUCKET))
-                .component(ThaumaturgeUtils.crystal(TTAspects.IGNIS))
+                .component(crystal(TTAspects.IGNIS))
                 .component(Ingredient.of(Items.OBSIDIAN))
                 .component(Ingredient.of(Items.LAVA_BUCKET))
                 .aspect(TTAspects.IGNIS, 40)
@@ -138,6 +138,10 @@ public final class ModRecipeProvider extends LazyCatRecipeProvider {
                 .unlockedBy(getHasName(TAItems.VOID_TRAVELLER_BOOTS.get()), this.has(TAItems.VOID_TRAVELLER_BOOTS.get()))
                 .group("cloth_robes")
                 .save(output, ThaumaturgeAdditions.identifier("void_traveller_boots_dyed").toString());
+    }
+
+    private Ingredient crystal(ResourceKey<IAspect> aspect) {
+        return ThaumaturgeUtils.crystal(registries, aspect);
     }
 
     public static final class Runner extends RecipeProvider.Runner {
