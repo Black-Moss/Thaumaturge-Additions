@@ -141,6 +141,7 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
             mod_version                   : mod_version,
             mod_authors                   : mod_authors,
             mod_description               : mod_description,
+            lazycat_version               : lazycat_version,
             thaumaturge_version           : thaumaturge_version,
             jei_version                   : jei_version,
             travelersbackpack_version     : travelersbackpack_version,
