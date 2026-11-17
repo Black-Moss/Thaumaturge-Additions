@@ -75,6 +75,19 @@ public final class EverburningUrnBlockEntity extends AbstractSyncedBlockEntity {
         }
     }
 
+    private static FluidResource lava() {
+        return FluidResource.of(Fluids.LAVA);
+    }
+
+    private static boolean isCauldron(BlockState state) {
+        return state.is(Blocks.CAULDRON) || state.is(Blocks.LAVA_CAULDRON);
+    }
+
+    private static boolean acceptsLava(Level level, BlockPos pos) {
+        return isCauldron(level.getBlockState(pos))
+                || level.getCapability(Capabilities.Fluid.BLOCK, pos, Direction.UP) != null;
+    }
+
     public FluidStacksResourceHandler getTank() {
         return tank;
     }
@@ -88,10 +101,6 @@ public final class EverburningUrnBlockEntity extends AbstractSyncedBlockEntity {
             tank.extract(lava(), amount, transaction);
             transaction.commit();
         }
-    }
-
-    private static FluidResource lava() {
-        return FluidResource.of(Fluids.LAVA);
     }
 
     private void probe(ServerLevel level) {
@@ -122,15 +131,6 @@ public final class EverburningUrnBlockEntity extends AbstractSyncedBlockEntity {
             return -1;
         }
         return (dy + 1) * PROBE_LAYER_AREA + (dx + 2) * PROBE_SIDE + dz + 2;
-    }
-
-    private static boolean isCauldron(BlockState state) {
-        return state.is(Blocks.CAULDRON) || state.is(Blocks.LAVA_CAULDRON);
-    }
-
-    private static boolean acceptsLava(Level level, BlockPos pos) {
-        return isCauldron(level.getBlockState(pos))
-                || level.getCapability(Capabilities.Fluid.BLOCK, pos, Direction.UP) != null;
     }
 
     private void distribute(ServerLevel level) {

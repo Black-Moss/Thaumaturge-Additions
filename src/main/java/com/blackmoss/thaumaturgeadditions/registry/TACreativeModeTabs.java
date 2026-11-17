@@ -14,7 +14,7 @@ public final class TACreativeModeTabs {
     static {
         THAUMATURGE_ADDITIONS = CREATIVE_MODE_TABS.register(ThaumaturgeAdditions.MODID,
                 () -> CreativeModeTab.builder()
-                        .title(Component.translatable("itemGroup.thaumaturgeadditions"))
+                        .title(Component.translatable("itemGroup.thaumaturgeadditions.thaumaturgeadditions"))
                         .icon(() -> TAItems.VOID_TRAVELLER_BOOTS.get().getDefaultInstance()).displayItems((_, output) -> {
                             output.accept(TAItems.VOID_TRAVELLER_BOOTS.get());
                             output.accept(TAItems.VOID_BRAIN_JAR.get());

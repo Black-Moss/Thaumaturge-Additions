@@ -1,19 +1,20 @@
 package com.blackmoss.thaumaturgeadditions.data.lang;
 
+import com.blackmoss.lazycat.lang.LazyCatLanguageProvider;
 import com.blackmoss.thaumaturgeadditions.ThaumaturgeAdditions;
 import com.blackmoss.thaumaturgeadditions.registry.TABlocks;
+import com.blackmoss.thaumaturgeadditions.registry.TACreativeModeTabs;
 import com.blackmoss.thaumaturgeadditions.registry.TAItems;
 import net.minecraft.data.PackOutput;
-import net.neoforged.neoforge.common.data.LanguageProvider;
 
-public class ZhCnProvider extends LanguageProvider {
+public class ZhCnProvider extends LazyCatLanguageProvider {
     public ZhCnProvider(PackOutput output) {
         super(output, ThaumaturgeAdditions.MODID, "zh_cn");
     }
 
     @Override
     protected void addTranslations() {
-        add("itemGroup.thaumaturgeadditions", "神秘附加");
+        addCreativeModeTab(TACreativeModeTabs.THAUMATURGE_ADDITIONS.get(), "神秘附加");
         research();
         configuration();
 
@@ -84,22 +85,5 @@ public class ZhCnProvider extends LanguageProvider {
 
     private void configuration() {
         addConfiguration("everburning_urn_auto_fill", "永燃之瓮自动填充");
-    }
-
-    private void addResearch(String researchId, String title, String... stage) {
-        add("research.%s.%s.title".formatted(ThaumaturgeAdditions.MODID, researchId), title);
-        for (int i = 0; i < stage.length; i++) {
-            add("research.%s.%s.stage_%d".formatted(ThaumaturgeAdditions.MODID, researchId, i), stage[i]);
-        }
-    }
-
-    private void addResearchAddenda(String researchId, String... stage) {
-        for (int i = 0; i < stage.length; i++) {
-            add("research.%s.%s.addendum_%d".formatted(ThaumaturgeAdditions.MODID, researchId, i), stage[i]);
-        }
-    }
-
-    private void addConfiguration(String configID, String translations) {
-        add("%s.configuration.%s".formatted(ThaumaturgeAdditions.MODID, configID), translations);
     }
 }

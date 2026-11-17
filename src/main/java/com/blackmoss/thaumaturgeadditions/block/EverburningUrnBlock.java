@@ -42,6 +42,15 @@ public class EverburningUrnBlock extends BaseEntityBlock {
         super(properties);
     }
 
+    private static boolean holdsFluidCapability(ItemStack stack) {
+        return !stack.isEmpty() && ItemAccess.forStack(stack).oneByOne().getCapability(Capabilities.Fluid.ITEM) != null;
+    }
+
+    private static void splash(Level level, BlockPos pos) {
+        RandomSource random = level.getRandom();
+        level.playSound(null, pos, SoundEvents.BUCKET_FILL_LAVA, SoundSource.BLOCKS, 0.33F, 1.0F + (float) random.triangle(0.0F, 0.2));
+    }
+
     @Override
     protected @NonNull MapCodec<EverburningUrnBlock> codec() {
         return CODEC;
@@ -61,6 +70,7 @@ public class EverburningUrnBlock extends BaseEntityBlock {
         return new EverburningUrnBlockEntity(pos, state);
     }
 
+    @SuppressWarnings("removal")
     @Override
     protected @NonNull InteractionResult useItemOn(
             @NonNull ItemStack stack,
@@ -73,7 +83,6 @@ public class EverburningUrnBlock extends BaseEntityBlock {
         BlockEntity blockEntity = level.getBlockEntity(pos);
         if (blockEntity instanceof BlockEntityEverfullUrn urn) {
             if (!level.isClientSide()) {
-                //noinspection removal
                 if (FluidUtil.interactWithFluidHandler(player, hand, level, pos, hit.getDirection())) {
                     urn.setChanged();
                     splash(level, pos);
@@ -100,14 +109,5 @@ public class EverburningUrnBlock extends BaseEntityBlock {
             return null;
         }
         return createTickerHelper(type, TABlockEntities.EVERBURNING_URN.get(), (level1, pos, _, urn) -> EverburningUrnBlockEntity.serverTick(level1, pos, urn));
-    }
-
-    private static boolean holdsFluidCapability(ItemStack stack) {
-        return !stack.isEmpty() && ItemAccess.forStack(stack).oneByOne().getCapability(Capabilities.Fluid.ITEM) != null;
-    }
-
-    private static void splash(Level level, BlockPos pos) {
-        RandomSource random = level.getRandom();
-        level.playSound(null, pos, SoundEvents.BUCKET_FILL_LAVA, SoundSource.BLOCKS, 0.33F, 1.0F + (float) random.triangle(0.0F, 0.2));
     }
 }

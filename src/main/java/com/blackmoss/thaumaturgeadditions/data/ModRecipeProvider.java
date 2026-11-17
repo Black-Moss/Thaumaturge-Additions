@@ -1,11 +1,11 @@
 package com.blackmoss.thaumaturgeadditions.data;
 
 import com.blackmoss.lazycat.api.recipe.thaumaturge.ThaumaturgeUtils;
-import com.blackmoss.thaumaturgeadditions.ThaumaturgeAdditions;
-import com.blackmoss.thaumaturgeadditions.registry.TAItems;
 import com.blackmoss.lazycat.recipe.LazyCatRecipeProvider;
 import com.blackmoss.lazycat.recipe.thaumaturge.ArcaneShapelessBuilder;
 import com.blackmoss.lazycat.recipe.thaumaturge.InfusionBuilder;
+import com.blackmoss.thaumaturgeadditions.ThaumaturgeAdditions;
+import com.blackmoss.thaumaturgeadditions.registry.TAItems;
 import com.leclowndu93150.thaumaturge.TTIds;
 import com.leclowndu93150.thaumaturge.api.aspect.IAspect;
 import com.leclowndu93150.thaumaturge.api.aspect.TTAspects;
@@ -13,8 +13,6 @@ import com.leclowndu93150.thaumaturge.api.recipe.ResearchGate;
 import com.leclowndu93150.thaumaturge.registry.TTItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.CustomCraftingRecipeBuilder;
-import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.resources.ResourceKey;
@@ -54,8 +52,9 @@ public final class ModRecipeProvider extends LazyCatRecipeProvider {
                 .save();
 
         // 彩虹笔与墨
-        new InfusionBuilder(context, TAItems.RAINBOW_SCRIBING_TOOLS.get(),
-                TTItems.SCRIBING_TOOLS.get())
+        new InfusionBuilder(context,
+                TAItems.RAINBOW_SCRIBING_TOOLS,
+                TTItems.SCRIBING_TOOLS)
                 .component(Tags.Items.DYES_BLACK)
                 .component(Tags.Items.DYES_BLUE)
                 .component(Tags.Items.DYES_BROWN)
@@ -79,14 +78,15 @@ public final class ModRecipeProvider extends LazyCatRecipeProvider {
                 .save();
 
         // 永燃之瓮
-        new InfusionBuilder(context, TAItems.EVERBURNING_URN.get(),
-                TTItems.EVERFULL_URN.get())
-                .component(Ingredient.of(Items.NETHER_BRICK))
-                .component(Ingredient.of(Items.NETHER_BRICK))
-                .component(Ingredient.of(Items.LAVA_BUCKET))
+        new InfusionBuilder(context,
+                TAItems.EVERBURNING_URN,
+                TTItems.EVERFULL_URN)
+                .component(Items.NETHER_BRICK)
+                .component(Items.NETHER_BRICK)
+                .component(Items.LAVA_BUCKET)
                 .component(crystal(TTAspects.IGNIS))
-                .component(Ingredient.of(Items.OBSIDIAN))
-                .component(Ingredient.of(Items.LAVA_BUCKET))
+                .component(Items.OBSIDIAN)
+                .component(Items.LAVA_BUCKET)
                 .aspect(TTAspects.IGNIS, 40)
                 .aspect(TTAspects.TERRA, 20)
                 .aspect(TTAspects.POTENTIA, 10)
@@ -95,8 +95,8 @@ public final class ModRecipeProvider extends LazyCatRecipeProvider {
                 .gate(taGate("everburning_urn"))
                 .save();
 
-        new ArcaneShapelessBuilder(context, TAItems.HUNGRY_TRAPPED_CHEST.get(), 10)
-                .requires(TTItems.HUNGRY_CHEST.get())
+        new ArcaneShapelessBuilder(context, TAItems.HUNGRY_TRAPPED_CHEST, 10)
+                .requires(TTItems.HUNGRY_CHEST)
                 .requires(Items.TRIPWIRE_HOOK)
                 .gate(taGate("hungry_trapped_chest"))
                 .save();
@@ -104,14 +104,15 @@ public final class ModRecipeProvider extends LazyCatRecipeProvider {
 
     // 虚空旅行者之靴
     private void voidTravellerBoots() {
-        new InfusionBuilder(context, TAItems.VOID_TRAVELLER_BOOTS.get(),
-                TTItems.VOID_BOOTS.get())
-                .component(Ingredient.of(TTItems.TRAVELLER_BOOTS.get()))
-                .component(Ingredient.of(TTItems.PLATE_VOID.get()))
-                .component(Ingredient.of(TTItems.PLATE_VOID.get()))
-                .component(Ingredient.of(TTItems.SALIS_MUNDUS.get()))
-                .component(Ingredient.of(TTItems.FABRIC.get()))
-                .component(Ingredient.of(Items.LEATHER))
+        new InfusionBuilder(context,
+                TAItems.VOID_TRAVELLER_BOOTS,
+                TTItems.VOID_BOOTS)
+                .component(TTItems.TRAVELLER_BOOTS)
+                .component(TTItems.PLATE_VOID)
+                .component(TTItems.PLATE_VOID)
+                .component(TTItems.SALIS_MUNDUS)
+                .component(TTItems.FABRIC)
+                .component(Items.LEATHER)
                 .aspect(TTAspects.METALLUM, 25)
                 .aspect(TTAspects.AQUA, 25)
                 .aspect(TTAspects.VACUOS, 30)
@@ -123,18 +124,16 @@ public final class ModRecipeProvider extends LazyCatRecipeProvider {
                 .gate(taGate("void_traveller_boots"))
                 .save();
 
-        CustomCraftingRecipeBuilder.customCrafting(
-                        RecipeCategory.MISC,
-                        (commonInfo, bookInfo) ->
-                                new DyeRecipe(
-                                        commonInfo,
-                                        bookInfo,
-                                        Ingredient.of(TAItems.VOID_TRAVELLER_BOOTS.get()),
-                                        this.tag(ItemTags.DYES),
-                                        new ItemStackTemplate(TAItems.VOID_TRAVELLER_BOOTS.get())))
-                .unlockedBy(getHasName(TAItems.VOID_TRAVELLER_BOOTS.get()), this.has(TAItems.VOID_TRAVELLER_BOOTS.get()))
+        customCrafting(TAItems.VOID_TRAVELLER_BOOTS,
+                (commonInfo, bookInfo) ->
+                        new DyeRecipe(
+                                commonInfo,
+                                bookInfo,
+                                Ingredient.of(TAItems.VOID_TRAVELLER_BOOTS.get()),
+                                this.tag(ItemTags.DYES),
+                                new ItemStackTemplate(TAItems.VOID_TRAVELLER_BOOTS.get())))
                 .group("cloth_robes")
-                .save(output, ThaumaturgeAdditions.identifier("void_traveller_boots_dyed").toString());
+                .save(ThaumaturgeAdditions.identifier("void_traveller_boots_dyed"));
     }
 
     private Ingredient crystal(ResourceKey<IAspect> aspect) {

@@ -2,7 +2,6 @@ package com.blackmoss.thaumaturgeadditions.registry;
 
 import com.blackmoss.thaumaturgeadditions.ThaumaturgeAdditions;
 import com.leclowndu93150.thaumaturge.api.spell.part.SpellPart;
-
 import net.minecraft.resources.ResourceKey;
 
 public final class TASpellParts {
