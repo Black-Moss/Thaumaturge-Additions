@@ -95,10 +95,6 @@ public class SBArcaneWorkbenchUpgradeWrapper
         this.resultRefreshHandler = handler;
     }
 
-    public void requestResultRefresh() {
-        this.resultRefreshHandler.run();
-    }
-
     public boolean isValidSlot(int slot, ItemStack stack) {
         if (stack.isEmpty()) {
             return false;

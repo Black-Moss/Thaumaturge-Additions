@@ -59,7 +59,7 @@ public class TBArcaneChargerUpgradeItem extends UpgradeItem {
 
     @Override
     public TriFunction<UpgradeManager, Integer, ItemStack, Optional<? extends UpgradeBase<?>>> getUpgrade() {
-        return (upgradeManager, dataHolderSlot, provider) -> Optional.of(new TBArcaneChargerUpgrade(upgradeManager, dataHolderSlot));
+        return (upgradeManager, dataHolderSlot, _) -> Optional.of(new TBArcaneChargerUpgrade(upgradeManager, dataHolderSlot));
     }
 
     @Override

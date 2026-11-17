@@ -28,6 +28,7 @@ import org.jspecify.annotations.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("deprecation")
 public final class EverburningUrnBlockEntity extends AbstractSyncedBlockEntity {
     public static final int CAPACITY = 1000;
     private static final int WORK_INTERVAL = 5;
@@ -64,7 +65,6 @@ public final class EverburningUrnBlockEntity extends AbstractSyncedBlockEntity {
     public static void serverTick(
             Level level,
             BlockPos pos,
-            BlockState state,
             EverburningUrnBlockEntity urn) {
         if (++urn.ticks % WORK_INTERVAL == 0 && level instanceof ServerLevel server) {
             if (ThaumaturgeAdditionsServerConfig.EVERBURNING_URN_AUTO_FILL.get()) {

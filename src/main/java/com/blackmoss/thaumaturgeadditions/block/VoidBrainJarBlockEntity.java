@@ -73,8 +73,6 @@ public final class VoidBrainJarBlockEntity extends AbstractSyncedBlockEntity {
 
     public static void serverTick(
             Level level,
-            BlockPos pos,
-            BlockState state,
             VoidBrainJarBlockEntity brain) {
         if (brain.xp > XP_MAX) {
             brain.xp = XP_MAX;
@@ -90,7 +88,6 @@ public final class VoidBrainJarBlockEntity extends AbstractSyncedBlockEntity {
     public static void clientTick(
             Level level,
             BlockPos pos,
-            BlockState state,
             VoidBrainJarBlockEntity brain) {
         brain.rotb = brain.rota;
         if (brain.eatDelay > 0) {

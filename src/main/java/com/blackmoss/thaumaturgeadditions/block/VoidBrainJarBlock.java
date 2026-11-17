@@ -99,7 +99,7 @@ public final class VoidBrainJarBlock extends BaseEntityBlock {
             @NonNull BlockState state,
             @NonNull BlockEntityType<T> type) {
         return createTickerHelper(type, TABlockEntities.VOID_BRAIN_JAR.get(), level.isClientSide()
-                ? VoidBrainJarBlockEntity::clientTick
-                : VoidBrainJarBlockEntity::serverTick);
+                ? (level2, pos1, _, brain1) -> VoidBrainJarBlockEntity.clientTick(level2, pos1, brain1)
+                : (level1, _, _, brain) -> VoidBrainJarBlockEntity.serverTick(level1, brain));
     }
 }

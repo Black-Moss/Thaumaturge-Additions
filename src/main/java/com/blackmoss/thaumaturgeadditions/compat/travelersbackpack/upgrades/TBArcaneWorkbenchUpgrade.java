@@ -148,10 +148,6 @@ public class TBArcaneWorkbenchUpgrade extends UpgradeBase<TBArcaneWorkbenchUpgra
         return !isTabOpened();
     }
 
-    public boolean craftsOnServer() {
-        return craftingPlayer() != null;
-    }
-
     public int getStoredAura() {
         return getDataHolderStack().getOrDefault(TADataComponents.BACKPACK_WORKBENCH_AURA, 0);
     }

@@ -73,12 +73,12 @@ public class SBArcaneWorkbenchUpgradeTab
         this.addHideableChild(new ToggleButton<>(
                 new Position(this.x + PANEL_OFFSET_X + SHIFT_CLICK_BUTTON_POSITION.x(), this.y + PANEL_OFFSET_Y + SHIFT_CLICK_BUTTON_POSITION.y()),
                 BackpackButtonDefinitions.SHIFT_CLICK_TARGET,
-                button -> this.getContainer().setShiftClickIntoStorage(!this.getContainer().shouldShiftClickIntoStorage()),
+                _ -> this.getContainer().setShiftClickIntoStorage(!this.getContainer().shouldShiftClickIntoStorage()),
                 this.getContainer()::shouldShiftClickIntoStorage));
         this.addHideableChild(new ToggleButton<>(
                 new Position(this.x + PANEL_OFFSET_X + REFILL_BUTTON_POSITION.x(), this.y + PANEL_OFFSET_Y + REFILL_BUTTON_POSITION.y()),
                 BackpackButtonDefinitions.REFILL_CRAFTING_GRID,
-                button -> this.getContainer().setRefillCraftingGrid(!this.getContainer().shouldRefillCraftingGrid()),
+                _ -> this.getContainer().setRefillCraftingGrid(!this.getContainer().shouldRefillCraftingGrid()),
                 this.getContainer()::shouldRefillCraftingGrid));
     }
 
@@ -142,6 +142,7 @@ public class SBArcaneWorkbenchUpgradeTab
         this.moveSlotTo(slots.get(index), RESULT_SLOT_POSITION);
     }
 
+    @SuppressWarnings("removal")
     private void moveSlotTo(Slot slot, Position position) {
         slot.x = this.x + PANEL_OFFSET_X + position.x() - this.screen.getGuiLeft();
         slot.y = this.y + PANEL_OFFSET_Y + position.y() - this.screen.getGuiTop();

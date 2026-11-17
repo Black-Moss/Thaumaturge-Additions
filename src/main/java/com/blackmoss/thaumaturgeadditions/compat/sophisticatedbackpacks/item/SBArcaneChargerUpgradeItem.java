@@ -32,7 +32,7 @@ public class SBArcaneChargerUpgradeItem
     }
 
     public static boolean hasCharger(Player player) {
-        return PlayerInventoryProvider.get().runOnBackpacks(player, (backpack, handlerName, identifier, slot) ->
+        return PlayerInventoryProvider.get().runOnBackpacks(player, (backpack, _, _, _) ->
                 BackpackWrapper.fromStack(backpack).getUpgradeHandler().hasUpgrade(TYPE));
     }
 

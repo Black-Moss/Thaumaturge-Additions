@@ -42,11 +42,6 @@ public class EverburningUrnBlock extends BaseEntityBlock {
         super(properties);
     }
 
-    private static void playLavaSound(Level level, BlockPos pos) {
-        level.playSound(null, pos, SoundEvents.BUCKET_FILL_LAVA, SoundSource.BLOCKS, 0.33F,
-                1.0F + (level.getRandom().nextFloat() - level.getRandom().nextFloat()) * 0.3F);
-    }
-
     @Override
     protected @NonNull MapCodec<EverburningUrnBlock> codec() {
         return CODEC;
@@ -78,6 +73,7 @@ public class EverburningUrnBlock extends BaseEntityBlock {
         BlockEntity blockEntity = level.getBlockEntity(pos);
         if (blockEntity instanceof BlockEntityEverfullUrn urn) {
             if (!level.isClientSide()) {
+                //noinspection removal
                 if (FluidUtil.interactWithFluidHandler(player, hand, level, pos, hit.getDirection())) {
                     urn.setChanged();
                     splash(level, pos);
@@ -103,7 +99,7 @@ public class EverburningUrnBlock extends BaseEntityBlock {
         if (level.isClientSide()) {
             return null;
         }
-        return createTickerHelper(type, TABlockEntities.EVERBURNING_URN.get(), EverburningUrnBlockEntity::serverTick);
+        return createTickerHelper(type, TABlockEntities.EVERBURNING_URN.get(), (level1, pos, _, urn) -> EverburningUrnBlockEntity.serverTick(level1, pos, urn));
     }
 
     private static boolean holdsFluidCapability(ItemStack stack) {

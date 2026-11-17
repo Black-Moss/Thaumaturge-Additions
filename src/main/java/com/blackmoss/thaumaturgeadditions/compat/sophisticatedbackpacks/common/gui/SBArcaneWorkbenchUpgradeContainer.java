@@ -72,10 +72,6 @@ public class SBArcaneWorkbenchUpgradeContainer
         return this.player instanceof ServerPlayer;
     }
 
-    public SBArcaneResultSlot getResultSlot() {
-        return this.resultSlot;
-    }
-
     public int getStoredAura() {
         return this.upgradeWrapper.getStoredAura();
     }

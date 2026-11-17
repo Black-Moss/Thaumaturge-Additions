@@ -18,7 +18,7 @@ public class TBArcaneWorkbenchSlot extends UpgradeSlotItemHandler<TBArcaneWorkbe
     }
 
     public static TBArcaneWorkbenchSlot grid(TBArcaneWorkbenchUpgrade upgrade, ItemStacksResourceHandler items, int index, int x, int y) {
-        return new TBArcaneWorkbenchSlot(upgrade, items, index, x, y, stack -> true);
+        return new TBArcaneWorkbenchSlot(upgrade, items, index, x, y, _ -> true);
     }
 
     public static TBArcaneWorkbenchSlot wand(TBArcaneWorkbenchUpgrade upgrade, ItemStacksResourceHandler items, int index, int x, int y) {
