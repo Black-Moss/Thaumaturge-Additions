@@ -30,8 +30,8 @@ import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public final class ModRecipeProvider extends LazyCatRecipeProvider {
-    public ModRecipeProvider(HolderLookup.Provider registries, RecipeOutput output, String namespace) {
-        super(registries, output, namespace);
+    public ModRecipeProvider(HolderLookup.Provider registries, RecipeOutput output, String space) {
+        super(registries, output, space);
     }
 
     private static ResearchGate ttGate(String path) {
