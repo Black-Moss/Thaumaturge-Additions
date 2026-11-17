@@ -1,0 +1,23 @@
+package com.blackmoss.thaumaturgeadditions.compat.travelersbackpack.client;
+
+import com.blackmoss.thaumaturgeadditions.ThaumaturgeAdditions;
+import com.blackmoss.thaumaturgeadditions.compat.travelersbackpack.TravelersBackpackCompat;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+
+@EventBusSubscriber(modid = ThaumaturgeAdditions.MODID, value = Dist.CLIENT)
+public final class TravelersBackpackClientCompat {
+    private TravelersBackpackClientCompat() {
+    }
+
+    @SubscribeEvent
+    public static void onClientSetup(FMLClientSetupEvent event) {
+        if (!TravelersBackpackCompat.isLoaded()) {
+            return;
+        }
+        event.enqueueWork(TBArcaneWorkbenchWidgetRegistry::register);
+        event.enqueueWork(TBArcaneChargerWidgetRegistry::register);
+    }
+}

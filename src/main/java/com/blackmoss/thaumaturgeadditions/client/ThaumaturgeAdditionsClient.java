@@ -1,0 +1,67 @@
+package com.blackmoss.thaumaturgeadditions.client;
+
+import com.blackmoss.thaumaturgeadditions.ThaumaturgeAdditions;
+import com.blackmoss.thaumaturgeadditions.client.render.blockentity.HungryChestDoubleRenderer;
+import com.blackmoss.thaumaturgeadditions.client.render.blockentity.HungryTrappedChestRenderer;
+import com.blackmoss.thaumaturgeadditions.client.render.blockentity.VoidBrainJarRenderer;
+import com.blackmoss.thaumaturgeadditions.client.tint.RainbowTintSource;
+import com.blackmoss.thaumaturgeadditions.item.VoidTravellerBootsItem;
+import com.blackmoss.thaumaturgeadditions.registry.TABlockEntities;
+import com.leclowndu93150.thaumaturge.registry.TTBlockEntities;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ItemStack;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.EventPriority;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModList;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
+import net.neoforged.neoforge.client.gui.ConfigurationScreen;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
+
+@EventBusSubscriber(modid = ThaumaturgeAdditions.MODID, value = Dist.CLIENT)
+public final class ThaumaturgeAdditionsClient {
+    private ThaumaturgeAdditionsClient() {
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOW)
+    public static void onRegister(EntityRenderersEvent.RegisterRenderers event) {
+        event.registerBlockEntityRenderer(TABlockEntities.VOID_BRAIN_JAR.get(), VoidBrainJarRenderer::new);
+        event.registerBlockEntityRenderer(TABlockEntities.HUNGRY_TRAPPED_CHEST.get(), HungryTrappedChestRenderer::new);
+        event.registerBlockEntityRenderer(TTBlockEntities.HUNGRY_CHEST.get(), HungryChestDoubleRenderer::new);
+    }
+
+    @SubscribeEvent
+    private static void onRegisterItemTintSources(RegisterColorHandlersEvent.ItemTintSources event) {
+        event.register(RainbowTintSource.ID, RainbowTintSource.MAP_CODEC);
+    }
+
+    @SubscribeEvent
+    public static void onClientSetup(FMLClientSetupEvent event) {
+        ModList.get()
+                .getModContainerById(ThaumaturgeAdditions.MODID)
+                .ifPresent(container ->
+                        container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new));
+    }
+
+    @SubscribeEvent
+    public static void onClientTick(ClientTickEvent.Post event) {
+        Minecraft minecraft = Minecraft.getInstance();
+        if (minecraft.isPaused()) {
+            return;
+        }
+        LocalPlayer player = minecraft.player;
+        if (player == null || !player.isAlive()) {
+            return;
+        }
+        ItemStack boots = player.getItemBySlot(EquipmentSlot.FEET);
+        if (boots.getItem() instanceof VoidTravellerBootsItem) {
+            VoidTravellerBootsItem.clientMovementTick(player, boots);
+        }
+    }
+}

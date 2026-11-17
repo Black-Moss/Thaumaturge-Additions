@@ -1,0 +1,105 @@
+package com.blackmoss.thaumaturgeadditions.data.lang;
+
+import com.blackmoss.thaumaturgeadditions.ThaumaturgeAdditions;
+import com.blackmoss.thaumaturgeadditions.registry.TABlocks;
+import com.blackmoss.thaumaturgeadditions.registry.TAItems;
+import net.minecraft.data.PackOutput;
+import net.neoforged.neoforge.common.data.LanguageProvider;
+
+public class ZhCnProvider extends LanguageProvider {
+    public ZhCnProvider(PackOutput output) {
+        super(output, ThaumaturgeAdditions.MODID, "zh_cn");
+    }
+
+    @Override
+    protected void addTranslations() {
+        add("itemGroup.thaumaturgeadditions", "神秘附加");
+        research();
+        configuration();
+
+        addItem(TAItems.VOID_TRAVELLER_BOOTS, "虚空旅行者之靴");
+        addItem(TAItems.RAINBOW_SCRIBING_TOOLS, "彩虹笔与墨");
+        addItem(TAItems.SOPHISTICATED_BACKPACKS_ARCANE_WORKBENCH_UPGRADE, "精妙背包奥术工作台升级");
+        addItem(TAItems.TRAVELERS_BACKPACK_ARCANE_WORKBENCH_UPGRADE, "旅行者背包奥术工作台升级");
+        addItem(TAItems.SOPHISTICATED_BACKPACKS_ARCANE_CHARGER_UPGRADE, "精妙背包奥术充能板升级");
+        addItem(TAItems.TRAVELERS_BACKPACK_ARCANE_CHARGER_UPGRADE, "旅行者背包奥术充能板升级");
+
+        addBlock(TABlocks.VOID_BRAIN_JAR, "虚空缸中之脑");
+        addBlock(TABlocks.EVERBURNING_URN, "永燃之瓮");
+        addBlock(TABlocks.HUNGRY_TRAPPED_CHEST, "饕餮陷阱箱");
+        add("gui.thaumaturgeadditions.large_hungry_chest.title", "大型饕餮箱子");
+        add("gui.thaumaturgeadditions.large_hungry_trapped_chest.title", "大型饕餮陷阱箱");
+
+        add("focus.thaumaturgeadditions.salis_mundus.name", "世界盐");
+        add("focus.thaumaturgeadditions.salis_mundus.text", "魔法尘埃的核心版，施加于特定方块时可触发转化，且不消耗世界盐。");
+        add("spell.thaumaturgeadditions.salis_mundus.name", "世界盐");
+        add("spell.thaumaturgeadditions.salis_mundus.desc", "对着方块施放，按该方块的转化配方替换它，且不额外消耗世界盐。");
+
+        add("screen.thaumaturgeadditions.arcane_workbench_upgrade", "奥术工作台");
+        add("item.thaumaturgeadditions.travelersbackpack_arcane_workbench_upgrade.tooltip", "消耗所在区块的灵气随时随地合成奥术配方，就像奥术工作台一样！");
+        add("item.thaumaturgeadditions.sophisticatedbackpacks_arcane_workbench_upgrade.tooltip", "消耗所在区块的灵气随时随地合成奥术配方，就像奥术工作台一样！");
+        add("item.thaumaturgeadditions.travelersbackpack_arcane_charger_upgrade.tooltip", "装在背包里：让奥术工作台升级从周围 3x3 区块吸取灵气。");
+        add("item.thaumaturgeadditions.sophisticatedbackpacks_arcane_charger_upgrade.tooltip", "装在背包里：让奥术工作台升级从周围 3x3 区块吸取灵气。");
+    }
+
+    private void research() {
+        addResearch("void_traveller_boots", "虚空旅行者之靴",
+                "我脚上的这双旅行者之靴已经换了一遍又一遍，我实在是受够每次坏掉都要重新合成了！既然虚空金属可以自我修复，何不将二者合二为一？",
+                "这双富含虚空力量的靴子能让旅途变得更上一层楼，物理上的。" +
+                        "<BR>属性较普通的旅行者之靴直接翻了一倍！而且还会自我修复，可储存的灵气也更多了，不过扭曲还是不可避免的…" +
+                        "<BR>顺带一提，这款靴子支持染色！");
+
+        addResearch("focus_salis_mundus", "核心效果：世界盐",
+                "虽然世界盐本身足够便宜，但是这玩意用量还是挺大的，每次要搭建一些结构需要世界盐的时候，总会缺少一点点。" +
+                        "<BR>本来也就是走个形式往上面撒点魔法，何必专门去研磨几粒盐呢？",
+                "世界盐的核心版，施加于特定方块时可触发转化，且不消耗世界盐。" +
+                        "<BR>仅此而已，也没什么别的了。");
+
+        addResearch("everburning_urn", "永燃之瓮",
+                "虽然无尽之瓮极其便利，但我确信还能更进一步。制造一种类似的、但适用于其他类型流体的装置。比如说……熔岩？",
+                "通过向无尽之瓮中注入一组通往下界的微型传送门，我能够汲取到所需的全部熔岩。然而，这个过程并非完美无缺。" +
+                        "<BR>首先，它受制于灵气场。它水版本的兄弟顷刻间就能填满，而这个被我称为“永燃之瓮”的装置，只能随着从局部灵气场汲取灵气的速度缓缓凝出熔岩，一次不过涓滴。" +
+                        "<BR>不过消耗倒不大：维持传送门网络，每产出一桶熔岩大约只耗去灵气场中1点灵气。" +
+                        "<BR>我没料到的是它全无节制。放任不管时，它会主动把熔岩灌进附近任何一个炼药锅或带流体能力的容器里。后来我总算学会约束这股冲动——不过，想让它撒欢也不是不行。");
+
+        addResearch("rainbow_scribing_tools", "彩虹笔与墨",
+                "老实说，我真的受够下水打鱿鱼了，那些乌漆麻黑的染料都快把我的研究台染黑了……凭什么写东西必须要黑色染料？不能是五彩斑斓的黑吗？",
+                "这个小瓶子里面无论装什么染料，写出来都是黑色的，名副其实“五彩斑斓的黑”。");
+
+        addResearch("arcane_workbench_upgrade", "奥术工作台升级",
+                "既然可以在背包里面合成，谁会不想在背包里面用灵气合成呢？",
+                "这个背包升级可以消耗所在区块的灵气随时随地合成奥术配方，就像奥术工作台一样！");
+
+        addResearchAddenda("arcane_workbench_upgrade", "可不能忘记在背包里面装一个充能器！");
+
+        addResearch("hungry_trapped_chest", "饕餮陷阱箱",
+                "不得不说通过比较器来检测漏斗容量的方式实在是很占地方，并且漏斗也不能像饕餮箱子一样可以全方面拾取，我认为有必要把他们合二为一。",
+                "饕餮陷阱箱可以像普通的饕餮箱子一样抓取掉落物，也能陷阱箱一样打开时会产生红石信号；最重要的是：它会根据抓取到的物品占其堆叠上限的比例输出信号。比如：" +
+                        "<BR>64个草方块->15级；" +
+                        "<BR>32个铁锭->7级；" +
+                        "<BR>16个末影珍珠->15级。" +
+                        "<BR>以此类推……" +
+                        "<LINE>当两个饕餮陷阱箱并排在一起时，可以同步传递其信号。");
+    }
+
+    private void configuration() {
+        addConfiguration("everburning_urn_auto_fill", "永燃之瓮自动填充");
+    }
+
+    private void addResearch(String researchId, String title, String... stage) {
+        add("research.%s.%s.title".formatted(ThaumaturgeAdditions.MODID, researchId), title);
+        for (int i = 0; i < stage.length; i++) {
+            add("research.%s.%s.stage_%d".formatted(ThaumaturgeAdditions.MODID, researchId, i), stage[i]);
+        }
+    }
+
+    private void addResearchAddenda(String researchId, String... stage) {
+        for (int i = 0; i < stage.length; i++) {
+            add("research.%s.%s.addendum_%d".formatted(ThaumaturgeAdditions.MODID, researchId, i), stage[i]);
+        }
+    }
+
+    private void addConfiguration(String configID, String translations) {
+        add("%s.configuration.%s".formatted(ThaumaturgeAdditions.MODID, configID), translations);
+    }
+}
