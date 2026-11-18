@@ -12,10 +12,11 @@
   "item.thaumaturgeadditions.sophisticatedbackpacks_arcane_workbench_upgrade": "Sophisticated Backpack Arcane Workbench Upgrade",
   "item.thaumaturgeadditions.sophisticatedbackpacks_arcane_workbench_upgrade.tooltip": "Consume the aura of the chunk to craft the arcane recipes anytime, anywhere, just like an Arcane Workbench!",
   "item.thaumaturgeadditions.travelersbackpack_arcane_charger_upgrade": "Traveler's Backpack Arcane Charger Upgrade",
-  "item.thaumaturgeadditions.travelersbackpack_arcane_charger_upgrade.tooltip": "In the backpack: lets the Arcane Workbench upgrade draw vis from the surrounding 3x3 chunks.",
   "item.thaumaturgeadditions.travelersbackpack_arcane_workbench_upgrade": "Traveler's Backpack Arcane Workbench Upgrade",
-  "item.thaumaturgeadditions.travelersbackpack_arcane_workbench_upgrade.tooltip": "Consume the aura of the chunk to craft the arcane recipes anytime, anywhere, just like an Arcane Workbench!",
   "item.thaumaturgeadditions.void_traveller_boots": "Void Traveller's Boots",
+  "item.travelersbackpack.arcane_charger_upgrade_tooltip": "In the backpack: lets the Arcane Workbench upgrade draw vis from the surrounding 3x3 chunks.",
+  "item.travelersbackpack.arcane_workbench_upgrade_tooltip": "Consume the aura of the chunk to craft the arcane recipes anytime, anywhere, just like an Arcane Workbench!",
+  "itemGroup.thaumaturgeadditions.thaumaturgeadditions": "Thaumaturge Additions",
   "research.thaumaturgeadditions.arcane_workbench_upgrade.addendum_0": "Don't forget to install a charger in the backpack!",
   "research.thaumaturgeadditions.arcane_workbench_upgrade.stage_0": "Since you can already craft inside a backpack, who wouldn't want to craft with vis inside a backpack too?",
   "research.thaumaturgeadditions.arcane_workbench_upgrade.stage_1": "This backpack upgrade consumes the aura of the chunk to craft arcane recipes anytime, anywhere, just like an Arcane Workbench!",
@@ -38,6 +39,5 @@
   "screen.thaumaturgeadditions.arcane_workbench_upgrade": "Arcane Workbench",
   "spell.thaumaturgeadditions.salis_mundus.desc": "Cast on a block to transmute it according to that block's transmutation recipe, without spending Salis Mundus.",
   "spell.thaumaturgeadditions.salis_mundus.name": "Salis Mundus",
-  "thaumaturgeadditions.configuration.everburning_urn_auto_fill": "Everburning Urn Auto Fill",
-  "thaumaturgeadditions.thaumaturgeadditions": "Thaumaturge Additions"
+  "thaumaturgeadditions.configuration.everburning_urn_auto_fill": "Everburning Urn Auto Fill"
 }

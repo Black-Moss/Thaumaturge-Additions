@@ -7,14 +7,14 @@ import com.blackmooss.thaumaturgeadditions.registry.TAItems;
 import com.blackmoss.lazycat.lang.LazyCatLanguageProvider;
 import net.minecraft.data.PackOutput;
 
-public class EnUsProvider extends LazyCatLanguageProvider {
+public final class EnUsProvider extends LazyCatLanguageProvider {
     public EnUsProvider(PackOutput output) {
         super(output, ThaumaturgeAdditions.MODID, "en_us");
     }
 
     @Override
     protected void addTranslations() {
-        addCreativeModeTab(TACreativeModeTabs.THAUMATURGE_ADDITIONS.get(), "Thaumaturge Additions");
+        add("itemGroup.thaumaturgeadditions.thaumaturgeadditions", "Thaumaturge Additions");
         research();
         configuration();
 
@@ -37,9 +37,9 @@ public class EnUsProvider extends LazyCatLanguageProvider {
         add("spell.thaumaturgeadditions.salis_mundus.desc", "Cast on a block to transmute it according to that block's transmutation recipe, without spending Salis Mundus.");
 
         add("screen.thaumaturgeadditions.arcane_workbench_upgrade", "Arcane Workbench");
-        add("item.thaumaturgeadditions.travelersbackpack_arcane_workbench_upgrade.tooltip", "Consume the aura of the chunk to craft the arcane recipes anytime, anywhere, just like an Arcane Workbench!");
+        add("item.travelersbackpack.arcane_workbench_upgrade_tooltip", "Consume the aura of the chunk to craft the arcane recipes anytime, anywhere, just like an Arcane Workbench!");
         add("item.thaumaturgeadditions.sophisticatedbackpacks_arcane_workbench_upgrade.tooltip", "Consume the aura of the chunk to craft the arcane recipes anytime, anywhere, just like an Arcane Workbench!");
-        add("item.thaumaturgeadditions.travelersbackpack_arcane_charger_upgrade.tooltip", "In the backpack: lets the Arcane Workbench upgrade draw vis from the surrounding 3x3 chunks.");
+        add("item.travelersbackpack.arcane_charger_upgrade_tooltip", "In the backpack: lets the Arcane Workbench upgrade draw vis from the surrounding 3x3 chunks.");
         add("item.thaumaturgeadditions.sophisticatedbackpacks_arcane_charger_upgrade.tooltip", "In the backpack: lets the Arcane Workbench upgrade draw vis from the surrounding 3x3 chunks.");
     }
 
