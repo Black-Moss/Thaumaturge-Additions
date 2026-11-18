@@ -15,7 +15,4 @@ public final class TARecipes {
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<VoidTravellerBootsDyeRecipe>> VOID_TRAVELLER_BOOTS_DYE =
             RECIPE_SERIALIZERS.register("void_traveller_boots_dye",
                     () -> new SimpleRecipeSerializer<>(VoidTravellerBootsDyeRecipe.MAP_CODEC, VoidTravellerBootsDyeRecipe.STREAM_CODEC));
-
-    private TARecipes() {
-    }
 }

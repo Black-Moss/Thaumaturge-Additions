@@ -155,7 +155,7 @@ public final class ModRecipeProvider extends RecipeProvider {
 
     private TagKey<Item> tag(String space, String path) {
         return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(
-                        space, path));
+                space, path));
     }
 
     private Ingredient crystal(ResourceKey<IAspect> aspect) {

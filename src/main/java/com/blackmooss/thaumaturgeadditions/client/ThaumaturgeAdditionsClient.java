@@ -28,9 +28,6 @@ import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 
 @EventBusSubscriber(modid = ThaumaturgeAdditions.MODID, value = Dist.CLIENT)
 public final class ThaumaturgeAdditionsClient {
-    private ThaumaturgeAdditionsClient() {
-    }
-
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void onRegister(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(TABlockEntities.VOID_BRAIN_JAR.get(), VoidBrainJarRenderer::new);

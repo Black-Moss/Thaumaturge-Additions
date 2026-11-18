@@ -12,16 +12,32 @@ import java.util.function.Predicate;
 public class TBArcaneWorkbenchSlot extends UpgradeSlotItemHandler<TBArcaneWorkbenchUpgrade> {
     private final Predicate<ItemStack> filter;
 
-    public TBArcaneWorkbenchSlot(TBArcaneWorkbenchUpgrade upgrade, ItemStackHandler items, int index, int x, int y, Predicate<ItemStack> filter) {
+    public TBArcaneWorkbenchSlot(
+            TBArcaneWorkbenchUpgrade upgrade,
+            ItemStackHandler items,
+            int index,
+            int x,
+            int y,
+            Predicate<ItemStack> filter) {
         super(upgrade, items, index, x, y);
         this.filter = Objects.requireNonNull(filter, "filter");
     }
 
-    public static TBArcaneWorkbenchSlot grid(TBArcaneWorkbenchUpgrade upgrade, ItemStackHandler items, int index, int x, int y) {
+    public static TBArcaneWorkbenchSlot grid(
+            TBArcaneWorkbenchUpgrade upgrade,
+            ItemStackHandler items,
+            int index,
+            int x,
+            int y) {
         return new TBArcaneWorkbenchSlot(upgrade, items, index, x, y, stack -> true);
     }
 
-    public static TBArcaneWorkbenchSlot wand(TBArcaneWorkbenchUpgrade upgrade, ItemStackHandler items, int index, int x, int y) {
+    public static TBArcaneWorkbenchSlot wand(
+            TBArcaneWorkbenchUpgrade upgrade,
+            ItemStackHandler items,
+            int index,
+            int x,
+            int y) {
         return new TBArcaneWorkbenchSlot(upgrade, items, index, x, y, SlotWorkbenchWand::isUsableWand);
     }
 

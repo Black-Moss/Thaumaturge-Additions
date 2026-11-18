@@ -36,19 +36,6 @@ public class HungryTrappedChestBlockEntity extends ChestBlockEntity {
                 .expandTowards(0.0F, 0.3, 0.0F);
     }
 
-    public int getPulseStrength() {
-        return pulseStrength;
-    }
-
-    @Override
-    public boolean triggerEvent(int id, int param) {
-        if (id == PULSE_EVENT) {
-            pulseStrength = Mth.clamp(param, 0, 15);
-            return true;
-        }
-        return super.triggerEvent(id, param);
-    }
-
     public static void serverTick(
             Level level,
             BlockPos pos,
@@ -114,6 +101,19 @@ public class HungryTrappedChestBlockEntity extends ChestBlockEntity {
         Block block = state.getBlock();
         level.updateNeighborsAt(pos, block);
         level.updateNeighbourForOutputSignal(pos, block);
+    }
+
+    public int getPulseStrength() {
+        return pulseStrength;
+    }
+
+    @Override
+    public boolean triggerEvent(int id, int param) {
+        if (id == PULSE_EVENT) {
+            pulseStrength = Mth.clamp(param, 0, 15);
+            return true;
+        }
+        return super.triggerEvent(id, param);
     }
 
     @Override

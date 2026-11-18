@@ -13,9 +13,8 @@ import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import java.util.Set;
 
-
+@SuppressWarnings("DataFlowIssue")
 @EventBusSubscriber(modid = ThaumaturgeAdditions.MODID)
 public final class TABlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, ThaumaturgeAdditions.MODID);
@@ -28,12 +27,8 @@ public final class TABlockEntities {
                     .of(EverburningUrnBlockEntity::new, TABlocks.EVERBURNING_URN.get()).build(null));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<HungryTrappedChestBlockEntity>> HUNGRY_TRAPPED_CHEST =
-            BLOCK_ENTITIES.register("hungry_trapped_chest",  () -> BlockEntityType.Builder
+            BLOCK_ENTITIES.register("hungry_trapped_chest", () -> BlockEntityType.Builder
                     .of(HungryTrappedChestBlockEntity::new, TABlocks.HUNGRY_TRAPPED_CHEST.get()).build(null));
-
-
-    private TABlockEntities() {
-    }
 
     @SubscribeEvent
     public static void onRegisterCapabilities(RegisterCapabilitiesEvent event) {

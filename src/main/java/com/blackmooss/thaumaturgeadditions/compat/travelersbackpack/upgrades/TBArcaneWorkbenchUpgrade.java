@@ -134,7 +134,7 @@ public class TBArcaneWorkbenchUpgrade extends UpgradeBase<TBArcaneWorkbenchUpgra
             slots.add(new ArcaneCrystalSlot(this, this.items, CRYSTAL_START + index, x + point.x(), y + point.y(), TTAspects.PRIMALS.get(index)));
         }
         slots.add(TBArcaneWorkbenchSlot.wand(this, this.items, WAND_SLOT, x + WAND_SLOT_POSITION.x(), y + WAND_SLOT_POSITION.y()));
-        slots.add(new TBArcaneResultSlot(this, menu.player, this.resultContainer, x + RESULT_SLOT_POSITION.x(), y + RESULT_SLOT_POSITION.y()));
+        slots.add(new TBArcaneResultSlot(this, this.resultContainer, x + RESULT_SLOT_POSITION.x(), y + RESULT_SLOT_POSITION.y()));
         return slots;
     }
 

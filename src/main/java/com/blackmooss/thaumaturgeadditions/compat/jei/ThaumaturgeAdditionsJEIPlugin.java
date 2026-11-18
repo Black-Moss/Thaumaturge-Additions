@@ -15,9 +15,6 @@ import org.jspecify.annotations.NonNull;
 public final class ThaumaturgeAdditionsJEIPlugin implements IModPlugin {
     private static final ResourceLocation PLUGIN_UID = ThaumaturgeAdditions.identifier("jei_plugin");
 
-    public ThaumaturgeAdditionsJEIPlugin() {
-    }
-
     @Override
     public @NonNull ResourceLocation getPluginUid() {
         return PLUGIN_UID;

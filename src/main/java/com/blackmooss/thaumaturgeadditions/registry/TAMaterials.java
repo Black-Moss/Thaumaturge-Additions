@@ -28,7 +28,4 @@ public final class TAMaterials {
             0.0F);
 
     public static final Holder<ArmorMaterial> ARMOR_VOID_TRAVELLER_HOLDER = Holder.direct(ARMOR_VOID_TRAVELLER);
-
-    private TAMaterials() {
-    }
 }

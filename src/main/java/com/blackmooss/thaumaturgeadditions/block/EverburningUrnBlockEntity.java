@@ -27,6 +27,7 @@ import org.jspecify.annotations.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings({"removal", "deprecation"})
 public final class EverburningUrnBlockEntity extends AbstractSyncedBlockEntity {
     public static final int CAPACITY = 1000;
     private static final int WORK_INTERVAL = 5;
@@ -74,6 +75,19 @@ public final class EverburningUrnBlockEntity extends AbstractSyncedBlockEntity {
         }
     }
 
+    private static FluidStack lava(int amount) {
+        return new FluidStack(Fluids.LAVA, amount);
+    }
+
+    private static boolean isCauldron(BlockState state) {
+        return state.is(Blocks.CAULDRON) || state.is(Blocks.LAVA_CAULDRON);
+    }
+
+    private static boolean acceptsLava(Level level, BlockPos pos) {
+        return isCauldron(level.getBlockState(pos))
+                || level.getCapability(Capabilities.FluidHandler.BLOCK, pos, Direction.UP) != null;
+    }
+
     public FluidTank getTank() {
         return tank;
     }
@@ -84,10 +98,6 @@ public final class EverburningUrnBlockEntity extends AbstractSyncedBlockEntity {
 
     public void drainLava(int amount) {
         tank.drain(amount, FluidAction.EXECUTE);
-    }
-
-    private static FluidStack lava(int amount) {
-        return new FluidStack(Fluids.LAVA, amount);
     }
 
     private void probe(ServerLevel level) {
@@ -118,15 +128,6 @@ public final class EverburningUrnBlockEntity extends AbstractSyncedBlockEntity {
             return -1;
         }
         return (dy + 1) * PROBE_LAYER_AREA + (dx + 2) * PROBE_SIDE + dz + 2;
-    }
-
-    private static boolean isCauldron(BlockState state) {
-        return state.is(Blocks.CAULDRON) || state.is(Blocks.LAVA_CAULDRON);
-    }
-
-    private static boolean acceptsLava(Level level, BlockPos pos) {
-        return isCauldron(level.getBlockState(pos))
-                || level.getCapability(Capabilities.FluidHandler.BLOCK, pos, Direction.UP) != null;
     }
 
     private void distribute(ServerLevel level) {

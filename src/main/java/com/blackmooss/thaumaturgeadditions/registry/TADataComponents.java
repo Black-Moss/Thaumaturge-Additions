@@ -15,7 +15,4 @@ public final class TADataComponents {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> BACKPACK_WORKBENCH_AURA =
             DATA_COMPONENT_TYPES.registerComponentType("backpack_workbench_aura",
                     builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT));
-
-    private TADataComponents() {
-    }
 }

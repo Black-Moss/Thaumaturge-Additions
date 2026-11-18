@@ -20,9 +20,6 @@ public final class CraftingTableRecipes {
     public static final int GRID_HEIGHT = 3;
     public static final int GRID_SLOTS = GRID_WIDTH * GRID_HEIGHT;
 
-    private CraftingTableRecipes() {
-    }
-
     public static CraftingInput toInput(List<ItemStack> slots) {
         return CraftingInput.of(GRID_WIDTH, GRID_HEIGHT, List.copyOf(slots.subList(0, GRID_SLOTS)));
     }

@@ -13,13 +13,13 @@ public final class HungryTrappedChestRenderer extends ChestRenderer<HungryTrappe
     private static final Material LEFT = chestMaterial("hungry_trapped_left");
     private static final Material RIGHT = chestMaterial("hungry_trapped_right");
 
+    public HungryTrappedChestRenderer(BlockEntityRendererProvider.Context context) {
+        super(context);
+    }
+
     private static Material chestMaterial(String name) {
         return new Material(Sheets.CHEST_SHEET,
                 ThaumaturgeAdditions.identifier("entity/chest/" + name));
-    }
-
-    public HungryTrappedChestRenderer(BlockEntityRendererProvider.Context context) {
-        super(context);
     }
 
     @Override

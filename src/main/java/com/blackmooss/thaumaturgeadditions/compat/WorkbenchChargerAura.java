@@ -13,9 +13,6 @@ import java.util.List;
 public final class WorkbenchChargerAura {
     public static final int CHARGER_RADIUS = 1;
 
-    private WorkbenchChargerAura() {
-    }
-
     public static List<BlockPos> anchors(BlockPos anchor) {
         ChunkPos center = new ChunkPos(anchor);
         List<BlockPos> anchors = new ArrayList<>(9);

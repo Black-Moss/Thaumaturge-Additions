@@ -16,12 +16,12 @@ public final class HungryChestDoubleRenderer extends ChestRenderer<BlockEntityHu
     private static final Material LEFT = chestMaterial(ThaumaturgeAdditions.identifier("entity/chest/hungry_left"));
     private static final Material RIGHT = chestMaterial(ThaumaturgeAdditions.identifier("entity/chest/hungry_right"));
 
-    private static Material chestMaterial(ResourceLocation texture) {
-        return new Material(Sheets.CHEST_SHEET, texture);
-    }
-
     public HungryChestDoubleRenderer(BlockEntityRendererProvider.Context context) {
         super(context);
+    }
+
+    private static Material chestMaterial(ResourceLocation texture) {
+        return new Material(Sheets.CHEST_SHEET, texture);
     }
 
     @Override

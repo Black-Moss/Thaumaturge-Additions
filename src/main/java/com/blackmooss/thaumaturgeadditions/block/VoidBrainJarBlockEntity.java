@@ -58,19 +58,6 @@ public final class VoidBrainJarBlockEntity extends AbstractSyncedBlockEntity {
         super(TABlockEntities.VOID_BRAIN_JAR.get(), pos, state);
     }
 
-    public int xp() {
-        return xp;
-    }
-
-    public void setXp(int newXp) {
-        xp = Mth.clamp(newXp, 0, XP_MAX);
-        setChangedAndSync();
-    }
-
-    public void setEatDelay(int ticks) {
-        eatDelay = ticks;
-    }
-
     public static void serverTick(
             Level level,
             BlockPos pos,
@@ -113,6 +100,19 @@ public final class VoidBrainJarBlockEntity extends AbstractSyncedBlockEntity {
         float difference = brain.targetYaw - brain.rota;
         difference -= TWO_PI * (float) Math.floor((difference + Math.PI) / TWO_PI);
         brain.rota += difference * TURN_RATE;
+    }
+
+    public int xp() {
+        return xp;
+    }
+
+    public void setXp(int newXp) {
+        xp = Mth.clamp(newXp, 0, XP_MAX);
+        setChangedAndSync();
+    }
+
+    public void setEatDelay(int ticks) {
+        eatDelay = ticks;
     }
 
     private @Nullable ExperienceOrb attractOrbs(Level level) {

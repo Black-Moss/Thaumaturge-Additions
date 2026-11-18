@@ -42,7 +42,4 @@ public final class TAItems {
     public static final DeferredItem<Item> TRAVELERS_BACKPACK_ARCANE_CHARGER_UPGRADE = ITEMS.registerItem(
             "travelersbackpack_arcane_charger_upgrade", TravelersBackpackCompat::createArcaneChargerUpgradeItem, new Item.Properties()
                     .stacksTo(16));
-
-    private TAItems() {
-    }
 }

@@ -30,6 +30,7 @@ import org.jspecify.annotations.NonNull;
 
 import java.util.function.Consumer;
 
+@SuppressWarnings("removal")
 public class VoidTravellerBootsItem extends VoidGearItem implements IVisDiscountGear {
     public static final float SAFE_FALL_DISTANCE_BONUS = 6.0F;
     public static final AttributeModifier SAFE_FALL_MODIFIER = new AttributeModifier(

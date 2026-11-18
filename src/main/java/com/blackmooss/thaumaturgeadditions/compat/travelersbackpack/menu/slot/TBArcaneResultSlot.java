@@ -13,7 +13,7 @@ import java.util.Objects;
 public final class TBArcaneResultSlot extends Slot {
     private final TBArcaneWorkbenchUpgrade upgrade;
 
-    public TBArcaneResultSlot(TBArcaneWorkbenchUpgrade upgrade, Player player, Container container, int x, int y) {
+    public TBArcaneResultSlot(TBArcaneWorkbenchUpgrade upgrade, Container container, int x, int y) {
         super(container, 0, x, y);
         this.upgrade = Objects.requireNonNull(upgrade, "upgrade");
     }
