@@ -6,7 +6,6 @@ import com.blackmooss.thaumaturgeadditions.registry.TACreativeModeTabs;
 import com.blackmooss.thaumaturgeadditions.registry.TAItems;
 import com.blackmoss.lazycat.lang.LazyCatLanguageProvider;
 import net.minecraft.data.PackOutput;
-import net.neoforged.neoforge.common.data.LanguageProvider;
 
 public class EnUsProvider extends LazyCatLanguageProvider {
     public EnUsProvider(PackOutput output) {
