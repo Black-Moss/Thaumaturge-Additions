@@ -102,7 +102,7 @@ dependencies {
     implementation "curse.maven:lazy-cat-1806291:${lazycat_id}"
 
     // Lithostitched
-    implementation "maven.modrinth:lithostitched:${lithostitched_version}"
+    implementation "maven.modrinth:lithostitched:${lithostitched_version}-neoforge-26.1"
 
     // Thaumaturge
     implementation "curse.maven:thaumaturge-1628024:${thaumaturge_id}"
