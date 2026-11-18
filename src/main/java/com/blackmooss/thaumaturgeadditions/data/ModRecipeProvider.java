@@ -18,6 +18,8 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.ArmorDyeRecipe;
+import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.common.Tags;
 
@@ -47,6 +49,11 @@ public final class ModRecipeProvider extends LazyCatRecipeProvider {
 
     @Override
     protected void addRecipes(RecipeContext context) {
+        context.output().accept(
+                ThaumaturgeAdditions.identifier("void_traveller_boots_dyed"),
+                new ArmorDyeRecipe(CraftingBookCategory.MISC),
+                null);
+
         rainbowScribingTools(context);
 
         // 虚空缸中之脑

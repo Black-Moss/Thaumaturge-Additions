@@ -33,6 +33,8 @@ public final class ModItemTagsProvider extends ItemTagsProvider {
                 .add(TAItems.VOID_TRAVELLER_BOOTS.get());
         tag(TTItemTags.ARMORS_BOOTS)
                 .add(TAItems.VOID_TRAVELLER_BOOTS.get());
+        tag(ItemTags.DYEABLE)
+                .add(TAItems.VOID_TRAVELLER_BOOTS.get());
         tag(ItemTags.VANISHING_ENCHANTABLE)
                 .add(TAItems.VOID_TRAVELLER_BOOTS.get());
         tag(ItemTags.FOOT_ARMOR)
