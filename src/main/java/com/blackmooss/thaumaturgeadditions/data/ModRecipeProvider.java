@@ -2,47 +2,39 @@ package com.blackmooss.thaumaturgeadditions.data;
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
 import com.blackmooss.thaumaturgeadditions.registry.TAItems;
+import com.blackmoss.lazycat.api.recipe.RecipeContext;
+import com.blackmoss.lazycat.api.recipe.thaumaturge.ThaumaturgeUtils;
+import com.blackmoss.lazycat.recipe.LazyCatRecipeProvider;
+import com.blackmoss.lazycat.recipe.minecraft.ShapelessBuilder;
+import com.blackmoss.lazycat.recipe.thaumaturge.ArcaneShapelessBuilder;
+import com.blackmoss.lazycat.recipe.thaumaturge.InfusionBuilder;
 import com.leclowndu93150.thaumaturge.TTIds;
-import com.leclowndu93150.thaumaturge.api.aspect.AspectInstance;
 import com.leclowndu93150.thaumaturge.api.aspect.IAspect;
 import com.leclowndu93150.thaumaturge.api.aspect.TTAspects;
 import com.leclowndu93150.thaumaturge.api.recipe.ResearchGate;
-import com.leclowndu93150.thaumaturge.data.recipe.builders.CrucibleRecipeBuilder;
-import com.leclowndu93150.thaumaturge.data.recipe.builders.InfusionRecipeBuilder;
-import com.leclowndu93150.thaumaturge.data.recipe.builders.workbench.ArcaneWorkbenchShapedRecipeBuilder;
-import com.leclowndu93150.thaumaturge.data.recipe.builders.workbench.ArcaneWorkbenchShapelessRecipeBuilder;
-import com.leclowndu93150.thaumaturge.registry.TTDataComponents;
 import com.leclowndu93150.thaumaturge.registry.TTItems;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
-import org.jspecify.annotations.NonNull;
 
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
-public final class ModRecipeProvider extends RecipeProvider {
-    private RecipeOutput output;
-    private HolderLookup.Provider registries;
-    private HolderLookup<Item> items;
-    private HolderLookup<IAspect> aspects;
+public final class ModRecipeProvider extends LazyCatRecipeProvider {
+    private final HolderLookup.Provider registries;
 
-    public ModRecipeProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider) {
-        super(packOutput, lookupProvider);
+    public ModRecipeProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider, String modid) {
+        super(packOutput, lookupProvider, modid);
+        try {
+            this.registries = lookupProvider.get();
+        } catch (InterruptedException | ExecutionException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private static ResearchGate taGate(String path) {
@@ -54,91 +46,56 @@ public final class ModRecipeProvider extends RecipeProvider {
     }
 
     @Override
-    protected void buildRecipes(@NonNull RecipeOutput recipeOutput, HolderLookup.Provider provider) {
-        this.output = recipeOutput;
-        this.registries = provider;
-        this.items = provider.lookupOrThrow(Registries.ITEM);
-        this.aspects = this.registries.lookupOrThrow(IAspect.REGISTRY_KEY);
-
-        voidTravellerBoots();
-        rainbowScribingTools();
+    protected void addRecipes(RecipeContext context) {
+        rainbowScribingTools(context);
 
         // 虚空缸中之脑
-        arcaneShapeless(TAItems.VOID_BRAIN_JAR.get(),
+        new ArcaneShapelessBuilder(context,
+                TAItems.VOID_BRAIN_JAR,
                 50)
                 .aspect(TTAspects.PERDITIO)
                 .requires(TTItems.JAR_BRAIN)
                 .gate(ttGate("warded_jars"))
-                .save(output);
+                .save();
 
         // 永燃之瓮
-        infusion(TAItems.EVERBURNING_URN.get(),
-                TTItems.EVERFULL_URN.get())
-                .component(Ingredient.of(Items.NETHER_BRICK))
-                .component(Ingredient.of(Items.NETHER_BRICK))
-                .component(Ingredient.of(Items.LAVA_BUCKET))
+        new InfusionBuilder(context,
+                TAItems.EVERBURNING_URN,
+                TTItems.EVERFULL_URN)
+                .component(Items.NETHER_BRICK)
+                .component(Items.NETHER_BRICK)
+                .component(Items.LAVA_BUCKET)
                 .component(crystal(TTAspects.IGNIS))
-                .component(Ingredient.of(Items.OBSIDIAN))
-                .component(Ingredient.of(Items.LAVA_BUCKET))
+                .component(Items.OBSIDIAN)
+                .component(Items.LAVA_BUCKET)
                 .aspect(TTAspects.IGNIS, 40)
                 .aspect(TTAspects.TERRA, 20)
                 .aspect(TTAspects.POTENTIA, 10)
                 .aspect(TTAspects.FABRICO, 10)
                 .instability(6)
                 .gate(taGate("everburning_urn"))
-                .save(output);
+                .save();
 
-        arcaneShapeless(TAItems.HUNGRY_TRAPPED_CHEST.get(), 10)
-                .requires(TTItems.HUNGRY_CHEST.get())
+        // 饕餮陷阱箱
+        new ArcaneShapelessBuilder(context,
+                TAItems.HUNGRY_TRAPPED_CHEST,
+                10)
+                .requires(TTItems.HUNGRY_CHEST)
                 .requires(Items.TRIPWIRE_HOOK)
+                .aspect(TTAspects.MOTUS)
                 .gate(taGate("hungry_trapped_chest"))
-                .save(output);
-    }
+                .save();
 
-    private void rainbowScribingTools() {
-        // 彩虹笔与墨
-        infusion(TAItems.RAINBOW_SCRIBING_TOOLS.get(),
-                TTItems.SCRIBING_TOOLS.get())
-                .component(Ingredient.of(Tags.Items.DYES_BLACK))
-                .component(Ingredient.of(Tags.Items.DYES_BLUE))
-                .component(Ingredient.of(Tags.Items.DYES_BROWN))
-                .component(Ingredient.of(Tags.Items.DYES_CYAN))
-                .component(Ingredient.of(Tags.Items.DYES_GRAY))
-                .component(Ingredient.of(Tags.Items.DYES_GREEN))
-                .component(Ingredient.of(Tags.Items.DYES_LIGHT_BLUE))
-                .component(Ingredient.of(Tags.Items.DYES_LIGHT_GRAY))
-                .component(Ingredient.of(Tags.Items.DYES_LIME))
-                .component(Ingredient.of(Tags.Items.DYES_MAGENTA))
-                .component(Ingredient.of(Tags.Items.DYES_ORANGE))
-                .component(Ingredient.of(Tags.Items.DYES_PINK))
-                .component(Ingredient.of(Tags.Items.DYES_PURPLE))
-                .component(Ingredient.of(Tags.Items.DYES_RED))
-                .component(Ingredient.of(Tags.Items.DYES_WHITE))
-                .component(Ingredient.of(Tags.Items.DYES_YELLOW))
-                .aspect(TTAspects.FABRICO, 25)
-                .aspect(TTAspects.ORDO, 25)
-                .instability(2)
-                .gate(taGate("rainbow_scribing_tools"))
-                .save(output);
-
-        // 填充彩虹笔与墨
-        new ShapelessRecipeBuilder(RecipeCategory.TOOLS, TAItems.RAINBOW_SCRIBING_TOOLS.get().getDefaultInstance())
-                .requires(TAItems.RAINBOW_SCRIBING_TOOLS.get())
-                .requires(Tags.Items.DYES)
-                .unlockedBy("has", has(TAItems.RAINBOW_SCRIBING_TOOLS.get()))
-                .save(output, ThaumaturgeAdditions.MODID + ":rainbow_scribing_tools_alt");
-
-    }
-
-    private void voidTravellerBoots() {
-        infusion(TAItems.VOID_TRAVELLER_BOOTS.get(),
-                TTItems.VOID_BOOTS.get())
-                .component(Ingredient.of(TTItems.TRAVELLER_BOOTS.get()))
-                .component(Ingredient.of(TTItems.PLATE_VOID.get()))
-                .component(Ingredient.of(TTItems.PLATE_VOID.get()))
-                .component(Ingredient.of(TTItems.SALIS_MUNDUS.get()))
-                .component(Ingredient.of(TTItems.FABRIC.get()))
-                .component(Ingredient.of(Items.LEATHER))
+        // 虚空旅行者之靴
+        new InfusionBuilder(context,
+                TAItems.VOID_TRAVELLER_BOOTS,
+                TTItems.VOID_BOOTS)
+                .component(TTItems.TRAVELLER_BOOTS)
+                .component(TTItems.PLATE_VOID)
+                .component(TTItems.PLATE_VOID)
+                .component(TTItems.SALIS_MUNDUS)
+                .component(TTItems.FABRIC)
+                .component(Items.LEATHER)
                 .aspect(TTAspects.METALLUM, 25)
                 .aspect(TTAspects.AQUA, 25)
                 .aspect(TTAspects.VACUOS, 30)
@@ -148,61 +105,46 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .aspect(TTAspects.MOTUS, 50)
                 .instability(6)
                 .gate(taGate("void_traveller_boots"))
-                .unlockedBy("has", has(TAItems.VOID_TRAVELLER_BOOTS.get()))
-                .save(output);
-
+                .save();
     }
 
-    private TagKey<Item> tag(String space, String path) {
-        return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(
-                space, path));
+    // 彩虹笔与墨
+    private void rainbowScribingTools(RecipeContext context) {
+        new InfusionBuilder(context,
+                TAItems.RAINBOW_SCRIBING_TOOLS,
+                TTItems.SCRIBING_TOOLS)
+                .component(Tags.Items.DYES_BLACK)
+                .component(Tags.Items.DYES_BLUE)
+                .component(Tags.Items.DYES_BROWN)
+                .component(Tags.Items.DYES_CYAN)
+                .component(Tags.Items.DYES_GRAY)
+                .component(Tags.Items.DYES_GREEN)
+                .component(Tags.Items.DYES_LIGHT_BLUE)
+                .component(Tags.Items.DYES_LIGHT_GRAY)
+                .component(Tags.Items.DYES_LIME)
+                .component(Tags.Items.DYES_MAGENTA)
+                .component(Tags.Items.DYES_ORANGE)
+                .component(Tags.Items.DYES_PINK)
+                .component(Tags.Items.DYES_PURPLE)
+                .component(Tags.Items.DYES_RED)
+                .component(Tags.Items.DYES_WHITE)
+                .component(Tags.Items.DYES_YELLOW)
+                .aspect(TTAspects.FABRICO, 25)
+                .aspect(TTAspects.ORDO, 25)
+                .instability(2)
+                .gate(taGate("rainbow_scribing_tools"))
+                .save();
+
+        // 填充
+        new ShapelessBuilder(context,
+                TAItems.RAINBOW_SCRIBING_TOOLS)
+                .requires(TAItems.RAINBOW_SCRIBING_TOOLS)
+                .requires(Tags.Items.DYES)
+                .category(RecipeCategory.TOOLS)
+                .save(ThaumaturgeAdditions.identifier("rainbow_scribing_tools_alt"));
     }
 
     private Ingredient crystal(ResourceKey<IAspect> aspect) {
-        HolderLookup<IAspect> aspects = this.registries.lookupOrThrow(IAspect.REGISTRY_KEY);
-        return DataComponentIngredient.of(false,
-                TTDataComponents.CRYSTAL_ASPECT.get(),
-                new AspectInstance(aspects.getOrThrow(aspect), 1),
-                TTItems.ESSENTIA_CRYSTAL.get());
-    }
-
-    private Ingredient commonTag(String path) {
-        return Ingredient.of(tag("c", path));
-    }
-
-    private InfusionRecipeBuilder infusion(ItemLike result, ItemLike catalyst) {
-        return (InfusionRecipeBuilder) new InfusionRecipeBuilder(
-                this.registries.lookupOrThrow(IAspect.REGISTRY_KEY),
-                RecipeCategory.MISC,
-                new ItemStack(result.asItem()),
-                Ingredient.of(catalyst))
-                .unlockedBy("has", has(result));
-    }
-
-    private CrucibleRecipeBuilder crucible(ItemLike result, ItemLike catalyst) {
-        return (CrucibleRecipeBuilder) new CrucibleRecipeBuilder(
-                aspects,
-                RecipeCategory.MISC,
-                new ItemStack(result.asItem()),
-                Ingredient.of(catalyst))
-                .unlockedBy("has", has(result));
-    }
-
-    private ArcaneWorkbenchShapelessRecipeBuilder arcaneShapeless(ItemLike result, int vis) {
-        return (ArcaneWorkbenchShapelessRecipeBuilder) new ArcaneWorkbenchShapelessRecipeBuilder(RecipeCategory.MISC,
-                new ItemStack(result.asItem()),
-                aspects,
-                vis,
-                registries.lookupOrThrow(Registries.ITEM))
-                .unlockedBy("has", has(result.asItem()));
-    }
-
-    private ArcaneWorkbenchShapedRecipeBuilder arcaneShaped(ItemLike result, int vis) {
-        return (ArcaneWorkbenchShapedRecipeBuilder) new ArcaneWorkbenchShapedRecipeBuilder(RecipeCategory.MISC,
-                new ItemStack(result.asItem()),
-                this.items,
-                aspects,
-                vis)
-                .unlockedBy("has", has(result.asItem()));
+        return ThaumaturgeUtils.crystal(registries, aspect);
     }
 }

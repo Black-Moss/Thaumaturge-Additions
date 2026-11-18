@@ -43,7 +43,7 @@ public class ThaumaturgeAdditions {
         TASpellBehaviors.BEHAVIORS.register(modEventBus);
         TARecipes.RECIPE_SERIALIZERS.register(modEventBus);
 
-        modContainer.registerConfig(ModConfig.Type.COMMON, ThaumaturgeAdditionsServerConfig.SPEC);
+        modContainer.registerConfig(ModConfig.Type.SERVER, ThaumaturgeAdditionsServerConfig.SPEC);
     }
 
     public static ResourceLocation identifier(String path) {
@@ -60,7 +60,8 @@ public class ThaumaturgeAdditions {
         event.createProvider(EnUsProvider::new);
         event.createProvider(ZhCnProvider::new);
 
-        event.createProvider(ModRecipeProvider::new);
+        event.createProvider((output, lookupProvider) ->
+                new ModRecipeProvider(output, lookupProvider, ThaumaturgeAdditions.MODID));
         event.createBlockAndItemTags(
                 (output, lookupProvider)
                         -> new ModBlockTagsProvider(output, lookupProvider, event.getExistingFileHelper()),

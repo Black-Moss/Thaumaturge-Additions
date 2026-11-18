@@ -103,6 +103,9 @@ configurations {
 }
 
 dependencies {
+    // Lazy Cat
+    implementation "curse.maven:lazy-cat-1806291:${lazycat_id}"
+
     // Lithostitched
     implementation "maven.modrinth:lithostitched:${lithostitched_version}"
 
@@ -145,6 +148,7 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
             mod_authors                   : mod_authors,
             mod_description               : mod_description,
             thaumaturge_version           : thaumaturge_version,
+            lazycat_version               : lazycat_version,
             jei_version                   : jei_version,
             travelersbackpack_version     : travelersbackpack_version,
             sophisticatedcore_version     : sophisticatedcore_version,

@@ -1,6 +1,10 @@
 {
   "type": "thaumaturge:arcane_workbench_shapeless",
-  "crystals": [],
+  "crystals": [
+    {
+      "aspect": "thaumaturge:motus"
+    }
+  ],
   "ingredients": [
     {
       "item": "thaumaturge:hungry_chest"
