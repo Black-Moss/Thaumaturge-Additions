@@ -1,7 +1,5 @@
 package com.blackmoss.thaumaturgeadditions.data;
 
-import com.blackmoss.thaumaturgeadditions.ThaumaturgeAdditions;
-import com.blackmoss.thaumaturgeadditions.registry.TAItems;
 import com.blackmoss.lazycat.api.recipe.RecipeContext;
 import com.blackmoss.lazycat.api.recipe.thaumaturge.ThaumaturgeUtils;
 import com.blackmoss.lazycat.recipe.LazyCatRecipeProvider;
@@ -9,6 +7,8 @@ import com.blackmoss.lazycat.recipe.minecraft.ShapelessBuilder;
 import com.blackmoss.lazycat.recipe.thaumaturge.ArcaneShapedBuilder;
 import com.blackmoss.lazycat.recipe.thaumaturge.ArcaneShapelessBuilder;
 import com.blackmoss.lazycat.recipe.thaumaturge.InfusionBuilder;
+import com.blackmoss.thaumaturgeadditions.ThaumaturgeAdditions;
+import com.blackmoss.thaumaturgeadditions.registry.TAItems;
 import com.leclowndu93150.thaumaturge.TTIds;
 import com.leclowndu93150.thaumaturge.api.aspect.IAspect;
 import com.leclowndu93150.thaumaturge.api.aspect.TTAspects;

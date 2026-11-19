@@ -1,10 +1,10 @@
 package com.blackmoss.thaumaturgeadditions.data;
 
+import com.blackmoss.lazycat.api.model.ModelContext;
+import com.blackmoss.lazycat.model.LazyCatModelProvider;
 import com.blackmoss.thaumaturgeadditions.ThaumaturgeAdditions;
 import com.blackmoss.thaumaturgeadditions.registry.TABlocks;
 import com.blackmoss.thaumaturgeadditions.registry.TAItems;
-import com.blackmoss.lazycat.api.model.ModelContext;
-import com.blackmoss.lazycat.model.LazyCatModelProvider;
 import net.minecraft.data.PackOutput;
 
 public final class ModModelProvider extends LazyCatModelProvider {

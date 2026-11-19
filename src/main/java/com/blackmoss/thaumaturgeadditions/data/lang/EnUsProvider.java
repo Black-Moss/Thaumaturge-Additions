@@ -1,9 +1,9 @@
 package com.blackmoss.thaumaturgeadditions.data.lang;
 
+import com.blackmoss.lazycat.lang.LazyCatLanguageProvider;
 import com.blackmoss.thaumaturgeadditions.ThaumaturgeAdditions;
 import com.blackmoss.thaumaturgeadditions.registry.TABlocks;
 import com.blackmoss.thaumaturgeadditions.registry.TAItems;
-import com.blackmoss.lazycat.lang.LazyCatLanguageProvider;
 import net.minecraft.data.PackOutput;
 
 public final class EnUsProvider extends LazyCatLanguageProvider {

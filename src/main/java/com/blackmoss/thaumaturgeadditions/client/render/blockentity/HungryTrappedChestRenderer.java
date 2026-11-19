@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.blockentity.ChestRenderer;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.world.level.block.state.properties.ChestType;
+import org.jspecify.annotations.NonNull;
 
 public final class HungryTrappedChestRenderer extends ChestRenderer<HungryTrappedChestBlockEntity> {
     private static final Material SINGLE = chestMaterial("hungry_trapped");
@@ -23,7 +24,7 @@ public final class HungryTrappedChestRenderer extends ChestRenderer<HungryTrappe
     }
 
     @Override
-    protected Material getMaterial(HungryTrappedChestBlockEntity blockEntity, ChestType chestType) {
+    protected @NonNull Material getMaterial(@NonNull HungryTrappedChestBlockEntity chest, ChestType chestType) {
         return switch (chestType) {
             case LEFT -> LEFT;
             case RIGHT -> RIGHT;

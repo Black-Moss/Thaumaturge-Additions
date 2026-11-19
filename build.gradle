@@ -104,7 +104,8 @@ configurations {
 
 dependencies {
     // Lazy Cat
-    implementation "curse.maven:lazy-cat-1806291:${lazycat_id}"
+//    implementation "curse.maven:lazy-cat-1806291:${lazycat_id}"
+    implementation files("E:\\MossProject\\MinecraftJava\\Lazy-Cat\\build\\libs\\lazycat-1.3.3-NeoForge-1.21.1.jar")
 
     // Lithostitched
     implementation "maven.modrinth:lithostitched:${lithostitched_version}"

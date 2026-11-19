@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@SuppressWarnings("unused")
 public final class SBArcaneWorkbenchCraftingStore implements IArcaneCraftingStore {
     private final StatefulComponentItemHandler items;
     private final Player player;
@@ -57,7 +58,7 @@ public final class SBArcaneWorkbenchCraftingStore implements IArcaneCraftingStor
         if (!consumeCrystals(consumption.crystals())) {
             return false;
         }
-        replaceWand(consumption.wand(), transaction);
+        replaceWand(consumption.wand());
         if (!overflow.isEmpty()) {
             new RootCommitJournal(() -> overflow.forEach(stack -> this.player.getInventory().placeItemBackInInventory(stack))).updateSnapshots(transaction);
         }
@@ -126,7 +127,7 @@ public final class SBArcaneWorkbenchCraftingStore implements IArcaneCraftingStor
         return true;
     }
 
-    private void replaceWand(ItemStack wand, TransactionContext transaction) {
+    private void replaceWand(ItemStack wand) {
         int slot = SBArcaneWorkbenchUpgradeWrapper.WAND_SLOT;
         ItemStack current = getStack(slot);
         if (ItemStack.matches(current, wand)) {

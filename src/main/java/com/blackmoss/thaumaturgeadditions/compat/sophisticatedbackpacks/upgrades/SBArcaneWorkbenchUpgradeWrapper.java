@@ -28,6 +28,7 @@ import org.jspecify.annotations.Nullable;
 import java.util.List;
 import java.util.function.Consumer;
 
+@SuppressWarnings("unused")
 public class SBArcaneWorkbenchUpgradeWrapper extends UpgradeWrapperBase<SBArcaneWorkbenchUpgradeWrapper, SBArcaneWorkbenchUpgradeItem>
         implements ITickableUpgrade {
     public static final int GRID_WIDTH = 3;

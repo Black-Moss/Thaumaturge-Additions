@@ -1,11 +1,11 @@
 package com.blackmoss.thaumaturgeadditions.data;
 
-import com.blackmoss.thaumaturgeadditions.ThaumaturgeAdditions;
-import com.blackmoss.thaumaturgeadditions.registry.TAItems;
 import com.blackmoss.lazycat.api.thaumaturge.research.ResearchContext;
 import com.blackmoss.lazycat.thaumaturge.research.ResearchEntryBuilder;
 import com.blackmoss.lazycat.thaumaturge.research.ResearchStageBuilder;
 import com.blackmoss.lazycat.thaumaturge.research.ThaumaturgeResearchProvider;
+import com.blackmoss.thaumaturgeadditions.ThaumaturgeAdditions;
+import com.blackmoss.thaumaturgeadditions.registry.TAItems;
 import com.leclowndu93150.thaumaturge.TTIds;
 import com.leclowndu93150.thaumaturge.api.aspect.TTAspects;
 import com.leclowndu93150.thaumaturge.api.capability.KnowledgeType;
