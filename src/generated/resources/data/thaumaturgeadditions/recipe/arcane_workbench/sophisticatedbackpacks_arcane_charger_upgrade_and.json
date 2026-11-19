@@ -47,7 +47,7 @@
       "item": "thaumaturge:vis_resonator"
     },
     "T": {
-      "item": "thaumaturge:ingot_thaumium"
+      "tag": "c:ingots/thaumium"
     }
   },
   "pattern": [
@@ -59,6 +59,7 @@
     "entry": "thaumaturgeadditions:arcane_workbench_upgrade"
   },
   "result": {
+    "count": 1,
     "id": "thaumaturgeadditions:sophisticatedbackpacks_arcane_charger_upgrade"
   },
   "vis": 200

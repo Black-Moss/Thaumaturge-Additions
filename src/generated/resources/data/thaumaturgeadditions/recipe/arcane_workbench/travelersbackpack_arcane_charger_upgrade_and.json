@@ -2,14 +2,11 @@
   "neoforge:conditions": [
     {
       "type": "neoforge:mod_loaded",
-      "modid": "sophisticatedbackpacks"
+      "modid": "travelersbackpack"
     },
     {
-      "type": "neoforge:not",
-      "value": {
-        "type": "neoforge:mod_loaded",
-        "modid": "travelersbackpack"
-      }
+      "type": "neoforge:mod_loaded",
+      "modid": "sophisticatedbackpacks"
     }
   ],
   "type": "thaumaturge:arcane_workbench_shaped",
@@ -41,7 +38,7 @@
   ],
   "key": {
     "B": {
-      "item": "sophisticatedbackpacks:upgrade_base"
+      "item": "travelersbackpack:blank_upgrade"
     },
     "C": {
       "item": "thaumaturge:arcane_workbench_charger"
@@ -50,7 +47,7 @@
       "item": "thaumaturge:vis_resonator"
     },
     "T": {
-      "item": "thaumaturge:ingot_thaumium"
+      "tag": "c:ingots/thaumium"
     }
   },
   "pattern": [
@@ -59,10 +56,11 @@
     " T "
   ],
   "research": {
-    "entry": "thaumaturgeadditions:sophisticatedbackpacks_arcane_workbench_upgrade"
+    "entry": "thaumaturgeadditions:arcane_workbench_upgrade"
   },
   "result": {
-    "id": "thaumaturgeadditions:sophisticatedbackpacks_arcane_charger_upgrade"
+    "count": 1,
+    "id": "thaumaturgeadditions:travelersbackpack_arcane_charger_upgrade"
   },
   "vis": 200
 }

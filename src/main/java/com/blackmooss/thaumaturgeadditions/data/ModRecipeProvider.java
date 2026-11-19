@@ -6,12 +6,14 @@ import com.blackmoss.lazycat.api.recipe.RecipeContext;
 import com.blackmoss.lazycat.api.recipe.thaumaturge.ThaumaturgeUtils;
 import com.blackmoss.lazycat.recipe.LazyCatRecipeProvider;
 import com.blackmoss.lazycat.recipe.minecraft.ShapelessBuilder;
+import com.blackmoss.lazycat.recipe.thaumaturge.ArcaneShapedBuilder;
 import com.blackmoss.lazycat.recipe.thaumaturge.ArcaneShapelessBuilder;
 import com.blackmoss.lazycat.recipe.thaumaturge.InfusionBuilder;
 import com.leclowndu93150.thaumaturge.TTIds;
 import com.leclowndu93150.thaumaturge.api.aspect.IAspect;
 import com.leclowndu93150.thaumaturge.api.aspect.TTAspects;
 import com.leclowndu93150.thaumaturge.api.recipe.ResearchGate;
+import com.leclowndu93150.thaumaturge.registry.TTItemTags;
 import com.leclowndu93150.thaumaturge.registry.TTItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -51,10 +53,11 @@ public final class ModRecipeProvider extends LazyCatRecipeProvider {
     protected void addRecipes(RecipeContext context) {
         context.output().accept(
                 ThaumaturgeAdditions.identifier("void_traveller_boots_dyed"),
-                new ArmorDyeRecipe(CraftingBookCategory.MISC),
+                new ArmorDyeRecipe(CraftingBookCategory.EQUIPMENT),
                 null);
 
         rainbowScribingTools(context);
+        backpackUpgrades(context);
 
         // 虚空缸中之脑
         new ArcaneShapelessBuilder(context,
@@ -149,6 +152,91 @@ public final class ModRecipeProvider extends LazyCatRecipeProvider {
                 .requires(Tags.Items.DYES)
                 .category(RecipeCategory.TOOLS)
                 .save(ThaumaturgeAdditions.identifier("rainbow_scribing_tools_alt"));
+    }
+
+    // 背包升级
+    private void backpackUpgrades(RecipeContext context) {
+        backpackUpgrade(context, "sophisticatedbackpacks_arcane_workbench_upgrade",
+                TAItems.SOPHISTICATED_BACKPACKS_ARCANE_WORKBENCH_UPGRADE,
+                "sophisticatedbackpacks", "sophisticatedbackpacks:crafting_upgrade",
+                "sophisticatedbackpacks_arcane_workbench_upgrade", false, false);
+        backpackUpgrade(context, "sophisticatedbackpacks_arcane_workbench_upgrade_and",
+                TAItems.SOPHISTICATED_BACKPACKS_ARCANE_WORKBENCH_UPGRADE,
+                "sophisticatedbackpacks", "sophisticatedbackpacks:crafting_upgrade",
+                "arcane_workbench_upgrade", true, false);
+
+        backpackUpgrade(context, "travelersbackpack_arcane_workbench_upgrade",
+                TAItems.TRAVELERS_BACKPACK_ARCANE_WORKBENCH_UPGRADE,
+                "travelersbackpack", "travelersbackpack:crafting_upgrade",
+                "travelersbackpack_arcane_workbench_upgrade", false, false);
+        backpackUpgrade(context, "travelersbackpack_arcane_workbench_upgrade_and",
+                TAItems.TRAVELERS_BACKPACK_ARCANE_WORKBENCH_UPGRADE,
+                "travelersbackpack", "travelersbackpack:crafting_upgrade",
+                "arcane_workbench_upgrade", true, false);
+
+        backpackUpgrade(context, "sophisticatedbackpacks_arcane_charger_upgrade",
+                TAItems.SOPHISTICATED_BACKPACKS_ARCANE_CHARGER_UPGRADE,
+                "sophisticatedbackpacks", "sophisticatedbackpacks:upgrade_base",
+                "sophisticatedbackpacks_arcane_workbench_upgrade", false, true);
+        backpackUpgrade(context, "sophisticatedbackpacks_arcane_charger_upgrade_and",
+                TAItems.SOPHISTICATED_BACKPACKS_ARCANE_CHARGER_UPGRADE,
+                "sophisticatedbackpacks", "sophisticatedbackpacks:upgrade_base",
+                "arcane_workbench_upgrade", true, true);
+
+        backpackUpgrade(context, "travelersbackpack_arcane_charger_upgrade",
+                TAItems.TRAVELERS_BACKPACK_ARCANE_CHARGER_UPGRADE,
+                "travelersbackpack", "travelersbackpack:blank_upgrade",
+                "travelersbackpack_arcane_workbench_upgrade", false, true);
+        backpackUpgrade(context, "travelersbackpack_arcane_charger_upgrade_and",
+                TAItems.TRAVELERS_BACKPACK_ARCANE_CHARGER_UPGRADE,
+                "travelersbackpack", "travelersbackpack:blank_upgrade",
+                "arcane_workbench_upgrade", true, true);
+    }
+
+    private void backpackUpgrade(
+            RecipeContext context,
+            String path,
+            Object result,
+            String modId,
+            String baseItem,
+            String research,
+            boolean both,
+            boolean charger) {
+        ArcaneShapedBuilder builder = new ArcaneShapedBuilder(context, result, charger ? 200 : 100);
+        if (charger) {
+            builder.aspect(TTAspects.AER, 5)
+                    .aspect(TTAspects.TERRA, 5)
+                    .aspect(TTAspects.IGNIS, 5)
+                    .aspect(TTAspects.AQUA, 5)
+                    .aspect(TTAspects.ORDO, 5)
+                    .aspect(TTAspects.PERDITIO, 5)
+                    .pattern(" C ")
+                    .pattern("RBR")
+                    .pattern(" T ")
+                    .define('B', baseItem)
+                    .define('C', TTItems.ARCANE_WORKBENCH_CHARGER)
+                    .define('R', TTItems.VIS_RESONATOR)
+                    .define('T', TTItemTags.INGOTS_THAUMIUM);
+        } else {
+            builder.aspect(TTAspects.AER)
+                    .aspect(TTAspects.TERRA)
+                    .aspect(TTAspects.IGNIS)
+                    .aspect(TTAspects.AQUA)
+                    .aspect(TTAspects.ORDO)
+                    .aspect(TTAspects.PERDITIO)
+                    .pattern(" S ")
+                    .pattern("SCS")
+                    .pattern(" S ")
+                    .define('S', TTItems.SALIS_MUNDUS)
+                    .define('C', baseItem);
+        }
+        String other = "sophisticatedbackpacks".equals(modId) ? "travelersbackpack" : "sophisticatedbackpacks";
+        if (both) {
+            builder.ifModLoaded(modId, other);
+        } else {
+            builder.ifModLoaded(modId).unlessModLoaded(other);
+        }
+        builder.gate(taGate(research)).save(path);
     }
 
     private Ingredient crystal(ResourceKey<IAspect> aspect) {

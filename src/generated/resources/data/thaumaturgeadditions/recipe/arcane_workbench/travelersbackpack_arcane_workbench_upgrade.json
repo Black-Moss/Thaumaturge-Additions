@@ -2,11 +2,14 @@
   "neoforge:conditions": [
     {
       "type": "neoforge:mod_loaded",
-      "modid": "sophisticatedbackpacks"
+      "modid": "travelersbackpack"
     },
     {
-      "type": "neoforge:mod_loaded",
-      "modid": "travelersbackpack"
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:mod_loaded",
+        "modid": "sophisticatedbackpacks"
+      }
     }
   ],
   "type": "thaumaturge:arcane_workbench_shaped",
@@ -44,9 +47,10 @@
     " S "
   ],
   "research": {
-    "entry": "thaumaturgeadditions:arcane_workbench_upgrade"
+    "entry": "thaumaturgeadditions:travelersbackpack_arcane_workbench_upgrade"
   },
   "result": {
+    "count": 1,
     "id": "thaumaturgeadditions:travelersbackpack_arcane_workbench_upgrade"
   },
   "vis": 100

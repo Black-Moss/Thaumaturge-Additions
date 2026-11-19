@@ -1,6 +1,7 @@
 package com.blackmooss.thaumaturgeadditions.data;
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
+import com.blackmooss.thaumaturgeadditions.registry.TABlocks;
 import com.blackmooss.thaumaturgeadditions.registry.TAItems;
 import com.blackmoss.lazycat.api.model.ModelContext;
 import com.blackmoss.lazycat.model.LazyCatModelProvider;
@@ -24,5 +25,11 @@ public final class ModModelProvider extends LazyCatModelProvider {
         itemTwoLayered(TAItems.VOID_TRAVELLER_BOOTS.get(),
                 getItemModelId(TAItems.VOID_TRAVELLER_BOOTS.get()),
                 ThaumaturgeAdditions.identifier("item/void_traveller_boots_overlay"));
+
+        blockBlockState(TABlocks.EVERBURNING_URN.get());
+        blockItemModel(TABlocks.EVERBURNING_URN.get());
+
+        blockBlockState(TABlocks.HUNGRY_TRAPPED_CHEST.get());
+        blockBlockState(TABlocks.VOID_BRAIN_JAR.get());
     }
 }

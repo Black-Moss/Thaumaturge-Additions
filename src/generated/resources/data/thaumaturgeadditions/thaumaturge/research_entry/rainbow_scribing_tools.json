@@ -1,0 +1,118 @@
+{
+  "category": "thaumaturge:basics",
+  "column": 4,
+  "complexity": 3,
+  "icons": [
+    "thaumaturgeadditions:rainbow_scribing_tools"
+  ],
+  "meta": [
+    "round"
+  ],
+  "name": "research.thaumaturgeadditions.rainbow_scribing_tools.title",
+  "note_aspects": [
+    {
+      "amount": 3,
+      "aspect": "thaumaturge:ordo"
+    },
+    {
+      "amount": 4,
+      "aspect": "thaumaturge:fabrico"
+    }
+  ],
+  "parents": [
+    "thaumaturge:research",
+    "thaumaturge:base_infusion"
+  ],
+  "row": 0,
+  "stages": [
+    {
+      "obtain": [
+        {
+          "amount": 1,
+          "items": [
+            "thaumaturge:scribing_tools"
+          ]
+        },
+        {
+          "amount": 1,
+          "items": "#c:dyes/black"
+        },
+        {
+          "amount": 1,
+          "items": "#c:dyes/red"
+        },
+        {
+          "amount": 1,
+          "items": "#c:dyes/green"
+        },
+        {
+          "amount": 1,
+          "items": "#c:dyes/brown"
+        },
+        {
+          "amount": 1,
+          "items": "#c:dyes/blue"
+        },
+        {
+          "amount": 1,
+          "items": "#c:dyes/purple"
+        },
+        {
+          "amount": 1,
+          "items": "#c:dyes/cyan"
+        },
+        {
+          "amount": 1,
+          "items": "#c:dyes/light_gray"
+        },
+        {
+          "amount": 1,
+          "items": "#c:dyes/gray"
+        },
+        {
+          "amount": 1,
+          "items": "#c:dyes/pink"
+        },
+        {
+          "amount": 1,
+          "items": "#c:dyes/lime"
+        },
+        {
+          "amount": 1,
+          "items": "#c:dyes/yellow"
+        },
+        {
+          "amount": 1,
+          "items": "#c:dyes/light_blue"
+        },
+        {
+          "amount": 1,
+          "items": "#c:dyes/magenta"
+        },
+        {
+          "amount": 1,
+          "items": "#c:dyes/orange"
+        },
+        {
+          "amount": 1,
+          "items": "#c:dyes/white"
+        }
+      ],
+      "required_knowledge": [
+        {
+          "type": "theory",
+          "amount": 1,
+          "category": "thaumaturge:infusion"
+        }
+      ],
+      "text": "research.thaumaturgeadditions.rainbow_scribing_tools.stage_0"
+    },
+    {
+      "recipes": [
+        "thaumaturgeadditions:infusion/rainbow_scribing_tools",
+        "thaumaturgeadditions:rainbow_scribing_tools_alt"
+      ],
+      "text": "research.thaumaturgeadditions.rainbow_scribing_tools.stage_1"
+    }
+  ]
+}
