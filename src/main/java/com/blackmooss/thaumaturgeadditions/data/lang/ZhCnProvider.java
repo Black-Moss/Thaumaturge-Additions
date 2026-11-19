@@ -2,7 +2,6 @@ package com.blackmooss.thaumaturgeadditions.data.lang;
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
 import com.blackmooss.thaumaturgeadditions.registry.TABlocks;
-import com.blackmooss.thaumaturgeadditions.registry.TACreativeModeTabs;
 import com.blackmooss.thaumaturgeadditions.registry.TAItems;
 import com.blackmoss.lazycat.lang.LazyCatLanguageProvider;
 import net.minecraft.data.PackOutput;
