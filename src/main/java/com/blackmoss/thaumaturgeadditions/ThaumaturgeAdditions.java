@@ -5,6 +5,7 @@ import com.blackmoss.thaumaturgeadditions.config.ThaumaturgeAdditionsServerConfi
 import com.blackmoss.thaumaturgeadditions.data.ModBlockLootSubProvider;
 import com.blackmoss.thaumaturgeadditions.data.ModModelProvider;
 import com.blackmoss.thaumaturgeadditions.data.ModRecipeProvider;
+import com.blackmoss.thaumaturgeadditions.data.ModResearchProvider;
 import com.blackmoss.thaumaturgeadditions.data.lang.EnUsProvider;
 import com.blackmoss.thaumaturgeadditions.data.lang.ZhCnProvider;
 import com.blackmoss.thaumaturgeadditions.data.tag.ModBlockTagsProvider;
@@ -68,6 +69,8 @@ public class ThaumaturgeAdditions {
         event.createProvider(ModBlockTagsProvider::new);
 
         event.createProvider(ModModelProvider::new);
+
+        event.createProvider(ModResearchProvider::new);
 
 
         event.createProvider((output, lookupProvider) -> new LootTableProvider(

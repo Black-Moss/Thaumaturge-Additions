@@ -1,0 +1,50 @@
+{
+  "category": "thaumaturge:auromancy",
+  "column": -1,
+  "complexity": 2,
+  "icons": [
+    "focus:thaumaturgeadditions:salis_mundus"
+  ],
+  "name": "research.thaumaturgeadditions.focus_salis_mundus.title",
+  "note_aspects": [
+    {
+      "amount": 4,
+      "aspect": "thaumaturge:ignis"
+    },
+    {
+      "amount": 4,
+      "aspect": "thaumaturge:gelum"
+    },
+    {
+      "amount": 4,
+      "aspect": "thaumaturge:terra"
+    }
+  ],
+  "parents": [
+    "thaumaturge:focus_elemental"
+  ],
+  "row": 3,
+  "stages": [
+    {
+      "obtain": [
+        {
+          "amount": 1,
+          "items": [
+            "thaumaturge:salis_mundus"
+          ]
+        }
+      ],
+      "required_knowledge": [
+        {
+          "type": "theory",
+          "amount": 1,
+          "category": "thaumaturge:auromancy"
+        }
+      ],
+      "text": "research.thaumaturgeadditions.focus_salis_mundus.stage_0"
+    },
+    {
+      "text": "research.thaumaturgeadditions.focus_salis_mundus.stage_1"
+    }
+  ]
+}

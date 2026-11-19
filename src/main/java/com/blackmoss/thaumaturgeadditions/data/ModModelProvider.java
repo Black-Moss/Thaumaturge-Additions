@@ -25,7 +25,6 @@ import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.random.WeightedList;
-import org.jspecify.annotations.NonNull;
 
 import java.util.List;
 import java.util.Optional;
@@ -33,14 +32,6 @@ import java.util.Optional;
 public class ModModelProvider extends LazyCatModelProvider {
     public ModModelProvider(PackOutput output) {
         super(output, ThaumaturgeAdditions.MODID);
-    }
-
-    private static void arcaneWorkbenchUpgrade(ModelContext modelContext) {
-        var itemModels = modelContext.itemModels();
-        itemModels.generateFlatItem(TAItems.TRAVELERS_BACKPACK_ARCANE_WORKBENCH_UPGRADE.get(), ModelTemplates.FLAT_ITEM);
-        itemModels.generateFlatItem(TAItems.SOPHISTICATED_BACKPACKS_ARCANE_WORKBENCH_UPGRADE.get(), ModelTemplates.FLAT_ITEM);
-        itemModels.generateFlatItem(TAItems.TRAVELERS_BACKPACK_ARCANE_CHARGER_UPGRADE.get(), ModelTemplates.FLAT_ITEM);
-        itemModels.generateFlatItem(TAItems.SOPHISTICATED_BACKPACKS_ARCANE_CHARGER_UPGRADE.get(), ModelTemplates.FLAT_ITEM);
     }
 
     private static void voidJar(ModelContext modelContext) {
@@ -90,16 +81,15 @@ public class ModModelProvider extends LazyCatModelProvider {
 
     @Override
     protected void addModels(ModelContext modelContext) {
-        arcaneWorkbenchUpgrade(modelContext);
+        itemFlat(TAItems.TRAVELERS_BACKPACK_ARCANE_WORKBENCH_UPGRADE.get());
+        itemFlat(TAItems.SOPHISTICATED_BACKPACKS_ARCANE_WORKBENCH_UPGRADE.get());
+        itemFlat(TAItems.TRAVELERS_BACKPACK_ARCANE_CHARGER_UPGRADE.get());
+        itemFlat(TAItems.SOPHISTICATED_BACKPACKS_ARCANE_CHARGER_UPGRADE.get());
+
         voidJar(modelContext);
         voidTravellerBoots(modelContext);
         everburningUrn(modelContext);
         rainbowScribingTools(modelContext);
         hungryTrappedChest(modelContext);
-    }
-
-    @Override
-    public @NonNull String getName() {
-        return "Thaumaturge Additions Models";
     }
 }
