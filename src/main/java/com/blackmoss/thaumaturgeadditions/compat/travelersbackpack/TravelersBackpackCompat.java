@@ -1,0 +1,41 @@
+package com.blackmoss.thaumaturgeadditions.compat.travelersbackpack;
+
+import com.blackmoss.thaumaturgeadditions.ThaumaturgeAdditions;
+import com.blackmoss.thaumaturgeadditions.compat.travelersbackpack.item.TBArcaneChargerItemFactory;
+import com.blackmoss.thaumaturgeadditions.compat.travelersbackpack.item.TBArcaneWorkbenchItemFactory;
+import com.leclowndu93150.thaumaturge.api.recipe.RegisterWorkbenchAuraSourcesEvent;
+import net.minecraft.world.item.Item;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModList;
+import net.neoforged.fml.common.EventBusSubscriber;
+
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
+import java.util.UUID;
+
+@EventBusSubscriber(modid = ThaumaturgeAdditions.MODID)
+public final class TravelersBackpackCompat {
+    public static final String TRAVELERS_BACKPACK_MOD_ID = "travelersbackpack";
+
+    public static final UUID WORKBENCH_IDENTITY =
+            UUID.nameUUIDFromBytes("thaumaturgeadditions:travelersbackpack_arcane_workbench".getBytes(StandardCharsets.UTF_8));
+
+    public static boolean isLoaded() {
+        return ModList.get().isLoaded(TRAVELERS_BACKPACK_MOD_ID);
+    }
+
+    @SubscribeEvent
+    public static void onRegisterAuraSources(RegisterWorkbenchAuraSourcesEvent event) {
+        event.register(new TBArcaneWorkbenchAuraSource());
+    }
+
+    public static Item createArcaneWorkbenchUpgradeItem(Item.Properties properties) {
+        Objects.requireNonNull(properties, "properties");
+        return isLoaded() ? TBArcaneWorkbenchItemFactory.create(properties) : new Item(properties);
+    }
+
+    public static Item createArcaneChargerUpgradeItem(Item.Properties properties) {
+        Objects.requireNonNull(properties, "properties");
+        return isLoaded() ? TBArcaneChargerItemFactory.create(properties) : new Item(properties);
+    }
+}

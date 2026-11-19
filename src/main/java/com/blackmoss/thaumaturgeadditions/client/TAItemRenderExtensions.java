@@ -1,0 +1,33 @@
+package com.blackmoss.thaumaturgeadditions.client;
+
+import com.blackmoss.thaumaturgeadditions.ThaumaturgeAdditions;
+import com.blackmoss.thaumaturgeadditions.client.render.item.HungryTrappedChestItemRenderer;
+import com.blackmoss.thaumaturgeadditions.registry.TAItems;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
+import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
+import net.neoforged.neoforge.common.util.Lazy;
+import org.jspecify.annotations.NonNull;
+
+@EventBusSubscriber(modid = ThaumaturgeAdditions.MODID, value = Dist.CLIENT)
+public final class TAItemRenderExtensions {
+    private static final Lazy<BlockEntityWithoutLevelRenderer> RENDERER = Lazy.of(() -> {
+        Minecraft minecraft = Minecraft.getInstance();
+        return new HungryTrappedChestItemRenderer(
+                minecraft.getBlockEntityRenderDispatcher(), minecraft.getEntityModels());
+    });
+
+    @SubscribeEvent
+    public static void onRegisterClientExtensions(RegisterClientExtensionsEvent event) {
+        event.registerItem(new IClientItemExtensions() {
+            @Override
+            public @NonNull BlockEntityWithoutLevelRenderer getCustomRenderer() {
+                return RENDERER.get();
+            }
+        }, TAItems.HUNGRY_TRAPPED_CHEST.get());
+    }
+}

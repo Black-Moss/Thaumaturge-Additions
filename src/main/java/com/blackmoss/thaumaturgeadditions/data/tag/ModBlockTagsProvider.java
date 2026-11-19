@@ -1,0 +1,40 @@
+package com.blackmoss.thaumaturgeadditions.data.tag;
+
+import com.blackmoss.thaumaturgeadditions.ThaumaturgeAdditions;
+import com.blackmoss.thaumaturgeadditions.registry.TABlocks;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
+import net.minecraft.tags.BlockTags;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.data.BlockTagsProvider;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import org.jspecify.annotations.NonNull;
+
+import java.util.concurrent.CompletableFuture;
+
+public final class ModBlockTagsProvider extends BlockTagsProvider {
+    public ModBlockTagsProvider(
+            PackOutput output,
+            CompletableFuture<HolderLookup.Provider> lookupProvider,
+            ExistingFileHelper existingFileHelper) {
+        super(output, lookupProvider, ThaumaturgeAdditions.MODID, existingFileHelper);
+    }
+
+    @Override
+    protected void addTags(HolderLookup.@NonNull Provider provider) {
+        tag(BlockTags.MINEABLE_WITH_PICKAXE)
+                .add(TABlocks.EVERBURNING_URN.get());
+
+        tag(BlockTags.MINEABLE_WITH_AXE)
+                .add(TABlocks.HUNGRY_TRAPPED_CHEST.get());
+        tag(Tags.Blocks.CHESTS)
+                .add(TABlocks.HUNGRY_TRAPPED_CHEST.get());
+        tag(Tags.Blocks.CHESTS_WOODEN)
+                .add(TABlocks.HUNGRY_TRAPPED_CHEST.get());
+    }
+
+    @Override
+    public @NonNull String getName() {
+        return "Thaumaturge Additions Block Tags";
+    }
+}
