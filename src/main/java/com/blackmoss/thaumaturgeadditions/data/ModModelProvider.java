@@ -28,8 +28,5 @@ public final class ModModelProvider extends LazyCatModelProvider {
 
         blockBlockState(TABlocks.EVERBURNING_URN.get());
         blockItemModel(TABlocks.EVERBURNING_URN.get());
-
-        blockBlockState(TABlocks.HUNGRY_TRAPPED_CHEST.get());
-        blockBlockState(TABlocks.VOID_BRAIN_JAR.get());
     }
 }
