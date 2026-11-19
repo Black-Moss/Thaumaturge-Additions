@@ -1,15 +1,14 @@
 package com.blackmooss.thaumaturgeadditions.data;
 
 import com.blackmooss.thaumaturgeadditions.ThaumaturgeAdditions;
-import com.blackmooss.thaumaturgeadditions.registry.TABlocks;
 import com.blackmooss.thaumaturgeadditions.registry.TAItems;
 import com.blackmoss.lazycat.api.model.ModelContext;
 import com.blackmoss.lazycat.model.LazyCatModelProvider;
 import net.minecraft.data.PackOutput;
 
 public final class ModModelProvider extends LazyCatModelProvider {
-    public ModModelProvider(PackOutput output, String modid) {
-        super(output, modid);
+    public ModModelProvider(PackOutput output) {
+        super(output, ThaumaturgeAdditions.MODID);
     }
 
     @Override

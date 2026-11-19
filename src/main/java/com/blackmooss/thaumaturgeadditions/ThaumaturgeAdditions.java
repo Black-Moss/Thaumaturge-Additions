@@ -4,6 +4,7 @@ import com.blackmooss.thaumaturgeadditions.config.ThaumaturgeAdditionsServerConf
 import com.blackmooss.thaumaturgeadditions.data.ModBlockLootSubProvider;
 import com.blackmooss.thaumaturgeadditions.data.ModModelProvider;
 import com.blackmooss.thaumaturgeadditions.data.ModRecipeProvider;
+import com.blackmooss.thaumaturgeadditions.data.ModResearchProvider;
 import com.blackmooss.thaumaturgeadditions.data.lang.EnUsProvider;
 import com.blackmooss.thaumaturgeadditions.data.lang.ZhCnProvider;
 import com.blackmooss.thaumaturgeadditions.data.tag.ModBlockTagsProvider;
@@ -61,8 +62,9 @@ public class ThaumaturgeAdditions {
         event.createProvider(EnUsProvider::new);
         event.createProvider(ZhCnProvider::new);
 
-        event.createProvider((output, lookupProvider) ->
-                new ModModelProvider(output, ThaumaturgeAdditions.MODID));
+        event.createProvider(ModModelProvider::new);
+
+        event.createProvider(ModResearchProvider::new);
 
         event.createProvider((output, lookupProvider) ->
                 new ModRecipeProvider(output, lookupProvider, ThaumaturgeAdditions.MODID));
