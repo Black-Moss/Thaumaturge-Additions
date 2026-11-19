@@ -19,6 +19,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.ArmorDyeRecipe;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
@@ -68,6 +69,19 @@ public final class ModRecipeProvider extends LazyCatRecipeProvider {
                 .gate(ttGate("warded_jars"))
                 .save();
 
+        new InfusionBuilder(context,
+                TAItems.VOID_BRAIN_JAR,
+                TTItems.JAR_VOID)
+                .component(TTItems.BRAIN)
+                .component(Items.SPIDER_EYE)
+                .component(Tags.Items.BUCKETS_WATER)
+                .component(Items.SPIDER_EYE)
+                .aspect(TTAspects.COGNITIO, 25)
+                .aspect(TTAspects.SENSUS, 25)
+                .aspect(TTAspects.EXANIMIS, 25)
+                .gate(ttGate("warded_jars"))
+                .save();
+
         // 永燃之瓮
         new InfusionBuilder(context,
                 TAItems.EVERBURNING_URN,
@@ -93,7 +107,18 @@ public final class ModRecipeProvider extends LazyCatRecipeProvider {
                 .requires(TTItems.HUNGRY_CHEST)
                 .requires(Items.TRIPWIRE_HOOK)
                 .gate(taGate("hungry_trapped_chest"))
-                .save();
+                .save("hungry_trapped_chest_shapless");
+        new ArcaneShapedBuilder(context,
+                TAItems.HUNGRY_TRAPPED_CHEST,
+                25)
+                .pattern("PTP")
+                .pattern("PHP")
+                .pattern("PPP")
+                .define('P', TTItemTags.PLANKS_GREATWOOD)
+                .define('T', ItemTags.WOODEN_TRAPDOORS)
+                .define('H', Items.TRIPWIRE_HOOK)
+                .gate(taGate("hungry_trapped_chest"))
+                .save("hungry_trapped_chest_shapd");
 
         // 虚空旅行者之靴
         new InfusionBuilder(context,
