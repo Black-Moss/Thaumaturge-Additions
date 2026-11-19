@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "thaumaturgeadditions:rainbow_scribing_tools"
+            "items": "thaumaturge:scribing_tools"
           }
         ]
       },

@@ -2,11 +2,11 @@
   "neoforge:conditions": [
     {
       "type": "neoforge:mod_loaded",
-      "modid": "sophisticatedbackpacks"
+      "modid": "travelersbackpack"
     },
     {
       "type": "neoforge:mod_loaded",
-      "modid": "travelersbackpack"
+      "modid": "sophisticatedbackpacks"
     }
   ],
   "type": "thaumaturge:arcane_workbench_shaped",
@@ -40,7 +40,7 @@
     "B": "travelersbackpack:blank_upgrade",
     "C": "thaumaturge:arcane_workbench_charger",
     "R": "thaumaturge:vis_resonator",
-    "T": "thaumaturge:ingot_thaumium"
+    "T": "#c:ingots/thaumium"
   },
   "pattern": [
     " C ",

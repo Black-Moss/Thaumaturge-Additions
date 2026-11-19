@@ -1,0 +1,30 @@
+{
+  "type": "thaumaturge:infusion",
+  "aspects": [
+    {
+      "amount": 25,
+      "aspect": "thaumaturge:cognitio"
+    },
+    {
+      "amount": 25,
+      "aspect": "thaumaturge:sensus"
+    },
+    {
+      "amount": 25,
+      "aspect": "thaumaturge:exanimis"
+    }
+  ],
+  "catalyst": "thaumaturge:jar_void",
+  "components": [
+    "thaumaturge:brain",
+    "minecraft:spider_eye",
+    "#c:buckets/water",
+    "minecraft:spider_eye"
+  ],
+  "research": {
+    "entry": "thaumaturge:warded_jars"
+  },
+  "result": {
+    "id": "thaumaturgeadditions:void_brain_jar"
+  }
+}

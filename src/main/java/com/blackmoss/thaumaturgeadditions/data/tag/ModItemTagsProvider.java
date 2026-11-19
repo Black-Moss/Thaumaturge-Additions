@@ -8,6 +8,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.tags.ItemTags;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ItemTagsProvider;
+import net.p3pp3rf1y.sophisticatedbackpacks.init.ModItems;
 import org.jspecify.annotations.NonNull;
 
 import java.util.concurrent.CompletableFuture;
@@ -55,6 +56,10 @@ public final class ModItemTagsProvider extends ItemTagsProvider {
                 .add(TAItems.HUNGRY_TRAPPED_CHEST.get());
         tag(Tags.Items.CHESTS_TRAPPED)
                 .add(TAItems.HUNGRY_TRAPPED_CHEST.get());
+
+        tag(ModItems.BACKPACK_UPGRADE_TAG)
+                .add(TAItems.SOPHISTICATED_BACKPACKS_ARCANE_WORKBENCH_UPGRADE.get())
+                .add(TAItems.SOPHISTICATED_BACKPACKS_ARCANE_CHARGER_UPGRADE.get());
     }
 
     @Override

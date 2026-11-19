@@ -1,0 +1,21 @@
+{
+  "type": "thaumaturge:arcane_workbench_shaped",
+  "crystals": [],
+  "key": {
+    "H": "minecraft:tripwire_hook",
+    "P": "#c:planks/greatwood",
+    "T": "#minecraft:wooden_trapdoors"
+  },
+  "pattern": [
+    "PTP",
+    "PHP",
+    "PPP"
+  ],
+  "research": {
+    "entry": "thaumaturgeadditions:hungry_trapped_chest"
+  },
+  "result": {
+    "id": "thaumaturgeadditions:hungry_trapped_chest"
+  },
+  "vis": 25
+}

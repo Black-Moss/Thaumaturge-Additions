@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    "thaumaturgeadditions:rainbow_scribing_tools",
+    "#c:dyes"
+  ],
+  "result": {
+    "id": "thaumaturgeadditions:rainbow_scribing_tools"
+  }
+}
