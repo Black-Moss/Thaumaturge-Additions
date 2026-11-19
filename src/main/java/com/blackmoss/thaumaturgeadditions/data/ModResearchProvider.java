@@ -1,9 +1,9 @@
 package com.blackmoss.thaumaturgeadditions.data;
 
 import com.blackmoss.lazycat.api.thaumaturge.research.ResearchContext;
+import com.blackmoss.lazycat.thaumaturge.research.LazyCatResearchProvider;
 import com.blackmoss.lazycat.thaumaturge.research.ResearchEntryBuilder;
 import com.blackmoss.lazycat.thaumaturge.research.ResearchStageBuilder;
-import com.blackmoss.lazycat.thaumaturge.research.ThaumaturgeResearchProvider;
 import com.blackmoss.thaumaturgeadditions.ThaumaturgeAdditions;
 import com.blackmoss.thaumaturgeadditions.registry.TAItems;
 import com.leclowndu93150.thaumaturge.TTIds;
@@ -18,7 +18,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.common.Tags;
 
-public final class ModResearchProvider extends ThaumaturgeResearchProvider {
+public final class ModResearchProvider extends LazyCatResearchProvider {
     public ModResearchProvider(PackOutput output) {
         super(output, ThaumaturgeAdditions.MODID);
     }
@@ -40,15 +40,7 @@ public final class ModResearchProvider extends ThaumaturgeResearchProvider {
                 false, true,
                 false);
 
-        everburningUrn(context);
-        voidTravellerBoots(context);
-        focusSalisMundus(context);
-        hungryTrappedChest(context);
-        rainbowScribingTools(context);
-    }
-
-    private void everburningUrn(ResearchContext context) {
-        new ResearchEntryBuilder(context, TTResearchCategories.ALCHEMY, "everburning_urn")
+        context.entry(TTResearchCategories.ALCHEMY, "everburning_urn")
                 .parent(TTIds.rl("everfull_urn"))
                 .position(-2, 4)
                 .icon(TAItems.EVERBURNING_URN)
@@ -67,10 +59,8 @@ public final class ModResearchProvider extends ThaumaturgeResearchProvider {
                 .noteAspect(TTAspects.VACUOS, 2)
                 .complexity(2)
                 .save();
-    }
 
-    private void voidTravellerBoots(ResearchContext context) {
-        new ResearchEntryBuilder(context, TTResearchCategories.ELDRITCH, "void_traveller_boots")
+        context.entry(TTResearchCategories.ELDRITCH, "void_traveller_boots")
                 .parent(TTIds.rl("void_robe_armor"))
                 .parent(TTIds.rl("boots_traveller"))
                 .position(-1, 4)
@@ -84,8 +74,8 @@ public final class ModResearchProvider extends ThaumaturgeResearchProvider {
 
                 .stage()
                 .recipes(
-                        ThaumaturgeAdditions.identifier("infusion/void_traveller_boots"),
-                        ThaumaturgeAdditions.identifier("void_traveller_boots_dyed"))
+                        "thaumaturgeadditions:infusion/void_traveller_boots",
+                        "thaumaturgeadditions:void_traveller_boots_dyed")
                 .end()
 
                 .noteAspect(TTAspects.MOTUS, 3)
@@ -95,10 +85,8 @@ public final class ModResearchProvider extends ThaumaturgeResearchProvider {
                 .noteAspect(TTAspects.FABRICO, 4)
                 .complexity(3)
                 .save();
-    }
 
-    private void focusSalisMundus(ResearchContext context) {
-        new ResearchEntryBuilder(context, TTResearchCategories.AUROMANCY, "focus_salis_mundus")
+        context.entry(TTResearchCategories.AUROMANCY, "focus_salis_mundus")
                 .parent(TTIds.rl("focus_elemental"))
                 .position(-1, 3)
                 .icon(ResearchIcon.ofFocus(ThaumaturgeAdditions.identifier("salis_mundus")))
@@ -115,10 +103,8 @@ public final class ModResearchProvider extends ThaumaturgeResearchProvider {
                 .noteAspect(TTAspects.TERRA, 4)
                 .complexity(2)
                 .save();
-    }
 
-    private void hungryTrappedChest(ResearchContext context) {
-        new ResearchEntryBuilder(context, TTResearchCategories.ARTIFICE, "hungry_trapped_chest")
+        context.entry(TTResearchCategories.ARTIFICE, "hungry_trapped_chest")
                 .parent(TTIds.rl("hungry_chest"))
                 .position(3, 3)
                 .icon(TAItems.HUNGRY_TRAPPED_CHEST)
@@ -130,17 +116,15 @@ public final class ModResearchProvider extends ThaumaturgeResearchProvider {
                 .end()
 
                 .stage()
-                .recipes(ThaumaturgeAdditions.identifier("arcane_workbench/hungry_trapped_chest"))
+                .recipes("thaumaturgeadditions:arcane_workbench/hungry_trapped_chest")
                 .end()
 
                 .noteAspect(TTAspects.DESIDERIUM, 3)
                 .noteAspect(TTAspects.VACUOS, 3)
                 .complexity(1)
                 .save();
-    }
 
-    private void rainbowScribingTools(ResearchContext context) {
-        new ResearchEntryBuilder(context, TTResearchCategories.BASICS, "rainbow_scribing_tools")
+        context.entry(TTResearchCategories.BASICS, "rainbow_scribing_tools")
                 .parent(TTIds.rl("research"))
                 .parent(TTIds.rl("base_infusion"))
                 .position(4, 0)
@@ -170,8 +154,8 @@ public final class ModResearchProvider extends ThaumaturgeResearchProvider {
 
                 .stage()
                 .recipes(
-                        ThaumaturgeAdditions.identifier("infusion/rainbow_scribing_tools"),
-                        ThaumaturgeAdditions.identifier("rainbow_scribing_tools_alt"))
+                        "thaumaturgeadditions:infusion/rainbow_scribing_tools",
+                        "thaumaturgeadditions:rainbow_scribing_tools_alt")
                 .end()
 
                 .noteAspect(TTAspects.ORDO, 3)
@@ -238,25 +222,25 @@ public final class ModResearchProvider extends ThaumaturgeResearchProvider {
     private Object[] upgradeRecipe(String id) {
         if ("arcane_workbench_upgrade".equals(id)) {
             return new Object[]{
-                    ThaumaturgeAdditions.identifier("arcane_workbench/sophisticatedbackpacks_arcane_workbench_upgrade_and"),
-                    ThaumaturgeAdditions.identifier("arcane_workbench/travelersbackpack_arcane_workbench_upgrade_and")
+                    "thaumaturgeadditions:arcane_workbench/sophisticatedbackpacks_arcane_workbench_upgrade_and",
+                    "thaumaturgeadditions:arcane_workbench/travelersbackpack_arcane_workbench_upgrade_and"
             };
         }
         return new Object[]{
-                ThaumaturgeAdditions.identifier("arcane_workbench/" + id)
+                "thaumaturgeadditions:arcane_workbench/" + id
         };
     }
 
     private Object[] chargerRecipe(boolean sophisticated, boolean travelers) {
         if (sophisticated && travelers) {
             return new Object[]{
-                    ThaumaturgeAdditions.identifier("arcane_workbench/sophisticatedbackpacks_arcane_charger_upgrade_and"),
-                    ThaumaturgeAdditions.identifier("arcane_workbench/travelersbackpack_arcane_charger_upgrade_and")
+                    "thaumaturgeadditions:arcane_workbench/sophisticatedbackpacks_arcane_charger_upgrade_and",
+                    "thaumaturgeadditions:arcane_workbench/travelersbackpack_arcane_charger_upgrade_and"
             };
         }
         String mod = sophisticated ? "sophisticatedbackpacks" : "travelersbackpack";
         return new Object[]{
-                ThaumaturgeAdditions.identifier("arcane_workbench/" + mod + "_arcane_charger_upgrade")
+                "thaumaturgeadditions:arcane_workbench/" + mod + "_arcane_charger_upgrade"
         };
     }
 }
