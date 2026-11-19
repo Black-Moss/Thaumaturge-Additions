@@ -92,7 +92,6 @@ public final class ModRecipeProvider extends LazyCatRecipeProvider {
                 10)
                 .requires(TTItems.HUNGRY_CHEST)
                 .requires(Items.TRIPWIRE_HOOK)
-                .aspect(TTAspects.MOTUS)
                 .gate(taGate("hungry_trapped_chest"))
                 .save();
 
