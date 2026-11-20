@@ -21,6 +21,7 @@ import net.minecraft.world.level.block.state.properties.ChestType;
 import net.minecraft.world.phys.AABB;
 import org.jspecify.annotations.NonNull;
 
+@SuppressWarnings("removal")
 public class HungryTrappedChestBlockEntity extends ChestBlockEntity {
     private static final int PULSE_DURATION_TICKS = 4;
     private static final int PULSE_EVENT = 2;
