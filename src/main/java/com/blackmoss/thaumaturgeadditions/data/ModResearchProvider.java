@@ -1,6 +1,5 @@
 package com.blackmoss.thaumaturgeadditions.data;
 
-import com.blackmoss.lazycat.api.thaumaturge.research.ResearchContext;
 import com.blackmoss.lazycat.thaumaturge.research.LazyCatResearchProvider;
 import com.blackmoss.lazycat.thaumaturge.research.ResearchEntryBuilder;
 import com.blackmoss.lazycat.thaumaturge.research.ResearchStageBuilder;
@@ -24,19 +23,16 @@ public final class ModResearchProvider extends LazyCatResearchProvider {
     }
 
     @Override
-    protected void addResearch(ResearchContext context) {
-        arcaneWorkbenchUpgrade(context,
-                "arcane_workbench_upgrade",
+    protected void addResearch() {
+        arcaneWorkbenchUpgrade("arcane_workbench_upgrade",
                 true, true,
                 true);
 
-        arcaneWorkbenchUpgrade(context,
-                "sophisticatedbackpacks_arcane_workbench_upgrade",
+        arcaneWorkbenchUpgrade("sophisticatedbackpacks_arcane_workbench_upgrade",
                 true, false,
                 false);
 
-        arcaneWorkbenchUpgrade(context,
-                "travelersbackpack_arcane_workbench_upgrade",
+        arcaneWorkbenchUpgrade("travelersbackpack_arcane_workbench_upgrade",
                 false, true,
                 false);
 
@@ -165,7 +161,6 @@ public final class ModResearchProvider extends LazyCatResearchProvider {
     }
 
     private void arcaneWorkbenchUpgrade(
-            ResearchContext context,
             String id,
             boolean sophisticated,
             boolean travelers,

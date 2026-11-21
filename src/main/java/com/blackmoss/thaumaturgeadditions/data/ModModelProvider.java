@@ -1,6 +1,5 @@
 package com.blackmoss.thaumaturgeadditions.data;
 
-import com.blackmoss.lazycat.api.model.ModelContext;
 import com.blackmoss.lazycat.model.LazyCatModelProvider;
 import com.blackmoss.thaumaturgeadditions.ThaumaturgeAdditions;
 import com.blackmoss.thaumaturgeadditions.registry.TABlocks;
@@ -13,7 +12,7 @@ public final class ModModelProvider extends LazyCatModelProvider {
     }
 
     @Override
-    protected void addModels(ModelContext context) {
+    protected void addModels() {
         itemFlat(TAItems.SOPHISTICATED_BACKPACKS_ARCANE_CHARGER_UPGRADE.get());
         itemFlat(TAItems.SOPHISTICATED_BACKPACKS_ARCANE_WORKBENCH_UPGRADE.get());
         itemFlat(TAItems.TRAVELERS_BACKPACK_ARCANE_CHARGER_UPGRADE.get());
